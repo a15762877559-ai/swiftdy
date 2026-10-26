@@ -1,0 +1,11 @@
+{
+  "local_static_validation": "PASS",
+  "python_syntax": "PASS",
+  "yaml_structure": "PASS",
+  "bash_syntax": "PASS",
+  "protected_existing_files": 211,
+  "changed_existing_files": [],
+  "actionlint": "NOT_INSTALLED_NOT_RUN",
+  "swift_build": "NOT_RUN_ON_WINDOWS",
+  "controlled_urlsession_tests": "NOT_RUN_ON_WINDOWS"
+}

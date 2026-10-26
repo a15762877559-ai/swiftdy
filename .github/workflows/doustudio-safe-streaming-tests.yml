@@ -1,0 +1,80 @@
+name: DouStudioKit Safe Streaming Transport Tests
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  controlled:
+    runs-on: xcode-27
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout tests
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Initialize isolated runner workspace
+        id: evidence
+        env:
+          SAFE_TEMP: ${{ runner.temp }}
+        run: python3 runtime-harness/safe-streaming-tests/workflow_evidence.py initialize
+      - name: Checkout pinned upstream
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: qinjian0420/DouStudioKit
+          ref: 362dad3d082e9f63c8efd360acc653ba169d40a2
+          path: upstream
+          persist-credentials: false
+          submodules: false
+          lfs: false
+      - name: Verify upstream and environment
+        run: python3 runtime-harness/safe-streaming-tests/workflow_evidence.py environment
+      - name: Build isolated Swift transport tests
+        id: build
+        run: |
+          set +e
+          swift build --package-path runtime-harness/safe-streaming-tests -c debug > "$SAFE_EVIDENCE_ROOT/build.log" 2>&1
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$SAFE_EVIDENCE_ROOT/build-exit-code.txt"
+          test "$code" -eq 0
+          bin_dir=$(swift build --package-path runtime-harness/safe-streaming-tests -c debug --show-bin-path)
+          printf 'binary=%s/SafeStreamingTests\n' "$bin_dir" >> "$GITHUB_OUTPUT"
+      - name: Real URLSession and original Downloader against loopback only
+        id: tests
+        env:
+          SAFE_BINARY: ${{ steps.build.outputs.binary }}
+        run: |
+          ulimit -c 0
+          set +e
+          sandbox-exec -p '(version 1)(allow default)(deny network*)(allow network-inbound (local ip "localhost:*"))(allow network-outbound (remote ip "localhost:*"))(allow network-bind (local ip "localhost:*"))' python3 -B runtime-harness/safe-streaming-tests/run_controlled_tests.py
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$SAFE_EVIDENCE_ROOT/runner-exit-code.txt"
+          exit "$code"
+      - name: Record outcome and source protection
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        env:
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+        run: python3 runtime-harness/safe-streaming-tests/workflow_evidence.py finalize
+      - name: Upload diagnostic files only
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: doustudio-safe-streaming-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 3
+          if-no-files-found: error
+          path: |
+            ${{ steps.evidence.outputs.directory }}/runtime-environment.json
+            ${{ steps.evidence.outputs.directory }}/build.log
+            ${{ steps.evidence.outputs.directory }}/build-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/runner-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/controlled-results.json
+            ${{ steps.evidence.outputs.directory }}/server-counters.json
+            ${{ steps.evidence.outputs.directory }}/test-process.log
+            ${{ steps.evidence.outputs.directory }}/cleanup-summary.json
+            ${{ steps.evidence.outputs.directory }}/source-protection.json
+            ${{ steps.evidence.outputs.directory }}/stage-outcomes.json
