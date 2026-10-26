@@ -1,0 +1,618 @@
+Building for debugging...
+[Pre-planning 1 / 96]
+[Planning deferred tasks]
+[29 / 52]
+[30 / 53] DouStudioKit
+[37 / 102]
+[40 / 102]
+[46 / 102]
+[50 / 102]
+[51 / 102]
+[55 / 102]
+[57 / 102]
+[60 / 102]
+[64 / 102]
+[67 / 102]
+[68 / 102]
+[69 / 102]
+[72 / 102]
+[74 / 102]
+[75 / 102]
+[79 / 102] DouStudioKit
+[80 / 102] DouStudioKit
+[86 / 103] SafeDownloadSupport
+[89 / 130]
+[91 / 130]
+[92 / 130]
+[94 / 130]
+[96 / 130]
+[100 / 130]
+[102 / 130] DouStudioKit
+[104 / 130]
+[107 / 130]
+[110 / 130]
+[111 / 130]
+[115 / 130] SafeDownloadSupport
+[116 / 130] SafeDownloadSupport
+[124 / 131]
+[126 / 137]
+[128 / 137] RuntimeAcceptance-product
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m51 |[0;0m         let reader = try AVAssetReader(asset:asset)
+ [0;36m52 |[0;0m         let output = AVAssetReaderTrackOutput(track:track,outputSettings:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA])
+ [0;36m53 |[0;0m         output.alwaysCopiesSampleData = false
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m54 |[0;0m         guard reader.canAdd(output) else { throw IntegrationError.decode }; reader.add(output)
+ [0;36m55 |[0;0m         guard reader.startReading() else { throw IntegrationError.decode }
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m52 |[0;0m         let output = AVAssetReaderTrackOutput(track:track,outputSettings:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA])
+ [0;36m53 |[0;0m         output.alwaysCopiesSampleData = false
+ [0;36m54 |[0;0m         guard reader.canAdd(output) else { throw IntegrationError.decode }; reader.add(output)
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m55 |[0;0m         guard reader.startReading() else { throw IntegrationError.decode }
+ [0;36m56 |[0;0m         defer { reader.cancelReading() }
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m53 |[0;0m         output.alwaysCopiesSampleData = false
+ [0;36m54 |[0;0m         guard reader.canAdd(output) else { throw IntegrationError.decode }; reader.add(output)
+ [0;36m55 |[0;0m         guard reader.startReading() else { throw IntegrationError.decode }
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m56 |[0;0m         defer { reader.cancelReading() }
+ [0;36m57 |[0;0m         let deadline = Date().addingTimeInterval(15)
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m56 |[0;0m         defer { reader.cancelReading() }
+ [0;36m57 |[0;0m         let deadline = Date().addingTimeInterval(15)
+ [0;36m58 |[0;0m         while let sample = output.copyNextSampleBuffer() {
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m59 |[0;0m             guard Date() < deadline, proof.decoded_frames < 1000, CMSampleBufferDataIsReady(sample),
+ [0;36m60 |[0;0m                   let image = CMSampleBufferGetImageBuffer(sample), CVPixelBufferGetWidth(image) > 0,
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m70 |[0;0m         let writer = try AVAssetWriter(outputURL:file,fileType:.mp4)
+ [0;36m71 |[0;0m         let input = AVAssetWriterInput(mediaType:.video,outputSettings:[AVVideoCodecKey:AVVideoCodecType.h264,AVVideoWidthKey:64,AVVideoHeightKey:64])
+ [0;36m72 |[0;0m         input.expectsMediaDataInRealTime = false
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m73 |[0;0m         let adaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput:input,sourcePixelBufferAttributes:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA,kCVPixelBufferWidthKey as String:64,kCVPixelBufferHeightKey as String:64])
+ [0;36m74 |[0;0m         guard writer.canAdd(input) else { throw IntegrationError.fixture }; writer.add(input)
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m71 |[0;0m         let input = AVAssetWriterInput(mediaType:.video,outputSettings:[AVVideoCodecKey:AVVideoCodecType.h264,AVVideoWidthKey:64,AVVideoHeightKey:64])
+ [0;36m72 |[0;0m         input.expectsMediaDataInRealTime = false
+ [0;36m73 |[0;0m         let adaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput:input,sourcePixelBufferAttributes:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA,kCVPixelBufferWidthKey as String:64,kCVPixelBufferHeightKey as String:64])
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m74 |[0;0m         guard writer.canAdd(input) else { throw IntegrationError.fixture }; writer.add(input)
+ [0;36m75 |[0;0m         guard writer.startWriting() else { throw IntegrationError.fixture }
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m72 |[0;0m         input.expectsMediaDataInRealTime = false
+ [0;36m73 |[0;0m         let adaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput:input,sourcePixelBufferAttributes:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA,kCVPixelBufferWidthKey as String:64,kCVPixelBufferHeightKey as String:64])
+ [0;36m74 |[0;0m         guard writer.canAdd(input) else { throw IntegrationError.fixture }; writer.add(input)
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m75 |[0;0m         guard writer.startWriting() else { throw IntegrationError.fixture }
+ [0;36m76 |[0;0m         writer.startSession(atSourceTime:.zero)
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m73 |[0;0m         let adaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput:input,sourcePixelBufferAttributes:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA,kCVPixelBufferWidthKey as String:64,kCVPixelBufferHeightKey as String:64])
+ [0;36m74 |[0;0m         guard writer.canAdd(input) else { throw IntegrationError.fixture }; writer.add(input)
+ [0;36m75 |[0;0m         guard writer.startWriting() else { throw IntegrationError.fixture }
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m76 |[0;0m         writer.startSession(atSourceTime:.zero)
+ [0;36m77 |[0;0m         let deadline = Date().addingTimeInterval(15)
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m77 |[0;0m         let deadline = Date().addingTimeInterval(15)
+ [0;36m78 |[0;0m         for frame in 0..<30 {
+ [0;36m79 |[0;0m             while !input.isReadyForMoreMediaData {
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m80 |[0;0m                 guard Date() < deadline else { throw IntegrationError.fixture }
+ [0;36m81 |[0;0m                 try await Task.sleep(for:.milliseconds(5))
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/SingleVideoDownloadBridge.swift:30:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m28 |[0;0m     var corruption_assessment = "NOT_RUN"
+ [0;36m29 |[0;0m     var decode_method = "FULL_SEQUENTIAL_VIDEO_TRACK_TO_PIXEL_BUFFERS"
+ [0;36m30 |[0;0m     let audio_decode = "NOT_RUN"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'audio_decode' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m31 |[0;0m     let NO_WATERMARK = "NOT_VERIFIED"
+ [0;36m32 |[0;0m }
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/SingleVideoDownloadBridge.swift:31:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m29 |[0;0m     var decode_method = "FULL_SEQUENTIAL_VIDEO_TRACK_TO_PIXEL_BUFFERS"
+ [0;36m30 |[0;0m     let audio_decode = "NOT_RUN"
+ [0;36m31 |[0;0m     let NO_WATERMARK = "NOT_VERIFIED"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'NO_WATERMARK' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m32 |[0;0m }
+ [0;36m33 |[0;0m private struct RealTransferEvidence: Codable, Sendable {
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/SingleVideoDownloadBridge.swift:49:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m47 |[0;0m     var declared_length_matches: Bool?
+ [0;36m48 |[0;0m     var completeness_method = "NOT_RUN"
+ [0;36m49 |[0;0m     let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'STRICT_NETWORK_RECEIVE_LIMIT' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m50 |[0;0m     let PRODUCTION_ALLOWLIST = "EMPTY"
+ [0;36m51 |[0;0m }
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/SingleVideoDownloadBridge.swift:50:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m48 |[0;0m     var completeness_method = "NOT_RUN"
+ [0;36m49 |[0;0m     let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+ [0;36m50 |[0;0m     let PRODUCTION_ALLOWLIST = "EMPTY"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'PRODUCTION_ALLOWLIST' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m51 |[0;0m }
+ [0;36m52 |[0;0m 
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m87 |[0;0m         evidence.media.corruption_assessment = "NOT_DETERMINED"
+ [0;36m88 |[0;0m         let output = AVAssetReaderTrackOutput(track:track,outputSettings:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA])
+ [0;36m89 |[0;0m         output.alwaysCopiesSampleData = false
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m90 |[0;0m         guard reader.canAdd(output) else { throw IntegrationError.decode }; reader.add(output)
+ [0;36m91 |[0;0m         guard reader.startReading() else {
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m88 |[0;0m         let output = AVAssetReaderTrackOutput(track:track,outputSettings:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA])
+ [0;36m89 |[0;0m         output.alwaysCopiesSampleData = false
+ [0;36m90 |[0;0m         guard reader.canAdd(output) else { throw IntegrationError.decode }; reader.add(output)
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m91 |[0;0m         guard reader.startReading() else {
+ [0;36m92 |[0;0m             evidence.media.corruption_detected = reader.status == .failed
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m89 |[0;0m         output.alwaysCopiesSampleData = false
+ [0;36m90 |[0;0m         guard reader.canAdd(output) else { throw IntegrationError.decode }; reader.add(output)
+ [0;36m91 |[0;0m         guard reader.startReading() else {
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m92 |[0;0m             evidence.media.corruption_detected = reader.status == .failed
+ [0;36m93 |[0;0m             evidence.media.corruption_assessment = reader.status == .failed ? "DETECTED_BY_DECODER" : "NOT_DETERMINED"
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m99 |[0;0m         let deadline = Date().addingTimeInterval(180)
+[0;36m100 |[0;0m         let tolerance = min(2.0,max(0.25,2.0 / fps))
+[0;36m101 |[0;0m         while let sample = output.copyNextSampleBuffer() {
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m102 |[0;0m             try Task.checkCancellation()
+[0;36m103 |[0;0m             guard Date() < deadline, evidence.media.decoded_frames < 250_000, CMSampleBufferDataIsReady(sample),
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+[130 / 137] SafeDownloadSupport
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/PaginationSelfTest.swift:54:15: [1;33mwarning: [1;39m'catch' block is unreachable because no errors are thrown in 'do' block[0;0m
+ [0;36m52 |[0;0m             do {
+ [0;36m53 |[0;0m                 result = OfflineCaseResult(id:id, name:name, function:"AuthenticatedPagination.collect/PaginationTransport.send", status:"PASS", errorCategory:"NONE", expected:expected, actual:try await body())
+ [0;36m54 |[0;0m             } catch {
+    [0;36m|[0;0m               `- [1;33mwarning: [1;39m'catch' block is unreachable because no errors are thrown in 'do' block[0;0m
+ [0;36m55 |[0;0m                 result = OfflineCaseResult(id:id, name:name, function:"AuthenticatedPagination.collect/PaginationTransport.send", status:"FAIL", errorCategory:(error as? PaginationFailure)?.rawValue ?? "ASSERTION_MISMATCH", expected:expected,
+ [0;36m56 |[0;0m                     actual:(error as? PaginationTestMismatch)?.summary ?? "fixed_error_or_condition_mismatch")
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SelfTest.swift:69:15: [1;33mwarning: [1;39m'catch' block is unreachable because no errors are thrown in 'do' block[0;0m
+ [0;36m67 |[0;0m                 result = OfflineCaseResult(id: id, name: name, function: function, status: "PASS",
+ [0;36m68 |[0;0m                     errorCategory: "NONE", expected: expected, actual: try await body())
+ [0;36m69 |[0;0m             } catch {
+    [0;36m|[0;0m               `- [1;33mwarning: [1;39m'catch' block is unreachable because no errors are thrown in 'do' block[0;0m
+ [0;36m70 |[0;0m                 let category: String
+ [0;36m71 |[0;0m                 let actual: String
+[132 / 137] SafeDownloadSupport
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:19:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m17 |[0;0m     var url_shape = "REJECTED"
+ [0;36m18 |[0;0m     var reason = "INVALID_URL"
+ [0;36m19 |[0;0m     let dns_target_check = "NOT_VERIFIED_NO_DNS_LOOKUP"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'dns_target_check' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m20 |[0;0m     let redirect_risk = "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN"
+ [0;36m21 |[0;0m     let public_service_association = "NOT_REVIEWED"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:20:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m18 |[0;0m     var reason = "INVALID_URL"
+ [0;36m19 |[0;0m     let dns_target_check = "NOT_VERIFIED_NO_DNS_LOOKUP"
+ [0;36m20 |[0;0m     let redirect_risk = "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'redirect_risk' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m21 |[0;0m     let public_service_association = "NOT_REVIEWED"
+ [0;36m22 |[0;0m     let approved = false
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:21:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m19 |[0;0m     let dns_target_check = "NOT_VERIFIED_NO_DNS_LOOKUP"
+ [0;36m20 |[0;0m     let redirect_risk = "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN"
+ [0;36m21 |[0;0m     let public_service_association = "NOT_REVIEWED"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'public_service_association' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m22 |[0;0m     let approved = false
+ [0;36m23 |[0;0m }
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:22:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m20 |[0;0m     let redirect_risk = "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN"
+ [0;36m21 |[0;0m     let public_service_association = "NOT_REVIEWED"
+ [0;36m22 |[0;0m     let approved = false
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'approved' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m23 |[0;0m }
+ [0;36m24 |[0;0m 
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:100:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m98 |[0;0m             let MEDIA_HOSTS_IDENTIFIED: String
+ [0;36m99 |[0;0m             let HOST_PROVENANCE: String
+[0;36m100 |[0;0m             let HOST_SECURITY_REVIEW = "BLOCKED"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'HOST_SECURITY_REVIEW' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m101 |[0;0m             let PRODUCTION_ALLOWLIST = "EMPTY"
+[0;36m102 |[0;0m             let APPROVED_HOSTS = 0
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:101:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m99 |[0;0m             let HOST_PROVENANCE: String
+[0;36m100 |[0;0m             let HOST_SECURITY_REVIEW = "BLOCKED"
+[0;36m101 |[0;0m             let PRODUCTION_ALLOWLIST = "EMPTY"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'PRODUCTION_ALLOWLIST' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m102 |[0;0m             let APPROVED_HOSTS = 0
+[0;36m103 |[0;0m             let REAL_MEDIA_REQUEST = "NOT_RUN"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:102:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m100 |[0;0m             let HOST_SECURITY_REVIEW = "BLOCKED"
+[0;36m101 |[0;0m             let PRODUCTION_ALLOWLIST = "EMPTY"
+[0;36m102 |[0;0m             let APPROVED_HOSTS = 0
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'APPROVED_HOSTS' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m103 |[0;0m             let REAL_MEDIA_REQUEST = "NOT_RUN"
+[0;36m104 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:103:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m101 |[0;0m             let PRODUCTION_ALLOWLIST = "EMPTY"
+[0;36m102 |[0;0m             let APPROVED_HOSTS = 0
+[0;36m103 |[0;0m             let REAL_MEDIA_REQUEST = "NOT_RUN"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'REAL_MEDIA_REQUEST' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m104 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+[0;36m105 |[0;0m             let APPLICATION_BYTE_BUDGET = "PASS"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:104:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m102 |[0;0m             let APPROVED_HOSTS = 0
+[0;36m103 |[0;0m             let REAL_MEDIA_REQUEST = "NOT_RUN"
+[0;36m104 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'REAL_VIDEO_DOWNLOAD' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m105 |[0;0m             let APPLICATION_BYTE_BUDGET = "PASS"
+[0;36m106 |[0;0m             let byte_budget_evidence_run = "40289436585"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:105:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m103 |[0;0m             let REAL_MEDIA_REQUEST = "NOT_RUN"
+[0;36m104 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+[0;36m105 |[0;0m             let APPLICATION_BYTE_BUDGET = "PASS"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'APPLICATION_BYTE_BUDGET' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m106 |[0;0m             let byte_budget_evidence_run = "40289436585"
+[0;36m107 |[0;0m             let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:106:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m104 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+[0;36m105 |[0;0m             let APPLICATION_BYTE_BUDGET = "PASS"
+[0;36m106 |[0;0m             let byte_budget_evidence_run = "40289436585"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'byte_budget_evidence_run' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m107 |[0;0m             let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+[0;36m108 |[0;0m         }
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:107:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m105 |[0;0m             let APPLICATION_BYTE_BUDGET = "PASS"
+[0;36m106 |[0;0m             let byte_budget_evidence_run = "40289436585"
+[0;36m107 |[0;0m             let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'STRICT_NETWORK_RECEIVE_LIMIT' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m108 |[0;0m         }
+[0;36m109 |[0;0m         try write(collection.records.filter { $0.role == "video_playback" },"candidate-hosts.json",folder)
+[133 / 137] RuntimeAcceptance-product
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostLiveProbe.swift:239:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m237 |[0;0m             let media_probe_completed: Bool
+[0;36m238 |[0;0m             let REAL_MEDIA_PROBE: String
+[0;36m239 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'REAL_VIDEO_DOWNLOAD' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m240 |[0;0m             let PRODUCTION_ALLOWLIST = "EMPTY"
+[0;36m241 |[0;0m             let APPROVED_HOSTS = 0
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostLiveProbe.swift:240:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m238 |[0;0m             let REAL_MEDIA_PROBE: String
+[0;36m239 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+[0;36m240 |[0;0m             let PRODUCTION_ALLOWLIST = "EMPTY"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'PRODUCTION_ALLOWLIST' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m241 |[0;0m             let APPROVED_HOSTS = 0
+[0;36m242 |[0;0m             let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostLiveProbe.swift:241:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m239 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+[0;36m240 |[0;0m             let PRODUCTION_ALLOWLIST = "EMPTY"
+[0;36m241 |[0;0m             let APPROVED_HOSTS = 0
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'APPROVED_HOSTS' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m242 |[0;0m             let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+[0;36m243 |[0;0m             let VIDEO_CONTENT_INTEGRITY = "NOT_VERIFIED_ONE_BYTE_ONLY"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostLiveProbe.swift:242:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m240 |[0;0m             let PRODUCTION_ALLOWLIST = "EMPTY"
+[0;36m241 |[0;0m             let APPROVED_HOSTS = 0
+[0;36m242 |[0;0m             let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'STRICT_NETWORK_RECEIVE_LIMIT' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m243 |[0;0m             let VIDEO_CONTENT_INTEGRITY = "NOT_VERIFIED_ONE_BYTE_ONLY"
+[0;36m244 |[0;0m         }
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaHostLiveProbe.swift:243:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m241 |[0;0m             let APPROVED_HOSTS = 0
+[0;36m242 |[0;0m             let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+[0;36m243 |[0;0m             let VIDEO_CONTENT_INTEGRITY = "NOT_VERIFIED_ONE_BYTE_ONLY"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'VIDEO_CONTENT_INTEGRITY' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m244 |[0;0m         }
+[0;36m245 |[0;0m         try MediaHostAudit.write(Summary(worklist:list,failure_category:failure,media_probe_completed:failure == nil && !observations.isEmpty,
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaRedirectProbe.swift:115:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m113 |[0;0m     }
+[0;36m114 |[0;0m     struct Outcome: Codable {
+[0;36m115 |[0;0m         let TASK = "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02"
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'TASK' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m116 |[0;0m         var WWW_INITIAL_RESPONSE = "NOT_RUN"
+[0;36m117 |[0;0m         var WWW_REDIRECT_HOST: String?
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaRedirectProbe.swift:121:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m119 |[0;0m         var SF11_PROBE = "NOT_RUN"
+[0;36m120 |[0;0m         var MEDIA_REQUEST_COUNT = 0
+[0;36m121 |[0;0m         let MEDIA_RETRIES = 0
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'MEDIA_RETRIES' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m122 |[0;0m         let UNAPPROVED_REDIRECT_FOLLOWED = "NO"
+[0;36m123 |[0;0m         let FULL_VIDEO_DOWNLOADED = "NO"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaRedirectProbe.swift:122:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m120 |[0;0m         var MEDIA_REQUEST_COUNT = 0
+[0;36m121 |[0;0m         let MEDIA_RETRIES = 0
+[0;36m122 |[0;0m         let UNAPPROVED_REDIRECT_FOLLOWED = "NO"
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'UNAPPROVED_REDIRECT_FOLLOWED' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m123 |[0;0m         let FULL_VIDEO_DOWNLOADED = "NO"
+[0;36m124 |[0;0m         let HOST_SECURITY_REVIEW = "BLOCKED"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaRedirectProbe.swift:123:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m121 |[0;0m         let MEDIA_RETRIES = 0
+[0;36m122 |[0;0m         let UNAPPROVED_REDIRECT_FOLLOWED = "NO"
+[0;36m123 |[0;0m         let FULL_VIDEO_DOWNLOADED = "NO"
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'FULL_VIDEO_DOWNLOADED' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m124 |[0;0m         let HOST_SECURITY_REVIEW = "BLOCKED"
+[0;36m125 |[0;0m         let PRODUCTION_ALLOWLIST = "EMPTY"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaRedirectProbe.swift:124:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m122 |[0;0m         let UNAPPROVED_REDIRECT_FOLLOWED = "NO"
+[0;36m123 |[0;0m         let FULL_VIDEO_DOWNLOADED = "NO"
+[0;36m124 |[0;0m         let HOST_SECURITY_REVIEW = "BLOCKED"
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'HOST_SECURITY_REVIEW' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m125 |[0;0m         let PRODUCTION_ALLOWLIST = "EMPTY"
+[0;36m126 |[0;0m         let NO_WATERMARK = "NOT_TESTED"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaRedirectProbe.swift:125:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m123 |[0;0m         let FULL_VIDEO_DOWNLOADED = "NO"
+[0;36m124 |[0;0m         let HOST_SECURITY_REVIEW = "BLOCKED"
+[0;36m125 |[0;0m         let PRODUCTION_ALLOWLIST = "EMPTY"
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'PRODUCTION_ALLOWLIST' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m126 |[0;0m         let NO_WATERMARK = "NOT_TESTED"
+[0;36m127 |[0;0m         let RUST_IMPLEMENTATION = "NOT_STARTED"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaRedirectProbe.swift:126:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m124 |[0;0m         let HOST_SECURITY_REVIEW = "BLOCKED"
+[0;36m125 |[0;0m         let PRODUCTION_ALLOWLIST = "EMPTY"
+[0;36m126 |[0;0m         let NO_WATERMARK = "NOT_TESTED"
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'NO_WATERMARK' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m127 |[0;0m         let RUST_IMPLEMENTATION = "NOT_STARTED"
+[0;36m128 |[0;0m         let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaRedirectProbe.swift:127:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m125 |[0;0m         let PRODUCTION_ALLOWLIST = "EMPTY"
+[0;36m126 |[0;0m         let NO_WATERMARK = "NOT_TESTED"
+[0;36m127 |[0;0m         let RUST_IMPLEMENTATION = "NOT_STARTED"
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'RUST_IMPLEMENTATION' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m128 |[0;0m         let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+[0;36m129 |[0;0m         var worklist = AuthObservation()
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/MediaRedirectProbe.swift:128:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m126 |[0;0m         let NO_WATERMARK = "NOT_TESTED"
+[0;36m127 |[0;0m         let RUST_IMPLEMENTATION = "NOT_STARTED"
+[0;36m128 |[0;0m         let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'STRICT_NETWORK_RECEIVE_LIMIT' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m129 |[0;0m         var worklist = AuthObservation()
+[0;36m130 |[0;0m         var samples = RedirectSampleCoverage()
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m71 |[0;0m                     throw RedirectProbeError.dns
+ [0;36m72 |[0;0m                 }
+ [0;36m73 |[0;0m                 let value = String(cString:text)
+[REDACTED_FIXTURE_LITERAL_LINE]
+ [0;36m74 |[0;0m                 if !values.contains(value) { values.append(value) }
+ [0;36m75 |[0;0m                 current = record.ai_next
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m193 |[0;0m                 outputSettings: [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA])
+[0;36m194 |[0;0m             guard reader.canAdd(output) else { throw AcceptanceStop(code: "DECODER_UNAVAILABLE", blocked: false) }
+[0;36m195 |[0;0m             reader.add(output)
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m196 |[0;0m             guard reader.startReading() else { throw AcceptanceStop(code: "DECODE_START_FAILED", blocked: false) }
+[0;36m197 |[0;0m             var frames = 0
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m194 |[0;0m             guard reader.canAdd(output) else { throw AcceptanceStop(code: "DECODER_UNAVAILABLE", blocked: false) }
+[0;36m195 |[0;0m             reader.add(output)
+[0;36m196 |[0;0m             guard reader.startReading() else { throw AcceptanceStop(code: "DECODE_START_FAILED", blocked: false) }
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m197 |[0;0m             var frames = 0
+[0;36m198 |[0;0m             while let sample = output.copyNextSampleBuffer() {
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m196 |[0;0m             guard reader.startReading() else { throw AcceptanceStop(code: "DECODE_START_FAILED", blocked: false) }
+[0;36m197 |[0;0m             var frames = 0
+[0;36m198 |[0;0m             while let sample = output.copyNextSampleBuffer() {
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m199 |[0;0m                 guard CMSampleBufferGetImageBuffer(sample) != nil else {
+[0;36m200 |[0;0m                     throw AcceptanceStop(code: "DECODED_FRAME_MISSING", blocked: false)
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SelectedHostEvidence.swift:24:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m22 |[0;0m     var matched_work_count = 0
+ [0;36m23 |[0;0m     var unmatched_work_count = 0
+ [0;36m24 |[0;0m     let security_review_status = "BLOCKED_INDEPENDENT_REVIEW_REQUIRED"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'security_review_status' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m25 |[0;0m }
+ [0;36m26 |[0;0m struct AlternateHostSummary: Codable {
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SelectedHostEvidence.swift:31:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m29 |[0;0m     var source_field_counts: [String:Int] = [:]
+ [0;36m30 |[0;0m     var work_refs: [String] = []
+ [0;36m31 |[0;0m     let approved = false
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'approved' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m32 |[0;0m }
+ [0;36m33 |[0;0m struct MediaHostCollection: Codable {
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SelectedHostEvidence.swift:34:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m32 |[0;0m }
+ [0;36m33 |[0;0m struct MediaHostCollection: Codable {
+ [0;36m34 |[0;0m     let schema_version = 2
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'schema_version' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m35 |[0;0m     var selected: [SelectedWorkEvidence] = []
+ [0;36m36 |[0;0m     var hosts: [SelectedHostSummary] = []
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SingleVideoRealDownload.swift:7:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+  [0;36m5 |[0;0m @MainActor enum SingleVideoRealDownload {
+  [0;36m6 |[0;0m     struct Summary: Codable {
+  [0;36m7 |[0;0m         let TASK = "DOUSTUDIOKIT_SINGLE_VIDEO_REAL_DOWNLOAD_01"
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'TASK' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+  [0;36m8 |[0;0m         var SWIFT_BUILD = "PASS", OFFLINE_TESTS = "PASS"
+  [0;36m9 |[0;0m         var REAL_WORKLIST = "NOT_RUN", REDIRECT_RESOLUTION = "NOT_RUN", REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SingleVideoRealDownload.swift:11:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+  [0;36m9 |[0;0m         var REAL_WORKLIST = "NOT_RUN", REDIRECT_RESOLUTION = "NOT_RUN", REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+ [0;36m10 |[0;0m         var APPLICATION_BYTE_BUDGET = "NOT_RUN", MEDIA_FILE_INTEGRITY = "NOT_RUN", MEDIA_DECODE = "NOT_RUN", FULL_DECODE = "NOT_RUN", TEMP_FILE_CLEANUP = "NOT_RUN"
+ [0;36m11 |[0;0m         let NO_WATERMARK = "NOT_VERIFIED", PRODUCTION_ALLOWLIST = "EMPTY", RUST_IMPLEMENTATION = "NOT_STARTED", AUTO_TRIGGERED = "NO"
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'NO_WATERMARK' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m12 |[0;0m         let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+ [0;36m13 |[0;0m         let selection_strategy = "FIRST_ELIGIBLE_ORDINARY_VIDEO_WITH_ORIGINAL_WWW_URL_IN_LIST_ORDER"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SingleVideoRealDownload.swift:11:44: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+  [0;36m9 |[0;0m         var REAL_WORKLIST = "NOT_RUN", REDIRECT_RESOLUTION = "NOT_RUN", REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+ [0;36m10 |[0;0m         var APPLICATION_BYTE_BUDGET = "NOT_RUN", MEDIA_FILE_INTEGRITY = "NOT_RUN", MEDIA_DECODE = "NOT_RUN", FULL_DECODE = "NOT_RUN", TEMP_FILE_CLEANUP = "NOT_RUN"
+ [0;36m11 |[0;0m         let NO_WATERMARK = "NOT_VERIFIED", PRODUCTION_ALLOWLIST = "EMPTY", RUST_IMPLEMENTATION = "NOT_STARTED", AUTO_TRIGGERED = "NO"
+    [0;36m|[0;0m                                            |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                                            |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'PRODUCTION_ALLOWLIST' case to silence this warning[0;0m
+    [0;36m|[0;0m                                            `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m12 |[0;0m         let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+ [0;36m13 |[0;0m         let selection_strategy = "FIRST_ELIGIBLE_ORDINARY_VIDEO_WITH_ORIGINAL_WWW_URL_IN_LIST_ORDER"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SingleVideoRealDownload.swift:11:76: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+  [0;36m9 |[0;0m         var REAL_WORKLIST = "NOT_RUN", REDIRECT_RESOLUTION = "NOT_RUN", REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+ [0;36m10 |[0;0m         var APPLICATION_BYTE_BUDGET = "NOT_RUN", MEDIA_FILE_INTEGRITY = "NOT_RUN", MEDIA_DECODE = "NOT_RUN", FULL_DECODE = "NOT_RUN", TEMP_FILE_CLEANUP = "NOT_RUN"
+ [0;36m11 |[0;0m         let NO_WATERMARK = "NOT_VERIFIED", PRODUCTION_ALLOWLIST = "EMPTY", RUST_IMPLEMENTATION = "NOT_STARTED", AUTO_TRIGGERED = "NO"
+    [0;36m|[0;0m                                                                            |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                                                                            |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'RUST_IMPLEMENTATION' case to silence this warning[0;0m
+    [0;36m|[0;0m                                                                            `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m12 |[0;0m         let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+ [0;36m13 |[0;0m         let selection_strategy = "FIRST_ELIGIBLE_ORDINARY_VIDEO_WITH_ORIGINAL_WWW_URL_IN_LIST_ORDER"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SingleVideoRealDownload.swift:11:113: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+  [0;36m9 |[0;0m         var REAL_WORKLIST = "NOT_RUN", REDIRECT_RESOLUTION = "NOT_RUN", REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+ [0;36m10 |[0;0m         var APPLICATION_BYTE_BUDGET = "NOT_RUN", MEDIA_FILE_INTEGRITY = "NOT_RUN", MEDIA_DECODE = "NOT_RUN", FULL_DECODE = "NOT_RUN", TEMP_FILE_CLEANUP = "NOT_RUN"
+ [0;36m11 |[0;0m         let NO_WATERMARK = "NOT_VERIFIED", PRODUCTION_ALLOWLIST = "EMPTY", RUST_IMPLEMENTATION = "NOT_STARTED", AUTO_TRIGGERED = "NO"
+    [0;36m|[0;0m                                                                                                                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                                                                                                                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'AUTO_TRIGGERED' case to silence this warning[0;0m
+    [0;36m|[0;0m                                                                                                                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m12 |[0;0m         let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+ [0;36m13 |[0;0m         let selection_strategy = "FIRST_ELIGIBLE_ORDINARY_VIDEO_WITH_ORIGINAL_WWW_URL_IN_LIST_ORDER"
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SingleVideoRealDownload.swift:12:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m10 |[0;0m         var APPLICATION_BYTE_BUDGET = "NOT_RUN", MEDIA_FILE_INTEGRITY = "NOT_RUN", MEDIA_DECODE = "NOT_RUN", FULL_DECODE = "NOT_RUN", TEMP_FILE_CLEANUP = "NOT_RUN"
+ [0;36m11 |[0;0m         let NO_WATERMARK = "NOT_VERIFIED", PRODUCTION_ALLOWLIST = "EMPTY", RUST_IMPLEMENTATION = "NOT_STARTED", AUTO_TRIGGERED = "NO"
+ [0;36m12 |[0;0m         let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'STRICT_NETWORK_RECEIVE_LIMIT' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m13 |[0;0m         let selection_strategy = "FIRST_ELIGIBLE_ORDINARY_VIDEO_WITH_ORIGINAL_WWW_URL_IN_LIST_ORDER"
+ [0;36m14 |[0;0m         var selected_list_index: Int?
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SingleVideoRealDownload.swift:13:13: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m11 |[0;0m         let NO_WATERMARK = "NOT_VERIFIED", PRODUCTION_ALLOWLIST = "EMPTY", RUST_IMPLEMENTATION = "NOT_STARTED", AUTO_TRIGGERED = "NO"
+ [0;36m12 |[0;0m         let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+ [0;36m13 |[0;0m         let selection_strategy = "FIRST_ELIGIBLE_ORDINARY_VIDEO_WITH_ORIGINAL_WWW_URL_IN_LIST_ORDER"
+    [0;36m|[0;0m             |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m             |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'selection_strategy' case to silence this warning[0;0m
+    [0;36m|[0;0m             `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m14 |[0;0m         var selected_list_index: Int?
+ [0;36m15 |[0;0m         var worklist = AuthObservation()
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SingleVideoRealDownload.swift:110:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m108 |[0;0m             let dns_address_count: Int
+[0;36m109 |[0;0m             let tunnel: PinnedTunnelEvidence?
+[0;36m110 |[0;0m             let automatic_redirect_followed = false
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'automatic_redirect_followed' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m111 |[0;0m             let production_allowlist = "EMPTY"
+[0;36m112 |[0;0m         }
+
+/Users/runner/work/swiftdy/swiftdy/runtime-harness/Sources/RuntimeAcceptance/SingleVideoRealDownload.swift:111:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m109 |[0;0m             let tunnel: PinnedTunnelEvidence?
+[0;36m110 |[0;0m             let automatic_redirect_followed = false
+[0;36m111 |[0;0m             let production_allowlist = "EMPTY"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'production_allowlist' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m112 |[0;0m         }
+[0;36m113 |[0;0m         try MediaHostAudit.write(Security(entry:summary.entry,network_target_check:summary.target_network_check,dns_address_count:summary.dns_address_count,tunnel:summary.tunnel),"redirect-security.json",folder)
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+[135 / 137] RuntimeAcceptance-product
+Build complete! (21.95 sec)

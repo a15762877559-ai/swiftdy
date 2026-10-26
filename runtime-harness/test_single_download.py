@@ -7,6 +7,7 @@ from http.client import HTTPConnection
 from unittest.mock import patch
 import single_download as runner
 from single_download_tests import DownloadHandler,ThreadingHTTPServer
+import single_download_tests as native_runner
 
 class SingleDownloadBoundaryTests(unittest.TestCase):
     def setUp(self):
@@ -99,5 +100,34 @@ class SingleDownloadBoundaryTests(unittest.TestCase):
             response=connection.getresponse();self.assertEqual(response.status,200);self.assertIsNone(response.getheader('Content-Length'))
             self.assertEqual(response.getheader('Transfer-Encoding'),'chunked');self.assertEqual(response.read(),httpd.valid);connection.close()
         finally:httpd.shutdown();httpd.server_close();thread.join(timeout=2)
+    def test_legacy_failure_keeps_cleanup_and_only_fixed_diagnostics(self):
+        owned=self.root/'legacy-work';owned.mkdir()
+        def process(*args,**kwargs):
+            evidence=owned/'legacy-transport'/'evidence'
+            (evidence/'controlled-results.json').write_text(json.dumps({'status':'FAIL','cases':[]}))
+            (evidence/'cleanup-summary.json').write_text(json.dumps({'runner_cleanup_succeeded':True}))
+            (evidence/'test-process.log').write_text('ST_INFRASTRUCTURE_WORKSPACE_SCOPE_REJECTED\nhttps://fixture.invalid/private?secret=DO_NOT_SERIALIZE\n')
+            return type('Exit',(),{'returncode':2})()
+        with patch.object(native_runner.subprocess,'run',side_effect=process):
+            with self.assertRaises(ValueError):native_runner.legacy('never-execute',self.folder,owned,{})
+        value=json.loads((self.folder/'controlled-results.json').read_text())
+        self.assertEqual(value['launcher_fixed_categories'],['ST_INFRASTRUCTURE_WORKSPACE_SCOPE_REJECTED'])
+        self.assertNotIn('://',(self.folder/'controlled-results.json').read_text())
+        self.assertTrue(json.loads((self.folder/'transport-cleanup.json').read_text())['runner_cleanup_succeeded'])
+    def test_offline_workspace_uses_runner_temp_and_cleans_on_failure(self):
+        def stop(binary,folder,root,child):
+            self.assertEqual(root.parent,self.root)
+            raise ValueError('fixed')
+        with patch.dict(native_runner.os.environ,{'RUNNER_TEMP':str(self.root)}),patch.object(native_runner,'legacy',side_effect=stop):
+            with self.assertRaises(ValueError):native_runner.run('never-execute','never-execute',self.folder)
+        self.assertFalse(list(self.root.glob('doustudio-download-offline-*')))
+    def test_failed_native_suite_recorded_as_fail_after_successful_builds(self):
+        for name in ('build-exit-code.txt','legacy-build-exit-code.txt'):(self.folder/name).write_text('0')
+        (self.folder/'download-offline-exit-code.txt').write_text('1')
+        self.env.update(GITHUB_RUN_ID='123',GITHUB_SHA='synthetic')
+        with patch.object(runner.previous.base,'main',return_value=0):self.assertEqual(runner.main('finalize',self.env),0)
+        summary=json.loads((self.folder/'download-summary.json').read_text())
+        self.assertEqual(summary['SWIFT_BUILD'],'PASS');self.assertEqual(summary['OFFLINE_TESTS'],'FAIL')
+        self.assertEqual(summary['REAL_VIDEO_DOWNLOAD'],'NOT_RUN')
 
 if __name__=='__main__':unittest.main()

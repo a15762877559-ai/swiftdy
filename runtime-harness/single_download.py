@@ -131,8 +131,11 @@ def main(mode,env):
             path=folder/name
             if path.exists():path.write_text('\n'.join('[REDACTED_FIXTURE_LITERAL_LINE]' if any(marker in line for marker in MARKERS) else line for line in path.read_text(errors='replace').splitlines())+'\n',encoding='utf-8')
         summary=json.loads((folder/'download-summary.json').read_text())
-        summary['SWIFT_BUILD']='PASS' if (folder/'build-exit-code.txt').read_text().strip()=='0' else 'FAIL'
-        if (folder/'download-offline-exit-code.txt').read_text().strip()=='0':offline_gate(folder);summary['OFFLINE_TESTS']='PASS'
+        build_codes=[(folder/name).read_text().strip() for name in ('build-exit-code.txt','legacy-build-exit-code.txt')]
+        summary['SWIFT_BUILD']='PASS' if all(code=='0' for code in build_codes) else ('FAIL' if any(code not in ('0','NOT_RUN') for code in build_codes) else 'NOT_RUN')
+        offline_code=(folder/'download-offline-exit-code.txt').read_text().strip()
+        if offline_code=='0':offline_gate(folder);summary['OFFLINE_TESTS']='PASS'
+        elif offline_code!='NOT_RUN':summary['OFFLINE_TESTS']='FAIL'
         write(folder,'download-summary.json',summary)
         verify(folder)
         write(folder,'evidence-index.json',dict(task='DOUSTUDIOKIT_SINGLE_VIDEO_REAL_DOWNLOAD_01',run_id=env['GITHUB_RUN_ID'],test_commit=env['GITHUB_SHA'],upstream_commit=previous.base.SHA,

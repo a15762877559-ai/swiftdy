@@ -15,6 +15,7 @@ from live_probe_tests import sandbox_command
 CASES=('full200','full206','unknownLength','partial206','oneByte206','redirectCDN','html','json','corruptMdat','brokenBox','empty','disconnect','budgetHeader','budgetChunked','ignoreRange','tlsProxy')
 POLICY={'deterministic_first_www','original_last_url','ordinary_video','no_alternate_cdn','empty_rejected'}
 SUCCESS={'full200','full206','unknownLength','ignoreRange'}
+LEGACY_FAILURE_CATEGORIES={'ST_INFRASTRUCTURE_ENV_OR_ARGUMENT_REJECTED','ST_INFRASTRUCTURE_WORKSPACE_SCOPE_REJECTED','ST_INFRASTRUCTURE_EVIDENCE_WRITE_FAILED'}
 
 class DownloadHandler(BaseHTTPRequestHandler):
     protocol_version='HTTP/1.1'
@@ -68,18 +69,22 @@ def legacy(binary,folder,root,child):
         result=subprocess.run(['sandbox-exec','-p',policy,sys.executable,'-B',str(Path(__file__).parent/'safe-streaming-tests'/script)],env=env,
             stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=650,check=False)
         data=json.loads((evidence/output).read_text())
+        if name=='transport':
+            log=evidence/'test-process.log'
+            data['launcher_fixed_categories']=sorted({line.strip() for line in log.read_text(encoding='utf-8',errors='replace').splitlines() if line.strip() in LEGACY_FAILURE_CATEGORIES}) if log.exists() else []
         write(folder,output,data)
         rows=data.get('cases',[])
-        if result.returncode!=0 or len(rows)!=28 or any(r['status']!='PASS' for r in rows): raise ValueError('LEGACY_DOWNLOAD_TEST_FAILED')
         if name=='transport': cleanup=json.loads((evidence/'cleanup-summary.json').read_text())
         else: cleanup=json.loads((evidence/'integration-cleanup.json').read_text())
         write(folder,name+'-cleanup.json',cleanup)
+        if result.returncode!=0 or len(rows)!=28 or any(r['status']!='PASS' for r in rows): raise ValueError('LEGACY_DOWNLOAD_TEST_FAILED')
 
 def run(binary,safe_binary,folder):
     folder=Path(folder)
     child={k:os.environ[k] for k in ('PATH','TMPDIR','HOME','SYSTEMROOT') if k in os.environ}
     child.update(OFFLINE_ONLY='1',DOWNLOAD_EVIDENCE_DIR=str(folder))
-    with tempfile.TemporaryDirectory(prefix='doustudio-download-offline-') as temp:
+    # Match the previously validated runners' namespace; do not mix /var and /private/var aliases.
+    with tempfile.TemporaryDirectory(prefix='doustudio-download-offline-',dir=os.environ.get('RUNNER_TEMP')) as temp:
         root=Path(temp); fixtures=root/'fixtures';fixtures.mkdir()
         legacy(safe_binary,folder,root,child)
         code=subprocess.run(sandbox_command(binary,['--single-download-policy-test'],False),env=child,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=60).returncode

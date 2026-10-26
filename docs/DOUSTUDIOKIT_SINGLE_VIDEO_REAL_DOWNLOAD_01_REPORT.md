@@ -1,6 +1,6 @@
 # DOUSTUDIOKIT_SINGLE_VIDEO_REAL_DOWNLOAD_01
 
-2026-10-26，Asia/Shanghai。阶段 A 的代码、合成测试和两个独立手动工作流已准备，Windows Python **116/116 PASS**。**本任务新增 Swift 编译与完整下载原生用例尚未在 macOS 执行，SWIFT_BUILD/OFFLINE_TESTS=NOT_RUN；真实列表和完整下载均 NOT_RUN。** 不把历史单字节 206、准备代码或 Python 检查当作真实下载通过。
+2026-10-26，Asia/Shanghai。用户首次离线运行 **40336326372** 的 Runtime/共享模块和受控下载 executable 均编译 PASS，既有 Runtime/HTTP/重定向回归 PASS；后续旧传输 28 个子进程全部退出 2、无用例结果且服务端零请求，集成与新完整视频用例未开始。**整套 OFFLINE_TESTS=FAIL，真实下载 NOT_RUN。** 已修正新增编排的工作目录与测试目录身份校验、补充固定启动诊断和失败状态展示；修正版 Windows **119/119 PASS**，修正版 macOS 仍待用户手动运行。下文保留初始准备记录，最新诊断见末节。
 
 ## 基线与原版调用审计
 
@@ -98,3 +98,26 @@ AUTO_TRIGGERED = NO
 准备代码和初始证据已正常提交并推送：`ff4aed62a5d848599b5cbf41e73a749d50badcbb`。GitHub 已登记独立离线工作流 ID 397124262 和真实单视频工作流 ID 397124264，state=active，核验时各自运行数为 0。没有触发 Actions。后续收尾提交只更新本节、publication.json、注册元数据及证据索引，不变更待验证源码。
 
 本任务仍停在阶段 A：Windows 116/116 PASS；新 Swift/macOS 构建与完整下载原生验收 NOT_RUN；真实列表、入口解析和完整 CDN 下载均 NOT_RUN。请先手动运行无 Secret 的 Offline Tests；全部通过后，另行手动选择真实工作流并完成双授权。此前单字节探测许可不作为本次完整下载许可。
+
+
+## 首次 macOS 离线运行 40336326372 与启动诊断修正
+
+[实际运行](https://github.com/a15762877559-ai/swiftdy/actions/runs/40336326372)，attempt=1，受测提交 `7e5e4b566c7e1db98328279ff60a7dd936a3b05c`，job=121618789595，最终 failure。Runtime/共享下载模块编译退出码 0，旧 SafeStreamingTests executable 编译退出码 0；原基线 83、老策略 12、老 HTTP 19、重定向策略 41、链路 25、通道 3 均 PASS。失败步骤是原传输/集成及新完整视频套件。
+
+controlled-results 中 28 项全部 NO_SWIFT_RESULT、子进程退出码 2、服务端请求 0；这表示旧 CLI 在生成用例结果前已经失败，不是 28 个已运行下载场景都证明传输失败。集成 28、新选择策略 5、新完整视频 16 项均尚未开始。没有真实作品列表、入口或 CDN 下载。
+
+原 CLI 的退出码 2 可能来自输入环境、workspace 预检或证据写入，但旧 Artifact 没有固定子类诊断，不能从当前证据单独认定哪一分支。本次源码修正：
+
+- 新编排的隔离工作空间显式放到 runner.temp，沿用此前已验证套件的命名空间，不再默认落到 macOS /var 与 /private/var 可能出现别名的系统临时目录。
+- 旧测试 CLI 的创建/删除边界统一比较解析符号链接后的规范父目录 path，避免 URL 对象的目录标志/别名差异导致身份误判；仍要求唯一新 UUID、不存在旧目录、真实父目录精确相同，不改网络范围或预算断言。
+- 三种退出 2 分支增加固定无数据类别；编排只从旧日志提取这三个白名单字符串，不保存原始 stderr、路径、URL 或任意错误描述。
+- 旧套件失败时也保存其清理结果，再拒绝门禁；不因失败提前丢失清理证据。
+- 修正 summary 展示：执行后退出码非零的离线步骤标记 FAIL，不继续保留种子 NOT_RUN；SWIFT_BUILD 只有 Runtime 与受控 executable 两次编译均通过才为 PASS。
+
+这些是工作目录/诊断/状态层修正，不降低任何下载断言。是否解决本次 macOS 启动故障仍需修正版实测；未宣称原因已完全复现或修复已通过 macOS。
+
+Windows 修正版 **119/119 PASS**，本任务累计新增 20 项。新增回归验证 runner.temp 所属工作空间、失败套件保留清理和仅固定类别、成功编译但离线失败的正确状态。静态检查继续通过；SafeStreamingTransport 的数据/预算/取消/终态代码没有此次改动，真实入口与所有工作流不变。
+
+Artifact ID 12655834700，ZIP SHA-256 `0b1ab0ad683b68c568fa63c770620990db62f73f94e15d8b9142d58b6281f718` 与 GitHub digest 一致；CRC、50 文件白名单及清单内 49 个文件哈希通过，源码 seal 与受测 Git blobs 一致。原始诊断位于 `evidence/doustudio-single-video-real-download-01/run-40336326372/`，另附 jobs/Artifact 元数据和验证记录；原始 download-summary 的 OFFLINE_TESTS=NOT_RUN 作为当次展示缺陷原样保留，不改写历史文件。根目录最新汇总则标记该次整套离线失败。
+
+修正代码普通推送后，请用户在独立 Offline Tests 页面点击 **Run workflow/main** 测试新提交，不要 Re-run jobs 旧 SHA。修正版原生测试仍 NOT_RUN，当前不应运行真实下载流程。助手没有自动重跑、触发真实工作流或读取 Douyin Secret。

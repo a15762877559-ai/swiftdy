@@ -1,0 +1,347 @@
+{
+  "status": "FAIL",
+  "cases": [
+    {
+      "id": "ST-001",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-002",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-003",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-004",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-005",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-006",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-007",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-008",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-009",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-010",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-011",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-012",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-013",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-014",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-015",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-016",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-017",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-018",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-019",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-020",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-021",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-022",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-023",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-024",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-025",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-026",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-027",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    },
+    {
+      "id": "ST-028",
+      "status": "FAIL",
+      "reason": "NO_SWIFT_RESULT",
+      "process_exit_code": 2,
+      "process_timed_out": false,
+      "server_payload_bytes_written": 0,
+      "server_requests": 0,
+      "failed_assertions": [
+        "SERVER_REQUEST_COUNT"
+      ]
+    }
+  ],
+  "actual_process_count": 28,
+  "strict_network_receive_limit": "NOT_PROVEN",
+  "real_douyin_download": "NOT_RUN",
+  "server_byte_definition": "Bytes in successful server payload write calls; excludes HTTP framing and is not a packet-level delivery count.",
+  "delegate_byte_definition": "Actual bytes received in URLSession delegate data callbacks, including callbacks after cancellation.",
+  "buffer_scope": "2 MiB application channel plus one <=64 KiB consumer piece (initial prefix may add <12 bytes), plus the current framework-provided callback Data; excludes OS/URLSession pending buffers. Callback maximum is recorded separately."
+}

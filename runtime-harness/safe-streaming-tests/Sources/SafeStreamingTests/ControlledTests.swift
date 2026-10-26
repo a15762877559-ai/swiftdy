@@ -44,11 +44,13 @@ struct ControlledResult: Codable {
         let env = ProcessInfo.processInfo.environment
         guard let id = env["SAFE_CASE"], cases.contains(id), let portText = env["SAFE_PORT"], let port = Int(portText), port >= 1024,
               let base = env["SAFE_MEDIA_ROOT"], let evidence = env["SAFE_EVIDENCE_ROOT"],
-              let url = URL(string:"http://127.0.0.1:\(port)/\(id)") else { exit(2) }
+              let url = URL(string:"http://127.0.0.1:\(port)/\(id)") else { print("ST_INFRASTRUCTURE_ENV_OR_ARGUMENT_REJECTED"); exit(2) }
         var result = ControlledResult(id:id, expected:failureCases.contains(id) ? "REJECT_AND_CLEAN" : "COMPLETE_AND_CLEAN")
         let root = URL(fileURLWithPath:base,isDirectory:true).appendingPathComponent(id + "-" + UUID().uuidString,isDirectory:true)
         let parent = URL(fileURLWithPath:base,isDirectory:true).standardizedFileURL
-        guard root.standardizedFileURL.deletingLastPathComponent() == parent, !FileManager.default.fileExists(atPath:root.path) else { exit(2) }
+        let canonicalParent = parent.resolvingSymlinksInPath().standardizedFileURL.path
+        guard root.deletingLastPathComponent().resolvingSymlinksInPath().standardizedFileURL.path == canonicalParent,
+              !FileManager.default.fileExists(atPath:root.path) else { print("ST_INFRASTRUCTURE_WORKSPACE_SCOPE_REJECTED"); exit(2) }
         do {
             try FileManager.default.createDirectory(at:root,withIntermediateDirectories:true)
             let transport: SafeStreamingTransport
@@ -148,7 +150,7 @@ struct ControlledResult: Codable {
         } catch { result.failed_assertions.append("TEST_INFRASTRUCTURE_ERROR") }
         // Scope-owned workspace only, after the downloader exits and completion is observed.
         do {
-            guard root.standardizedFileURL.deletingLastPathComponent() == parent else { throw SafeStreamError.scope }
+            guard root.deletingLastPathComponent().resolvingSymlinksInPath().standardizedFileURL.path == canonicalParent else { throw SafeStreamError.scope }
             if FileManager.default.fileExists(atPath:root.path) { try FileManager.default.removeItem(at:root) }
             result.cleanup_succeeded = !FileManager.default.fileExists(atPath:root.path)
             result.residual_files_after_cleanup = files(root).count
@@ -158,7 +160,7 @@ struct ControlledResult: Codable {
         do {
             let encoder = JSONEncoder(); encoder.outputFormatting = [.prettyPrinted,.sortedKeys]
             try encoder.encode(result).write(to:URL(fileURLWithPath:evidence).appendingPathComponent(id + ".json"),options:.atomic)
-        } catch { exit(2) }
+        } catch { print("ST_INFRASTRUCTURE_EVIDENCE_WRITE_FAILED"); exit(2) }
         print("\(id) \(result.status) received=\(result.metrics.delegate_received_bytes) accepted=\(result.metrics.accepted_bytes) written=\(result.written_bytes) cancel=\(result.metrics.cancel_requested)/\(result.metrics.cancel_completed)")
         exit(result.status == "PASS" ? 0 : 1)
     }

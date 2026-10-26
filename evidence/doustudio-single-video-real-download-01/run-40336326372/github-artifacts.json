@@ -1,0 +1,25 @@
+{
+  "total_count": 1,
+  "artifacts": [
+    {
+      "id": 12655834700,
+      "node_id": "MDg6QXJ0aWZhY3QxMjY1NTgzNDcwMA==",
+      "name": "doustudio-single-video-download-offline-40336326372-1",
+      "size_in_bytes": 28232,
+      "url": "https://api.github.com/repos/a15762877559-ai/swiftdy/actions/artifacts/12655834700",
+      "archive_download_url": "https://api.github.com/repos/a15762877559-ai/swiftdy/actions/artifacts/12655834700/zip",
+      "expired": false,
+      "digest": "sha256:0b1ab0ad683b68c568fa63c770620990db62f73f94e15d8b9142d58b6281f718",
+      "created_at": "2026-10-26T14:07:50Z",
+      "updated_at": "2026-10-26T14:07:50Z",
+      "expires_at": "2026-10-29T14:07:49Z",
+      "workflow_run": {
+        "id": 40336326372,
+        "repository_id": 1434301730,
+        "head_repository_id": 1434301730,
+        "head_branch": "main",
+        "head_sha": "7e5e4b566c7e1db98328279ff60a7dd936a3b05c"
+      }
+    }
+  ]
+}

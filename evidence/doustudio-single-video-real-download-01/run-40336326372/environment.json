@@ -1,0 +1,8 @@
+{
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "test_commit": "7e5e4b566c7e1db98328279ff60a7dd936a3b05c",
+  "run_id": "40336326372",
+  "macos": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+  "xcode": "Xcode 27.1\nBuild version 27A9275"
+}

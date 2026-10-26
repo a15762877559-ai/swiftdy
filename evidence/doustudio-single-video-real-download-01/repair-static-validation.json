@@ -1,0 +1,23 @@
+{
+  "TASK": "DOUSTUDIOKIT_SINGLE_VIDEO_REAL_DOWNLOAD_01",
+  "WINDOWS_STATIC": "PASS",
+  "SWIFT_BUILD": "NOT_RUN",
+  "OFFLINE_SWIFT_DOWNLOAD_TESTS": "NOT_RUN",
+  "REAL_VIDEO_DOWNLOAD": "NOT_RUN",
+  "checks": [
+    {
+      "file": ".github/workflows/doustudio-single-video-real-download.yml",
+      "status": "PASS",
+      "checks": "manual_two_consents_secret_after_all_suites_pins_shell_artifact_whitelist"
+    },
+    {
+      "file": ".github/workflows/doustudio-single-video-real-download-offline.yml",
+      "status": "PASS",
+      "checks": "manual_two_consents_secret_after_all_suites_pins_shell_artifact_whitelist"
+    },
+    {
+      "status": "PASS",
+      "checks": "safe_transport_data_budget_cancel_terminal_logic_unchanged_reused_original_streaming_downloader"
+    }
+  ]
+}

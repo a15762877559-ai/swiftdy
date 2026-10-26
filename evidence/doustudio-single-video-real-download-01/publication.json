@@ -17,12 +17,15 @@
       "state": "active"
     }
   ],
-  "offline_run_count": 0,
+  "offline_run_count": 1,
   "real_run_count": 0,
   "workflows_triggered": false,
   "new_run_url": "NOT_RUN",
-  "artifact_sha256": "NOT_RUN",
-  "SWIFT_BUILD": "NOT_RUN",
-  "OFFLINE_TESTS": "NOT_RUN",
-  "REAL_VIDEO_DOWNLOAD": "NOT_RUN"
+  "artifact_sha256": "0b1ab0ad683b68c568fa63c770620990db62f73f94e15d8b9142d58b6281f718",
+  "SWIFT_BUILD": "PASS",
+  "OFFLINE_TESTS": "FAIL",
+  "REAL_VIDEO_DOWNLOAD": "NOT_RUN",
+  "latest_offline_run": 40336326372,
+  "REPAIRED_OFFLINE_TESTS": "NOT_RUN",
+  "pending": "USER_MANUAL_NEW_COMMIT_OFFLINE_RUN"
 }
