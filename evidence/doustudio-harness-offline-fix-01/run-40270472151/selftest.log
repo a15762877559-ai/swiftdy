@@ -1,0 +1,41 @@
+BEGIN OFF-001 | Profile identifier | function=LinkParser.parse
+{"expected":"user identifier matches offline_fixture","status":"PASS","id":"OFF-001","errorCategory":"NONE","name":"Profile identifier","function":"LinkParser.parse","actual":"identifier_matches=true"}
+BEGIN OFF-002 | Server cursor propagation | function=ObservingTransport.send/observePage
+{"name":"Server cursor propagation","function":"ObservingTransport.send\/observePage","status":"PASS","errorCategory":"NONE","id":"OFF-002","actual":"pages=2;second_cursor=900","expected":"pages=2;second_cursor=900"}
+BEGIN OFF-003 | Terminal state and fields | function=ObservingTransport.observePage
+{"name":"Terminal state and fields","function":"ObservingTransport.observePage","status":"PASS","errorCategory":"NONE","id":"OFF-003","actual":"hasMore=Optional(false);fields=1","expected":"hasMore=false;fields=1"}
+BEGIN OFF-004 | Repeated cursor rejection | function=ObservingTransport.observePage
+{"name":"Repeated cursor rejection","id":"OFF-004","errorCategory":"NONE","actual":"code=CURSOR_STALLED_OR_CYCLIC;blocked=false","status":"PASS","expected":"CURSOR_STALLED_OR_CYCLIC","function":"ObservingTransport.observePage"}
+BEGIN OFF-005 | HTTP access rejection | function=ObservingTransport.send
+{"name":"HTTP access rejection","id":"OFF-005","errorCategory":"NONE","actual":"code=HTTP_403;blocked=true","status":"PASS","expected":"throws blocked=true","function":"ObservingTransport.send"}
+BEGIN OFF-006 | HTML challenge rejection | function=ObservingTransport.observePage
+{"id":"OFF-006","status":"PASS","name":"HTML challenge rejection","expected":"throws blocked=true","function":"ObservingTransport.observePage","errorCategory":"NONE","actual":"code=NON_JSON_POSSIBLE_ACCESS_CHALLENGE;blocked=true"}
+BEGIN OFF-007 | Request cursor mismatch | function=ObservingTransport.sendChecked
+{"id":"OFF-007","status":"PASS","name":"Request cursor mismatch","expected":"REQUEST_CURSOR_MISMATCH","function":"ObservingTransport.sendChecked","errorCategory":"NONE","actual":"code=REQUEST_CURSOR_MISMATCH;blocked=false"}
+BEGIN OFF-008 | Unsafe URLs | function=safeHTTPS/LinkParser.parse
+{"id":"OFF-008","status":"PASS","name":"Unsafe URLs","expected":"reject 4 unsafe URLs and unrelated profile","function":"safeHTTPS\/LinkParser.parse","errorCategory":"NONE","actual":"rejected=4;unrelated_rejected=true"}
+BEGIN OFF-009 | JSON integer types | function=integer
+{"status":"PASS","id":"OFF-009","name":"JSON integer types","expected":"status=0;cursor=900;boolean\/fraction rejected","function":"integer","errorCategory":"NONE","actual":"status=Optional(0);cursor=Optional(900);bool=nil;fraction=nil"}
+BEGIN OFF-010 | Pagination flag type | function=JSONSerialization/NSNumber
+{"status":"PASS","id":"OFF-010","name":"Pagination flag type","expected":"has_more numeric 1","function":"JSONSerialization\/NSNumber","errorCategory":"NONE","actual":"number_present=true;number_string=1;bool=Optional(true)"}
+BEGIN OFF-011 | Model field mapping | function=DouyinExtractor.work
+{"status":"PASS","id":"OFF-011","name":"Model field mapping","expected":"fixture ID\/description\/timestamp preserved","function":"DouyinExtractor.work","errorCategory":"NONE","actual":"id_matches=true;description_matches=true;timestamp=1"}
+BEGIN OFF-012 | Stop after server exhaustion | function=ObservingTransport.sendChecked
+{"status":"PASS","id":"OFF-012","name":"Stop after server exhaustion","expected":"PAGE_LIMIT_OR_EXHAUSTED","function":"ObservingTransport.sendChecked","errorCategory":"NONE","actual":"code=PAGE_LIMIT_OR_EXHAUSTED;blocked=false"}
+BEGIN OFF-013 | Failed-page state | function=ObservingTransport.send catch
+{"status":"PASS","id":"OFF-013","name":"Failed-page state","expected":"one error page HTTP_403;zero fields;no candidate","function":"ObservingTransport.send catch","errorCategory":"NONE","actual":"pages=1;error=HTTP_403;fields=0;candidate=false"}
+BEGIN OFF-014 | Media host allowlist | function=ObservingTransport.allowMedia
+{"status":"PASS","id":"OFF-014","name":"Media host allowlist","expected":"MEDIA_HOST_OUTSIDE_ALLOWLIST","function":"ObservingTransport.allowMedia","errorCategory":"NONE","actual":"code=MEDIA_HOST_OUTSIDE_ALLOWLIST;blocked=true"}
+BEGIN OFF-015 | Reject HTML media bytes | function=ObservingTransport.sendChecked
+{"status":"PASS","id":"OFF-015","name":"Reject HTML media bytes","expected":"MEDIA_CONTAINER_NOT_MP4;no media hash","function":"ObservingTransport.sendChecked","errorCategory":"NONE","actual":"code=MEDIA_CONTAINER_NOT_MP4;blocked=false"}
+BEGIN OFF-016 | Exception classification | function=RuntimeAcceptance.classify
+{"status":"PASS","id":"OFF-016","name":"Exception classification","expected":"missing credentials BLOCKED;storage FAIL","function":"RuntimeAcceptance.classify","errorCategory":"NONE","actual":"missing=UPSTREAM_MISSING_CREDENTIALS,true;storage=UPSTREAM_STORAGE_ERROR,false"}
+BEGIN OFF-017 | Exact endpoint routing regression | function=ObservingTransport.sendChecked
+{"status":"PASS","id":"OFF-017","name":"Exact endpoint routing regression","expected":"exact endpoint reaches worklist;4 near-miss endpoints rejected before transport","function":"ObservingTransport.sendChecked","errorCategory":"NONE","actual":"exact_endpoint_worklist=true;near_miss_rejected=4;near_miss_transport_calls=0"}
+BEGIN OFF-018 | HTTP rejection exact category | function=ObservingTransport.sendChecked
+{"status":"PASS","id":"OFF-018","name":"HTTP rejection exact category","expected":"HTTP_403;blocked=true;worklist exchange recorded","function":"ObservingTransport.sendChecked","errorCategory":"NONE","actual":"code=HTTP_403;blocked=true;worklist_exchange=true"}
+BEGIN OFF-019 | HTML rejection exact category | function=ObservingTransport.observePage
+{"status":"PASS","id":"OFF-019","name":"HTML rejection exact category","expected":"NON_JSON_POSSIBLE_ACCESS_CHALLENGE;blocked=true","function":"ObservingTransport.observePage","errorCategory":"NONE","actual":"code=NON_JSON_POSSIBLE_ACCESS_CHALLENGE;blocked=true"}
+URL_SHAPE legacy_path_matches=false;components_path_matches=true;host_matches=true
+OFFLINE SUMMARY total=19 passed=19 failed=0
+Offline harness checks PASS

@@ -1,0 +1,17 @@
+{
+  "run_id": "40270472151",
+  "url": "https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40270472151",
+  "test_commit": "44fb339dd5aea5e5b4a8c478aa4c82d8d4c9f77b",
+  "artifact_id": "12627809721",
+  "sha256": "b49aa163d2a9043427a4db5117a935aecc0d8a603236ca420ea25169d458e037",
+  "zip_crc": "PASS",
+  "explicit_file_allowlist": "PASS",
+  "file_count": 11,
+  "retention_days": 3,
+  "build_exit_code": "0",
+  "selftest_exit_code": "0",
+  "passed": 19,
+  "failed": [],
+  "network_isolation": "OS_SANDBOX_DENY_NETWORK",
+  "upstream_source_changed": false
+}

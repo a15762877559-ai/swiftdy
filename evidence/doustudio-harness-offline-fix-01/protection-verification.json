@@ -1,0 +1,118 @@
+{
+  "protected_files": [
+    {
+      "path": ".github/workflows/doustudio-macos-build.yml",
+      "hash": "2451D682512C8B94F5BCD9AE48F9273405387DC4C7B4841B5C66E8712FAB9B94"
+    },
+    {
+      "path": ".github/workflows/doustudio-runtime-acceptance.yml",
+      "hash": "CA5A9B86FA4DE9A006173B1E1B49FAD43846C788FC0B5F943A9CC2539C7EC8FC"
+    },
+    {
+      "path": "docs/DOUSTUDIOKIT_GITHUB_ACTIONS_BUILD_01_FIX_REPORT.md",
+      "hash": "0CD2FCB30AB0DF822F73DD878A678389B42F9A1634728BEDD7AB8182A99A58B7"
+    },
+    {
+      "path": "docs/DOUSTUDIOKIT_REAL_RUNTIME_ACCEPTANCE_01_REPORT.md",
+      "hash": "A52B6059DE180B11900CE85370070C4613D1F1DE9ADFA80FD579B435CA8F4289"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/download-validation.json",
+      "hash": "7E17A342E218173DE2DA49E1A5BB5C35F8B905400A37181EC126FF016C113C8E"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/entrypoint-analysis.json",
+      "hash": "83F7E84DE22EB8EB3F3457125FEAE5CA02377257E015F37407C0114D63AEC734"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/failure-observations.json",
+      "hash": "2C04578833D937BD787192F3256C9ECF44E5FDB170B644467BAAF4C56EFCEE78"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/field-validation.json",
+      "hash": "E84C39379D2781F494E2C4DB0FEE483727259F1D03C7E932126CB849600AA8FA"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/final-acceptance.json",
+      "hash": "9DE7D8843A05EC3A77D090203AB975ACEBE5531EE99E7AAEF4D3747D916D7C00"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/pagination-result.json",
+      "hash": "6CC3096413DBC19138DA3174DC38A1A7538D114145B32921640A3AE27398B519"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/profile-resolution.json",
+      "hash": "9BA01D2774231474804E6B456D98DDC02B552CF571A278DBBA559097C06332BE"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/artifact-inspection.json",
+      "hash": "B9E2EBAB7591C252886C4183868B5D7C9B3C1DB532C5F6ACDB4893F5C7935143"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/download-validation.json",
+      "hash": "74B4F97351654D894D8C26A982B1F7A254FFCE2224040D655D7F3FAA56E4766B"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/entrypoint-analysis.json",
+      "hash": "17EC8E651A573E96EFC89DB59679BF989A42FE629D64EEC3E331A776BBF33117"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/failure-observations.json",
+      "hash": "89366704795AEB2B439A1B447F5ABC3CE318002AEE9937AF92C94E5CE379132E"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/field-validation.json",
+      "hash": "1C389BCDBAA9B597449EC2D1D39990EB2040FE8BC20168D88A653B20E511894A"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/final-acceptance.json",
+      "hash": "C331A820F5336A323ED9E9EEA3C7C753CD9A177B6919B7A8B2DDD63472EDF3BF"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/harness-build-exit-code.txt",
+      "hash": "9A271F2A916B0B6EE6CECB2426F0B3206EF074578BE55D9BC94F6F3FE3AB86AA"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/harness-build.log",
+      "hash": "D9423FCD98329A5790C020BD25ED05DEAD024CC6B5661AACBE6F9ABB3E81FCDC"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/pagination-result.json",
+      "hash": "298D27A89E5BD9251A5B8C65800DF45241CAFA0444F9053C98D29BA0436271F7"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/profile-resolution.json",
+      "hash": "D1A161CBDFC099A8E6EF16A3086BACA3C6D9049DF97C0C608E15FD66ED097683"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/run-summary.json",
+      "hash": "9A40A2BC57D0ED34C4ECE15D81689943E53D98DAE6FC657AECAE17333E1F9F8D"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/runtime-environment.json",
+      "hash": "5CE26ADF74FCE4C769540BBB3BD6A37038FFD43AAE9E53D9B392E40D25F34E59"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/stage-outcomes.json",
+      "hash": "DCDBEF68865400082A26BB7BC71AC9833E1361D228150EE73BC17D09B4E36C7D"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/worklist-result.json",
+      "hash": "8310B854D533B0C6979EC511F6D6F2BCEB8699F8CAE31D0F161BE63DE359E4DB"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/runtime-environment.json",
+      "hash": "2BC05DE5B9DF3224384051FB839197E895BC83515CF8D2157D857788ADA97E53"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/worklist-result.json",
+      "hash": "C14C734BE75F5B037AE68F513BDA8A0BCBDAF16F23E568B4186CC6B1193F936D"
+    }
+  ],
+  "all_hashes_match": true,
+  "preexisting_untracked_report": "docs/DOUSTUDIOKIT_GITHUB_ACTIONS_BUILD_01_RUN_REPORT.md",
+  "preexisting_report_hash_unchanged": true,
+  "changes_confined_to_authorized_paths": true,
+  "upstream_local_checkout_clean": true,
+  "force_push": false
+}

@@ -1,0 +1,180 @@
+{
+  "cases" : [
+    {
+      "actual" : "identifier_matches=true",
+      "errorCategory" : "NONE",
+      "expected" : "user identifier matches offline_fixture",
+      "function" : "LinkParser.parse",
+      "id" : "OFF-001",
+      "name" : "Profile identifier",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "pages=2;second_cursor=900",
+      "errorCategory" : "NONE",
+      "expected" : "pages=2;second_cursor=900",
+      "function" : "ObservingTransport.send\/observePage",
+      "id" : "OFF-002",
+      "name" : "Server cursor propagation",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "hasMore=Optional(false);fields=1",
+      "errorCategory" : "NONE",
+      "expected" : "hasMore=false;fields=1",
+      "function" : "ObservingTransport.observePage",
+      "id" : "OFF-003",
+      "name" : "Terminal state and fields",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=CURSOR_STALLED_OR_CYCLIC;blocked=false",
+      "errorCategory" : "NONE",
+      "expected" : "CURSOR_STALLED_OR_CYCLIC",
+      "function" : "ObservingTransport.observePage",
+      "id" : "OFF-004",
+      "name" : "Repeated cursor rejection",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=HTTP_403;blocked=true",
+      "errorCategory" : "NONE",
+      "expected" : "throws blocked=true",
+      "function" : "ObservingTransport.send",
+      "id" : "OFF-005",
+      "name" : "HTTP access rejection",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=NON_JSON_POSSIBLE_ACCESS_CHALLENGE;blocked=true",
+      "errorCategory" : "NONE",
+      "expected" : "throws blocked=true",
+      "function" : "ObservingTransport.observePage",
+      "id" : "OFF-006",
+      "name" : "HTML challenge rejection",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=REQUEST_CURSOR_MISMATCH;blocked=false",
+      "errorCategory" : "NONE",
+      "expected" : "REQUEST_CURSOR_MISMATCH",
+      "function" : "ObservingTransport.sendChecked",
+      "id" : "OFF-007",
+      "name" : "Request cursor mismatch",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "rejected=4;unrelated_rejected=true",
+      "errorCategory" : "NONE",
+      "expected" : "reject 4 unsafe URLs and unrelated profile",
+      "function" : "safeHTTPS\/LinkParser.parse",
+      "id" : "OFF-008",
+      "name" : "Unsafe URLs",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "status=Optional(0);cursor=Optional(900);bool=nil;fraction=nil",
+      "errorCategory" : "NONE",
+      "expected" : "status=0;cursor=900;boolean\/fraction rejected",
+      "function" : "integer",
+      "id" : "OFF-009",
+      "name" : "JSON integer types",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "number_present=true;number_string=1;bool=Optional(true)",
+      "errorCategory" : "NONE",
+      "expected" : "has_more numeric 1",
+      "function" : "JSONSerialization\/NSNumber",
+      "id" : "OFF-010",
+      "name" : "Pagination flag type",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "id_matches=true;description_matches=true;timestamp=1",
+      "errorCategory" : "NONE",
+      "expected" : "fixture ID\/description\/timestamp preserved",
+      "function" : "DouyinExtractor.work",
+      "id" : "OFF-011",
+      "name" : "Model field mapping",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=PAGE_LIMIT_OR_EXHAUSTED;blocked=false",
+      "errorCategory" : "NONE",
+      "expected" : "PAGE_LIMIT_OR_EXHAUSTED",
+      "function" : "ObservingTransport.sendChecked",
+      "id" : "OFF-012",
+      "name" : "Stop after server exhaustion",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "pages=1;error=HTTP_403;fields=0;candidate=false",
+      "errorCategory" : "NONE",
+      "expected" : "one error page HTTP_403;zero fields;no candidate",
+      "function" : "ObservingTransport.send catch",
+      "id" : "OFF-013",
+      "name" : "Failed-page state",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=MEDIA_HOST_OUTSIDE_ALLOWLIST;blocked=true",
+      "errorCategory" : "NONE",
+      "expected" : "MEDIA_HOST_OUTSIDE_ALLOWLIST",
+      "function" : "ObservingTransport.allowMedia",
+      "id" : "OFF-014",
+      "name" : "Media host allowlist",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=MEDIA_CONTAINER_NOT_MP4;blocked=false",
+      "errorCategory" : "NONE",
+      "expected" : "MEDIA_CONTAINER_NOT_MP4;no media hash",
+      "function" : "ObservingTransport.sendChecked",
+      "id" : "OFF-015",
+      "name" : "Reject HTML media bytes",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "missing=UPSTREAM_MISSING_CREDENTIALS,true;storage=UPSTREAM_STORAGE_ERROR,false",
+      "errorCategory" : "NONE",
+      "expected" : "missing credentials BLOCKED;storage FAIL",
+      "function" : "RuntimeAcceptance.classify",
+      "id" : "OFF-016",
+      "name" : "Exception classification",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "exact_endpoint_worklist=true;near_miss_rejected=4;near_miss_transport_calls=0",
+      "errorCategory" : "NONE",
+      "expected" : "exact endpoint reaches worklist;4 near-miss endpoints rejected before transport",
+      "function" : "ObservingTransport.sendChecked",
+      "id" : "OFF-017",
+      "name" : "Exact endpoint routing regression",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=HTTP_403;blocked=true;worklist_exchange=true",
+      "errorCategory" : "NONE",
+      "expected" : "HTTP_403;blocked=true;worklist exchange recorded",
+      "function" : "ObservingTransport.sendChecked",
+      "id" : "OFF-018",
+      "name" : "HTTP rejection exact category",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=NON_JSON_POSSIBLE_ACCESS_CHALLENGE;blocked=true",
+      "errorCategory" : "NONE",
+      "expected" : "NON_JSON_POSSIBLE_ACCESS_CHALLENGE;blocked=true",
+      "function" : "ObservingTransport.observePage",
+      "id" : "OFF-019",
+      "name" : "HTML rejection exact category",
+      "status" : "PASS"
+    }
+  ],
+  "mediaDownloaded" : false,
+  "mode" : "OFFLINE_FIXTURES_ONLY",
+  "onlineEntryCalled" : false,
+  "status" : "PASS",
+  "transport" : "FixtureTransport (memory only)"
+}
