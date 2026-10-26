@@ -1,0 +1,37 @@
+{
+  "statuses": {
+    "HARNESS_BUILD": "PASS",
+    "OFFLINE_SELF_TEST": "PASS",
+    "AUTHENTICATED_PROFILE_ACCESS": "PASS",
+    "FIRST_PAGE_FETCH": "PASS",
+    "MULTI_PAGE_FETCH": "PASS",
+    "PAGINATION_CURSOR_CHAIN": "PASS",
+    "PAGINATION_CORRECTNESS": "PASS",
+    "VIDEO_DOWNLOAD": "NOT_RUN",
+    "MEDIA_INTEGRITY": "NOT_RUN",
+    "NO_WATERMARK": "NOT_TESTED",
+    "RUST_IMPLEMENTATION": "NOT_STARTED",
+    "UPSTREAM_SOURCE_CHANGED": "NO",
+    "ROOTNETSCOPE_CHANGED": "NO",
+    "VIDEOFLOW_CHANGED": "NO"
+  },
+  "request_count": 3,
+  "page_counts": [
+    21,
+    17,
+    18
+  ],
+  "total_items": 56,
+  "unique_items": 56,
+  "duplicates": 0,
+  "cursor_chain_verified": [
+    2,
+    3
+  ],
+  "stop_reason": "PAGE_LIMIT_REACHED",
+  "server_has_more": true,
+  "scope": "Three-page sample only; not complete account collection or media validation.",
+  "failure_category": null,
+  "credential_present": true,
+  "raw_cursor_values_saved": false
+}

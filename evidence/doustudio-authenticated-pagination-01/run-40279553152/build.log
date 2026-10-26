@@ -1,0 +1,75 @@
+Building for debugging...
+[Planning deferred tasks]
+[23 / 38]
+[24 / 39] DouStudioKit
+[28 / 88]
+[33 / 88]
+[37 / 88]
+[43 / 88]
+[45 / 88]
+[48 / 88]
+[50 / 88]
+[52 / 88]
+[55 / 88]
+[58 / 88]
+[61 / 88]
+[62 / 88]
+[63 / 88]
+[68 / 88]
+[73 / 88] DouStudioKit
+[74 / 88] DouStudioKit
+[82 / 89] DouStudioKit
+[84 / 89] RuntimeAcceptance-product
+[88 / 116]
+[91 / 116]
+[94 / 116]
+[97 / 116]
+[98 / 116]
+[100 / 116]
+[104 / 116]
+[106 / 116]
+[107 / 116]
+[111 / 116] RuntimeAcceptance-product
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/PaginationSelfTest.swift:54:15: [1;33mwarning: [1;39m'catch' block is unreachable because no errors are thrown in 'do' block[0;0m
+ [0;36m52 |[0;0m             do {
+ [0;36m53 |[0;0m                 result = OfflineCaseResult(id:id, name:name, function:"AuthenticatedPagination.collect/PaginationTransport.send", status:"PASS", errorCategory:"NONE", expected:expected, actual:try await body())
+ [0;36m54 |[0;0m             } catch {
+    [0;36m|[0;0m               `- [1;33mwarning: [1;39m'catch' block is unreachable because no errors are thrown in 'do' block[0;0m
+ [0;36m55 |[0;0m                 result = OfflineCaseResult(id:id, name:name, function:"AuthenticatedPagination.collect/PaginationTransport.send", status:"FAIL", errorCategory:(error as? PaginationFailure)?.rawValue ?? "ASSERTION_MISMATCH", expected:expected,
+ [0;36m56 |[0;0m                     actual:(error as? PaginationTestMismatch)?.summary ?? "fixed_error_or_condition_mismatch")
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/SelfTest.swift:69:15: [1;33mwarning: [1;39m'catch' block is unreachable because no errors are thrown in 'do' block[0;0m
+ [0;36m67 |[0;0m                 result = OfflineCaseResult(id: id, name: name, function: function, status: "PASS",
+ [0;36m68 |[0;0m                     errorCategory: "NONE", expected: expected, actual: try await body())
+ [0;36m69 |[0;0m             } catch {
+    [0;36m|[0;0m               `- [1;33mwarning: [1;39m'catch' block is unreachable because no errors are thrown in 'do' block[0;0m
+ [0;36m70 |[0;0m                 let category: String
+ [0;36m71 |[0;0m                 let actual: String
+[112 / 116] RuntimeAcceptance-product
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift:140:20: [1;33mwarning: [1;39m'add' was deprecated in macOS 27.0: Use the appropriate AVAssetReader.outputProvider(for:...) overload for your output and optional adaptor instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+[0;36m138 |[0;0m                 outputSettings: [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA])
+[0;36m139 |[0;0m             guard reader.canAdd(output) else { throw AcceptanceStop(code: "DECODER_UNAVAILABLE", blocked: false) }
+[0;36m140 |[0;0m             reader.add(output)
+    [0;36m|[0;0m                    `- [1;33mwarning: [1;39m'add' was deprecated in macOS 27.0: Use the appropriate AVAssetReader.outputProvider(for:...) overload for your output and optional adaptor instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+[0;36m141 |[0;0m             guard reader.startReading() else { throw AcceptanceStop(code: "DECODE_START_FAILED", blocked: false) }
+[0;36m142 |[0;0m             var frames = 0
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift:141:26: [1;33mwarning: [1;39m'startReading()' was deprecated in macOS 27.0: Use start() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+[0;36m139 |[0;0m             guard reader.canAdd(output) else { throw AcceptanceStop(code: "DECODER_UNAVAILABLE", blocked: false) }
+[0;36m140 |[0;0m             reader.add(output)
+[0;36m141 |[0;0m             guard reader.startReading() else { throw AcceptanceStop(code: "DECODE_START_FAILED", blocked: false) }
+    [0;36m|[0;0m                          `- [1;33mwarning: [1;39m'startReading()' was deprecated in macOS 27.0: Use start() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+[0;36m142 |[0;0m             var frames = 0
+[0;36m143 |[0;0m             while let sample = output.copyNextSampleBuffer() {
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift:143:39: [1;33mwarning: [1;39m'copyNextSampleBuffer()' was deprecated in macOS 27.0: Use AVAssetReaderOutput.Provider.next() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+[0;36m141 |[0;0m             guard reader.startReading() else { throw AcceptanceStop(code: "DECODE_START_FAILED", blocked: false) }
+[0;36m142 |[0;0m             var frames = 0
+[0;36m143 |[0;0m             while let sample = output.copyNextSampleBuffer() {
+    [0;36m|[0;0m                                       `- [1;33mwarning: [1;39m'copyNextSampleBuffer()' was deprecated in macOS 27.0: Use AVAssetReaderOutput.Provider.next() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+[0;36m144 |[0;0m                 guard CMSampleBufferGetImageBuffer(sample) != nil else {
+[0;36m145 |[0;0m                     throw AcceptanceStop(code: "DECODED_FRAME_MISSING", blocked: false)
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+[114 / 116] RuntimeAcceptance-product
+Build complete! (19.78 sec)

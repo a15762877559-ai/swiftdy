@@ -1,0 +1,224 @@
+{
+  "cases" : [
+    {
+      "actual" : "calls=2;chain=true;correctness=PASS;SERVER_EXHAUSTED",
+      "errorCategory" : "NONE",
+      "expected" : "calls=2;chain=true;correctness=PASS;SERVER_EXHAUSTED",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-001",
+      "name" : "Two-page original collector",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "calls=3;fourth rejected;correctness=PASS",
+      "errorCategory" : "NONE",
+      "expected" : "calls=3;fourth rejected;correctness=PASS",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-002",
+      "name" : "Three-page original collector and hard cap",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "calls=1;MULTI_PAGE_FETCH=NOT_VERIFIED;SERVER_EXHAUSTED",
+      "errorCategory" : "NONE",
+      "expected" : "calls=1;MULTI_PAGE_FETCH=NOT_VERIFIED;SERVER_EXHAUSTED",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-003",
+      "name" : "First-page exhaustion",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "calls=1;first page BLOCKED;pagination NOT_VERIFIED",
+      "errorCategory" : "NONE",
+      "expected" : "calls=1;first page BLOCKED;pagination NOT_VERIFIED",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-004",
+      "name" : "Empty first page",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=CURSOR_MISSING_OR_INVALID;calls=1;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=CURSOR_MISSING_OR_INVALID;calls=1;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-005",
+      "name" : "Missing cursor",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=CURSOR_MISSING_OR_INVALID;calls=1;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=CURSOR_MISSING_OR_INVALID;calls=1;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-006",
+      "name" : "Invalid cursor zero",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=CURSOR_STALLED;calls=2;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=CURSOR_STALLED;calls=2;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-007",
+      "name" : "Stalled cursor",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=CURSOR_CYCLE;calls=3;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=CURSOR_CYCLE;calls=3;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-008",
+      "name" : "Cursor cycle",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=DUPLICATE_WORK_IDS;calls=2;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=DUPLICATE_WORK_IDS;calls=2;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-009",
+      "name" : "Duplicate across pages",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=DUPLICATE_WORK_IDS;calls=1;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=DUPLICATE_WORK_IDS;calls=1;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-010",
+      "name" : "Duplicate within page",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=ACCESS_RESTRICTED;calls=1;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=ACCESS_RESTRICTED;calls=1;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-011",
+      "name" : "403 stops",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=RATE_LIMITED;calls=2;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=RATE_LIMITED;calls=2;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-012",
+      "name" : "429 on second page stops",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=CHALLENGE_REQUIRED;calls=1;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=CHALLENGE_REQUIRED;calls=1;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-013",
+      "name" : "HTML challenge stops",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=API_RESPONSE_CHANGED;calls=1;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=API_RESPONSE_CHANGED;calls=1;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-014",
+      "name" : "Response schema changed",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=API_RESPONSE_CHANGED;calls=1;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=API_RESPONSE_CHANGED;calls=1;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-015",
+      "name" : "Missing has_more",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=EMPTY_PAGE_WITH_MORE;calls=1;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=EMPTY_PAGE_WITH_MORE;calls=1;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-016",
+      "name" : "Empty with more",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=ACCESS_RESTRICTED;calls=1;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=ACCESS_RESTRICTED;calls=1;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-017",
+      "name" : "Redirect stops",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=API_RESPONSE_CHANGED;calls=1;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=API_RESPONSE_CHANGED;calls=1;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-018",
+      "name" : "Invalid work identity",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "error=ACCESS_RESTRICTED;calls=1;stopped;no media",
+      "errorCategory" : "NONE",
+      "expected" : "error=ACCESS_RESTRICTED;calls=1;stopped;no media",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-019",
+      "name" : "Platform error",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "chain mismatch rejected before second send",
+      "errorCategory" : "NONE",
+      "expected" : "chain mismatch rejected before second send",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-020",
+      "name" : "Wrong next request cursor",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "scope rejected;calls=0",
+      "errorCategory" : "NONE",
+      "expected" : "scope rejected;calls=0",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-021",
+      "name" : "Media endpoint forbidden",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "foreign host, missing cookie and proxy rejected;calls=0",
+      "errorCategory" : "NONE",
+      "expected" : "foreign host, missing cookie and proxy rejected;calls=0",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-022",
+      "name" : "Foreign host and credential boundary",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "structured JSON has no cookie, IDs, raw cursors or URLs",
+      "errorCategory" : "NONE",
+      "expected" : "structured JSON has no cookie, IDs, raw cursors or URLs",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-023",
+      "name" : "Evidence excludes identifiers and cursor values",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "NETWORK_ERROR;calls recorded=1;no subsequent send",
+      "errorCategory" : "NONE",
+      "expected" : "NETWORK_ERROR;calls recorded=1;no subsequent send",
+      "function" : "AuthenticatedPagination.collect\/PaginationTransport.send",
+      "id" : "PAG-024",
+      "name" : "Network exception stops without retry",
+      "status" : "PASS"
+    }
+  ],
+  "mediaDownloaded" : false,
+  "mode" : "OFFLINE_FIXTURES_ONLY",
+  "onlineEntryCalled" : false,
+  "status" : "PASS"
+}

@@ -1,0 +1,96 @@
+{
+  "run_id": 40279553152,
+  "url": "https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40279553152",
+  "attempt": 1,
+  "event": "workflow_dispatch",
+  "created_at": "2026-10-26T06:23:38Z",
+  "test_commit": "c05127d88fa184e1c5966096022cd6a45284f0d1",
+  "job_id": 121429588978,
+  "conclusion": "success",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1
+    },
+    {
+      "name": "Checkout harness",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2
+    },
+    {
+      "name": "Validate explicit authorization and initialize evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3
+    },
+    {
+      "name": "Checkout pinned upstream",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4
+    },
+    {
+      "name": "Verify upstream and environment",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5
+    },
+    {
+      "name": "Build harness without credentials",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6
+    },
+    {
+      "name": "Offline fixtures without credentials or network",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7
+    },
+    {
+      "name": "At most three authorized worklist pages",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8
+    },
+    {
+      "name": "Record outcomes and upstream protection",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9
+    },
+    {
+      "name": "Upload sanitized evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10
+    },
+    {
+      "name": "Post Checkout pinned upstream",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 19
+    },
+    {
+      "name": "Post Checkout harness",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 20
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 21
+    }
+  ],
+  "build_exit_code": 0,
+  "offline_exit_code": 0,
+  "pagination_exit_code": 0,
+  "offline_passed": 62,
+  "automatic_dispatch": false,
+  "automatic_retry": false
+}

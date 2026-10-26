@@ -1,6 +1,10 @@
 # DOUSTUDIOKIT_AUTHENTICATED_PAGINATION_01
 
-2026-10-26，Asia/Shanghai。准备阶段：新增独立认证分页 Harness、工作流、24 项 Swift 分页 fixture 及 17 项 Python 启动器测试。Windows 上 27 项 Python 测试通过（新 17 项及原认证预检 10 项），静态检查通过。**本机没有 Swift；macOS 编译、62 项 Swift fixture 和真实分页均未执行，不能认定分页验收 PASS。** 不自动触发，等待用户手动运行。
+2026-10-26，Asia/Shanghai。最新真实运行 40279553152 的认证分页验收 PASS：macOS 编译通过、62/62 Swift 自检通过；三次请求均 HTTP 200，分别返回 21、17、18 条作品，共 56 条且无重复。第二、三页游标链匹配，无停滞或循环。达到三页上限停止，服务端仍 has_more=true；不表示已采集全部作品。未下载视频、未验证媒体或无水印、未开始 Rust。以下准备记录保留为历史，最新详情见末尾。
+
+## 准备阶段记录（历史）
+
+准备期间 Windows Python 27/27 通过；当时 macOS/Swift/网络尚未执行。下列 NOT_RUN 描述均属于准备时点。
 
 ## 基线与保护
 
@@ -107,3 +111,71 @@ VIDEOFLOW_CHANGED = NO
 - GitHub 只读 API 返回新工作流 ID `396701158`、名称/路径匹配、state=active；发布核验时 total_count=0。元数据见 `github-publication.json`。
 - 这证明 GitHub 已登记工作流，不代表 macOS 编译、Swift fixture、运行时表达式或真实分页已经通过。新分页运行 URL 和 Artifact 哈希仍为 NOT_RUN。
 - 最后一次提交仅补充本节和发布元数据，不改变待验证的 Harness/工作流源码。未触发认证或离线云端工作流；不自动重试。
+
+
+## 真实运行 40279553152：认证分页 PASS
+
+- [GitHub Actions 运行](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40279553152)，2026-10-26 14:23:38（Asia/Shanghai）创建，workflow_dispatch，attempt=1，job=121429588978，结论 success。由用户手动触发；本轮只读取/归档结果，没有再次触发或自动重试。
+- 受测提交 `c05127d88fa184e1c5966096022cd6a45284f0d1`；源码与准备提交 e64fd8d 相同，后续 c05127d 只补充报告和发布信息。
+- 实际上游 HEAD `362dad3d082e9f63c8efd360acc653ba169d40a2`；运行结束 tracked_source_clean=true。
+- xcode-27，arm64，macOS 27.0.1 (26A434)，Swift 6.4 (swiftlang-6.4.0.34.1)，Xcode 27.1 (27A9275)。
+- 构建退出码 0；离线退出码 0，原 OFF/AUTH 38 项及 PAG-001..024 全部 PASS，总计 62/62；真实分页退出码 0。
+- 离线诊断文件逐例包含固定 ID、函数、预期、实际安全摘要及 PASS；两份结果均 onlineEntryCalled=false、mediaDownloaded=false。真实请求独立记录在 pagination-result.json，不把 fixture 算作平台请求。
+- `credential_present=true`；只记录存在性，不读取或保存 Secret 内容、长度、摘要或其他派生值。
+
+### 逐页结果及游标证据
+
+| 页码 | HTTP | 作品数 | 累计/唯一数 | 重复次数 | 使用前页返回游标 | has_more | 返回游标有效 | 停滞/循环 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 200 | 21 | 21 / 21 | 0 | 不适用（初始页） | true | true | false / false |
+| 2 | 200 | 17 | 38 / 38 | 0 | true | true | true | false / false |
+| 3 | 200 | 18 | 56 / 56 | 0 | true | true | true | false / false |
+
+实际 request_count=3、pipeline_completed=true，全部 valid_page=true。uses_previous_response_cursor 来自检查层对实际签名请求与前一页原始响应游标的内存比较，第二、三页均匹配；未自行生成游标，也没有把原始游标、作品 ID 或完整请求 URL 写入证据。
+
+停止原因为 PAGE_LIMIT_REACHED。第三页仍 has_more=true，未发起第四次请求；这是三页样本的分页能力通过，不能据此宣称账号全部作品已经获取或长期稳定。每次请求 count=18，实际响应 21/17/18 原样计数，不截断或凑数。无失败类别；下载、媒体完整性和无水印仍未验证。
+
+### 步骤 outcome
+
+| 步骤 | outcome |
+| --- | --- |
+| Set up job | success |
+| Checkout harness | success |
+| Validate explicit authorization and initialize evidence | success |
+| Checkout pinned upstream | success |
+| Verify upstream and environment | success |
+| Build harness without credentials | success |
+| Offline fixtures without credentials or network | success |
+| At most three authorized worklist pages | success |
+| Record outcomes and upstream protection | success |
+| Upload sanitized evidence | success |
+| Post Checkout pinned upstream | success |
+| Post Checkout harness | success |
+| Complete job | success |
+
+### Artifact 和交付保护
+
+[Artifact 12632016389](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40279553152/artifacts/12632016389)，10808 bytes，13 个白名单文件，保留 3 天，到期时间 2026-10-29T06:25:09Z。
+
+下载 ZIP 的 SHA-256 为 `de54c543517c6d5b255002bb3d301bb1a4026d52fd19a11c77ff2e83f58c5065`，与 GitHub 发布摘要一致；ZIP CRC 和文件白名单通过。原始脱敏文件逐字节保存于 `evidence/doustudio-authenticated-pagination-01/run-40279553152/`，另存步骤摘要、Artifact 核验、验收判断及保护结果。原始 ZIP 存在本地 .git/task-validation 下，不作为媒体或运行产物提交。
+
+Artifact 无媒体、Cookie、认证头、原始平台响应或带查询参数的完整请求/视频 URL；构建和自检日志在 Secret 注入之前生成。7 个准备源码哈希及 163 条基线保护记录核对一致（包括此前允许的 main 分支入口修改和原有未跟踪 RUN 报告）。本次仅更新主报告和新增该 RunID 证据，不修改 Harness、工作流、上游或历史证据；RootNetScope、VideoFlow、zhuabao、系统代理及 v2rayN 未改动。普通提交、推送，不强推。
+
+```ini
+HARNESS_BUILD = PASS
+OFFLINE_SELF_TEST = PASS
+AUTHENTICATED_PROFILE_ACCESS = PASS
+FIRST_PAGE_FETCH = PASS
+MULTI_PAGE_FETCH = PASS
+PAGINATION_CURSOR_CHAIN = PASS
+PAGINATION_CORRECTNESS = PASS
+VIDEO_DOWNLOAD = NOT_RUN
+MEDIA_INTEGRITY = NOT_RUN
+NO_WATERMARK = NOT_TESTED
+RUST_IMPLEMENTATION = NOT_STARTED
+UPSTREAM_SOURCE_CHANGED = NO
+ROOTNETSCOPE_CHANGED = NO
+VIDEOFLOW_CHANGED = NO
+```
+
+验收完成后停止；不自动开始视频下载、额外分页或 Rust 移植。

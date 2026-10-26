@@ -1,0 +1,66 @@
+{
+  "credential_present" : true,
+  "pages" : [
+    {
+      "cumulative_items" : 21,
+      "cumulative_unique_items" : 21,
+      "cursor_cycle" : false,
+      "cursor_stalled" : false,
+      "duplicate_ids" : 0,
+      "has_more" : true,
+      "http_status" : 200,
+      "item_count" : 21,
+      "page" : 1,
+      "request_started" : true,
+      "returned_cursor_valid" : true,
+      "valid_page" : true
+    },
+    {
+      "cumulative_items" : 38,
+      "cumulative_unique_items" : 38,
+      "cursor_cycle" : false,
+      "cursor_stalled" : false,
+      "duplicate_ids" : 0,
+      "has_more" : true,
+      "http_status" : 200,
+      "item_count" : 17,
+      "page" : 2,
+      "request_started" : true,
+      "returned_cursor_valid" : true,
+      "uses_previous_response_cursor" : true,
+      "valid_page" : true
+    },
+    {
+      "cumulative_items" : 56,
+      "cumulative_unique_items" : 56,
+      "cursor_cycle" : false,
+      "cursor_stalled" : false,
+      "duplicate_ids" : 0,
+      "has_more" : true,
+      "http_status" : 200,
+      "item_count" : 18,
+      "page" : 3,
+      "request_started" : true,
+      "returned_cursor_valid" : true,
+      "uses_previous_response_cursor" : true,
+      "valid_page" : true
+    }
+  ],
+  "pipeline_completed" : true,
+  "request_count" : 3,
+  "statuses" : {
+    "AUTHENTICATED_PROFILE_ACCESS" : "PASS",
+    "FIRST_PAGE_FETCH" : "PASS",
+    "MEDIA_INTEGRITY" : "NOT_RUN",
+    "MULTI_PAGE_FETCH" : "PASS",
+    "NO_WATERMARK" : "NOT_TESTED",
+    "PAGINATION_CORRECTNESS" : "PASS",
+    "PAGINATION_CURSOR_CHAIN" : "PASS",
+    "ROOTNETSCOPE_CHANGED" : "NO",
+    "RUST_IMPLEMENTATION" : "NOT_STARTED",
+    "UPSTREAM_SOURCE_CHANGED" : "NO",
+    "VIDEOFLOW_CHANGED" : "NO",
+    "VIDEO_DOWNLOAD" : "NOT_RUN"
+  },
+  "stop_reason" : "PAGE_LIMIT_REACHED"
+}
