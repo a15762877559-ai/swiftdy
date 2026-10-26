@@ -31,7 +31,8 @@
     "local-validation.json": "f97dcbd08469aa727acb1c0874cc21836a9958711caa59aa7a42def2e6872c45",
     "protection-check.json": "400988b4dde314454df2aaa6c9337c1937cbcbee7b145c9ee062e2f1fd834b3b",
     "python-tests.json": "ce5bfba9ea3e4edc206a5a21d89f3d18973c497c52a701e613e2e979b2d66eec",
-    "python-tests.log": "8db1f0e5391fa30a36a2990378725e38a93a3dd08f39bbf729464daba88abc1b"
+    "python-tests.log": "8db1f0e5391fa30a36a2990378725e38a93a3dd08f39bbf729464daba88abc1b",
+    "github-publication.json": "cc9087295c9b1de8f46258b44e6ec6be92c966096e2c68e52039e09522c31d3e"
   },
   "new_workflow_run": "NOT_RUN"
 }

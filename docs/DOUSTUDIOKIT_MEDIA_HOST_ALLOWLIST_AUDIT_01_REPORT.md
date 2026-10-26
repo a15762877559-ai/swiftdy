@@ -99,6 +99,8 @@ AUTO_TRIGGERED = NO
 
 ## 用户手动运行及停止点
 
+准备源码和交付文件已普通提交并推送：`c70012534863d6f5572637d31699acfc16e1b0cf`。GitHub 只读核验已登记工作流 ID `396810963`、state=active，核验时 total_runs=0。注册状态不代表 Swift 编译、离线用例或主机审计通过；发布元数据见 github-publication.json。后续收尾提交仅补充该发布记录和证据索引，不变更源码。
+
 打开 [主机审计工作流](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/workflows/doustudio-media-host-audit.yml)，选择 Run workflow → main，输入自己有权访问的规范公开主页，勾选 authorized_own_session，再手动运行。Cookie 继续使用现有仓库 Secret，不填入主页框，也不发送到聊天。
 
 工作流成功只代表主机观察完成，**不代表候选已批准**。运行后应读取脱敏 Artifact，完成来源、公开资料和目标安全审查。批准前生产精确白名单保持为空；本轮至此停止，不触发作品请求或下载。

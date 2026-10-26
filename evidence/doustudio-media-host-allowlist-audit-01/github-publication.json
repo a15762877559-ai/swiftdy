@@ -1,0 +1,12 @@
+{
+  "workflow_id": 396810963,
+  "name": "DouStudioKit Media Host Allowlist Audit",
+  "path": ".github/workflows/doustudio-media-host-audit.yml",
+  "state": "active",
+  "html_url": "https://github.com/achusonwork-bit/doustudio-runtime-acceptance/blob/main/.github/workflows/doustudio-media-host-audit.yml",
+  "published_commit": "c70012534863d6f5572637d31699acfc16e1b0cf",
+  "total_runs": 0,
+  "auto_triggered": false,
+  "macos_build": "NOT_RUN",
+  "swift_offline_tests": "NOT_RUN"
+}
