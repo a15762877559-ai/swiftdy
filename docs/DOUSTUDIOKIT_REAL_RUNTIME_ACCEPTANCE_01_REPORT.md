@@ -83,7 +83,13 @@ Artifact 名称为 `doustudio-runtime-evidence-<run_id>-<attempt>`。九份 JSON
 
 ## 发布和等待点
 
-此版本在本地检查后提交并普通推送至 main，仅包含本轮新增工作流、Harness、本报告及准备阶段证据；原 RUN 报告排除。服务端接受情况在实际发布后补记。不会自动点击 Run workflow。
+初次发布提交 `a41a614c725583415e2c5a1a7ed8c317c6b9b19e` 已普通推送至 main，共 17 个新增文件，仅包含新工作流、Harness、本报告及准备阶段证据；原 RUN 报告排除。后续准备收尾补充本节，并为 AVFoundation 引入兼容 Swift 6 并发标注的 preconcurrency import，媒体对象仍限于 MainActor；没有运行网络测试。
+
+GitHub 服务端核验：PASS。工作流 ID `396629067`，API 返回正确名称与 state=active，创建时间 2026-10-26 12:01:30（Asia/Shanghai）。远端工作流 SHA-256 与本地一致：`ca5a9b86fa4de9a006173b1e1b49fad43846c788fc0b5f943a9cc2539c7ec8fc`。
+
+已通过 Chrome 核验 [工作流页面](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/workflows/doustudio-runtime-acceptance.yml)：存在 Run workflow，展开后分支为 main，并显示主页输入框、未勾选的确认框和最终 Run workflow 按钮。当前为 0 workflow runs，没有提交表单或发起 dispatch。服务端接受工作流不表示 Harness 编译或网络验收通过。
+
+只读 REST 元数据保存在 `.git/task-validation/runtime-server-workflow.json`；未改变系统、v2rayN 或 Git 全局代理配置。
 
 准备就绪后，由用户进入 [Actions](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions)，选择 `DouStudioKit Real Runtime Acceptance` → Run workflow → main，手动输入要测试的公开主页并勾选授权确认，再运行。用户触发后才能读取真实日志/Artifact 并更新验收。此前聊天中的 URL 不作为本轮默认输入。
 
