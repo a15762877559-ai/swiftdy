@@ -15,12 +15,15 @@ jobs:
         shell: bash
     env:
       UPSTREAM_COMMIT: 362dad3d082e9f63c8efd360acc653ba169d40a2
-      EVIDENCE_DIR: ${{ runner.temp }}/doustudio-build-evidence
     steps:
       - name: Initialize build evidence
         id: evidence
+        env:
+          EVIDENCE_DIR: ${{ runner.temp }}/doustudio-build-evidence
         run: |
           mkdir -p "$EVIDENCE_DIR"
+          printf 'EVIDENCE_DIR=%s\n' "$EVIDENCE_DIR" >> "$GITHUB_ENV"
+          printf 'directory=%s\n' "$EVIDENCE_DIR" >> "$GITHUB_OUTPUT"
           printf '%s\n' "$UPSTREAM_COMMIT" > "$EVIDENCE_DIR/expected-commit.txt"
           for step in verify environment dump-package build; do
             printf 'NOT_RUN\n' > "$EVIDENCE_DIR/$step-exit-code.txt"
@@ -112,7 +115,7 @@ jobs:
           exit "$status"
 
       - name: Record step outcomes
-        if: ${{ always() }}
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
         env:
           EVIDENCE_OUTCOME: ${{ steps.evidence.outcome }}
           CHECKOUT_OUTCOME: ${{ steps.checkout.outcome }}
@@ -129,7 +132,7 @@ jobs:
           cat "$EVIDENCE_DIR/step-outcomes.txt"
 
       - name: Upload non-sensitive build evidence
-        if: ${{ always() }}
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: doustudio-macos-build-evidence-${{ github.run_id }}-${{ github.run_attempt }}
@@ -137,15 +140,15 @@ jobs:
           if-no-files-found: error
           include-hidden-files: false
           path: |
-            ${{ runner.temp }}/doustudio-build-evidence/expected-commit.txt
-            ${{ runner.temp }}/doustudio-build-evidence/actual-commit.txt
-            ${{ runner.temp }}/doustudio-build-evidence/verify.log
-            ${{ runner.temp }}/doustudio-build-evidence/verify-exit-code.txt
-            ${{ runner.temp }}/doustudio-build-evidence/environment.log
-            ${{ runner.temp }}/doustudio-build-evidence/environment-exit-code.txt
-            ${{ runner.temp }}/doustudio-build-evidence/dump-package.json
-            ${{ runner.temp }}/doustudio-build-evidence/dump-package.stderr.log
-            ${{ runner.temp }}/doustudio-build-evidence/dump-package-exit-code.txt
-            ${{ runner.temp }}/doustudio-build-evidence/build.log
-            ${{ runner.temp }}/doustudio-build-evidence/build-exit-code.txt
-            ${{ runner.temp }}/doustudio-build-evidence/step-outcomes.txt
+            ${{ steps.evidence.outputs.directory }}/expected-commit.txt
+            ${{ steps.evidence.outputs.directory }}/actual-commit.txt
+            ${{ steps.evidence.outputs.directory }}/verify.log
+            ${{ steps.evidence.outputs.directory }}/verify-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/environment.log
+            ${{ steps.evidence.outputs.directory }}/environment-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/dump-package.json
+            ${{ steps.evidence.outputs.directory }}/dump-package.stderr.log
+            ${{ steps.evidence.outputs.directory }}/dump-package-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/build.log
+            ${{ steps.evidence.outputs.directory }}/build-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/step-outcomes.txt
