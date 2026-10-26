@@ -1,10 +1,30 @@
 {
   "repository": "a15762877559-ai/swiftdy",
-  "status": "PREPARING_LOCAL_COMMIT",
+  "status": "PUSHED",
+  "preparation_commit": "bdc7deca5681943fdde4d367f970a1d60633104e",
+  "follow_up": "REPORT_AND_INDEX_ONLY",
   "workflows_triggered": false,
-  "workflow_registration": "PENDING_PUSH",
+  "workflows_registered": true,
+  "workflows": [
+    {
+      "id": 397058440,
+      "name": "DouStudioKit Media Redirect Probe 02 Offline Tests",
+      "path": ".github/workflows/doustudio-media-redirect-probe-offline.yml",
+      "state": "active"
+    },
+    {
+      "id": 397058441,
+      "name": "DouStudioKit Media Redirect Probe 02",
+      "path": ".github/workflows/doustudio-media-redirect-probe.yml",
+      "state": "active"
+    }
+  ],
+  "new_offline_runs": 0,
+  "new_live_runs": 0,
   "new_run_url": "NOT_RUN",
   "new_artifact_sha256": "NOT_RUN",
   "MACOS_SWIFT_BUILD": "NOT_RUN",
-  "REAL_REDIRECT_PROBE": "NOT_RUN"
+  "SWIFT_REDIRECT_OFFLINE_TESTS": "NOT_RUN",
+  "REAL_REDIRECT_PROBE": "NOT_RUN",
+  "FULL_VIDEO_DOWNLOADED": "NO"
 }

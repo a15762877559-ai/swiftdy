@@ -76,7 +76,7 @@ YAML、仅 workflow_dispatch、xcode-27、contents:read、固定 Actions/上游 
 
 ## 工作流与下一步
 
-两个新增工作流保持旧工作流不变，均固定 macOS xcode-27、20 分钟、contents:read、官方 Actions 完整 SHA、checkout 不持久化凭据、Artifact 保留 3 天。保留失败关闭和源码 seal，不存在输入或环境变量可以跳过离线门禁。
+两个新增工作流保持旧工作流不变，均固定 macOS xcode-27、20 分钟、contents:read、官方 Actions 完整 SHA、checkout 不持久化凭据、Artifact 保留 3 天。保留失败关闭和源码 seal，工作流没有门禁旁路输入；Swift 的内部验证标记仅由 Python 门禁通过后的子进程注入。
 
 1. 先由用户手动运行 [DouStudioKit Media Redirect Probe 02 Offline Tests](https://github.com/a15762877559-ai/swiftdy/actions/workflows/doustudio-media-redirect-probe-offline.yml)。无输入、无 Secret；用例的外网被沙箱拒绝，仅受控 loopback 例外。编译失败或任何用例失败需先修复。
 2. 取得该版本 macOS 编译及完整离线 PASS 后，再由用户另行决定手动运行 [DouStudioKit Media Redirect Probe 02](https://github.com/a15762877559-ai/swiftdy/actions/workflows/doustudio-media-redirect-probe.yml)。需明确授权确认及有权访问的规范主页；使用已有 DOUYIN_COOKIE，不重新提供给聊天或代码。工作流会重新验证同一提交的所有离线门禁后，才进行一次列表与最多三个媒体 GET。
@@ -105,3 +105,10 @@ PRODUCTION_ALLOWLIST = EMPTY
 NO_WATERMARK = NOT_TESTED
 RUST_IMPLEMENTATION = NOT_STARTED
 ```
+
+
+## 发布核验
+
+准备源码提交 `bdc7deca5681943fdde4d367f970a1d60633104e` 已普通推送至 origin/main。GitHub 已登记独立离线工作流 ID 397058440、真实探测工作流 ID 397058441，二者 state=active，核验时各自运行数均为 0。登记不是 Swift 编译或用例通过；本轮未 dispatch。后续收尾提交仅更新本节、发布元数据与证据索引，不改变待验证代码。
+
+最终交付仍需用户先手动运行新离线工作流。当前未获得新 Swift/macOS 结果，未尝试下一跳 GET 或 sf11 GET，也没有下载完整视频。
