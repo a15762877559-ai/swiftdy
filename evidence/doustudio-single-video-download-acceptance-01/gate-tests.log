@@ -1,0 +1,16 @@
+test_audit_metadata_cannot_unlock_gate (test_single_video_preflight.ClosedDownloadGate.test_audit_metadata_cannot_unlock_gate) ... ok
+test_authorization_required (test_single_video_preflight.ClosedDownloadGate.test_authorization_required) ... ok
+test_foreign_short_or_query_profile_rejected (test_single_video_preflight.ClosedDownloadGate.test_foreign_short_or_query_profile_rejected) ... ok
+test_gate_cannot_be_enabled_by_environment (test_single_video_preflight.ClosedDownloadGate.test_gate_cannot_be_enabled_by_environment) ... ok
+test_gate_no_process_network_or_media_files (test_single_video_preflight.ClosedDownloadGate.test_gate_no_process_network_or_media_files) ... ok
+test_index_syntax_bounds (test_single_video_preflight.ClosedDownloadGate.test_index_syntax_bounds) ... ok
+test_initialize_does_not_persist_inputs (test_single_video_preflight.ClosedDownloadGate.test_initialize_does_not_persist_inputs) ... ok
+test_repeated_gate_calls_never_download (test_single_video_preflight.ClosedDownloadGate.test_repeated_gate_calls_never_download) ... ok
+test_secret_is_never_read (test_single_video_preflight.ClosedDownloadGate.test_secret_is_never_read) ... ok
+test_source_has_no_network_dependencies (test_single_video_preflight.ClosedDownloadGate.test_source_has_no_network_dependencies) ... ok
+test_valid_input_remains_range_unverified (test_single_video_preflight.ClosedDownloadGate.test_valid_input_remains_range_unverified) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.083s
+
+OK

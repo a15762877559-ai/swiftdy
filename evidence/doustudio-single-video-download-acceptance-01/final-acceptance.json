@@ -1,0 +1,29 @@
+{
+  "statuses": {
+    "DOWNLOAD_IMPLEMENTATION_AUDIT": "PASS",
+    "DOWNLOAD_PREFLIGHT": "BLOCKED",
+    "RECEIVE_BYTE_LIMIT": "NOT_ENFORCED",
+    "HARNESS_BUILD": "NOT_RUN",
+    "OFFLINE_SELF_TEST": "NOT_RUN",
+    "VIDEO_DOWNLOAD": "BLOCKED",
+    "FILE_INTEGRITY": "NOT_VERIFIED",
+    "MEDIA_DECODE": "NOT_VERIFIED",
+    "NO_WATERMARK": "NOT_TESTED",
+    "PAGINATION": "PASS",
+    "RUST_IMPLEMENTATION": "NOT_STARTED",
+    "UPSTREAM_SOURCE_CHANGED": "NO",
+    "ROOTNETSCOPE_CHANGED": "NO",
+    "VIDEOFLOW_CHANGED": "NO"
+  },
+  "reason": "RECEIVE_HARD_LIMIT_NOT_VERIFIED",
+  "media_requests": 0,
+  "worklist_requests": 0,
+  "credential_read": false,
+  "http_status": null,
+  "media_bytes": null,
+  "media_sha256": null,
+  "cleanup": "NOT_NEEDED_NO_TRANSFER",
+  "run_url": "NOT_RUN",
+  "artifact_sha256": "NOT_RUN",
+  "pagination_baseline": "https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40279553152"
+}

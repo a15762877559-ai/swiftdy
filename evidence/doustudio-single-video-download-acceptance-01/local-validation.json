@@ -1,0 +1,12 @@
+{
+  "closed_gate_tests": "PASS",
+  "closed_gate_cases": 11,
+  "full_download_regression": "NOT_RUN",
+  "yaml": "PASS",
+  "bash_syntax": "PASS",
+  "source_hashes": "PASS",
+  "artifact_whitelist_files": 8,
+  "secret_injection": "NONE_WHILE_BLOCKED",
+  "swift_build": "NOT_RUN",
+  "actionlint": "NOT_INSTALLED_NOT_RUN"
+}

@@ -1,0 +1,3 @@
+Unchanged baseline files: 196
+PASS: workflow YAML, shell syntax, fixed source hashes, 8-file audit-only artifact whitelist, no credential injection, no media execution path
+DOWNLOAD_PREFLIGHT=BLOCKED; RECEIVE_BYTE_LIMIT=NOT_ENFORCED; Swift build and media transport regressions NOT_RUN

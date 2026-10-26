@@ -1,0 +1,54 @@
+{
+  "basis": "Fixed source inspection, not a new media experiment",
+  "findings": [
+    {
+      "id": "BUFFERED_API",
+      "path": "Sources/DouStudioKit/Networking/HTTPTransport.swift",
+      "start": 89,
+      "end": 114,
+      "observation": "URLSessionTransport.send waits for session.data(for:) before returning body."
+    },
+    {
+      "id": "BUFFERED_DOWNLOAD",
+      "path": "Sources/DouStudioKit/Download/Downloader.swift",
+      "start": 309,
+      "end": 351,
+      "observation": "Status checked after send; writes buffered body to part then renames; no strict media-content or empty-file rejection."
+    },
+    {
+      "id": "STREAM_NO_BYTE_BUDGET",
+      "path": "Sources/DouStudioKit/Networking/StreamingTransport.swift",
+      "start": 232,
+      "end": 239,
+      "observation": "didReceive data yields without receive cap or task cancellation."
+    },
+    {
+      "id": "STREAM_CANCEL_GAP",
+      "path": "Sources/DouStudioKit/Networking/StreamingTransport.swift",
+      "start": 148,
+      "end": 164,
+      "observation": "Task handle local to start; returned interface has no cancellation handle; no onTermination binding."
+    },
+    {
+      "id": "STREAM_REDIRECT_FLAG",
+      "path": "Sources/DouStudioKit/Networking/StreamingTransport.swift",
+      "start": 140,
+      "end": 150,
+      "observation": "Stored followRedirects is true; incoming start parameter is not assigned; callback uses stored property at line 266."
+    },
+    {
+      "id": "PARTIAL_RETAINED",
+      "path": "Sources/DouStudioKit/Download/StreamingDownloader.swift",
+      "start": 228,
+      "end": 273,
+      "observation": "Cancellation/short transfer throws after part writes; no failure deletion."
+    },
+    {
+      "id": "POST_RECEIVE_HARNESS_LIMIT",
+      "path": "runtime-harness/Sources/RuntimeAcceptance/Observation.swift",
+      "start": 155,
+      "end": 176,
+      "observation": "base.send completes before checking body.count <= 100 MiB."
+    }
+  ]
+}

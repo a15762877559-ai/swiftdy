@@ -1,0 +1,93 @@
+name: DouStudioKit Single Video Download Acceptance
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile_url:
+        description: 'Public profile URL (no query); current download gate remains BLOCKED'
+        type: string
+        required: true
+      work_index:
+        description: 'Zero-based first-page work index (0-49); actual list bounds require a future validated transport'
+        type: string
+        required: true
+      authorized_own_session:
+        description: 'I authorize use of my own login session; this audit-only workflow does not read it'
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: xcode-27
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout acceptance repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Validate authorization and initialize evidence
+        id: evidence
+        env:
+          VIDEO_TEMP: ${{ runner.temp }}
+        run: python3 runtime-harness/single_video_preflight.py initialize
+      - name: Checkout fixed upstream for read-only audit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: qinjian0420/DouStudioKit
+          ref: 362dad3d082e9f63c8efd360acc653ba169d40a2
+          path: upstream
+          persist-credentials: false
+          fetch-depth: 1
+          submodules: false
+          lfs: false
+      - name: Verify audited source and record environment
+        id: audit
+        run: python3 runtime-harness/single_video_preflight.py audit
+      - name: Offline closed-gate tests (not media transport tests)
+        id: gate_tests
+        run: |
+          set +e
+          sandbox-exec -p '(version 1)(allow default)(deny network*)' python3 -B -m unittest discover -s runtime-harness -p test_single_video_preflight.py -v > "$VIDEO_EVIDENCE_DIR/gate-tests.log" 2>&1
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$VIDEO_EVIDENCE_DIR/gate-tests-exit-code.txt"
+          exit "$code"
+      - name: Stop before credentials, worklist or media requests
+        id: gate
+        run: |
+          set +x
+          ulimit -c 0
+          python3 runtime-harness/single_video_preflight.py gate
+      # No Secret injection or download step: the receive limit is not verified.
+      - name: Record stage outcomes
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        env:
+          INIT_OUTCOME: ${{ steps.evidence.outcome }}
+          AUDIT_OUTCOME: ${{ steps.audit.outcome }}
+          GATE_TEST_OUTCOME: ${{ steps.gate_tests.outcome }}
+          GATE_OUTCOME: ${{ steps.gate.outcome }}
+        run: python3 runtime-harness/single_video_preflight.py finalize
+      - name: Upload audit evidence only
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: doustudio-single-video-preflight-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 3
+          if-no-files-found: error
+          include-hidden-files: false
+          path: |
+            ${{ steps.evidence.outputs.directory }}/input-validation.json
+            ${{ steps.evidence.outputs.directory }}/source-audit.json
+            ${{ steps.evidence.outputs.directory }}/runtime-environment.json
+            ${{ steps.evidence.outputs.directory }}/gate-tests.log
+            ${{ steps.evidence.outputs.directory }}/gate-tests-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/download-gate.json
+            ${{ steps.evidence.outputs.directory }}/stage-outcomes.json
+            ${{ steps.evidence.outputs.directory }}/final-acceptance.json

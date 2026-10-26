@@ -1,0 +1,12 @@
+{
+  "http_non_success": "NOT_RUN",
+  "html_json_body": "NOT_RUN",
+  "empty_file": "NOT_RUN",
+  "interruption": "NOT_RUN",
+  "cancel_at_100_mib": "NOT_VERIFIED",
+  "partial_cleanup": "NOT_VERIFIED",
+  "timeout_network_error": "NOT_RUN",
+  "second_download": "BLOCKED_BEFORE_FIRST",
+  "artifact_allowlist": "PASS",
+  "scope": "11 gate tests do not substitute for Swift media transport regression."
+}

@@ -1,0 +1,22 @@
+{
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "files": {
+    "Sources/DouStudioKit/Collect/DouyinClient.swift": "850c39c6abd070b666c06cdb0fabf75b97a54a899e280c5f696839ce67cbb329",
+    "Sources/DouStudioKit/Networking/DouyinAPI.swift": "c288d212adbd6dce5456a6230d1b21e3c70fa3f999dbe0bb6a583e346ba10704",
+    "Sources/DouStudioKit/Parsing/DouyinExtractor.swift": "e9b3cd8e7a8c23f8a6df7f9e39691e39af7038ddb2bc7e2e7724dc96ef58843f",
+    "Sources/DouStudioKit/Models/Entities.swift": "aca074e521afda97ebfbcf62574fedc6a1495e87c7bdc16d9177deb2f632c1bc",
+    "Sources/DouStudioKit/Download/Downloader.swift": "cf410aa41a3ec8078b9682b8550c29074b4dcd5dd411c1f5e4d55e0e33c9a03d",
+    "Sources/DouStudioKit/Download/StreamingDownloader.swift": "3e16b6861da6d65c439e003f9bb32be600a99ce32ac71d9b75746a5e1633569b",
+    "Sources/DouStudioKit/Networking/HTTPTransport.swift": "0b1e46e6e33d26326f2d4343bf31c1761e6a8f44f1bf89bddd8afe26ebb7b7f1",
+    "Sources/DouStudioKit/Networking/StreamingTransport.swift": "4433d32fdebc8ff7c8dfa51435efe33fc9aa3e753922ee16ab6d42d41d094d7b",
+    "Sources/DouStudioKit/Networking/SessionStore.swift": "42903d72e1b03e4b35e0557f875e7441a62033d7ab9d23bb5aaad50ec381998e"
+  },
+  "hard_limit_verified": false,
+  "blocking_reasons": [
+    "BUFFERED_POST_RECEIVE_SIZE_CHECK",
+    "STREAM_HAS_NO_BYTE_BUDGET",
+    "STREAM_CONSUMER_STOP_NOT_WIRED_TO_TASK_CANCEL",
+    "STREAM_REDIRECT_FLAG_IGNORED",
+    "PARTIAL_FILE_RETAINED_ON_FAILURE"
+  ]
+}
