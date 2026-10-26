@@ -1,0 +1,28 @@
+{
+  "run_id": "40299734675",
+  "test_commit": "a78c2f54c5e16c15e5cb7caa8e67b85fca3ec061",
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "files": {
+    "candidate-hosts.json": "3d37bbd60b448b4849d090938854d642b14362fc67e6685feeb2c27f6face2b7",
+    "host-provenance.json": "78feabc494609c8f2c523d47a859b260a07d755eb614ea8a34766602e3c5ff22",
+    "host-security-review.json": "3d37bbd60b448b4849d090938854d642b14362fc67e6685feeb2c27f6face2b7",
+    "approved-hosts.json": "ace810d7e2cbb4f8c40ce09dc8e191ae466adb4e1a7d49c59f2215b411d38b05",
+    "audit-summary.json": "1a5e4edcbc67b25b696e722e1ca1f01eeb70ec5f61ed7914db75336d747edf80",
+    "selected-work-evidence.json": "63fbea35a4db2452987aa79e35e8fd4d74d911c140977e824c75804f1300f3c0",
+    "selected-host-summary.json": "6b7bdc053746cd81263c3862d46eb7b2b671319bb8673a5e6f4536d561dfbd51",
+    "alternate-host-summary.json": "1f5ce1b5b661e50ae42dacbaab105fc89b0ba297085192e9cbe1e7c4e660e854",
+    "input-validation.json": "28a5df7d76d659ccb70af6c0d95f1bee0c52d37eb21726de346602561262e2ed",
+    "environment.json": "bb03bf306205f6bbc91b9035477da0e1d766a2cca26813cd9c4cf28978a7608a",
+    "source-protection.json": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+    "stage-outcomes.json": "38bc737344899cba6b95e2d016ee1a554949d3467afbe5709a66934459c212a8",
+    "build.log": "496ec2b875d16e745030973de036a77bd151e1f4444654f6b076b3210a231727",
+    "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "offline.log": "1ec6c15bef1aeef08e8996c86b1a03b392fdf82c9180ad9e47542ecca48cc147",
+    "offline-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "selftest-results.json": "97543283d59422f2059f93c6b64eb180425f39c5608b4c571e52cbc782a1c2c1",
+    "host-selftest-results.json": "f4407a7de04b95b855735dd04a5b7255c8aa237f4bcafaf8bb5ec73b6c03fcc0",
+    "audit-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  "automatic_host_approval": false,
+  "media_requests": 0
+}

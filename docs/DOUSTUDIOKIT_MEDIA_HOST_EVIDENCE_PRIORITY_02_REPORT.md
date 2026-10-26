@@ -97,3 +97,11 @@ AUTO_TRIGGERED = NO
 上游、SafeStreamingTransport、失败关闭的单视频工作流、原匿名/认证/分页功能保持不变。没有操作其他项目、系统代理、v2rayN 或 Git 全局配置，没有强制推送。
 
 **离线证据修复验收通过；真实主机审计尚未通过。** 批准主机仍为 0，生产白名单为空，下载门禁保持关闭。下一步可由用户另行手动运行一次 [DouStudioKit Media Host Allowlist Audit](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/workflows/doustudio-media-host-audit.yml)，输入有权访问的规范公开主页并确认自己的登录态授权；本助手未触发该流程。该流程仅一次作品列表请求并解析主机字符串，不访问媒体 URL。取得新证据后再分别审核来源与主机可信关联，不能因本次合成测试 PASS 自动批准主机。
+
+## 用户后续手动在线观察：40299734675
+
+用户另行手动运行主机观察后，真实来源证据也已验证：一次作品列表请求 HTTP 200、21 条作品、21 条选中记录全部匹配，未匹配 0；主要证据未截断，备用汇总独立截断。编译和 83 项离线检查通过。受测 SHA 为 `a78c2f54c5e16c15e5cb7caa8e67b85fca3ec061`。
+
+此后续在线观察与上文离线任务分开记录；上文 REAL_WORKLIST_REQUEST=NOT_RUN 指离线验收阶段，不表示本次用户手动观察没有作品列表请求。本次仍无媒体请求或下载。实际选中主机为 sf11-cdn-tos.douyinstatic.com（1 条）和 www.douyin.com（20 条）；来源关联 PASS，但独立主机安全审核 BLOCKED，批准数 0。
+
+详情见同仓库 `docs/DOUSTUDIOKIT_MEDIA_HOST_ALLOWLIST_AUDIT_01_REPORT.md` 最新实测节和 `evidence/doustudio-media-host-allowlist-audit-01/run-40299734675/`。未更改任何源码或工作流，未自动触发、重试或启用真实下载。

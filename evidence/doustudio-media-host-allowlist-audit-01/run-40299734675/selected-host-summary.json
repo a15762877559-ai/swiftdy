@@ -1,0 +1,23 @@
+[
+  {
+    "host" : "sf11-cdn-tos.douyinstatic.com",
+    "matched_work_count" : 1,
+    "security_review_status" : "BLOCKED_INDEPENDENT_REVIEW_REQUIRED",
+    "selected_work_count" : 1,
+    "source_field_counts" : {
+      "video.play_addr.url_list[1]" : 1
+    },
+    "unmatched_work_count" : 0
+  },
+  {
+    "host" : "www.douyin.com",
+    "matched_work_count" : 20,
+    "security_review_status" : "BLOCKED_INDEPENDENT_REVIEW_REQUIRED",
+    "selected_work_count" : 20,
+    "source_field_counts" : {
+      "video.bit_rate[0].play_addr.url_list[2]" : 20,
+      "video.play_addr.url_list[2]" : 20
+    },
+    "unmatched_work_count" : 0
+  }
+]

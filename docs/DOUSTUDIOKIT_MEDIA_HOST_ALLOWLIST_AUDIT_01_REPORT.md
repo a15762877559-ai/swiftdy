@@ -1,5 +1,49 @@
 # DOUSTUDIOKIT_MEDIA_HOST_ALLOWLIST_AUDIT_01
 
+## 最新实测：40299734675（替代下文历史运行的当前结论）
+
+用户手动运行的 [主机观察 40299734675](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40299734675) 已成功。受测 SHA `a78c2f54c5e16c15e5cb7caa8e67b85fca3ec061`，上游仍为 `362dad3d082e9f63c8efd360acc653ba169d40a2` 且工作区干净。本次只收集这次手动运行的结果；没有自动触发、重试、媒体请求或下载，也没有读取真实 Cookie。
+
+- macOS 27.0.1、Xcode 27.1、Swift 6.4、arm64；编译、自检和观察退出码均为 0，全部工作流步骤 success。
+- 离线检查 83/83 PASS：通用/认证 38、主机 20、优先证据 25。前两组保留逐项 JSON；新增 25 项在本工作流 Artifact 中只有 offline.log 的逐项 PASS 和汇总，独立完整 JSON 可追溯先前离线运行 40297971472，不能声称本 Artifact 包含该 JSON。
+- 仅一次作品列表请求，HTTP 200，21 条有效作品；ID、描述、时间、封面和视频字段存在数均为 21。credential_present=true，不记录凭据其他信息。
+- **21/21 条原版 Extractor 选中地址精确关联，unmatched=0，主要证据 truncated=false，HOST_PROVENANCE=PASS。** 重复作品数 0，按主机汇总的作品数与 selected 记录完全一致。
+- 备用地址统计达到独立 1000 次额度，ALTERNATE_SUMMARY_TRUNCATED=true；它只是部分备用汇总，不影响完整的主要证据。
+
+| 实际选中主机 | 唯一作品数 | 匹配 / 未匹配 | 已核实来源 |
+|---|---:|---:|---|
+| sf11-cdn-tos.douyinstatic.com | 1 | 1 / 0 | video.play_addr.url_list[1] |
+| www.douyin.com | 20 | 20 / 0 | 每条同时匹配 video.bit_rate[0].play_addr.url_list[2] 与 video.play_addr.url_list[2]；计为一个作品 |
+
+备用汇总为 sf6-cdn-tos.douyinstatic.com 1 次、v26-web.douyinvod.com 346 次、v26-webf.douyinvod.com 346 次、www.douyin.com 307 次。它们不是额外作品数，不是下载次数，也不是允许改选的备用白名单。总共观察到 5 个候选播放主机，其中实际选中 2 个；封面及其他资源不加入。
+
+**来源关联通过不等于主机安全审核通过。** 本轮没有补充独立主机服务关联证据，没有查询 DNS 或探测媒体重定向。尤其 www.douyin.com 的已选地址是否直接返回媒体仍未验证。两个实际选中主机及其他候选均未批准，不能只凭域名后缀、HTTP 200 的作品列表响应或来源匹配批准下载。
+
+Artifact ID `12638944428`，ZIP SHA-256 `d817c18d322a91aaab596d362c1aa703a875a1f417ea5769b7a4249b4c1eadc4` 与 GitHub digest 一致；CRC、20 文件白名单和原始清单哈希全部核验通过。证据归档到 `evidence/doustudio-media-host-allowlist-audit-01/run-40299734675/`。发布前 build.log 中 7 行包含 URL 字面量的内容被替换为固定脱敏标记；其余 Artifact 文件原样保存，原始与发布日志哈希分别记录在 artifact-verification.json。原始 runner evidence-index 对应下载内容，另附 published-evidence-index 对应 Git 交付内容，不混淆两个哈希口径。
+
+```ini
+HOST_PROVENANCE = PASS
+HOST_SECURITY_REVIEW = BLOCKED
+APPROVED_HOSTS = 0
+PRODUCTION_ALLOWLIST = EMPTY
+APPLICATION_BYTE_BUDGET = PASS
+STRICT_NETWORK_RECEIVE_LIMIT = NOT_PROVEN
+SINGLE_VIDEO_WORKFLOW_PREPARED = NO
+REAL_MEDIA_REQUEST = NOT_RUN
+REAL_VIDEO_DOWNLOAD = NOT_RUN
+MEDIA_INTEGRITY = NOT_VERIFIED
+NO_WATERMARK = NOT_TESTED
+UPSTREAM_SOURCE_CHANGED = NO
+ROOTNETSCOPE_CHANGED = NO
+VIDEOFLOW_CHANGED = NO
+AUTO_TRIGGERED = NO
+```
+
+应用预算结论沿用受控集成验收，本次没有测量真实媒体字节。本轮仅更新报告、新增本次运行证据；不改 Harness、工作流、Transport、生产白名单或任何其他项目。旧未跟踪 RUN 报告保留且不暂存。到此停止，下一步需要针对两个实际选中主机补充独立审核依据，不能靠重复运行当前工作流自动解除门禁。
+
+## 以下为原准备与 40292928113 运行历史（保持原记录）
+
+
 用户手动运行已核验：**编译 PASS、Swift 离线检查 58/58 PASS、单次作品列表 HTTP 200/21 条；主机审计仍 BLOCKED**。观察到 5 个播放字段主机，但采集记录被上限截断，4 条选中地址未关联到来源，且独立关联证据不足。批准主机仍为 0；未发出任何真实媒体请求，未自动触发或重试，未读取 Secret 值。
 
 ## 用户手动运行结果（2026-10-26）

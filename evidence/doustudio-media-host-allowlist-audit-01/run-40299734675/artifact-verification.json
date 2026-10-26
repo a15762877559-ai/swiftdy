@@ -1,0 +1,26 @@
+{
+  "artifact_id": 12638944428,
+  "archive_sha256": "d817c18d322a91aaab596d362c1aa703a875a1f417ea5769b7a4249b4c1eadc4",
+  "github_digest_match": true,
+  "zip_crc": "PASS",
+  "artifact_whitelist_files": 20,
+  "original_runner_manifest_hashes": "PASS",
+  "publication_redactions": [
+    {
+      "file": "build.log",
+      "redacted_lines": 7,
+      "original_sha256": "496ec2b875d16e745030973de036a77bd151e1f4444654f6b076b3210a231727",
+      "published_sha256": "b0927c7894f856dc8e8339efa35979d0f2788c0702c320fa90b995264b7defe8"
+    }
+  ],
+  "selected_records": 21,
+  "source_unmatched": 0,
+  "host_work_counts_consistent": true,
+  "duplicate_work_count": 0,
+  "alternate_urls_examined": 1000,
+  "offline_cases_passed": 83,
+  "priority_results_basis": "25 fixed PASS lines in offline.log; separate priority JSON not in this workflow artifact",
+  "build_exit_code": 0,
+  "offline_exit_code": 0,
+  "audit_exit_code": 0
+}

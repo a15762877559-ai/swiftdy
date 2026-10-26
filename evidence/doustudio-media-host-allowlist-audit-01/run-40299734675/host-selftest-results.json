@@ -1,0 +1,182 @@
+[
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-001",
+    "name" : "Normalize exact host without URL",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-002",
+    "name" : "HTTP rejected",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-003",
+    "name" : "Userinfo rejected",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-004",
+    "name" : "Unexpected port rejected",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-005",
+    "name" : "HTTPS port accepted as candidate only",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-006",
+    "name" : "IPv4 private and loopback rejected",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-007",
+    "name" : "IPv6 rejected",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-008",
+    "name" : "Local names rejected",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-009",
+    "name" : "Ambiguous names rejected",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-010",
+    "name" : "No automatic suffix trust",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-011",
+    "name" : "Fragment rejected",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-012",
+    "name" : "Serialization omits full URL and query",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-013",
+    "name" : "Original fallback selects LAST URL",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-014",
+    "name" : "Cover and avatar distinguished",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-015",
+    "name" : "Original bitrate selection and exact provenance",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-016",
+    "name" : "Image work never video candidate",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-017",
+    "name" : "Primary structural truncation explicit",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-018",
+    "name" : "No DNS or redirect assurance claimed",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-019",
+    "name" : "Empty data cannot identify a host",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "MediaHostAudit",
+    "id" : "HOST-020",
+    "name" : "Run-local aliases never real work IDs",
+    "status" : "PASS"
+  }
+]
