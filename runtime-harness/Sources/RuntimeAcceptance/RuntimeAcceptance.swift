@@ -10,9 +10,19 @@ struct RuntimeAcceptance {
 
     @MainActor static func main() async {
         if CommandLine.arguments.contains("--self-test") {
-            do { try await SelfTest.run(); print("Offline harness checks PASS") }
-            catch { print("Offline harness checks FAIL"); exit(1) }
+            do {
+                let passed = try await SelfTest.run()
+                print(passed ? "Offline harness checks PASS" : "Offline harness checks FAIL")
+                if !passed { exit(1) }
+            } catch {
+                print("OFFLINE_DIAGNOSTIC_WRITE_OR_INFRASTRUCTURE_FAILURE; details redacted")
+                exit(1)
+            }
             return
+        }
+        if ProcessInfo.processInfo.environment["OFFLINE_ONLY"] == "1" {
+            print("ONLINE_ENTRY_DISABLED_IN_OFFLINE_MODE")
+            exit(64)
         }
         do { try await execute() }
         catch {

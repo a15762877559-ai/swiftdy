@@ -1,0 +1,99 @@
+name: DouStudioKit Harness Offline Check
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline:
+    runs-on: xcode-27
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    env:
+      OFFLINE_ONLY: '1'
+    steps:
+      - name: Checkout harness
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Initialize offline evidence
+        id: evidence
+        env:
+          OFFLINE_TEMP: ${{ runner.temp }}
+        run: python3 runtime-harness/offline_evidence.py initialize
+      - name: Checkout pinned upstream
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: qinjian0420/DouStudioKit
+          ref: 362dad3d082e9f63c8efd360acc653ba169d40a2
+          path: upstream
+          persist-credentials: false
+          fetch-depth: 1
+          submodules: false
+          lfs: false
+      - name: Verify upstream and record environment
+        id: environment
+        run: python3 runtime-harness/offline_evidence.py environment
+      - name: Build the same acceptance harness
+        id: compile
+        run: |
+          set +e
+          swift build --package-path runtime-harness -c debug > "$EVIDENCE_DIR/build.log" 2>&1
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$EVIDENCE_DIR/build-exit-code.txt"
+          exit "$code"
+      - name: Verify offline entry guard and run fixtures only
+        id: selftest
+        run: |
+          bin_dir=$(swift build --package-path runtime-harness -c debug --show-bin-path)
+          set +e
+          "$bin_dir/RuntimeAcceptance" > "$EVIDENCE_DIR/entry-guard.log" 2>&1
+          guard_code=$?
+          set -e
+          printf '%s\n' "$guard_code" > "$EVIDENCE_DIR/entry-guard-exit-code.txt"
+          test "$guard_code" -eq 64
+          grep -q '^ONLINE_ENTRY_DISABLED_IN_OFFLINE_MODE$' "$EVIDENCE_DIR/entry-guard.log"
+          set +e
+          if command -v sandbox-exec >/dev/null 2>&1; then
+            printf 'OS_SANDBOX_DENY_NETWORK\n' > "$EVIDENCE_DIR/isolation.txt"
+            sandbox-exec -p '(version 1)(allow default)(deny network*)' "$bin_dir/RuntimeAcceptance" --self-test 2>&1 | tee "$EVIDENCE_DIR/selftest.log"
+            code=${PIPESTATUS[0]}
+          else
+            printf 'MEMORY_FIXTURE_TRANSPORT_AND_ENTRY_GUARD\n' > "$EVIDENCE_DIR/isolation.txt"
+            "$bin_dir/RuntimeAcceptance" --self-test 2>&1 | tee "$EVIDENCE_DIR/selftest.log"
+            code=${PIPESTATUS[0]}
+          fi
+          set -e
+          printf '%s\n' "$code" > "$EVIDENCE_DIR/selftest-exit-code.txt"
+          exit "$code"
+      - name: Record outcomes and upstream protection
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        env:
+          BUILD_OUTCOME: ${{ steps.compile.outcome }}
+          SELFTEST_OUTCOME: ${{ steps.selftest.outcome }}
+        run: python3 runtime-harness/offline_evidence.py finalize
+      - name: Upload offline diagnostics
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: doustudio-harness-offline-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 3
+          if-no-files-found: error
+          include-hidden-files: false
+          path: |
+            ${{ steps.evidence.outputs.directory }}/environment.json
+            ${{ steps.evidence.outputs.directory }}/stage-outcomes.json
+            ${{ steps.evidence.outputs.directory }}/source-protection.json
+            ${{ steps.evidence.outputs.directory }}/build.log
+            ${{ steps.evidence.outputs.directory }}/build-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/selftest.log
+            ${{ steps.evidence.outputs.directory }}/selftest-results.json
+            ${{ steps.evidence.outputs.directory }}/selftest-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/entry-guard.log
+            ${{ steps.evidence.outputs.directory }}/entry-guard-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/isolation.txt

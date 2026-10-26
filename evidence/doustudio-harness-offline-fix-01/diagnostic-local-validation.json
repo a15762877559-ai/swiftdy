@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "checks": 97,
+  "case_ids": [
+    "OFF-001",
+    "OFF-002",
+    "OFF-003",
+    "OFF-004",
+    "OFF-005",
+    "OFF-006",
+    "OFF-007",
+    "OFF-008",
+    "OFF-009",
+    "OFF-010",
+    "OFF-011",
+    "OFF-012",
+    "OFF-013",
+    "OFF-014",
+    "OFF-015",
+    "OFF-016"
+  ],
+  "swift_compilation": "NOT_RUN_LOCALLY",
+  "actionlint": "NOT_INSTALLED_NOT_RUN",
+  "network_tests": "NOT_RUN",
+  "protected_files_verified": 27
+}
