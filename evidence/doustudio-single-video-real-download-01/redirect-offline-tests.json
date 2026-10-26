@@ -1,1 +1,1966 @@
-[]
+{
+  "scope": "SYNTHETIC_LOOPBACK_ONLY",
+  "cases": [
+    {
+      "id": "next206",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1,
+        "target": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 2,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "DIRECT_MEDIA",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "v5-dy-ov-experiment.zjcdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "v5-dy-ov-experiment.zjcdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_PUBLIC_DNS_CHECK_LOOPBACK_ADAPTER",
+            "observation": {
+              "accepted_bytes": 1,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": true,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 1,
+              "host": "v5-dy-ov-experiment.zjcdn.com",
+              "http_status": 206,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "VIDEO_RANGE_206_ONE_BYTE"
+            },
+            "role": "target"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "nextRedirect",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1,
+        "target": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 2,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "REDIRECT",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "v5-dy-ov-experiment.zjcdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "v5-dy-ov-experiment.zjcdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_PUBLIC_DNS_CHECK_LOOPBACK_ADAPTER",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "v5-dy-ov-experiment.zjcdn.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "third.fixture-cdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "target"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "unapproved",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "BLOCKED",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "unapproved.fixture-cdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "unapproved.fixture-cdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "httpTarget",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "BLOCKED",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_target_rejected": true,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "userinfo",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "BLOCKED",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_target_rejected": true,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "portTarget",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "BLOCKED",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_target_rejected": true,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "privateDNS",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "BLOCKED",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "v5-dy-ov-experiment.zjcdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "v5-dy-ov-experiment.zjcdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "BLOCKED_SYNTHETIC_DNS",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": false,
+              "cancel_requested": false,
+              "completion_callbacks": 0,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "v5-dy-ov-experiment.zjcdn.com",
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 0,
+              "result": "NON_PUBLIC_OR_UNSUPPORTED_ADDRESS"
+            },
+            "role": "target"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "mixedDNS",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "BLOCKED",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "v5-dy-ov-experiment.zjcdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "v5-dy-ov-experiment.zjcdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "BLOCKED_SYNTHETIC_DNS",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": false,
+              "cancel_requested": false,
+              "completion_callbacks": 0,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "v5-dy-ov-experiment.zjcdn.com",
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 0,
+              "result": "NON_PUBLIC_OR_UNSUPPORTED_ADDRESS"
+            },
+            "role": "target"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "missingLocation",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "BLOCKED",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_target_rejected": true,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "relativeTarget",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "BLOCKED",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_target_rejected": true,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "schemeRelative",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "BLOCKED",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_target_rejected": true,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "javascript",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "BLOCKED",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_target_rejected": true,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "target200",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1,
+        "target": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 2,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "INCONCLUSIVE",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "v5-dy-ov-experiment.zjcdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "v5-dy-ov-experiment.zjcdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_PUBLIC_DNS_CHECK_LOOPBACK_ADAPTER",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": true,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 0,
+              "host": "v5-dy-ov-experiment.zjcdn.com",
+              "http_status": 200,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "RANGE_IGNORED_200"
+            },
+            "role": "target"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "target403",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1,
+        "target": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 2,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "BLOCKED",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "v5-dy-ov-experiment.zjcdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "v5-dy-ov-experiment.zjcdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_PUBLIC_DNS_CHECK_LOOPBACK_ADAPTER",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": true,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 0,
+              "host": "v5-dy-ov-experiment.zjcdn.com",
+              "http_status": 403,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "ACCESS_RESTRICTED"
+            },
+            "role": "target"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "target429",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1,
+        "target": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 2,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "BLOCKED",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "v5-dy-ov-experiment.zjcdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "v5-dy-ov-experiment.zjcdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_PUBLIC_DNS_CHECK_LOOPBACK_ADAPTER",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": true,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 0,
+              "host": "v5-dy-ov-experiment.zjcdn.com",
+              "http_status": 429,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "RATE_LIMITED"
+            },
+            "role": "target"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "targetHTML",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1,
+        "target": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 2,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "NON_MEDIA",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "v5-dy-ov-experiment.zjcdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "v5-dy-ov-experiment.zjcdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_PUBLIC_DNS_CHECK_LOOPBACK_ADAPTER",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": true,
+              "content_type": "HTML",
+              "delegate_received_bytes": 0,
+              "host": "v5-dy-ov-experiment.zjcdn.com",
+              "http_status": 206,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "NON_VIDEO_RESPONSE"
+            },
+            "role": "target"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "targetBadRange",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1,
+        "target": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 2,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "INCONCLUSIVE",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "v5-dy-ov-experiment.zjcdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "v5-dy-ov-experiment.zjcdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_PUBLIC_DNS_CHECK_LOOPBACK_ADAPTER",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": true,
+              "content_range_valid": false,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 0,
+              "host": "v5-dy-ov-experiment.zjcdn.com",
+              "http_status": 206,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "INVALID_RANGE_RESPONSE"
+            },
+            "role": "target"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "www403",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "NOT_RUN",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "OTHER",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 403,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "ACCESS_RESTRICTED"
+            },
+            "role": "www"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "www429",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "NOT_RUN",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "OTHER",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 429,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "RATE_LIMITED"
+            },
+            "role": "www"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "sf11Present",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1,
+        "target": 1,
+        "sf11": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 3,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "DIRECT_MEDIA",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "DIRECT_MEDIA",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "v5-dy-ov-experiment.zjcdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "v5-dy-ov-experiment.zjcdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_PUBLIC_DNS_CHECK_LOOPBACK_ADAPTER",
+            "observation": {
+              "accepted_bytes": 1,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": true,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 1,
+              "host": "v5-dy-ov-experiment.zjcdn.com",
+              "http_status": 206,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "VIDEO_RANGE_206_ONE_BYTE"
+            },
+            "role": "target"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 1,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": true,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 1,
+              "host": "sf11-cdn-tos.douyinstatic.com",
+              "http_status": 206,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "VIDEO_RANGE_206_ONE_BYTE"
+            },
+            "role": "sf11"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "ELIGIBLE_ORIGINAL_SELECTION",
+          "sf11_sample_status": "SELECTED",
+          "sf11_selected_source_count": 1,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "sf11Absent",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1,
+        "target": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 2,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "DIRECT_MEDIA",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "v5-dy-ov-experiment.zjcdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "v5-dy-ov-experiment.zjcdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_PUBLIC_DNS_CHECK_LOOPBACK_ADAPTER",
+            "observation": {
+              "accepted_bytes": 1,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": true,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 1,
+              "host": "v5-dy-ov-experiment.zjcdn.com",
+              "http_status": 206,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "VIDEO_RANGE_206_ONE_BYTE"
+            },
+            "role": "target"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "sf11Only",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "sf11": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 1,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "NOT_RUN",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "DIRECT_MEDIA",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "NOT_RUN",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 1,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": true,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 1,
+              "host": "sf11-cdn-tos.douyinstatic.com",
+              "http_status": 206,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "VIDEO_RANGE_206_ONE_BYTE"
+            },
+            "role": "sf11"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "ELIGIBLE_ORIGINAL_SELECTION",
+          "sf11_sample_status": "SELECTED",
+          "sf11_selected_source_count": 1,
+          "www_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "www_selected_source_count": 0
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "noSamples",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {},
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 0,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "NOT_RUN",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "NOT_RUN",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "NOT_RUN",
+        "completed": true,
+        "hops": [],
+        "samples": {
+          "sf11_reason": "NO_SELECTED_HOST_SAMPLE",
+          "sf11_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "sf11_selected_source_count": 0,
+          "www_sample_status": "NO_ELIGIBLE_SAMPLE",
+          "www_selected_source_count": 0
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "www403sf11",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1,
+        "sf11": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 2,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "NOT_RUN",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "DIRECT_MEDIA",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "OTHER",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 403,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "ACCESS_RESTRICTED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 1,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": true,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 1,
+              "host": "sf11-cdn-tos.douyinstatic.com",
+              "http_status": 206,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "VIDEO_RANGE_206_ONE_BYTE"
+            },
+            "role": "sf11"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "ELIGIBLE_ORIGINAL_SELECTION",
+          "sf11_sample_status": "SELECTED",
+          "sf11_selected_source_count": 1,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    },
+    {
+      "id": "nextRedirectsf11",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "server_requests": {
+        "www": 1,
+        "target": 1,
+        "sf11": 1
+      },
+      "credential_and_range_check": true,
+      "outcome": {
+        "FULL_VIDEO_DOWNLOADED": "NO",
+        "HOST_SECURITY_REVIEW": "BLOCKED",
+        "MEDIA_REQUEST_COUNT": 3,
+        "MEDIA_RETRIES": 0,
+        "NO_WATERMARK": "NOT_TESTED",
+        "PRODUCTION_ALLOWLIST": "EMPTY",
+        "REDIRECT_TARGET_PROBE": "REDIRECT",
+        "RUST_IMPLEMENTATION": "NOT_STARTED",
+        "SF11_PROBE": "DIRECT_MEDIA",
+        "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+        "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+        "UNAPPROVED_REDIRECT_FOLLOWED": "NO",
+        "WWW_INITIAL_RESPONSE": "REDIRECT",
+        "WWW_REDIRECT_HOST": "v5-dy-ov-experiment.zjcdn.com",
+        "completed": true,
+        "hops": [
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "www.douyin.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "v5-dy-ov-experiment.zjcdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "www"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_PUBLIC_DNS_CHECK_LOOPBACK_ADAPTER",
+            "observation": {
+              "accepted_bytes": 0,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": false,
+              "content_range_valid": false,
+              "content_type": "NOT_RECEIVED",
+              "delegate_received_bytes": 0,
+              "host": "v5-dy-ov-experiment.zjcdn.com",
+              "http_status": 302,
+              "range_zero_only": true,
+              "redirect_host": "third.fixture-cdn.com",
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "HTTP_REDIRECT_NOT_FOLLOWED"
+            },
+            "role": "target"
+          },
+          {
+            "dns_address_count": 0,
+            "network_target_check": "SYNTHETIC_LOOPBACK_ONLY",
+            "observation": {
+              "accepted_bytes": 1,
+              "approved": false,
+              "authentication_headers_sent": false,
+              "cancel_completed": true,
+              "cancel_requested": true,
+              "completion_callbacks": 1,
+              "content_length_one": true,
+              "content_range_valid": true,
+              "content_type": "VIDEO",
+              "delegate_received_bytes": 1,
+              "host": "sf11-cdn-tos.douyinstatic.com",
+              "http_status": 206,
+              "range_zero_only": true,
+              "redirect_target_rejected": false,
+              "request_count": 1,
+              "result": "VIDEO_RANGE_206_ONE_BYTE"
+            },
+            "role": "sf11"
+          }
+        ],
+        "samples": {
+          "sf11_reason": "ELIGIBLE_ORIGINAL_SELECTION",
+          "sf11_sample_status": "SELECTED",
+          "sf11_selected_source_count": 1,
+          "www_sample_status": "SELECTED",
+          "www_selected_source_count": 1
+        },
+        "worklist": {
+          "fields": {},
+          "request_count": 0,
+          "request_started": false,
+          "request_succeeded": false,
+          "valid_worklist": false
+        }
+      }
+    }
+  ],
+  "status": "PASS",
+  "real_worklist_requests": 0,
+  "real_media_requests": 0
+}

@@ -1,1 +1,49 @@
-[]
+{
+  "scope": "LOOPBACK_ONLY",
+  "cases": [
+    {
+      "id": "pinnedRelay",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "tunnel": {
+        "accepted_connections": 1,
+        "connect_authority_matched": true,
+        "credential_headers_seen": false,
+        "outbound_connections": 1,
+        "public_address_pinned": false,
+        "rejected_connections": 0,
+        "stopped": true
+      }
+    },
+    {
+      "id": "wrongAuthority",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "tunnel": {
+        "accepted_connections": 1,
+        "connect_authority_matched": false,
+        "credential_headers_seen": false,
+        "failure_category": "PINNED_TUNNEL_FAILED",
+        "outbound_connections": 0,
+        "public_address_pinned": false,
+        "rejected_connections": 0,
+        "stopped": true
+      }
+    },
+    {
+      "id": "tlsFailure",
+      "status": "PASS",
+      "swift_exit_code": 0,
+      "tunnel": {
+        "accepted_connections": 1,
+        "connect_authority_matched": true,
+        "credential_headers_seen": false,
+        "outbound_connections": 1,
+        "public_address_pinned": false,
+        "rejected_connections": 0,
+        "stopped": true
+      }
+    }
+  ],
+  "status": "PASS"
+}
