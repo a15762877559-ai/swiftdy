@@ -32,6 +32,9 @@ struct StreamMetrics: Codable, Sendable {
     var bytes_after_cancel: Int64 = 0
     var discarded_buffered_bytes = 0
     var max_buffered_bytes = 0
+    var max_delegate_callback_bytes = 0
+    var backpressure_waits = 0
+    var discarded_callback_bytes = 0
     var stream_calls = 0
     var buffered_send_calls = 0
     var rejected_second_requests = 0
@@ -43,13 +46,19 @@ struct StreamMetrics: Codable, Sendable {
     var cancel_to_completion_ms: Double?
 }
 
+private extension NSCondition {
+    func synchronized<T>(_ body: () throws -> T) rethrows -> T {
+        lock(); defer { unlock() }; return try body()
+    }
+}
+
 /// Single-use media transport. Production callers must supply a previously verified
 /// extracted URL and an explicitly audited host allowlist (never workflow URL input).
 /// This test executable only constructs the separate, literal-loopback test scope.
 final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSessionDataDelegate, @unchecked Sendable {
     static let MAX_MEDIA_BYTES: Int64 = 104857600
     static let MAX_BUFFER_BYTES = 2 * 1024 * 1024
-    private let lock = NSLock()
+    private let lock = NSCondition()
     private let allowedURL: URL
     private let testLoopback: Bool
     private let verifiedHosts: Set<String>
@@ -64,7 +73,6 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
     private var queueBytes = 0
     private var prefix = Data()
     private var prefixVerified = false
-    private var suspended = false
     private var used = false
     private var finished = false
     private var failure: SafeStreamError?
@@ -84,13 +92,13 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
         allowedURL = loopbackURL; testLoopback = true; verifiedHosts = []
         self.timeout = timeout; testConsumerDelay = consumerDelayMilliseconds; super.init()
     }
-    func snapshot() -> StreamMetrics { lock.withLock { metrics } }
+    func snapshot() -> StreamMetrics { lock.synchronized { metrics } }
     func send(_ request: SignedRequest, options: TransportOptions) async throws -> HTTPResponse {
-        lock.withLock { metrics.buffered_send_calls += 1 }
+        lock.synchronized { metrics.buffered_send_calls += 1 }
         throw SafeStreamError.buffered
     }
     private func prepare(_ request: SignedRequest, _ options: TransportOptions) throws -> URLRequest {
-        try lock.withLock {
+        try lock.synchronized {
             guard !used else { metrics.rejected_second_requests += 1; throw SafeStreamError.second }
             used = true; metrics.stream_calls += 1
             guard request.method == .get, request.body == nil, options.proxy == nil, options.extraHeaders.isEmpty,
@@ -116,7 +124,7 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
             try await withCheckedThrowingContinuation { continuation in start(safe, continuation) }
         } onCancel: { self.cancel() }
         // Unfolding avoids AsyncThrowingStream's continuation-based unbounded queue.
-        // Our channel owns an explicit byte ceiling and suspends the producer.
+        // Our channel owns an explicit byte ceiling and backpressures the delegate.
         let chunks = AsyncThrowingStream<StreamChunk, Error>(unfolding: { [self] in
             try await withTaskCancellationHandler {
                 try Task.checkCancellation()
@@ -127,7 +135,7 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
         return (head, chunks)
     }
     private func start(_ request: URLRequest, _ waiter: CheckedContinuation<StreamHead, Error>) {
-        lock.withLock {
+        lock.synchronized {
             if let failure { waiter.resume(throwing: failure); return }
             headWaiter = waiter
             let configuration = URLSessionConfiguration.ephemeral
@@ -146,22 +154,17 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
             task.resume()
         }
     }
-    private func resumeProducerLocked() {
-        if suspended && failure == nil && !finished && !metrics.cancel_requested {
-            suspended = false; task?.resume()
-        }
-    }
     private func next(_ waiter: CheckedContinuation<StreamChunk?, Error>) {
-        lock.withLock {
+        lock.synchronized {
             if let failure { waiter.resume(throwing: failure); return }
             if !queue.isEmpty {
                 let data = queue.removeFirst(); queueBytes -= data.count
-                if queue.isEmpty { resumeProducerLocked() }
+                lock.broadcast()
                 waiter.resume(returning: StreamChunk(data: data)); return
             }
             if finished { waiter.resume(returning: nil); return }
             guard bodyWaiter == nil else { waiter.resume(throwing: SafeStreamError.buffer); return }
-            bodyWaiter = waiter; resumeProducerLocked()
+            bodyWaiter = waiter; lock.broadcast()
         }
     }
     private func requestCancelLocked() {
@@ -169,6 +172,7 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
         metrics.cancel_requested = true; cancelTime = Date()
         metrics.accepted_at_cancel = metrics.accepted_bytes
         task?.cancel()
+        lock.broadcast()
     }
     private func failLocked(_ error: SafeStreamError, requestCancel: Bool = true) {
         guard failure == nil && !finished else { return }
@@ -179,7 +183,7 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
         if let waiter = headWaiter { headWaiter = nil; waiter.resume(throwing: error) }
         if let waiter = bodyWaiter { bodyWaiter = nil; waiter.resume(throwing: error) }
     }
-    func cancel() { lock.withLock { failLocked(.cancelled) } }
+    func cancel() { lock.synchronized { failLocked(.cancelled) } }
     func awaitCompletion() async -> Bool {
         for _ in 0..<500 {
             if snapshot().completion_received { return true }
@@ -190,7 +194,7 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
     }
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse,
                     completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        lock.withLock {
+        lock.synchronized {
             guard failure == nil, let http = response as? HTTPURLResponse else { failLocked(.network); completionHandler(.cancel); return }
             metrics.http_status = http.statusCode
             guard http.statusCode == 200 || http.statusCode == 206 else { failLocked(.status); completionHandler(.cancel); return }
@@ -212,40 +216,56 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
         }
     }
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        lock.withLock {
+        lock.synchronized {
             metrics.delegate_received_bytes += Int64(data.count)
+            metrics.max_delegate_callback_bytes = max(metrics.max_delegate_callback_bytes, data.count)
             if metrics.cancel_requested {
                 metrics.queued_callbacks_after_cancel += 1; metrics.bytes_after_cancel += Int64(data.count)
                 return // Count queued bytes honestly, but never accept them.
             }
             guard !finished && failure == nil else { return }
             guard Int64(data.count) <= Self.MAX_MEDIA_BYTES - metrics.accepted_bytes else { failLocked(.budget); return }
-            guard data.count + queueBytes + prefix.count <= Self.MAX_BUFFER_BYTES else { failLocked(.buffer); return }
-            metrics.accepted_bytes += Int64(data.count)
-            if let declared, metrics.accepted_bytes > declared { failLocked(.length); return }
-            var delivered = data
-            if !prefixVerified {
-                prefix.append(data)
-                metrics.max_buffered_bytes = max(metrics.max_buffered_bytes, prefix.count + queueBytes)
-                guard prefix.count >= 12 else { return }
-                guard String(data: prefix.subdata(in: 4..<8), encoding: .ascii) == "ftyp" else { failLocked(.type); return }
-                prefixVerified = true; delivered = prefix; prefix = Data()
-            }
-            if !suspended { suspended = true; dataTask.suspend() }
-            if let waiter = bodyWaiter { bodyWaiter = nil; waiter.resume(returning: StreamChunk(data: delivered)) }
-            else {
-                queue.append(delivered); queueBytes += delivered.count
-                metrics.max_buffered_bytes = max(metrics.max_buffered_bytes, queueBytes)
-            }
-            if metrics.accepted_bytes == Self.MAX_MEDIA_BYTES {
-                // Unknown-length boundary cannot establish full resource completion.
-                if declared == Self.MAX_MEDIA_BYTES { exactBoundary = true; requestCancelLocked() }
-                else { failLocked(.budget) }
+            // URLSession controls callback size; suspend() does not prevent already
+            // coalesced large callbacks. Keep only this framework-owned callback,
+            // copy <=64 KiB pieces, and wait with the state lock RELEASED for space.
+            // Cancellation broadcasts the condition, so it cannot deadlock here.
+            var offset = 0
+            while offset < data.count {
+                let count = min(65536, data.count - offset)
+                let deadline = Date().addingTimeInterval(timeout)
+                while count + queueBytes + prefix.count > Self.MAX_BUFFER_BYTES && failure == nil && !metrics.cancel_requested {
+                    metrics.backpressure_waits += 1
+                    if !lock.wait(until: deadline) { failLocked(.timeout); break }
+                }
+                guard failure == nil && !metrics.cancel_requested && !finished else {
+                    metrics.discarded_callback_bytes += data.count - offset; return
+                }
+                guard Int64(count) <= Self.MAX_MEDIA_BYTES - metrics.accepted_bytes else { failLocked(.budget); return }
+                if let declared, metrics.accepted_bytes + Int64(count) > declared { failLocked(.length); return }
+                var delivered = data.subdata(in: offset..<(offset + count)); offset += count
+                metrics.accepted_bytes += Int64(count)
+                if !prefixVerified {
+                    prefix.append(delivered)
+                    metrics.max_buffered_bytes = max(metrics.max_buffered_bytes, prefix.count + queueBytes)
+                    if prefix.count < 12 { continue }
+                    guard String(data: prefix.subdata(in: 4..<8), encoding: .ascii) == "ftyp" else { failLocked(.type); return }
+                    prefixVerified = true; delivered = prefix; prefix = Data()
+                }
+                if let waiter = bodyWaiter { bodyWaiter = nil; waiter.resume(returning: StreamChunk(data: delivered)) }
+                else {
+                    queue.append(delivered); queueBytes += delivered.count
+                    metrics.max_buffered_bytes = max(metrics.max_buffered_bytes, queueBytes)
+                }
+                if metrics.accepted_bytes == Self.MAX_MEDIA_BYTES {
+                    // Unknown-length boundary cannot establish full completion.
+                    if declared == Self.MAX_MEDIA_BYTES { exactBoundary = true; requestCancelLocked() }
+                    else { failLocked(.budget) }
+                }
             }
         }
     }
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        lock.withLock {
+        lock.synchronized {
             metrics.completion_callbacks += 1
             guard !finished else { return }
             if failure == nil {
@@ -268,7 +288,7 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
     }
     func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse,
                     newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
-        lock.withLock { metrics.http_status = response.statusCode; failLocked(.redirect) }
+        lock.synchronized { metrics.http_status = response.statusCode; failLocked(.redirect) }
         completionHandler(nil)
     }
     func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge,
@@ -276,6 +296,6 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
         // Normal HTTPS server trust uses the OS verifier; no client credentials.
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
             completionHandler(.performDefaultHandling,nil)
-        } else { lock.withLock { failLocked(.scope) }; completionHandler(.cancelAuthenticationChallenge,nil) }
+        } else { lock.synchronized { failLocked(.scope) }; completionHandler(.cancelAuthenticationChallenge,nil) }
     }
 }

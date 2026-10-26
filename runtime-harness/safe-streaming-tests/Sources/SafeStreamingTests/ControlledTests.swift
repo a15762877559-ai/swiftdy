@@ -139,7 +139,10 @@ struct ControlledResult: Codable {
             if id == "ST-003" { check(m.accepted_bytes == 0,"oversize_header_accepts_no_body") }
             if id == "ST-005" { check(result.written_bytes == SafeStreamingTransport.MAX_MEDIA_BYTES - 1,"below_boundary_full_payload") }
             if id == "ST-006" { check(result.written_bytes == SafeStreamingTransport.MAX_MEDIA_BYTES && m.cancel_requested && m.cancel_completed,"exact_boundary_full_payload_and_cancel") }
-            if id == "ST-016" { check(m.discarded_buffered_bytes > 0,"queued_bytes_discarded_on_cancel") }
+            if id == "ST-016" {
+                check(m.discarded_buffered_bytes > 0,"queued_bytes_discarded_on_cancel")
+                check(m.failure == SafeStreamError.cancelled.rawValue,"caller_cancel_is_transport_root_cause")
+            }
             if ["ST-017","ST-018"].contains(id) { check(result.second_rejected && m.rejected_second_requests == 1,"second_request_rejected") }
             if id == "ST-019" { check(result.buffered_fallback_rejected,"buffered_path_hard_rejection") }
             if id == "ST-020" { check(m.cookie_removed,"synthetic_cookie_stripped") }

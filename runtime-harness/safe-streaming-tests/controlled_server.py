@@ -56,7 +56,7 @@ class Handler(BaseHTTPRequestHandler):
             if case=='ST-021': self.send_header('Content-Range',f'bytes 0-{size-1}/{size}')
             if case=='ST-022': self.send_header('Content-Range',f'bytes 100-{size+99}/{size+100}')
             self.end_headers()
-            if case in ('ST-003','ST-009','ST-010','ST-023'): return
+            if case in ('ST-009','ST-010','ST-023'): return
             if case=='ST-014': time.sleep(5)
             sent=0
             while sent<size:
@@ -68,6 +68,9 @@ class Handler(BaseHTTPRequestHandler):
                 if chunked: self.wfile.write(b'\r\n')
                 self.wfile.flush();sent+=count
                 with LOCK: row['payload_bytes_written']+=count
+                # CFNetwork may defer response delivery until initial body bytes.
+                # Advertise the oversize body, send one small piece, then await cancel.
+                if case=='ST-003': return
                 if case=='ST-013':
                     self.connection.shutdown(socket.SHUT_RDWR);self.connection.close();return
                 if drip: time.sleep(.04)

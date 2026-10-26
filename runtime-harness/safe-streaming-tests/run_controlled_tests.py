@@ -74,7 +74,7 @@ def main():
              'strict_network_receive_limit':'NOT_PROVEN','real_douyin_download':'NOT_RUN',
              'server_byte_definition':'Bytes in successful server payload write calls; excludes HTTP framing and is not a packet-level delivery count.',
              'delegate_byte_definition':'Actual bytes received in URLSession delegate data callbacks, including callbacks after cancellation.',
-             'buffer_scope':'2 MiB application channel plus at most one consumer chunk; excludes OS/URLSession internal buffering.'}
+             'buffer_scope':'2 MiB application channel plus one <=64 KiB consumer piece (initial prefix may add <12 bytes), plus the current framework-provided callback Data; excludes OS/URLSession pending buffers. Callback maximum is recorded separately.'}
     (evidence/'controlled-results.json').write_text(json.dumps(summary,indent=2)+'\n')
     print('CONTROLLED_SERVER_TESTS='+summary['status']+'; cases='+str(len(results)))
     return 0 if passed else 1

@@ -1,0 +1,257 @@
+{
+  "ST-001": {
+    "requests": 1,
+    "payload_bytes_written": 262144,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 262144
+  },
+  "ST-002": {
+    "requests": 1,
+    "payload_bytes_written": 0,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 0
+  },
+  "ST-003": {
+    "requests": 1,
+    "payload_bytes_written": 0,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": false,
+    "http_status": 200,
+    "payload_bytes_planned": 104857601
+  },
+  "ST-004": {
+    "requests": 1,
+    "payload_bytes_written": 262144,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 262144
+  },
+  "ST-005": {
+    "requests": 1,
+    "payload_bytes_written": 3538944,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": false,
+    "http_status": 200,
+    "payload_bytes_planned": 104857599,
+    "peer_closed": true
+  },
+  "ST-006": {
+    "requests": 1,
+    "payload_bytes_written": 7077888,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": false,
+    "http_status": 200,
+    "payload_bytes_planned": 104857600,
+    "peer_closed": true
+  },
+  "ST-007": {
+    "requests": 1,
+    "payload_bytes_written": 5963776,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": false,
+    "http_status": 200,
+    "payload_bytes_planned": 105906176,
+    "peer_closed": true
+  },
+  "ST-008": {
+    "requests": 1,
+    "payload_bytes_written": 262144,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 262144
+  },
+  "ST-009": {
+    "requests": 1,
+    "payload_bytes_written": 0,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": false,
+    "http_status": 302,
+    "payload_bytes_planned": 0
+  },
+  "ST-010": {
+    "requests": 1,
+    "payload_bytes_written": 0,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": false,
+    "http_status": 307,
+    "payload_bytes_planned": 0
+  },
+  "ST-011": {
+    "requests": 1,
+    "payload_bytes_written": 64,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 64
+  },
+  "ST-012": {
+    "requests": 1,
+    "payload_bytes_written": 64,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 64
+  },
+  "ST-013": {
+    "requests": 1,
+    "payload_bytes_written": 65536,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": false,
+    "http_status": 200,
+    "payload_bytes_planned": 1048576
+  },
+  "ST-014": {
+    "requests": 1,
+    "payload_bytes_written": 65536,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 65536
+  },
+  "ST-015": {
+    "requests": 1,
+    "payload_bytes_written": 131072,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": false,
+    "http_status": 200,
+    "payload_bytes_planned": 8388608,
+    "peer_closed": true
+  },
+  "ST-016": {
+    "requests": 1,
+    "payload_bytes_written": 6619136,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": false,
+    "http_status": 200,
+    "payload_bytes_planned": 8388608,
+    "peer_closed": true
+  },
+  "ST-017": {
+    "requests": 1,
+    "payload_bytes_written": 8388608,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 8388608
+  },
+  "ST-018": {
+    "requests": 1,
+    "payload_bytes_written": 262144,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 262144
+  },
+  "ST-019": {
+    "requests": 1,
+    "payload_bytes_written": 262144,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 262144
+  },
+  "ST-020": {
+    "requests": 1,
+    "payload_bytes_written": 262144,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 262144
+  },
+  "ST-021": {
+    "requests": 1,
+    "payload_bytes_written": 262144,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 206,
+    "payload_bytes_planned": 262144
+  },
+  "ST-022": {
+    "requests": 1,
+    "payload_bytes_written": 262144,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 206,
+    "payload_bytes_planned": 262144
+  },
+  "ST-023": {
+    "requests": 1,
+    "payload_bytes_written": 0,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": false,
+    "http_status": 403,
+    "payload_bytes_planned": 0
+  },
+  "ST-024": {
+    "requests": 1,
+    "payload_bytes_written": 64,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 64
+  },
+  "ST-025": {
+    "requests": 1,
+    "payload_bytes_written": 1048576,
+    "cookie_seen": false,
+    "authorization_seen": false,
+    "range_seen": false,
+    "completed": true,
+    "http_status": 200,
+    "payload_bytes_planned": 1048576
+  }
+}

@@ -24,7 +24,7 @@ Production initializer requires an exact previously extracted HTTPS URL and an a
 
 `MAX_MEDIA_BYTES=104857600`. Oversized declared length is rejected at headers; every callback chunk is budget checked before acceptance. Known exact-boundary responses cancel the underlying task after accepting the complete declared body; unknown-length responses at the boundary fail closed. Full-resource 206 requires exact Content-Range and matching received length. Redirects, non-media content types, invalid initial ftyp marker, empty bodies and incomplete responses fail. The ftyp check is a transport sanity check, not media decoding or proof of playability.
 
-The pull-based AsyncThrowingStream uses a bounded 2 MiB channel, URLSession task suspension and a maximum one consumer chunk. This bound excludes URLSession and OS buffers. One lock serializes state and counters; completion is recorded only from the actual task completion callback. Queued callbacks after cancellation are counted but never accepted. The transport is single-use, including after completion; no retry or resume logic exists.
+The pull-based AsyncThrowingStream uses a bounded 2 MiB channel, condition-variable delegate backpressure and one <=64 KiB consumer piece (initial prefix may add <12 bytes). The active framework-provided callback Data is retained while split into bounded pieces; its maximum observed size is recorded separately. This bound excludes that callback and URLSession/OS pending buffers. One lock serializes state and counters; completion is recorded only from the actual task completion callback. Queued callbacks after cancellation are counted but never accepted. The transport is single-use, including after completion; no retry or resume logic exists.
 
 `delegate_received_bytes` counts actual callback bytes, even after cancellation. `accepted_bytes` counts budget-approved bytes. `written_bytes` is measured from actual files after the original Downloader returns. Server payload writes are not packet-level delivery evidence. Already buffered system bytes can arrive after cancellation. Therefore `STRICT_NETWORK_RECEIVE_LIMIT=NOT_PROVEN`; a <=100 MiB accepted value never establishes an absolute network receive bound.
 
@@ -89,3 +89,11 @@ VIDEOFLOW_CHANGED = NO
 ```
 
 The existing single-video workflow remains fail-closed. Even if the controlled tests pass, a subsequent real-download proposal must state the application budget versus unproven strict network limit, establish the extracted URL's audited host scope and preserve credential isolation. This task does not authorize or perform that real request.
+
+## First actual run and evidence-based correction
+
+Run: https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40284758907 ; tested SHA `e3f4a4af483421a9e788cba3d9b035f597357f7b`. Build exit 0, test runner exit 1, 24/28 cases PASS. Full original results are preserved in `evidence/doustudio-safe-streaming-transport-01/run-40284758907/`. Artifact SHA-256 `fd98bea717c0f665f61717ecd2e5d78edf2de49535d5e7beb4dc8a4895e970d0` matches GitHub.
+
+ST-003 timed out before receiving the response-head callback: the fixture sent an oversized header without initial body bytes. It now sends only one small body piece to provoke actual CFNetwork response delivery; accepted_bytes must still be zero. ST-005/006/007 failed closed with BOUNDED_BUFFER_OVERFLOW because URLSession coalesced multi-MiB callbacks despite suspend(). The implementation now divides each framework-provided callback into <=64 KiB pieces and waits on a condition variable for channel space, releasing the lock while waiting. Cancellation wakes the wait, preserving the 2 MiB owned channel and 100 MiB application budget. No assertion was relaxed.
+
+ST-016 had reported caller cancellation while its underlying recorded cause was buffer overflow. Its regression assertion now also requires the transport root cause CALLER_CANCELLED; the original first-run result is retained without rewriting it. No after-cancel delegate callback happened in the first run; this absence does not establish a strict receive bound.
