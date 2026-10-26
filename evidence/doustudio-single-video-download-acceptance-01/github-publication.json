@@ -1,0 +1,11 @@
+{
+  "workflow_id": 396726624,
+  "name": "DouStudioKit Single Video Download Acceptance",
+  "path": ".github/workflows/doustudio-single-video-download.yml",
+  "state": "active",
+  "run_count": 0,
+  "published_commit": "cadf21b525524e35447434ad75ec998f4975afff",
+  "automatic_dispatch": false,
+  "download_gate": "BLOCKED",
+  "checked_at_utc": "2026-10-26T06:45:40.0348064Z"
+}

@@ -95,3 +95,9 @@ VIDEOFLOW_CHANGED = NO
 ```
 
 按任务停止规则，在接收硬限制没有实际验证的情况下停止真实下载。发布审计工作流后不自动运行；即使手动运行当前版本，也只会输出 BLOCKED，不会下载视频。
+
+## 发布核验
+
+- 审计代码/工作流/初始证据已普通提交并推送：`cadf21b525524e35447434ad75ec998f4975afff`。
+- GitHub 已登记 [独立工作流](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/workflows/doustudio-single-video-download.yml)，ID `396726624`，state=active，核验时运行数为 0；没有自动触发。
+- 注册成功不等于下载验收通过；当前入口固定失败关闭，门禁为 BLOCKED。发布元数据见 github-publication.json。最后收尾提交只补充发布记录，不修改源码或放开门禁。
