@@ -1,0 +1,21 @@
+[
+  {
+    "accepted_bytes" : 0,
+    "approved" : false,
+    "authentication_headers_sent" : false,
+    "cancel_completed" : true,
+    "cancel_requested" : true,
+    "completion_callbacks" : 1,
+    "content_length_one" : false,
+    "content_range_valid" : false,
+    "content_type" : "NOT_RECEIVED",
+    "delegate_received_bytes" : 0,
+    "host" : "www.douyin.com",
+    "http_status" : 302,
+    "range_zero_only" : true,
+    "redirect_host" : "v5-dy-ov-experiment.zjcdn.com",
+    "redirect_target_rejected" : false,
+    "request_count" : 1,
+    "result" : "HTTP_REDIRECT_NOT_FOLLOWED"
+  }
+]

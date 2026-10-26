@@ -1,0 +1,10 @@
+{
+  "run_id": 40319832707,
+  "hosts": {
+    "www.douyin.com": "PROBED_302_REDIRECT_NOT_FOLLOWED",
+    "sf11-cdn-tos.douyinstatic.com": "NOT_PROBED_THIS_RUN"
+  },
+  "missing_host_reason": "NOT_RECORDED_NO_FULL_HOST_LIST_PERSISTED",
+  "redirect_target_requested": false,
+  "additional_sampling": false
+}

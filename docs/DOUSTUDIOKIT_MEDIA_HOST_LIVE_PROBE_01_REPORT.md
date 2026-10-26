@@ -1,8 +1,8 @@
 # DOUSTUDIOKIT_MEDIA_HOST_LIVE_PROBE_01
 
-2026-10-26，Asia/Shanghai。项目已迁移至 `a15762877559-ai/swiftdy`，本地路径不变。**最新离线运行 40319014923 已成功：macOS Swift 编译 PASS、原有 83/83 fixture PASS、新增 12/12 策略断言 PASS、19/19 受控 HTTP 用例 PASS。** 受测提交 `106bc0681898450d34fac803015802af35233114`。Windows Python 84/84 PASS。真实列表请求、真实媒体探测和视频下载仍为 NOT_RUN，生产白名单仍为空。
+2026-10-26，Asia/Shanghai。用户手动执行的最新真实探测 **40319832707 已完成**，受测提交 `85d0b6c2ae8657fa41c21613b058fdeb95c78269`。一次授权作品列表 HTTP 200、21 条；随后实际探测一个主机：**www.douyin.com 返回 HTTP 302，目标主机 v5-dy-ov-experiment.zjcdn.com，未跟随跳转**。媒体请求一次，delegate 正文回调字节与应用接受字节均为 0，取消已完成。本次 sf11-cdn-tos.douyinstatic.com 没有探测记录。
 
-下文保留准备、首次失败及迁移时点记录；最新验收证据和状态以末节为准。用户已配置新仓库 DOUYIN_COOKIE，助手只核验 Secret 名称存在，未读取内容；离线工作流完全没有注入该 Secret。
+macOS 编译、原有 83/83 检查、新增 12/12 策略断言和 19/19 受控 HTTP 用例均通过。**完成的是响应分类观察，不是视频完整性或下载验收。** 未访问跳转目标、未执行完整下载，生产批准白名单仍为空。下文保留历史准备、失败、修正和离线验收记录；最新真实结果以末节为准。
 
 ## 环境恢复与历史核验
 
@@ -163,3 +163,32 @@ Artifact ID 12647952399，ZIP SHA-256 `78f41b73bd3183355d8a3b9b44ea822d61f843417
 用户声明并由 API 名称列表确认：新仓库现在存在 DOUYIN_COOKIE。只记录是否存在，不读取 Secret 内容、长度、摘要或其他派生标识。离线工作流没有引用 Secret，不能把这次离线 PASS 当作真实 Cookie 有效、真实媒体可响应或下载通过。
 
 当前任务的准备、Windows 验证、macOS 编译和完整离线验证均已完成。后续真实探测须用户另行手动打开 [DouStudioKit Media Host Live Probe](https://github.com/a15762877559-ai/swiftdy/actions/workflows/doustudio-media-host-live-probe.yml)，输入本人有权访问的规范主页并明确勾选授权；一次列表、最多两个精确主机各一次 Range GET，不跟随重定向、不下载完整视频。助手在本轮归档后停止，不自动运行该流程。
+
+
+## 最新真实受控媒体探测：40319832707
+
+[用户手动运行](https://github.com/a15762877559-ai/swiftdy/actions/runs/40319832707)，attempt=1，受测 SHA `85d0b6c2ae8657fa41c21613b058fdeb95c78269`，job=121561646293；全部 GitHub 步骤 success。助手仅查看、核验并归档该运行，没有再次 dispatch、追加采样、跟随跳转或触发下载。
+
+构建、原有 fixture、新增策略和受控 HTTP 用例再次全部通过，build/baseline/offline/probe 退出码均为 0。离线源码 seal 与该次受测提交的 Git blobs 重算结果一致，运行的不是旧版本。固定上游 SHA 保持一致、工作区干净。
+
+### 实际请求与响应
+
+作品列表只请求一次，HTTP 200，21 条，id/description/timestamp/cover/video 字段存在数均为 21。未请求作品详情或追加分页。已配置的 Secret 只供授权列表客户端使用；助手没有读取 Secret 内容，也没有保存凭据或派生标识。
+
+| 实际探测主机 | 请求数 | HTTP | 分类 | 规范跳转目标主机 | delegate 正文字节 | 应用接受字节 | 取消请求/完成 |
+|---|---:|---:|---|---|---:|---:|---|
+| www.douyin.com | 1 | 302 | HTTP_REDIRECT_NOT_FOLLOWED | v5-dy-ov-experiment.zjcdn.com | 0 | 0 | true/true |
+
+请求为 GET + Range: bytes=0-0，独立 ephemeral 媒体会话，认证头发送标记 false，completion_callbacks=1。302 的目标只解析并记录规范主机，没有访问目标；目标未加入当前探测许可集合或生产批准白名单。content_type=NOT_RECEIVED、Content-Range 未验证，因为请求在跳转委托处已经被取消，不能把该响应描述为 206 视频。
+
+sf11-cdn-tos.douyinstatic.com 本次没有探测记录，不把历史 40299734675 的一条已选记录当成本次证据；本次未保存全量已选主机清单，因此不额外推断其缺席原因或该主机的实际响应。策略允许最多每个符合条件主机一次，并非强制必须请求两个主机；没有为凑齐数量改选备用地址、复用旧签名或重复列表采样。
+
+delegate_received_bytes 只统计送达数据委托的响应正文，不包含响应头或底层缓冲，0 不等于 TCP/URLSession 总接收量为 0。应用一字节预算仍不构成严格网络接收硬上限，STRICT_NETWORK_RECEIVE_LIMIT=NOT_PROVEN。此次 302 证明本次原版已选入口发生跳转，不能证明跳转后的响应是视频、可解码或目标主机已经安全审核。
+
+### 归档与当前状态
+
+Artifact ID 12648751521，ZIP SHA-256 `256ec9e7d7cc8395faaa07a5bb08681ebf288b2acaa509b245d7810cc3d07246` 与 GitHub digest 一致；CRC、25 文件精确白名单、清单中 24 个文件哈希及源码 seal 全部验证通过。原 Artifact 字节位于 `evidence/doustudio-media-host-live-probe-01/run-40319832707/`，另附 jobs、GitHub Artifact 元数据和核验记录；既有三个运行的证据不改写。根目录八个交付 JSON 已更新为本次观察及汇总，不把 loopback fixture 作为真实观察。
+
+当前状态：REAL_MEDIA_PROBE=OBSERVATION_COMPLETED，真实列表 1 次、媒体探测 1 次；302 跳转拒绝符合受控探测要求。REAL_VIDEO_DOWNLOAD=NOT_RUN、MEDIA_INTEGRITY=NOT_VERIFIED、NO_WATERMARK=NOT_TESTED、APPROVED_HOSTS=0、PRODUCTION_ALLOWLIST=EMPTY。没有保存正文、完整媒体 URL、签名、真实作品 ID 或媒体文件。
+
+本次收尾只更新报告和脱敏证据，不改 Swift/Python、工作流或 SafeStreamingTransport，也不批准任何主机。后续若要研究跳转目标，需独立界定任务、授权和精确主机边界；当前流程没有跟随跳转或访问该目标的许可。本轮归档后停止，不自动开始进一步探测或完整下载。

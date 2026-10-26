@@ -1,0 +1,26 @@
+{
+  "APPROVED_HOSTS": 0,
+  "PRODUCTION_ALLOWLIST": "EMPTY",
+  "REAL_MEDIA_PROBE": "OBSERVATION_COMPLETED",
+  "REAL_VIDEO_DOWNLOAD": "NOT_RUN",
+  "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+  "VIDEO_CONTENT_INTEGRITY": "NOT_VERIFIED_ONE_BYTE_ONLY",
+  "media_probe_completed": true,
+  "worklist": {
+    "fields": {
+      "cover_present": 21,
+      "description_present": 21,
+      "id_valid": 21,
+      "timestamp_valid": 21,
+      "video_present": 21
+    },
+    "http_status": 200,
+    "item_count": 21,
+    "request_count": 1,
+    "request_started": true,
+    "request_succeeded": true,
+    "valid_worklist": true
+  },
+  "MACOS_SWIFT_BUILD": "PASS",
+  "OFFLINE_TESTS": "PASS"
+}

@@ -22,12 +22,12 @@
       "state": "active"
     }
   ],
-  "total_workflow_runs": 2,
+  "total_workflow_runs": 3,
   "workflows_triggered": false,
   "DOUYIN_COOKIE_configured": true,
   "MACOS_SWIFT_BUILD": "PASS",
   "SWIFT_OFFLINE_TESTS": "PASS",
-  "REAL_MEDIA_PROBE": "NOT_RUN",
+  "REAL_MEDIA_PROBE": "OBSERVATION_COMPLETED",
   "REAL_VIDEO_DOWNLOAD": "NOT_RUN",
   "production_allowlist": "EMPTY",
   "git_proxy_scope": "PER_COMMAND_EXISTING_WINDOWS_ROUTE_ONLY",
@@ -50,10 +50,9 @@
       "MANUAL_MACOS_OFFLINE_VALIDATION"
     ]
   },
-  "pending": [
-    "OPTIONAL_USER_MANUAL_AUTHORIZED_REAL_PROBE"
-  ],
-  "latest_manual_run": 40319014923,
+  "pending": [],
+  "latest_manual_run": 40319832707,
   "REPAIRED_RUNNER_MACOS": "PASS",
-  "assistant_dispatched_new_run": false
+  "assistant_dispatched_new_run": false,
+  "latest_real_probe_run": 40319832707
 }
