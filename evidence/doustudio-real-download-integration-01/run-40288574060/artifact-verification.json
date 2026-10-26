@@ -1,0 +1,19 @@
+{
+  "artifact_id": 12634719497,
+  "zip_sha256": "2c80ac729f4298c5ed8e06144350379d7d795b62113138b5d4fa1dc1144fd0f1",
+  "github_digest_matched": true,
+  "zip_crc": "PASS",
+  "artifact_whitelist": "PASS",
+  "files": {
+    "runtime-environment.json": "dbb5e360434e31d1cfacce4c4c9567b5305215884cdd6bdac86c6e920f5f9f20",
+    "build.log": "9a6f09da88327bbff3321d14584b29b4055c474c0d4bb10c9c2fa6165129b9a8",
+    "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "runner-exit-code.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "integration-results.json": "62c38010667ea84e4e8083c056643dac98caea3010e1e60370f557c8d371f86d",
+    "integration-server-counters.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "integration-process.log": "8bb90015cc72b9b5e8460242c7ff7528e055886ca4c26b72cf65d9b9e03c2fff",
+    "integration-cleanup.json": "043477ab3786fddb69caf2e49a80f95e87d074611b4c5eda4e26be0fe0a2753b",
+    "source-protection.json": "dfbe334c2d7cb396ed129dbecaf44884722eda768c933ba6fdf2c0253f80a333",
+    "stage-outcomes.json": "78d410151abdcb84e8a4863b32ae9c9dbabfd6fbd38adf0379b03133ff499ae6"
+  }
+}

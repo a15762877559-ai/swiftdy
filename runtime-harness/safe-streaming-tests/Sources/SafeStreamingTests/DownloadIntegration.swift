@@ -59,6 +59,11 @@ enum DownloadIntegration {
             if id == "INT-022" {
                 // Pure policy fixture: never creates a session or opens these URLs.
                 let allow: Set<String> = ["fixture.invalid"]
+                _ = try IntegrationPolicy.listComponents(URL(string:"https://www.douyin.com/aweme/v1/web/aweme/post/")!)
+                for suffix in ["/aweme/v1/web/aweme/post","/aweme/v1/web/aweme/post/extra","/aweme/v1/web/aweme/poster/"] {
+                    do { _ = try IntegrationPolicy.listComponents(URL(string:"https://www.douyin.com" + suffix)!); result.assertions.append("LIST_PATH_SCOPE_WIDENED") }
+                    catch IntegrationError.host {}
+                }
                 try IntegrationPolicy.httpsHost(URL(string:"https://fixture.invalid/media")!,approved:allow)
                 for value in ["http://fixture.invalid/media","https://sub.fixture.invalid/media","https://fixture.invalid.evil.invalid/media","https://user@fixture.invalid/media","https://fixture.invalid:8443/media","https://127.0.0.1/media"] {
                     do { try IntegrationPolicy.httpsHost(URL(string:value)!,approved:allow); result.assertions.append("HOST_POLICY_ACCEPTED_FORBIDDEN_FIXTURE") }

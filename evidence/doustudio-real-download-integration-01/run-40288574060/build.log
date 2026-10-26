@@ -1,0 +1,156 @@
+Building for debugging...
+[Planning deferred tasks]
+[23 / 38]
+[24 / 39] DouStudioKit
+[30 / 88]
+[34 / 88]
+[40 / 88]
+[44 / 88]
+[45 / 88]
+[49 / 88]
+[51 / 88]
+[54 / 88]
+[58 / 88]
+[61 / 88]
+[62 / 88]
+[63 / 88]
+[68 / 88]
+[73 / 88] DouStudioKit
+[74 / 88] DouStudioKit
+[82 / 89] DouStudioKit
+[84 / 89] SafeStreamingTests-product
+[89 / 116]
+[92 / 116]
+[95 / 116]
+[97 / 116]
+[99 / 116]
+[100 / 116]
+[104 / 116]
+[106 / 116]
+[107 / 116]
+[111 / 116] SafeStreamingTests-product
+[112 / 116] SafeStreamingTests-product
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/IntegrationMedia.swift:53:16: [1;33mwarning: [1;39m'alwaysCopiesSampleData' was deprecated in macOS 27.0: It is not necessary to copy the sample data in order to make it safe to use the vended buffer[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m51 |[0;0m         let reader = try AVAssetReader(asset:asset)
+ [0;36m52 |[0;0m         let output = AVAssetReaderTrackOutput(track:track,outputSettings:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA])
+ [0;36m53 |[0;0m         output.alwaysCopiesSampleData = false
+    [0;36m|[0;0m                `- [1;33mwarning: [1;39m'alwaysCopiesSampleData' was deprecated in macOS 27.0: It is not necessary to copy the sample data in order to make it safe to use the vended buffer[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m54 |[0;0m         guard reader.canAdd(output) else { throw IntegrationError.decode }; reader.add(output)
+ [0;36m55 |[0;0m         guard reader.startReading() else { throw IntegrationError.decode }
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/IntegrationMedia.swift:54:84: [1;33mwarning: [1;39m'add' was deprecated in macOS 27.0: Use the appropriate AVAssetReader.outputProvider(for:...) overload for your output and optional adaptor instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m52 |[0;0m         let output = AVAssetReaderTrackOutput(track:track,outputSettings:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA])
+ [0;36m53 |[0;0m         output.alwaysCopiesSampleData = false
+ [0;36m54 |[0;0m         guard reader.canAdd(output) else { throw IntegrationError.decode }; reader.add(output)
+    [0;36m|[0;0m                                                                                    `- [1;33mwarning: [1;39m'add' was deprecated in macOS 27.0: Use the appropriate AVAssetReader.outputProvider(for:...) overload for your output and optional adaptor instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m55 |[0;0m         guard reader.startReading() else { throw IntegrationError.decode }
+ [0;36m56 |[0;0m         defer { reader.cancelReading() }
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/IntegrationMedia.swift:55:22: [1;33mwarning: [1;39m'startReading()' was deprecated in macOS 27.0: Use start() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m53 |[0;0m         output.alwaysCopiesSampleData = false
+ [0;36m54 |[0;0m         guard reader.canAdd(output) else { throw IntegrationError.decode }; reader.add(output)
+ [0;36m55 |[0;0m         guard reader.startReading() else { throw IntegrationError.decode }
+    [0;36m|[0;0m                      `- [1;33mwarning: [1;39m'startReading()' was deprecated in macOS 27.0: Use start() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m56 |[0;0m         defer { reader.cancelReading() }
+ [0;36m57 |[0;0m         let deadline = Date().addingTimeInterval(15)
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/IntegrationMedia.swift:58:35: [1;33mwarning: [1;39m'copyNextSampleBuffer()' was deprecated in macOS 27.0: Use AVAssetReaderOutput.Provider.next() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m56 |[0;0m         defer { reader.cancelReading() }
+ [0;36m57 |[0;0m         let deadline = Date().addingTimeInterval(15)
+ [0;36m58 |[0;0m         while let sample = output.copyNextSampleBuffer() {
+    [0;36m|[0;0m                                   `- [1;33mwarning: [1;39m'copyNextSampleBuffer()' was deprecated in macOS 27.0: Use AVAssetReaderOutput.Provider.next() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m59 |[0;0m             guard Date() < deadline, proof.decoded_frames < 1000, CMSampleBufferDataIsReady(sample),
+ [0;36m60 |[0;0m                   let image = CMSampleBufferGetImageBuffer(sample), CVPixelBufferGetWidth(image) > 0,
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/IntegrationMedia.swift:72:15: [1;33mwarning: [1;39m'expectsMediaDataInRealTime' was deprecated in macOS 27.0: Use the input receiver's appendImmediately(...) method instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m70 |[0;0m         let writer = try AVAssetWriter(outputURL:file,fileType:.mp4)
+ [0;36m71 |[0;0m         let input = AVAssetWriterInput(mediaType:.video,outputSettings:[AVVideoCodecKey:AVVideoCodecType.h264,AVVideoWidthKey:64,AVVideoHeightKey:64])
+ [0;36m72 |[0;0m         input.expectsMediaDataInRealTime = false
+    [0;36m|[0;0m               `- [1;33mwarning: [1;39m'expectsMediaDataInRealTime' was deprecated in macOS 27.0: Use the input receiver's appendImmediately(...) method instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m73 |[0;0m         let adaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput:input,sourcePixelBufferAttributes:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA,kCVPixelBufferWidthKey as String:64,kCVPixelBufferHeightKey as String:64])
+ [0;36m74 |[0;0m         guard writer.canAdd(input) else { throw IntegrationError.fixture }; writer.add(input)
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/IntegrationMedia.swift:73:23: [1;33mwarning: [1;39m'AVAssetWriterInputPixelBufferAdaptor' was deprecated in macOS 27.0: Use AVAssetWriter.inputPixelBufferReceiver(for:pixelBufferAttributes:) instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m71 |[0;0m         let input = AVAssetWriterInput(mediaType:.video,outputSettings:[AVVideoCodecKey:AVVideoCodecType.h264,AVVideoWidthKey:64,AVVideoHeightKey:64])
+ [0;36m72 |[0;0m         input.expectsMediaDataInRealTime = false
+ [0;36m73 |[0;0m         let adaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput:input,sourcePixelBufferAttributes:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA,kCVPixelBufferWidthKey as String:64,kCVPixelBufferHeightKey as String:64])
+    [0;36m|[0;0m                       `- [1;33mwarning: [1;39m'AVAssetWriterInputPixelBufferAdaptor' was deprecated in macOS 27.0: Use AVAssetWriter.inputPixelBufferReceiver(for:pixelBufferAttributes:) instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m74 |[0;0m         guard writer.canAdd(input) else { throw IntegrationError.fixture }; writer.add(input)
+ [0;36m75 |[0;0m         guard writer.startWriting() else { throw IntegrationError.fixture }
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/IntegrationMedia.swift:74:84: [1;33mwarning: [1;39m'add' was deprecated in macOS 27.0: Use the appropriate AVAssetWriter.inputReceiver(for:...) overload for your input and optional adaptor instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m72 |[0;0m         input.expectsMediaDataInRealTime = false
+ [0;36m73 |[0;0m         let adaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput:input,sourcePixelBufferAttributes:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA,kCVPixelBufferWidthKey as String:64,kCVPixelBufferHeightKey as String:64])
+ [0;36m74 |[0;0m         guard writer.canAdd(input) else { throw IntegrationError.fixture }; writer.add(input)
+    [0;36m|[0;0m                                                                                    `- [1;33mwarning: [1;39m'add' was deprecated in macOS 27.0: Use the appropriate AVAssetWriter.inputReceiver(for:...) overload for your input and optional adaptor instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m75 |[0;0m         guard writer.startWriting() else { throw IntegrationError.fixture }
+ [0;36m76 |[0;0m         writer.startSession(atSourceTime:.zero)
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/IntegrationMedia.swift:75:22: [1;33mwarning: [1;39m'startWriting()' was deprecated in macOS 27.0: Use start() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m73 |[0;0m         let adaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput:input,sourcePixelBufferAttributes:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA,kCVPixelBufferWidthKey as String:64,kCVPixelBufferHeightKey as String:64])
+ [0;36m74 |[0;0m         guard writer.canAdd(input) else { throw IntegrationError.fixture }; writer.add(input)
+ [0;36m75 |[0;0m         guard writer.startWriting() else { throw IntegrationError.fixture }
+    [0;36m|[0;0m                      `- [1;33mwarning: [1;39m'startWriting()' was deprecated in macOS 27.0: Use start() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m76 |[0;0m         writer.startSession(atSourceTime:.zero)
+ [0;36m77 |[0;0m         let deadline = Date().addingTimeInterval(15)
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/IntegrationMedia.swift:79:26: [1;33mwarning: [1;39m'isReadyForMoreMediaData' was deprecated in macOS 27.0: Use the input receiver's async append(...) method instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m77 |[0;0m         let deadline = Date().addingTimeInterval(15)
+ [0;36m78 |[0;0m         for frame in 0..<30 {
+ [0;36m79 |[0;0m             while !input.isReadyForMoreMediaData {
+    [0;36m|[0;0m                          `- [1;33mwarning: [1;39m'isReadyForMoreMediaData' was deprecated in macOS 27.0: Use the input receiver's async append(...) method instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+ [0;36m80 |[0;0m                 guard Date() < deadline else { throw IntegrationError.fixture }
+ [0;36m81 |[0;0m                 try await Task.sleep(for:.milliseconds(5))
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/ControlledTests.swift:24:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m22 |[0;0m     var expected_requests = 1
+ [0;36m23 |[0;0m     var post_cancel_callback_observation = "NOT_OBSERVED"
+ [0;36m24 |[0;0m     let strict_network_receive_limit = "NOT_PROVEN"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'strict_network_receive_limit' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m25 |[0;0m     let real_douyin_download = "NOT_RUN"
+ [0;36m26 |[0;0m }
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/ControlledTests.swift:25:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m23 |[0;0m     var post_cancel_callback_observation = "NOT_OBSERVED"
+ [0;36m24 |[0;0m     let strict_network_receive_limit = "NOT_PROVEN"
+ [0;36m25 |[0;0m     let real_douyin_download = "NOT_RUN"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'real_douyin_download' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m26 |[0;0m }
+ [0;36m27 |[0;0m 
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/DownloadIntegration.swift:24:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m22 |[0;0m     var expected_list_requests = 1
+ [0;36m23 |[0;0m     var expected_media_requests = 0
+ [0;36m24 |[0;0m     let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'STRICT_NETWORK_RECEIVE_LIMIT' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m25 |[0;0m     let REAL_DOUYIN_DOWNLOAD = "NOT_RUN"
+ [0;36m26 |[0;0m     let HOST_ALLOWLIST_AUDIT = "BLOCKED"
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/DownloadIntegration.swift:25:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m23 |[0;0m     var expected_media_requests = 0
+ [0;36m24 |[0;0m     let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+ [0;36m25 |[0;0m     let REAL_DOUYIN_DOWNLOAD = "NOT_RUN"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'REAL_DOUYIN_DOWNLOAD' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m26 |[0;0m     let HOST_ALLOWLIST_AUDIT = "BLOCKED"
+ [0;36m27 |[0;0m }
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/DownloadIntegration.swift:26:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m24 |[0;0m     let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+ [0;36m25 |[0;0m     let REAL_DOUYIN_DOWNLOAD = "NOT_RUN"
+ [0;36m26 |[0;0m     let HOST_ALLOWLIST_AUDIT = "BLOCKED"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'HOST_ALLOWLIST_AUDIT' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m27 |[0;0m }
+ [0;36m28 |[0;0m 
+[114 / 116] SafeStreamingTests-product
+Build complete! (19.53 sec)

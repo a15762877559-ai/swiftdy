@@ -22,7 +22,7 @@ enum IntegrationPolicy {
               let parsed = LinkParser().parse(text), !parsed.requiresExpansion,
               case .user(let id, let modal) = parsed.target, modal == nil, !id.isEmpty, id.count <= 256,
               id.allSatisfy({ $0.isASCII && ($0.isLetter || $0.isNumber || $0 == "_" || $0 == "-") }),
-              url.path == "/user/" + id else { throw IntegrationError.profile }
+              URLComponents(url:url,resolvingAgainstBaseURL:false)?.path == "/user/" + id else { throw IntegrationError.profile }
         return id
     }
     static func select(_ works: [DouyinWork], index: Int) throws -> DouyinWork {
@@ -36,13 +36,20 @@ enum IntegrationPolicy {
         guard url.scheme == "https", url.user == nil, url.password == nil, url.fragment == nil,
               url.port == nil || url.port == 443, let host = url.host, approved.contains(host) else { throw IntegrationError.host }
     }
+    static func listComponents(_ url: URL) throws -> URLComponents {
+        guard url.scheme == "https", url.host == "www.douyin.com", url.port == nil,
+              url.user == nil, url.password == nil, url.fragment == nil,
+              let parts = URLComponents(url:url,resolvingAgainstBaseURL:false),
+              parts.path == "/aweme/v1/web/aweme/post/" else { throw IntegrationError.host }
+        return parts
+    }
     // The only executable integration path: exact local fixture endpoint, with no
     // fallback to HTTPS production. The URL must still be Extractor output.
     static func fixtureURL(_ work: DouyinWork, port: Int, caseID: String) throws -> URL {
         guard case .media(let value) = work.downloads[0], let url = URL(string:value),
               url.scheme == "http", url.host == "127.0.0.1", url.port == port,
               url.user == nil, url.password == nil, url.query == nil, url.fragment == nil,
-              url.path == "/media/" + caseID else { throw IntegrationError.host }
+              URLComponents(url:url,resolvingAgainstBaseURL:false)?.path == "/media/" + caseID else { throw IntegrationError.host }
         return url
     }
 }
@@ -65,8 +72,8 @@ actor IntegrationListTransport: HTTPTransport {
     func send(_ request: SignedRequest, options: TransportOptions) async throws -> HTTPResponse {
         guard requests == 0 else { rejectedSecond += 1; throw IntegrationError.listLimit }
         guard request.method == .get, request.body == nil, options.proxy == nil, options.extraHeaders.isEmpty,
-              let url = request.url, url.scheme == "https", url.host == "www.douyin.com",
-              url.path == "/aweme/v1/web/aweme/post/", let components = URLComponents(url:url,resolvingAgainstBaseURL:false) else { throw IntegrationError.host }
+              let url = request.url else { throw IntegrationError.host }
+        let components = try IntegrationPolicy.listComponents(url)
         let query = components.queryItems ?? []
         for (key, value) in [("sec_user_id","fixture_user"),("max_cursor","0"),("count","18")] {
             let matches = query.filter { $0.name == key }
