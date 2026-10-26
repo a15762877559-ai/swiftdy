@@ -1,0 +1,16 @@
+{
+  "artifact_id": 12638777679,
+  "archive_sha256": "a13f3e4b4133900f5731820c16dc4b77d5dce28fe2b2a10e97f93d1b0f3bee4b",
+  "github_digest_match": true,
+  "zip_crc": "PASS",
+  "exact_whitelist_files": 18,
+  "runner_manifest_hashes": "PASS",
+  "swift_cases": {
+    "general_and_auth": 38,
+    "host": 20,
+    "priority": 25
+  },
+  "build_exit_code": 0,
+  "offline_exit_code": 0,
+  "fixture": "SYNTHETIC_ONLY"
+}

@@ -1,0 +1,240 @@
+Building for debugging...
+[Computing dependencies]
+[Pre-planning 1 / 67]
+[Planning deferred tasks]
+[23 / 38]
+[24 / 39] DouStudioKit
+[28 / 88]
+[33 / 88]
+[34 / 88]
+[37 / 88]
+[40 / 88]
+[43 / 88]
+[44 / 88]
+[45 / 88]
+[48 / 88]
+[49 / 88]
+[51 / 88]
+[52 / 88]
+[54 / 88]
+[55 / 88]
+[58 / 88]
+[60 / 88]
+[61 / 88]
+[62 / 88]
+[63 / 88]
+[66 / 88]
+[68 / 88]
+[69 / 88]
+[73 / 88] DouStudioKit
+[74 / 88] DouStudioKit
+[75 / 88] DouStudioKit
+[82 / 89] RuntimeAcceptance-product
+[85 / 116]
+[87 / 116]
+[90 / 116]
+[92 / 116]
+[93 / 116] DouStudioKit
+[95 / 116] DouStudioKit
+[96 / 116] DouStudioKit
+[98 / 116]
+[99 / 116]
+[100 / 116]
+[103 / 116]
+[104 / 116]
+[106 / 116]
+[107 / 116]
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/PaginationSelfTest.swift:54:15: [1;33mwarning: [1;39m'catch' block is unreachable because no errors are thrown in 'do' block[0;0m
+ [0;36m52 |[0;0m             do {
+ [0;36m53 |[0;0m                 result = OfflineCaseResult(id:id, name:name, function:"AuthenticatedPagination.collect/PaginationTransport.send", status:"PASS", errorCategory:"NONE", expected:expected, actual:try await body())
+ [0;36m54 |[0;0m             } catch {
+    [0;36m|[0;0m               `- [1;33mwarning: [1;39m'catch' block is unreachable because no errors are thrown in 'do' block[0;0m
+ [0;36m55 |[0;0m                 result = OfflineCaseResult(id:id, name:name, function:"AuthenticatedPagination.collect/PaginationTransport.send", status:"FAIL", errorCategory:(error as? PaginationFailure)?.rawValue ?? "ASSERTION_MISMATCH", expected:expected,
+ [0;36m56 |[0;0m                     actual:(error as? PaginationTestMismatch)?.summary ?? "fixed_error_or_condition_mismatch")
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/SelfTest.swift:69:15: [1;33mwarning: [[111 / 116] RuntimeAcceptance-product
+1;39m'catch' block is unreachable because no errors are thrown in 'do' block[0;0m
+ [0;36m67 |[0;0m                 result = OfflineCaseResult(id: id, name: name, function: function, status: "PASS",
+ [0;36m68 |[0;0m                     errorCategory: "NONE", expected: expected, actual: try await body())
+ [0;36m69 |[0;0m             } catch {
+    [0;36m|[0;0m               `- [1;33mwarning: [1;39m'catch' block is unreachable because no errors are thrown in 'do' block[0;0m
+ [0;36m70 |[0;0m                 let category: String
+ [0;36m71 |[0;0m                 let actual: String
+[112 / 116] RuntimeAcceptance-product
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:19:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m17 |[0;0m     var url_shape = "REJECTED"
+ [0;36m18 |[0;0m     var reason = "INVALID_URL"
+ [0;36m19 |[0;0m     let dns_target_check = "NOT_VERIFIED_NO_DNS_LOOKUP"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'dns_target_check' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m20 |[0;0m     let redirect_risk = "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN"
+ [0;36m21 |[0;0m     let public_service_association = "NOT_REVIEWED"
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:20:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m18 |[0;0m     var reason = "INVALID_URL"
+ [0;36m19 |[0;0m     let dns_target_check = "NOT_VERIFIED_NO_DNS_LOOKUP"
+ [0;36m20 |[0;0m     let redirect_risk = "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'redirect_risk' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m21 |[0;0m     let public_service_association = "NOT_REVIEWED"
+ [0;36m22 |[0;0m     let approved = false
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:21:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m19 |[0;0m     let dns_target_check = "NOT_VERIFIED_NO_DNS_LOOKUP"
+ [0;36m20 |[0;0m     let redirect_risk = "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN"
+ [0;36m21 |[0;0m     let public_service_association = "NOT_REVIEWED"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'public_service_association' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m22 |[0;0m     let approved = false
+ [0;36m23 |[0;0m }
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:22:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m20 |[0;0m     let redirect_risk = "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN"
+ [0;36m21 |[0;0m     let public_service_association = "NOT_REVIEWED"
+ [0;36m22 |[0;0m     let approved = false
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'approved' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m23 |[0;0m }
+ [0;36m24 |[0;0m 
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:100:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m98 |[0;0m             let MEDIA_HOSTS_IDENTIFIED: String
+ [0;36m99 |[0;0m             let HOST_PROVENANCE: String
+[0;36m100 |[0;0m             let HOST_SECURITY_REVIEW = "BLOCKED"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'HOST_SECURITY_REVIEW' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m101 |[0;0m             let PRODUCTION_ALLOWLIST = "EMPTY"
+[0;36m102 |[0;0m             let APPROVED_HOSTS = 0
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:101:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m99 |[0;0m             let HOST_PROVENANCE: String
+[0;36m100 |[0;0m             let HOST_SECURITY_REVIEW = "BLOCKED"
+[0;36m101 |[0;0m             let PRODUCTION_ALLOWLIST = "EMPTY"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'PRODUCTION_ALLOWLIST' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m102 |[0;0m             let APPROVED_HOSTS = 0
+[0;36m103 |[0;0m             let REAL_MEDIA_REQUEST = "NOT_RUN"
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:102:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m100 |[0;0m             let HOST_SECURITY_REVIEW = "BLOCKED"
+[0;36m101 |[0;0m             let PRODUCTION_ALLOWLIST = "EMPTY"
+[0;36m102 |[0;0m             let APPROVED_HOSTS = 0
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'APPROVED_HOSTS' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m103 |[0;0m             let REAL_MEDIA_REQUEST = "NOT_RUN"
+[0;36m104 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:103:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m101 |[0;0m             let PRODUCTION_ALLOWLIST = "EMPTY"
+[0;36m102 |[0;0m             let APPROVED_HOSTS = 0
+[0;36m103 |[0;0m             let REAL_MEDIA_REQUEST = "NOT_RUN"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'REAL_MEDIA_REQUEST' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m104 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+[0;36m105 |[0;0m             let APPLICATION_BYTE_BUDGET = "PASS"
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:104:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m102 |[0;0m             let APPROVED_HOSTS = 0
+[0;36m103 |[0;0m             let REAL_MEDIA_REQUEST = "NOT_RUN"
+[0;36m104 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'REAL_VIDEO_DOWNLOAD' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m105 |[0;0m             let APPLICATION_BYTE_BUDGET = "PASS"
+[0;36m106 |[0;0m             let byte_budget_evidence_run = "40289436585"
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:105:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m103 |[0;0m             let REAL_MEDIA_REQUEST = "NOT_RUN"
+[0;36m104 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+[0;36m105 |[0;0m             let APPLICATION_BYTE_BUDGET = "PASS"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'APPLICATION_BYTE_BUDGET' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m106 |[0;0m             let byte_budget_evidence_run = "40289436585"
+[0;36m107 |[0;0m             let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:106:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m104 |[0;0m             let REAL_VIDEO_DOWNLOAD = "NOT_RUN"
+[0;36m105 |[0;0m             let APPLICATION_BYTE_BUDGET = "PASS"
+[0;36m106 |[0;0m             let byte_budget_evidence_run = "40289436585"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'byte_budget_evidence_run' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m107 |[0;0m             let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+[0;36m108 |[0;0m         }
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift:107:17: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+[0;36m105 |[0;0m             let APPLICATION_BYTE_BUDGET = "PASS"
+[0;36m106 |[0;0m             let byte_budget_evidence_run = "40289436585"
+[0;36m107 |[0;0m             let STRICT_NETWORK_RECEIVE_LIMIT = "NOT_PROVEN"
+    [0;36m|[0;0m                 |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m                 |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'STRICT_NETWORK_RECEIVE_LIMIT' case to silence this warning[0;0m
+    [0;36m|[0;0m                 `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+[0;36m108 |[0;0m         }
+[0;36m109 |[0;0m         try write(collection.records.filter { $0.role == "video_playback" },"candidate-hosts.json",folder)
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m154 |[0;0m                 outputSettings: [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA])
+[0;36m155 |[0;0m             guard reader.canAdd(output) else { throw AcceptanceStop(code: "DECODER_UNAVAILABLE", blocked: false) }
+[0;36m156 |[0;0m             reader.add(output)
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m157 |[0;0m             guard reader.startReading() else { throw AcceptanceStop(code: "DECODE_START_FAILED", blocked: false) }
+[0;36m158 |[0;0m             var frames = 0
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m155 |[0;0m             guard reader.canAdd(output) else { throw AcceptanceStop(code: "DECODER_UNAVAILABLE", blocked: false) }
+[0;36m156 |[0;0m             reader.add(output)
+[0;36m157 |[0;0m             guard reader.startReading() else { throw AcceptanceStop(code: "DECODE_START_FAILED", blocked: false) }
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m158 |[0;0m             var frames = 0
+[0;36m159 |[0;0m             while let sample = output.copyNextSampleBuffer() {
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m157 |[0;0m             guard reader.startReading() else { throw AcceptanceStop(code: "DECODE_START_FAILED", blocked: false) }
+[0;36m158 |[0;0m             var frames = 0
+[0;36m159 |[0;0m             while let sample = output.copyNextSampleBuffer() {
+[REDACTED_FIXTURE_LITERAL_LINE]
+[0;36m160 |[0;0m                 guard CMSampleBufferGetImageBuffer(sample) != nil else {
+[0;36m161 |[0;0m                     throw AcceptanceStop(code: "DECODED_FRAME_MISSING", blocked: false)
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/SelectedHostEvidence.swift:24:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m22 |[0;0m     var matched_work_count = 0
+ [0;36m23 |[0;0m     var unmatched_work_count = 0
+ [0;36m24 |[0;0m     let security_review_status = "BLOCKED_INDEPENDENT_REVIEW_REQUIRED"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'security_review_status' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m25 |[0;0m }
+ [0;36m26 |[0;0m struct AlternateHostSummary: Codable {
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/SelectedHostEvidence.swift:31:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m29 |[0;0m     var source_field_counts: [String:Int] = [:]
+ [0;36m30 |[0;0m     var work_refs: [String] = []
+ [0;36m31 |[0;0m     let approved = false
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'approved' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m32 |[0;0m }
+ [0;36m33 |[0;0m struct MediaHostCollection: Codable {
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/SelectedHostEvidence.swift:34:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m32 |[0;0m }
+ [0;36m33 |[0;0m struct MediaHostCollection: Codable {
+ [0;36m34 |[0;0m     let schema_version = 2
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'schema_version' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m35 |[0;0m     var selected: [SelectedWorkEvidence] = []
+ [0;36m36 |[0;0m     var hosts: [SelectedHostSummary] = []
+
+[REDACTED_FIXTURE_LITERAL_LINE]
+[114 / 116] RuntimeAcceptance-product
+[116 / 116] RuntimeAcceptance-product
+Build complete! (47.79 sec)

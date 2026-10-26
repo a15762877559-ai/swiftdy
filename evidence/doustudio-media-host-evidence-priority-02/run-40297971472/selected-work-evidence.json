@@ -1,0 +1,737 @@
+[
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-001",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-001"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-001"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-002",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-002"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-002"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-003",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-003"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-003"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-004",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-004"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-004"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-005",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-005"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-005"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-006",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-006"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-006"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-007",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-007"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-007"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-008",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-008"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-008"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-009",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-009"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-009"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-010",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-010"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-010"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-011",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-011"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-011"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-012",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-012"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-012"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-013",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-013"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-013"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-014",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-014"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-014"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-015",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-015"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-015"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-016",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-016"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-016"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-017",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-017"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-017"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-018",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-018"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-018"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-019",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-019"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-019"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-020",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-020"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-020"
+  },
+  {
+    "match_status" : "MATCHED",
+    "safety" : {
+      "approved" : false,
+      "dns_target_check" : "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "evidence_id" : "WORK-021",
+      "forbidden_local_or_reserved_name" : false,
+      "https" : true,
+      "ip_or_numeric_host" : false,
+      "nonstandard_port" : false,
+      "normalized_host" : "selected.fixture-cdn.com",
+      "public_service_association" : "NOT_REVIEWED",
+      "reason" : "INDEPENDENT_HOST_REVIEW_REQUIRED",
+      "redirect_risk" : "UNKNOWN_NOT_REQUESTED_REDIRECTS_FORBIDDEN",
+      "role" : "video_playback",
+      "selected_by_original_extractor" : true,
+      "source_field" : "selected",
+      "url_shape" : "CANDIDATE_ONLY",
+      "userinfo_present" : false,
+      "work_alias" : "WORK-021"
+    },
+    "scheme" : "https",
+    "selected_host" : "selected.fixture-cdn.com",
+    "selected_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "selection_match" : true,
+    "selection_method" : "ORIGINAL_FALLBACK_LAST",
+    "source_match_count" : 1,
+    "userinfo_present" : false,
+    "winning_source_paths" : [
+      "video.play_addr.url_list[60]"
+    ],
+    "work_ref" : "WORK-021"
+  }
+]

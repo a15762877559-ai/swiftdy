@@ -1,0 +1,26 @@
+{
+  "run_id": "40297971472",
+  "test_commit": "0e5eeb9ca4de27580c65cc6c72483e9078610c61",
+  "files": {
+    "selected-work-evidence.json": "a8457fdb26ef03016a8df58c149e052468d954aeb15946cef25302af24f12d86",
+    "selected-host-summary.json": "8c51f0aced499c999d6d0a0166c3d028e57de3c7b1689c4654ebe1e081c6f8d0",
+    "alternate-host-summary.json": "515665c990042ae1db08804159d1e17a7ff896d7a22c0a6d6abef42ba91f85bf",
+    "source-association-results.json": "75e15056e83ef5b21438b14c283f7a30233ff6f73866f2669214ce64fce13c0a",
+    "quota-integrity-results.json": "47e5544bb8574f7093ddf70f34e018aae820ee4937431c15da1af54a0531b9c6",
+    "security-redaction-results.json": "dc8748ad290e3160bb62572a9a9fc7a09c0f5eeacab2ec7665c17032844fcb60",
+    "environment.json": "3b0138eef860438f8d67314c1aca96258c2755820cdde2013be3f9610d35d6b2",
+    "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "offline-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "build.log": "6e84afd316034bdfe40b60523f2e1dbab80732c6873ca21f911169e0d578fd7d",
+    "offline.log": "e777c8f8e46306aba83bab7d0c32a2df681bce9d525c10821c14b1700b737f05",
+    "selftest-results.json": "97543283d59422f2059f93c6b64eb180425f39c5608b4c571e52cbc782a1c2c1",
+    "host-selftest-results.json": "f4407a7de04b95b855735dd04a5b7255c8aa237f4bcafaf8bb5ec73b6c03fcc0",
+    "priority-selftest-results.json": "81e7b75840bca7d9129bdd38ab6866e4f5df571f16cfe8914d68cca6a4ee2a48",
+    "stage-outcomes.json": "b71abba18b041343e320e327f456aa55217678211b680d19836e56e738a4773f",
+    "source-protection.json": "d56f49ffea7150cc4b066dc195932a14190c337c675880a64b630dc972246e9c",
+    "approved-hosts.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "fixture": "SYNTHETIC_ONLY",
+  "REAL_WORKLIST_REQUEST": "NOT_RUN",
+  "REAL_MEDIA_REQUEST": "NOT_RUN"
+}

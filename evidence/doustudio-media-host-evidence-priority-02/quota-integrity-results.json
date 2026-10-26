@@ -1,6 +1,7 @@
 {
-  "status": "NOT_RUN",
-  "records": [],
-  "evidence_kind": "PENDING_REAL_SWIFT_OFFLINE_EXECUTION",
-  "tested_sha": null
+  "ALTERNATE_SUMMARY_TRUNCATED" : "true",
+  "alternate_urls_examined" : "1000",
+  "fixture" : "SYNTHETIC_ONLY",
+  "primary_complete" : "true",
+  "selected_records" : "21"
 }

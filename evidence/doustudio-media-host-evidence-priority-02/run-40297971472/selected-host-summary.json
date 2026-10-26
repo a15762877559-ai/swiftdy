@@ -1,0 +1,12 @@
+[
+  {
+    "host" : "selected.fixture-cdn.com",
+    "matched_work_count" : 21,
+    "security_review_status" : "BLOCKED_INDEPENDENT_REVIEW_REQUIRED",
+    "selected_work_count" : 21,
+    "source_field_counts" : {
+      "video.play_addr.url_list[60]" : 21
+    },
+    "unmatched_work_count" : 0
+  }
+]

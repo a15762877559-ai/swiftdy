@@ -1,0 +1,125 @@
+BEGIN OFF-001 | Profile identifier | function=LinkParser.parse
+{"errorCategory":"NONE","expected":"user identifier matches offline_fixture","status":"PASS","id":"OFF-001","name":"Profile identifier","function":"LinkParser.parse","actual":"identifier_matches=true"}
+BEGIN OFF-002 | Server cursor propagation | function=ObservingTransport.send/observePage
+{"status":"PASS","expected":"pages=2;second_cursor=900","function":"ObservingTransport.send\/observePage","id":"OFF-002","name":"Server cursor propagation","actual":"pages=2;second_cursor=900","errorCategory":"NONE"}
+BEGIN OFF-003 | Terminal state and fields | function=ObservingTransport.observePage
+{"actual":"hasMore=Optional(false);fields=1","status":"PASS","name":"Terminal state and fields","expected":"hasMore=false;fields=1","function":"ObservingTransport.observePage","id":"OFF-003","errorCategory":"NONE"}
+BEGIN OFF-004 | Repeated cursor rejection | function=ObservingTransport.observePage
+{"errorCategory":"NONE","function":"ObservingTransport.observePage","name":"Repeated cursor rejection","expected":"CURSOR_STALLED_OR_CYCLIC","id":"OFF-004","actual":"code=CURSOR_STALLED_OR_CYCLIC;blocked=false","status":"PASS"}
+BEGIN OFF-005 | HTTP access rejection | function=ObservingTransport.send
+{"errorCategory":"NONE","function":"ObservingTransport.send","name":"HTTP access rejection","expected":"throws blocked=true","id":"OFF-005","actual":"code=HTTP_403;blocked=true","status":"PASS"}
+BEGIN OFF-006 | HTML challenge rejection | function=ObservingTransport.observePage
+{"errorCategory":"NONE","function":"ObservingTransport.observePage","name":"HTML challenge rejection","expected":"throws blocked=true","id":"OFF-006","actual":"code=NON_JSON_POSSIBLE_ACCESS_CHALLENGE;blocked=true","status":"PASS"}
+BEGIN OFF-007 | Request cursor mismatch | function=ObservingTransport.sendChecked
+{"errorCategory":"NONE","function":"ObservingTransport.sendChecked","name":"Request cursor mismatch","expected":"REQUEST_CURSOR_MISMATCH","id":"OFF-007","actual":"code=REQUEST_CURSOR_MISMATCH;blocked=false","status":"PASS"}
+BEGIN OFF-008 | Unsafe URLs | function=safeHTTPS/LinkParser.parse
+{"errorCategory":"NONE","function":"safeHTTPS\/LinkParser.parse","name":"Unsafe URLs","expected":"reject 4 unsafe URLs and unrelated profile","id":"OFF-008","actual":"rejected=4;unrelated_rejected=true","status":"PASS"}
+BEGIN OFF-009 | JSON integer types | function=integer
+{"errorCategory":"NONE","name":"JSON integer types","id":"OFF-009","status":"PASS","function":"integer","expected":"status=0;cursor=900;boolean\/fraction rejected","actual":"status=Optional(0);cursor=Optional(900);bool=nil;fraction=nil"}
+BEGIN OFF-010 | Pagination flag type | function=JSONSerialization/NSNumber
+{"errorCategory":"NONE","name":"Pagination flag type","id":"OFF-010","status":"PASS","function":"JSONSerialization\/NSNumber","expected":"has_more numeric 1","actual":"number_present=true;number_string=1;bool=Optional(true)"}
+BEGIN OFF-011 | Model field mapping | function=DouyinExtractor.work
+{"expected":"fixture ID\/description\/timestamp preserved","status":"PASS","id":"OFF-011","actual":"id_matches=true;description_matches=true;timestamp=1","errorCategory":"NONE","name":"Model field mapping","function":"DouyinExtractor.work"}
+BEGIN OFF-012 | Stop after server exhaustion | function=ObservingTransport.sendChecked
+{"expected":"PAGE_LIMIT_OR_EXHAUSTED","status":"PASS","id":"OFF-012","actual":"code=PAGE_LIMIT_OR_EXHAUSTED;blocked=false","errorCategory":"NONE","name":"Stop after server exhaustion","function":"ObservingTransport.sendChecked"}
+BEGIN OFF-013 | Failed-page state | function=ObservingTransport.send catch
+{"expected":"one error page HTTP_403;zero fields;no candidate","status":"PASS","id":"OFF-013","actual":"pages=1;error=HTTP_403;fields=0;candidate=false","errorCategory":"NONE","name":"Failed-page state","function":"ObservingTransport.send catch"}
+BEGIN OFF-014 | Media host allowlist | function=ObservingTransport.allowMedia
+{"expected":"MEDIA_HOST_OUTSIDE_ALLOWLIST","status":"PASS","id":"OFF-014","actual":"code=MEDIA_HOST_OUTSIDE_ALLOWLIST;blocked=true","errorCategory":"NONE","name":"Media host allowlist","function":"ObservingTransport.allowMedia"}
+BEGIN OFF-015 | Reject HTML media bytes | function=ObservingTransport.sendChecked
+{"expected":"MEDIA_CONTAINER_NOT_MP4;no media hash","status":"PASS","id":"OFF-015","actual":"code=MEDIA_CONTAINER_NOT_MP4;blocked=false","errorCategory":"NONE","name":"Reject HTML media bytes","function":"ObservingTransport.sendChecked"}
+BEGIN OFF-016 | Exception classification | function=RuntimeAcceptance.classify
+{"expected":"missing credentials BLOCKED;storage FAIL","status":"PASS","id":"OFF-016","actual":"missing=UPSTREAM_MISSING_CREDENTIALS,true;storage=UPSTREAM_STORAGE_ERROR,false","errorCategory":"NONE","name":"Exception classification","function":"RuntimeAcceptance.classify"}
+BEGIN OFF-017 | Exact endpoint routing regression | function=ObservingTransport.sendChecked
+{"expected":"exact endpoint reaches worklist;4 near-miss endpoints rejected before transport","status":"PASS","id":"OFF-017","actual":"exact_endpoint_worklist=true;near_miss_rejected=4;near_miss_transport_calls=0","errorCategory":"NONE","name":"Exact endpoint routing regression","function":"ObservingTransport.sendChecked"}
+BEGIN OFF-018 | HTTP rejection exact category | function=ObservingTransport.sendChecked
+{"expected":"HTTP_403;blocked=true;worklist exchange recorded","status":"PASS","id":"OFF-018","actual":"code=HTTP_403;blocked=true;worklist_exchange=true","errorCategory":"NONE","name":"HTTP rejection exact category","function":"ObservingTransport.sendChecked"}
+BEGIN OFF-019 | HTML rejection exact category | function=ObservingTransport.observePage
+{"expected":"NON_JSON_POSSIBLE_ACCESS_CHALLENGE;blocked=true","status":"PASS","id":"OFF-019","actual":"code=NON_JSON_POSSIBLE_ACCESS_CHALLENGE;blocked=true","errorCategory":"NONE","name":"HTML rejection exact category","function":"ObservingTransport.observePage"}
+URL_SHAPE legacy_path_matches=false;components_path_matches=true;host_matches=true
+BEGIN AUTH-001 | Explicit consent | function=AuthPreflight
+{"expected":"missing consent rejected before transport","status":"PASS","id":"AUTH-001","actual":"expected_condition_verified","errorCategory":"NONE","name":"Explicit consent","function":"AuthPreflight"}
+BEGIN AUTH-002 | Missing secret | function=AuthPreflight
+{"expected":"empty credential rejected before transport","status":"PASS","id":"AUTH-002","actual":"expected_condition_verified","errorCategory":"NONE","name":"Missing secret","function":"AuthPreflight"}
+BEGIN AUTH-003 | Header injection | function=AuthPreflight
+{"expected":"control characters rejected","status":"PASS","id":"AUTH-003","actual":"expected_condition_verified","errorCategory":"NONE","name":"Header injection","function":"AuthPreflight"}
+BEGIN AUTH-004 | Profile scope | function=AuthPreflight
+{"expected":"foreign profile rejected","status":"PASS","id":"AUTH-004","actual":"expected_condition_verified","errorCategory":"NONE","name":"Profile scope","function":"AuthPreflight"}
+BEGIN AUTH-005 | One request and field counts | function=AuthPreflight
+{"expected":"one successful fixture then hard stop","status":"PASS","id":"AUTH-005","actual":"expected_condition_verified","errorCategory":"NONE","name":"One request and field counts","function":"AuthPreflight"}
+BEGIN AUTH-006 | No credential forwarding to foreign host | function=AuthPreflight
+{"expected":"foreign request rejected with zero fixture calls","status":"PASS","id":"AUTH-006","actual":"expected_condition_verified","errorCategory":"NONE","name":"No credential forwarding to foreign host","function":"AuthPreflight"}
+BEGIN AUTH-007 | No second-page cursor | function=AuthPreflight
+{"expected":"nonzero cursor rejected before send","status":"PASS","id":"AUTH-007","actual":"expected_condition_verified","errorCategory":"NONE","name":"No second-page cursor","function":"AuthPreflight"}
+BEGIN AUTH-008 | Credential header boundary | function=AuthPreflight
+{"expected":"missing, changed or additional authorization headers rejected","status":"PASS","id":"AUTH-008","actual":"expected_condition_verified","errorCategory":"NONE","name":"Credential header boundary","function":"AuthPreflight"}
+BEGIN AUTH-009 | 403 handling | function=AuthPreflight
+{"expected":"ACCESS_RESTRICTED and no second send","status":"PASS","id":"AUTH-009","actual":"expected_condition_verified","errorCategory":"NONE","name":"403 handling","function":"AuthPreflight"}
+BEGIN AUTH-010 | Rate limit | function=AuthPreflight
+{"expected":"429 is RATE_LIMITED","status":"PASS","id":"AUTH-010","actual":"expected_condition_verified","errorCategory":"NONE","name":"Rate limit","function":"AuthPreflight"}
+BEGIN AUTH-011 | Challenge body | function=AuthPreflight
+{"expected":"200 HTML does not pass","status":"PASS","id":"AUTH-011","actual":"expected_condition_verified","errorCategory":"NONE","name":"Challenge body","function":"AuthPreflight"}
+BEGIN AUTH-012 | Empty list | function=AuthPreflight
+{"expected":"valid empty list is inconclusive","status":"PASS","id":"AUTH-012","actual":"expected_condition_verified","errorCategory":"NONE","name":"Empty list","function":"AuthPreflight"}
+BEGIN AUTH-013 | Response shape | function=AuthPreflight
+{"expected":"200 unrelated JSON rejected","status":"PASS","id":"AUTH-013","actual":"expected_condition_verified","errorCategory":"NONE","name":"Response shape","function":"AuthPreflight"}
+BEGIN AUTH-014 | Redirect rejection | function=AuthPreflight
+{"expected":"302 stopped without follow","status":"PASS","id":"AUTH-014","actual":"expected_condition_verified","errorCategory":"NONE","name":"Redirect rejection","function":"AuthPreflight"}
+BEGIN AUTH-015 | Original client pipeline with memory fixture | function=AuthPreflight
+{"expected":"has_more=1 still only one original client request","status":"PASS","id":"AUTH-015","actual":"expected_condition_verified","errorCategory":"NONE","name":"Original client pipeline with memory fixture","function":"AuthPreflight"}
+BEGIN AUTH-016 | Anonymous guard unchanged | function=AuthPreflight
+{"expected":"anonymous observer rejects cookie before memory send","status":"PASS","id":"AUTH-016","actual":"expected_condition_verified","errorCategory":"NONE","name":"Anonymous guard unchanged","function":"AuthPreflight"}
+BEGIN AUTH-017 | No media endpoint | function=AuthPreflight
+{"expected":"media URL rejected before send","status":"PASS","id":"AUTH-017","actual":"expected_condition_verified","errorCategory":"NONE","name":"No media endpoint","function":"AuthPreflight"}
+BEGIN AUTH-018 | No proxy or extra headers | function=AuthPreflight
+{"expected":"proxy or extra header options rejected","status":"PASS","id":"AUTH-018","actual":"expected_condition_verified","errorCategory":"NONE","name":"No proxy or extra headers","function":"AuthPreflight"}
+BEGIN AUTH-019 | Work item identity | function=AuthPreflight
+{"expected":"JSON list with invalid item identity is not accepted","status":"PASS","id":"AUTH-019","actual":"expected_condition_verified","errorCategory":"NONE","name":"Work item identity","function":"AuthPreflight"}
+OFFLINE SUMMARY total=38 passed=38 failed=0
+HOST-001 PASS
+HOST-002 PASS
+HOST-003 PASS
+HOST-004 PASS
+HOST-005 PASS
+HOST-006 PASS
+HOST-007 PASS
+HOST-008 PASS
+HOST-009 PASS
+HOST-010 PASS
+HOST-011 PASS
+HOST-012 PASS
+HOST-013 PASS
+HOST-014 PASS
+HOST-015 PASS
+HOST-016 PASS
+HOST-017 PASS
+HOST-018 PASS
+HOST-019 PASS
+HOST-020 PASS
+HOST_OFFLINE_SUMMARY total=20 passed=20
+PRI-001 PASS
+PRI-002 PASS
+PRI-003 PASS
+PRI-004 PASS
+PRI-005 PASS
+PRI-006 PASS
+PRI-007 PASS
+PRI-008 PASS
+PRI-009 PASS
+PRI-010 PASS
+PRI-011 PASS
+PRI-012 PASS
+PRI-013 PASS
+PRI-014 PASS
+PRI-015 PASS
+PRI-016 PASS
+PRI-017 PASS
+PRI-018 PASS
+PRI-019 PASS
+PRI-020 PASS
+PRI-021 PASS
+PRI-022 PASS
+PRI-023 PASS
+PRI-024 PASS
+PRI-025 PASS
+PRIORITY_OFFLINE_SUMMARY total=25 passed=25

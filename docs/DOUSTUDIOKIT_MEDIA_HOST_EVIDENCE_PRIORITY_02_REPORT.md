@@ -1,6 +1,6 @@
 # DOUSTUDIOKIT_MEDIA_HOST_EVIDENCE_PRIORITY_02
 
-准备和本地验证已完成，等待用户手动运行独立 macOS 离线工作流。本轮没有触发任何 GitHub Actions，没有新的抖音作品请求、媒体请求或 DNS 查询，没有读取真实 Cookie。**不能在 macOS 实测之前认定 Swift 修复验收通过。**
+用户手动触发的独立 macOS 离线验收已完成：**编译 PASS，83/83 项真实 Swift 检查 PASS**。本次只运行合成 fixture，未请求真实作品列表、媒体或读取真实 Cookie；没有自动触发或重试工作流。真实媒体主机仍未批准。
 
 ## 基线和根因
 
@@ -43,42 +43,46 @@
 
 Windows：Python 测试 **20/20 PASS**（新离线证据边界 8 项，既有主机审计 wrapper 12 项）；YAML、bash -n、固定版本、无输入/无 Secret、Artifact 白名单、代码路径和变更范围静态检查 PASS。actionlint 未安装，未执行。
 
-Swift/macOS：**NOT_RUN**。工作流计划执行原有 38 项通用/认证 + 20 项主机 + 新增 25 项优先证据测试，共 **83 项**。Windows Python 不模拟 Extractor，不替代这些测试结果。
+Swift/macOS：**83/83 PASS**，其中原有通用/认证 38 项、主机 20 项、新增优先证据 25 项。编译退出码 0，自检退出码 0；Windows Python 结果没有用于替代 Swift 实测。
 
 | 新用例 | 实际验证目标 | 当前结果 |
 |---|---|---|
-| PRI-001～004 | 21 条作品、1260 个备用地址；全部主要关联完成；备用统计独立截断；主机计数 21 | NOT_RUN |
-| PRI-005～007 | 原版码率排序、最后地址、缺失/空 bit_rate 回退 | NOT_RUN |
-| PRI-008～009 | 多字段相同地址保留 4 个匹配和 2 个满足选择条件的路径，但只计 1 个作品 | NOT_RUN |
-| PRI-010～011 | 强制传入与来源不匹配的合成选择值；缺失视频地址均有明确失败状态 | NOT_RUN |
-| PRI-012 | 视频、封面、头像、音频和图集统计隔离 | NOT_RUN |
-| PRI-013～014 | 重复作品 ID 去重；同 ID 地址冲突失败关闭 | NOT_RUN |
-| PRI-015 | 序列化无 URL、路径、查询、合成敏感标记、标题和真实格式 ID | NOT_RUN |
-| PRI-016～019 | 作品数、码率项、URL 项数和结构深度超限失败 | NOT_RUN |
-| PRI-020～022 | 无自动批准、无通配符；恰好 1000 备用统计不误报截断；不安全地址不能通过完整性门禁 | NOT_RUN |
-| PRI-023～025 | 原版排序中的 FPS、bitrate、data_size 逐级决胜规则 | NOT_RUN |
+| PRI-001～004 | 21 条作品、1260 个备用地址；全部主要关联完成；备用统计独立截断；主机计数 21 | PASS |
+| PRI-005～007 | 原版码率排序、最后地址、缺失/空 bit_rate 回退 | PASS |
+| PRI-008～009 | 多字段相同地址保留 4 个匹配和 2 个满足选择条件的路径，但只计 1 个作品 | PASS |
+| PRI-010～011 | 强制传入与来源不匹配的合成选择值；缺失视频地址均有明确失败状态 | PASS |
+| PRI-012 | 视频、封面、头像、音频和图集统计隔离 | PASS |
+| PRI-013～014 | 重复作品 ID 去重；同 ID 地址冲突失败关闭 | PASS |
+| PRI-015 | 序列化无 URL、路径、查询、合成敏感标记、标题和真实格式 ID | PASS |
+| PRI-016～019 | 作品数、码率项、URL 项数和结构深度超限失败 | PASS |
+| PRI-020～022 | 无自动批准、无通配符；恰好 1000 备用统计不误报截断；不安全地址不能通过完整性门禁 | PASS |
+| PRI-023～025 | 原版排序中的 FPS、bitrate、data_size 逐级决胜规则 | PASS |
 
-主 fixture 的期望为：21 条唯一视频、21 条 selected 记录、1 个 selected 主机、21 个匹配作品；备用 URL 总数 1260，统计 1000，ALTERNATE_SUMMARY_TRUNCATED=true，主要证据 complete=true。**这些是 fixture 预期，不是已发生的 Swift 运行结果。**
+主 fixture 的期望为：21 条唯一视频、21 条 selected 记录、1 个 selected 主机、21 个匹配作品；备用 URL 总数 1260，统计 1000，ALTERNATE_SUMMARY_TRUNCATED=true，主要证据 complete=true。**本次真实 Swift 输出与上述预期一致；这是合成 fixture，不是真实用户作品。**
 
-## 交付证据和待验收状态
+## 真实云端结果与证据
 
-`evidence/doustudio-media-host-evidence-priority-02/` 已提供七个指定文件及本地验证、保护记录。六个 Swift 输出文件目前明确标为 NOT_RUN，records 为空；未将 Python 构造数据伪装成真实 Swift 输出。用户手动运行后，真实 Artifact 将包含实际数据、退出码、受测 SHA、环境、逐项结果和哈希清单。
-
-下列五个结果项需要真实 Swift 测试后才能判定 PASS/FAIL；准备阶段暂记 NOT_RUN，而不虚构已通过或已失败。
+- [运行 40297971472](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40297971472)，受测提交 `0e5eeb9ca4de27580c65cc6c72483e9078610c61`，源码准备提交 `8d50b102e4996626a309dc61f75d028df1f6f5d8`。
+- 环境：macOS 27.0.1 (26A434)、Xcode 27.1 (27A9275)、Apple Swift 6.4、arm64；上游 HEAD 与固定 SHA 一致且无改动。
+- 所有 job 步骤 success，包括编译、禁止网络的 Swift fixtures、证据与源码保护校验及 Artifact 上传。逐步结果见 `run-40297971472/jobs.json`。
+- 21 条 selected 全部保留且精确关联，未匹配为 0；1 个合成选中主机对应 21 条作品。备用地址只统计 1000 次并独立截断，primary_complete=true。
+- Artifact ID `12638777679`；下载 ZIP SHA-256：`a13f3e4b4133900f5731820c16dc4b77d5dce28fe2b2a10e97f93d1b0f3bee4b`，与 GitHub digest 一致。CRC、18 文件白名单及 runner 清单中 17 个文件哈希全部验证通过。
+- 原始 Artifact 文件保存在 `evidence/doustudio-media-host-evidence-priority-02/run-40297971472/`，未改写；附加 jobs、GitHub Artifact 元数据及本地核验记录。根目录六个必需 JSON 已替换为同次运行的真实 Swift 合成测试输出。
+- 新旧用例的逐项 ID、期望、实际摘要、状态和错误类别均在三个 selftest-results 文件内。Artifact 不含媒体文件、Cookie 或完整媒体 URL；日志按已有规则脱敏，不能称为未经处理的原始日志。
 
 ```ini
 TASK = DOUSTUDIOKIT_MEDIA_HOST_EVIDENCE_PRIORITY_02
 UPSTREAM_SOURCE_CHANGED = NO
 REAL_WORKLIST_REQUEST = NOT_RUN
 REAL_MEDIA_REQUEST = NOT_RUN
-SELECTED_SOURCE_ASSOCIATION = NOT_RUN
-SELECTED_EVIDENCE_COMPLETE = NOT_RUN
-ALTERNATE_SUMMARY_ISOLATED = NOT_RUN
-HOST_AGGREGATION_CONSISTENCY = NOT_RUN
-SENSITIVE_DATA_REDACTION = NOT_RUN
-SWIFT_BUILD = NOT_RUN
-OFFLINE_TESTS = NOT_RUN
-OFFLINE_WORKFLOW = NOT_RUN
+SELECTED_SOURCE_ASSOCIATION = PASS
+SELECTED_EVIDENCE_COMPLETE = PASS
+ALTERNATE_SUMMARY_ISOLATED = PASS
+HOST_AGGREGATION_CONSISTENCY = PASS
+SENSITIVE_DATA_REDACTION = PASS
+SWIFT_BUILD = PASS
+OFFLINE_TESTS = PASS
+OFFLINE_WORKFLOW = PASS
 APPROVED_HOSTS = 0
 PRODUCTION_ALLOWLIST = EMPTY
 REAL_VIDEO_DOWNLOAD = NOT_RUN
@@ -86,10 +90,10 @@ NO_WATERMARK = NOT_TESTED
 AUTO_TRIGGERED = NO
 ```
 
-## 手动执行和停止点
+## 发布、保护检查和停止点
 
-源码准备提交已普通推送：`8d50b102e4996626a309dc61f75d028df1f6f5d8`。GitHub 已登记工作流 ID `396849434`、state=active，核验时 total_runs=0。实际受测 SHA 暂为 NOT_RUN；注册成功不等于编译或测试通过。收尾提交只补充报告和发布证据，不改变源码。
+源码准备提交 `8d50b102e4996626a309dc61f75d028df1f6f5d8`、准备报告提交 `0e5eeb9ca4de27580c65cc6c72483e9078610c61` 均已发布。本次验收结果交付仅更新本任务报告与证据，不修改 Harness 或任何工作流。初始 HEAD 与远端 main 一致。旧未跟踪 `docs/DOUSTUDIOKIT_GITHUB_ACTIONS_BUILD_01_RUN_REPORT.md` 保留且不暂存；历史其他任务证据不变。
 
-只执行本地验证，未触发任何 Actions。329 个既有文件（含旧未跟踪 RUN 报告）核验只有已列明的 5 个文件发生修改；SafeStreamingTransport、下载工作流、所有历史证据及上游未变。原未跟踪 RUN 报告不暂存；普通提交推送，无强制推送。
+上游、SafeStreamingTransport、失败关闭的单视频工作流、原匿名/认证/分页功能保持不变。没有操作其他项目、系统代理、v2rayN 或 Git 全局配置，没有强制推送。
 
-下一步用户打开 [独立离线工作流](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/workflows/doustudio-media-host-evidence-tests.yml)，Run workflow → main → Run workflow，无需主页或 Cookie 输入。离线成功仅证明证据逻辑，不代表媒体主机批准。只有取得真实离线 PASS 后，才进入用户另行手动运行一次主机观察的阶段。本轮到准备发布为止停止。
+**离线证据修复验收通过；真实主机审计尚未通过。** 批准主机仍为 0，生产白名单为空，下载门禁保持关闭。下一步可由用户另行手动运行一次 [DouStudioKit Media Host Allowlist Audit](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/workflows/doustudio-media-host-audit.yml)，输入有权访问的规范公开主页并确认自己的登录态授权；本助手未触发该流程。该流程仅一次作品列表请求并解析主机字符串，不访问媒体 URL。取得新证据后再分别审核来源与主机可信关联，不能因本次合成测试 PASS 自动批准主机。

@@ -1,6 +1,5 @@
 {
-  "status": "NOT_RUN",
-  "records": [],
-  "evidence_kind": "PENDING_REAL_SWIFT_OFFLINE_EXECUTION",
-  "tested_sha": null
+  "approved_hosts" : "0",
+  "fixture" : "SYNTHETIC_ONLY",
+  "serialization_check" : "PASS"
 }
