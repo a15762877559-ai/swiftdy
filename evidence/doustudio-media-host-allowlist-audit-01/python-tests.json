@@ -1,0 +1,6 @@
+{
+  "exit_code": 0,
+  "tests": 12,
+  "status": "PASS",
+  "scope": "Python credential isolation, fail-closed behavior, one child process, artifact filtering; not Swift runtime"
+}

@@ -1,0 +1,19 @@
+{
+  "local_static_validation": "PASS",
+  "python_syntax": "PASS",
+  "yaml_structure": "PASS",
+  "shell_syntax": "PASS",
+  "credential_isolation": "PASS_STATIC_AND_WRAPPER_TESTS",
+  "media_request_path": "ABSENT_IN_AUDIT_MODE",
+  "artifact_whitelist": "PASS",
+  "existing_files_checked": 289,
+  "existing_files_changed": [
+    "runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift"
+  ],
+  "existing_workflows_unchanged": true,
+  "upstream_sha": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "swift_compilation": "NOT_RUN",
+  "swift_offline_tests": "NOT_RUN",
+  "actionlint": "NOT_INSTALLED_NOT_RUN",
+  "auto_triggered": false
+}

@@ -1,0 +1,37 @@
+{
+  "existing_sources": [
+    {
+      "evidence_id": "EXISTING-001",
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/auth-result.json",
+      "sha256": "b68a6f58d57ced4af654447444bd7c0adb682c90e4b0b367ca6d2024cb80fb09",
+      "scope": "REAL_WORKLIST_SANITIZED_STATISTICS",
+      "contains_real_selected_video_host": false
+    },
+    {
+      "evidence_id": "EXISTING-002",
+      "path": "evidence/doustudio-authenticated-pagination-01/run-40279553152/pagination-result.json",
+      "sha256": "c8f5f482dc927b3ec9581f302b741a8df8bd36bfae6f2fb66b9a7e2aff6a2c04",
+      "scope": "REAL_WORKLIST_SANITIZED_STATISTICS",
+      "contains_real_selected_video_host": false
+    },
+    {
+      "evidence_id": "EXISTING-003",
+      "path": "evidence/doustudio-real-download-integration-01/run-40289436585/integration-results.json",
+      "sha256": "a6b95ac3f5e12ff9133fc69abbb9fe22a57c2c0f8ca4f39fca4a53cbf74f32cb",
+      "scope": "SYNTHETIC_LOOPBACK_ONLY",
+      "contains_real_selected_video_host": false
+    }
+  ],
+  "files": {
+    "approved-hosts.json": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+    "audit-summary.json": "d8b49803d84e3fe223ca4ce5746d6691d244399cbec290ee05b1a9fb3b01c1c4",
+    "candidate-hosts.json": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+    "host-provenance.json": "2628de5102bf3bdebf2eb026514b652dd484a782000e05cf040dbcfd529afa2c",
+    "host-security-review.json": "62a22d78ca99db88aa00a2e3d2194e2e16fbf7e503b675dacb1b1e6d3f74d988",
+    "local-validation.json": "f97dcbd08469aa727acb1c0874cc21836a9958711caa59aa7a42def2e6872c45",
+    "protection-check.json": "400988b4dde314454df2aaa6c9337c1937cbcbee7b145c9ee062e2f1fd834b3b",
+    "python-tests.json": "ce5bfba9ea3e4edc206a5a21d89f3d18973c497c52a701e613e2e979b2d66eec",
+    "python-tests.log": "8db1f0e5391fa30a36a2990378725e38a93a3dd08f39bbf729464daba88abc1b"
+  },
+  "new_workflow_run": "NOT_RUN"
+}

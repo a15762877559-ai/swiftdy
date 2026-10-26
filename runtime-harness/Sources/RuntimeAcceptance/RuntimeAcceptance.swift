@@ -9,6 +9,14 @@ struct RuntimeAcceptance {
     static let upstream = "362dad3d082e9f63c8efd360acc653ba169d40a2"
 
     @MainActor static func main() async {
+        if Array(CommandLine.arguments.dropFirst()) == ["--media-host-audit-self-test"] {
+            do {
+                let baseline = try await SelfTest.run()
+                let audit = try await MediaHostAuditSelfTest.run()
+                if !baseline || !audit { exit(1) }
+            } catch { print("HOST_AUDIT_OFFLINE_ERROR"); exit(1) }
+            return
+        }
         if CommandLine.arguments.contains("--pagination-self-test") {
             do {
                 let original = try await SelfTest.run()
@@ -34,6 +42,13 @@ struct RuntimeAcceptance {
         if ProcessInfo.processInfo.environment["OFFLINE_ONLY"] == "1" {
             print("ONLINE_ENTRY_DISABLED_IN_OFFLINE_MODE")
             exit(64)
+        }
+        if Array(CommandLine.arguments.dropFirst()) == ["--media-host-audit"] {
+            do {
+                let passed = try await MediaHostAudit.run(environment: ProcessInfo.processInfo.environment)
+                if !passed { exit(2) }
+            } catch { exit(1) }
+            return
         }
         if CommandLine.arguments.contains("--authenticated-pagination") {
             do {

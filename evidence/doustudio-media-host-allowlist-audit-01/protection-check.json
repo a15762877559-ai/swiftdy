@@ -1,0 +1,14 @@
+{
+  "initial_head": "ba17ce255ef99fe2c13c6125b05c09f31413ea00",
+  "files_checked": 290,
+  "existing_files_changed": [
+    "runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift"
+  ],
+  "change_description": "Two explicit host-audit dispatch branches; old modes unchanged",
+  "existing_workflows_changed": false,
+  "production_transport_changed": false,
+  "upstream_changed": false,
+  "untracked_run_report_changed": false,
+  "other_projects_changed": false,
+  "system_proxy_changed": false
+}

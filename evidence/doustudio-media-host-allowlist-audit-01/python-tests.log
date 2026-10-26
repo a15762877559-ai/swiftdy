@@ -1,0 +1,17 @@
+test_auto_approval_rejected (test_media_host_audit.AuditBoundaryTests.test_auto_approval_rejected) ... ok
+test_child_environment_and_arguments (test_media_host_audit.AuditBoundaryTests.test_child_environment_and_arguments) ... ok
+test_cookie_control_character (test_media_host_audit.AuditBoundaryTests.test_cookie_control_character) ... ok
+test_exit_zero_without_result_fails (test_media_host_audit.AuditBoundaryTests.test_exit_zero_without_result_fails) ... ok
+test_invalid_profile (test_media_host_audit.AuditBoundaryTests.test_invalid_profile) ... ok
+test_missing_secret (test_media_host_audit.AuditBoundaryTests.test_missing_secret) ... ok
+test_no_consent (test_media_host_audit.AuditBoundaryTests.test_no_consent) ... ok
+test_no_profile_default (test_media_host_audit.AuditBoundaryTests.test_no_profile_default) ... ok
+test_nonzero_exit_propagates (test_media_host_audit.AuditBoundaryTests.test_nonzero_exit_propagates) ... ok
+test_timeout_no_retry (test_media_host_audit.AuditBoundaryTests.test_timeout_no_retry) ... ok
+test_url_in_evidence_rejected (test_media_host_audit.AuditBoundaryTests.test_url_in_evidence_rejected) ... ok
+test_whitelist_never_includes_media (test_media_host_audit.AuditBoundaryTests.test_whitelist_never_includes_media) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.062s
+
+OK
