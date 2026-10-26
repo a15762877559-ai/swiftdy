@@ -42,6 +42,8 @@ struct ControlledResult: Codable {
         DouyinWork(id:id,desc:"controlled-fixture",createTimestamp:1,createTime:"fixture",kind:.video,nickname:"fixture",downloads:[.media(url:url.absoluteString)])
     }
     @MainActor static func main() async {
+        if Array(CommandLine.arguments.dropFirst()) == ["--integration-fixture"] { await IntegrationMedia.generateMain(); return }
+        if Array(CommandLine.arguments.dropFirst()) == ["--integration-case"] { await DownloadIntegration.run(); return }
         let env = ProcessInfo.processInfo.environment
         guard let id = env["SAFE_CASE"], cases.contains(id), let portText = env["SAFE_PORT"], let port = Int(portText), port >= 1024,
               let base = env["SAFE_MEDIA_ROOT"], let evidence = env["SAFE_EVIDENCE_ROOT"],

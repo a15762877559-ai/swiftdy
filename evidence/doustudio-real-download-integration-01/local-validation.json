@@ -1,0 +1,15 @@
+{
+  "validation": "PASS",
+  "python_syntax": "PASS",
+  "yaml_structure": "PASS",
+  "shell_syntax": "PASS",
+  "original_transport_unchanged": true,
+  "existing_files_checked": 247,
+  "existing_files_changed": [
+    "runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/ControlledTests.swift"
+  ],
+  "existing_workflows_unchanged": true,
+  "actionlint": "NOT_INSTALLED_NOT_RUN",
+  "swift_build": "NOT_RUN_ON_WINDOWS",
+  "real_media_gate": "CLOSED"
+}
