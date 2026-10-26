@@ -1,0 +1,22 @@
+{
+  "artifact_id": 12629990224,
+  "sha256": "c8e4335fde96c2a420afa82fcf10e7cdaffaeeccac5ae5bb006c165a2a481be1",
+  "digest_match": true,
+  "bytes": 1162,
+  "file_count": 6,
+  "zip_crc": "PASS",
+  "allowlist": "PASS",
+  "files": [
+    "auth-exit-code.txt",
+    "auth-result.json",
+    "build-exit-code.txt",
+    "input-validation.json",
+    "offline-exit-code.txt",
+    "stage-outcomes.json"
+  ],
+  "expires_at": "2026-10-29T05:24:48Z",
+  "retention_days": 3,
+  "credential_data_in_artifact": false,
+  "media_in_artifact": false,
+  "missing_environment_build_offline_logs": "Expected: stages skipped before upstream checkout"
+}

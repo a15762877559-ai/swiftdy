@@ -1,0 +1,93 @@
+{
+  "run_id": 40274059566,
+  "url": "https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40274059566",
+  "attempt": 1,
+  "event": "workflow_dispatch",
+  "created_at_Asia_Shanghai": "2026-10-26T13:24:39+08:00",
+  "test_commit": "cafa12ea27ead47c9a22f4907281bb54069a261b",
+  "conclusion": "failure",
+  "job_id": 121412919925,
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1
+    },
+    {
+      "name": "Checkout harness",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2
+    },
+    {
+      "name": "Validate explicit authorization and initialize evidence",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 3
+    },
+    {
+      "name": "Checkout pinned upstream",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 4
+    },
+    {
+      "name": "Verify upstream and environment",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 5
+    },
+    {
+      "name": "Build harness without credentials",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 6
+    },
+    {
+      "name": "Offline fixtures without credentials or network",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 7
+    },
+    {
+      "name": "One authorized authenticated preflight",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 8
+    },
+    {
+      "name": "Record outcomes and upstream protection",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9
+    },
+    {
+      "name": "Upload sanitized evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10
+    },
+    {
+      "name": "Post Checkout harness",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 20
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 21
+    }
+  ],
+  "input_validation_exit_code": 2,
+  "failure_reason": "PROFILE_FORMAT_INVALID",
+  "authorized": true,
+  "profile_format_valid": false,
+  "secret_step_executed": false,
+  "platform_request_started": false,
+  "platform_request_count": 0,
+  "http_status": null,
+  "automatic_retry": false
+}

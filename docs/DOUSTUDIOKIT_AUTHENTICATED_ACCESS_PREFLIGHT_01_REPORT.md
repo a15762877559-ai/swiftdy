@@ -1,6 +1,6 @@
 # DOUSTUDIOKIT_AUTHENTICATED_ACCESS_PREFLIGHT_01
 
-2026-10-26，Asia/Shanghai。准备阶段已通过：代码、工作流、本地 10 项测试和真实 macOS 38 项离线验收通过；真实认证请求尚未触发。固定上游 `qinjian0420/DouStudioKit@362dad3d082e9f63c8efd360acc653ba169d40a2`，不修改上游。
+2026-10-26，Asia/Shanghai。准备阶段已通过。最新用户手动运行 40274059566 在主页格式校验阶段 BLOCKED：授权已确认，但 profile_format_valid=false；认证步骤 skipped，Secret 未读取，未发送平台请求。此前准备记录保留，最新结果见末尾。固定上游 `qinjian0420/DouStudioKit@362dad3d082e9f63c8efd360acc653ba169d40a2`，不修改上游。
 
 ## 基线与范围
 
@@ -91,6 +91,53 @@ Artifact 保留 3 天，11 个显式路径：input-validation.json、environment
 
 ```ini
 AUTH_PREFLIGHT = NOT_RUN
+COOKIE_CONFIGURATION = NOT_RUN
+PROFILE_RESOLUTION = NOT_RUN
+WORKLIST_FETCH = NOT_RUN
+AUTHENTICATED_ACCESS_ACCEPTED = UNKNOWN
+PAGINATION = NOT_RUN
+VIDEO_DOWNLOAD = NOT_RUN
+SIGNATURE_REVERSE_ENGINEERING = NOT_STARTED
+RUST_IMPLEMENTATION = NOT_STARTED
+```
+
+
+## 用户手动运行 40274059566：输入格式阻塞
+
+- [GitHub Actions 真实运行](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40274059566)，北京时间 2026-10-26 13:24:39 创建，workflow_dispatch，attempt=1，conclusion=failure。
+- 受测提交 `cafa12ea27ead47c9a22f4907281bb54069a261b`。初始化步骤退出码 2。
+- input-validation.json 明确记录 `authorized=true`、`profile_format_valid=false`、`result=BLOCKED`。因此可以确认授权勾选已生效，失败的是 URL 格式条件；没有读取或输出用户实际输入，不能猜测具体错误字符。
+- 输入必须是 `https://www.douyin.com/user/ID`，ID 由 1–256 个 ASCII 字母、数字、下划线或连字符组成；不允许额外空格、查询参数、fragment、Markdown 包装或短链接。不自动纠正输入或复用旧主页。
+- 上游 checkout、环境记录、构建、离线测试和认证步骤均 skipped。本轮构建/离线/认证退出码文件为 NOT_RUN；不能用先前 38/38 PASS 冒充本次执行结果。
+- Secret 仅存在于认证步骤配置中，而该步骤未执行。没有读取 Secret 的值、长度、摘要或存在性；不写入 credential_present 的推测值。COOKIE_CONFIGURATION=NOT_RUN，不能说 Cookie 缺失或无效。
+- 请求阶段未开始，平台请求次数 0，无 HTTP 状态、作品列表、数量或字段统计。第一页未执行，分页/下载未执行；与匿名 HTTP 403 基线无法形成认证效果对比。
+- 总体 AUTH_PREFLIGHT=BLOCKED 表示初始化门禁阻塞；原 Artifact 中 auth-result.json 的 AUTH_PREFLIGHT=NOT_RUN 表示 Swift 认证模式未执行。原文件保持不变，解释单独保存在 acceptance-assessment.json。
+
+### 步骤 outcome
+
+| 步骤 | outcome |
+| --- | --- |
+| Set up job | success |
+| Checkout harness | success |
+| Validate explicit authorization and initialize evidence | failure |
+| Checkout pinned upstream | skipped |
+| Verify upstream and environment | skipped |
+| Build harness without credentials | skipped |
+| Offline fixtures without credentials or network | skipped |
+| One authorized authenticated preflight | skipped |
+| Record outcomes and upstream protection | success |
+| Upload sanitized evidence | success |
+| Post Checkout harness | success |
+| Complete job | success |
+
+### Artifact 与交付
+
+[Artifact 12629990224](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40274059566/artifacts/12629990224)，1162 bytes，6 个白名单文件，保留 3 天。SHA-256 `c8e4335fde96c2a420afa82fcf10e7cdaffaeeccac5ae5bb006c165a2a481be1` 与发布摘要一致，ZIP CRC 通过。环境、构建和离线日志不存在是步骤跳过的预期结果。
+
+原始 Artifact 及核验/运行摘要保存到 `evidence/doustudio-authenticated-access-preflight-01/run-40274059566/`；仅保存脱敏状态与固定错误证据，没有凭据或媒体。本轮仅更新本报告和新增该 RunID 证据，源码、工作流、上游及其他项目不变，历史证据不覆盖。按任务范围普通提交和推送；未重试，未触发其他测试。
+
+```ini
+AUTH_PREFLIGHT = BLOCKED
 COOKIE_CONFIGURATION = NOT_RUN
 PROFILE_RESOLUTION = NOT_RUN
 WORKLIST_FETCH = NOT_RUN
