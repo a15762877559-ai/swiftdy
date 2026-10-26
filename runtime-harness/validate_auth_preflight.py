@@ -46,11 +46,11 @@ assert main.index('ONLINE_ENTRY_DISABLED_IN_OFFLINE_MODE')<main.index('--authent
 assert 'cookie: ""' in main
 tests=(root/'runtime-harness/Sources/RuntimeAcceptance/AuthPreflightSelfTest.swift').read_text()
 ids=re.findall(r'await test\("(AUTH-\d+)"',tests)
-assert len(ids)==18 and len(set(ids))==18
+assert len(ids)==19 and len(set(ids))==19
 assert 'URLSessionTransport(' not in tests
 protected=json.loads((root/'.git/task-validation/auth-preflight/protected-before.json').read_text(encoding='utf-8-sig'))
 for p in protected: assert hashlib.sha256((root/p['path']).read_bytes()).hexdigest().upper()==p['hash'],p['path']
-out={'workflow_validation':'PASS','secret_injection':'AUTH_STEP_ONLY','artifact_whitelist':11,'swift_fixture_cases':18,'existing_cases':19,
+out={'workflow_validation':'PASS','secret_injection':'AUTH_STEP_ONLY','artifact_whitelist':11,'swift_fixture_cases':19,'existing_cases':19,
      'protected_files_verified':len(protected),'swift_local_compilation':'NOT_RUN_NO_TOOLCHAIN','actionlint':'NOT_INSTALLED_NOT_RUN','authenticated_request':'NOT_RUN'}
 (root/'.git/task-validation/auth-preflight/local-validation.json').write_text(json.dumps(out,indent=2)+'\n')
 print(json.dumps(out))

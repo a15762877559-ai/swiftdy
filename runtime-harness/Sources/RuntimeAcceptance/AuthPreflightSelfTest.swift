@@ -129,6 +129,11 @@ private actor AuthFixtureTransport: HTTPTransport {
                 try await expect(.scope) { _ = try await transport.send(request(), options: options) }
             }
         }
+        await test("AUTH-019", "Work item identity", "JSON list with invalid item identity is not accepted") {
+            let transport = AuthPreflightTransport(input: try input(), base: AuthFixtureTransport(SelfTest.response(#"{"status_code":0,"aweme_list":[{}],"max_cursor":0,"has_more":0}"#)))
+            try await expect(.response) { _ = try await transport.send(request(), options: TransportOptions()) }
+            let s = await transport.snapshot(); try require(!s.valid_worklist && s.item_count == 1 && s.fields["id_valid"] == 0)
+        }
         return results
     }
 }

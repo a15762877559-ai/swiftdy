@@ -99,7 +99,7 @@ actor AuthPreflightTransport: HTTPTransport {
         guard let status = integer(object["status_code"]) else { throw AuthPreflightError.response }
         guard status == 0 else { throw AuthPreflightError.access }
         guard let items = object["aweme_list"] as? [[String: Any]], items.count <= 50 else { throw AuthPreflightError.response }
-        observed.valid_worklist = true; observed.item_count = items.count
+        observed.item_count = items.count
         var fields = ["id_valid": 0, "description_present": 0, "timestamp_valid": 0, "cover_present": 0, "video_present": 0]
         for raw in items {
             let work = DouyinExtractor(options: ExtractionOptions(preferOriginalQuality: false)).work(from: JSONNode(raw), collectionTime: "")
@@ -110,6 +110,8 @@ actor AuthPreflightTransport: HTTPTransport {
             if work.downloads.contains(where: { if case .media(let value) = $0 { return safeHTTPS(value) != nil }; return false }) { fields["video_present", default: 0] += 1 }
         }
         observed.fields = fields
+        guard fields["id_valid"] == items.count else { throw AuthPreflightError.response }
+        observed.valid_worklist = true
         guard !items.isEmpty else { throw AuthPreflightError.empty }
         return response
     }
