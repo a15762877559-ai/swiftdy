@@ -5,7 +5,8 @@
   "planned_worklist_limit": 1,
   "planned_media_per_host_limit": 1,
   "planned_media_total_limit": 2,
-  "SWIFT_REQUEST_COUNTER_TESTS": "NOT_RUN",
+  "SWIFT_REQUEST_COUNTER_TESTS": "PASS_SYNTHETIC_LOOPBACK_ONLY",
   "WINDOWS_WRAPPER_NO_RETRY_TEST": "PASS",
-  "WINDOWS_FIXTURE_SINGLE_REQUEST_TESTS": "PASS"
+  "WINDOWS_FIXTURE_SINGLE_REQUEST_TESTS": "PASS",
+  "successful_offline_run": 40319014923
 }

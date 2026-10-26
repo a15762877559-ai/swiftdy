@@ -1,0 +1,14 @@
+{
+  "backup_host_rejected" : true,
+  "empty_rejected" : true,
+  "exact_hosts" : true,
+  "fragment_rejected" : true,
+  "http_rejected" : true,
+  "no_backup_substitution" : true,
+  "original_bitrate" : true,
+  "original_last_address" : true,
+  "per_host_one" : true,
+  "port_rejected" : true,
+  "suffix_rejected" : true,
+  "userinfo_rejected" : true
+}

@@ -1,8 +1,9 @@
 {
   "WINDOWS_ARTIFACT_NEGATIVE_TESTS": "PASS",
-  "SWIFT_SERIALIZATION": "NOT_RUN",
+  "SWIFT_SERIALIZATION": "PASS_SYNTHETIC_ONLY",
   "REAL_ARTIFACT_INSPECTION": "NOT_RUN",
   "media_files_created": false,
   "raw_response_bodies_saved": false,
-  "production_hosts_approved": false
+  "production_hosts_approved": false,
+  "OFFLINE_ARTIFACT_INSPECTION": "PASS"
 }

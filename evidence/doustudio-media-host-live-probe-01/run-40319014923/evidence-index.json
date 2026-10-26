@@ -1,0 +1,31 @@
+{
+  "run_id": "40319014923",
+  "test_commit": "106bc0681898450d34fac803015802af35233114",
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "files": {
+    "probe-summary.json": "50bddf452047595bf4303f07ef327d304ad7ee80818d36c6e54ebc0fe270d588",
+    "host-observations.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "response-header-evidence.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "redirect-evidence.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "credential-isolation-results.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "request-count-results.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "redaction-results.json": "1c1491ff50c10264eb6cf9bde89a570539ad4fed7bf23bc557cc9c056fb17af3",
+    "approved-hosts.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "environment.json": "d71c43bb9980cf29855dac00d2d009e0f63f69083270d5d10c86dccd09a142f3",
+    "source-protection.json": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+    "stage-outcomes.json": "2b496272e07f072014b452073e232c530b814326d26c5d5b7ef9ce896849cab7",
+    "input-validation.json": "4f368487cb914d8f262046df07800cecd14fd030347e5dd9d6c167eb6c1ff005",
+    "build.log": "cf1dd4c670bb71030c966a21fdfa0bc76f683fb0507de6f638a4ced3286d557c",
+    "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "baseline.log": "d072e2cfb9bffb90cca5f9e1daf9a0eb827d646ae510b91ce6bdbf5f683341a7",
+    "baseline-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "offline-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "probe-exit-code.txt": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
+    "offline-tests.json": "0302b853d8415e2ed7d5d8d4e641e67879d5d456fb1893284da22ec05d222fcf",
+    "policy-tests.json": "0f16a91614687b39523c439d6a505a52775c5c3299ee4ddb7849357411f2687a",
+    "selftest-results.json": "97543283d59422f2059f93c6b64eb180425f39c5608b4c571e52cbc782a1c2c1",
+    "host-selftest-results.json": "f4407a7de04b95b855735dd04a5b7255c8aa237f4bcafaf8bb5ec73b6c03fcc0",
+    "priority-selftest-results.json": "81e7b75840bca7d9129bdd38ab6866e4f5df571f16cfe8914d68cca6a4ee2a48",
+    "offline-source.json": "5d9cc0789703a1861c23e937765339baf3a3012193a6af5e775b0c06ab808b8c"
+  }
+}

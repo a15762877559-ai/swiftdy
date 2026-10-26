@@ -1,0 +1,25 @@
+{
+  "total_count": 1,
+  "artifacts": [
+    {
+      "id": 12647952399,
+      "node_id": "MDg6QXJ0aWZhY3QxMjY0Nzk1MjM5OQ==",
+      "name": "doustudio-live-probe-offline-40319014923-1",
+      "size_in_bytes": 14910,
+      "url": "https://api.github.com/repos/a15762877559-ai/swiftdy/actions/artifacts/12647952399",
+      "archive_download_url": "https://api.github.com/repos/a15762877559-ai/swiftdy/actions/artifacts/12647952399/zip",
+      "expired": false,
+      "digest": "sha256:78f41b73bd3183355d8a3b9b44ea822d61f84341703f7ce7a67a185026578532",
+      "created_at": "2026-10-26T12:00:50Z",
+      "updated_at": "2026-10-26T12:00:50Z",
+      "expires_at": "2026-10-29T12:00:48Z",
+      "workflow_run": {
+        "id": 40319014923,
+        "repository_id": 1434301730,
+        "head_repository_id": 1434301730,
+        "head_branch": "main",
+        "head_sha": "106bc0681898450d34fac803015802af35233114"
+      }
+    }
+  ]
+}

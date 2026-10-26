@@ -1,6 +1,8 @@
 # DOUSTUDIOKIT_MEDIA_HOST_LIVE_PROBE_01
 
-2026-10-26，Asia/Shanghai。已按用户要求迁移并正常推送至 `a15762877559-ai/swiftdy`，两个手动工作流已登记，未触发任何 Actions。原仓库保留为 upstream，新仓库为 origin。本地路径不变。真实媒体主机受控探测的代码和两个独立手动工作流已准备，Windows 检查通过。**最新用户手动运行 40317689736：macOS Swift 编译 PASS，原有 83 项 fixture 和新增 12 个策略断言 PASS；受控 HTTP 测试在第一例观察输出前失败。** 整体离线验收尚未通过。已修正测试启动器的 loopback 沙箱配置并补充失败诊断，Windows 84/84 PASS；修正后的 macOS 重跑 NOT_RUN，真实列表请求及真实媒体探测仍 NOT_RUN。下文准备阶段的 NOT_RUN/80 项记录保留为对应时点事实，最新状态见末节。
+2026-10-26，Asia/Shanghai。项目已迁移至 `a15762877559-ai/swiftdy`，本地路径不变。**最新离线运行 40319014923 已成功：macOS Swift 编译 PASS、原有 83/83 fixture PASS、新增 12/12 策略断言 PASS、19/19 受控 HTTP 用例 PASS。** 受测提交 `106bc0681898450d34fac803015802af35233114`。Windows Python 84/84 PASS。真实列表请求、真实媒体探测和视频下载仍为 NOT_RUN，生产白名单仍为空。
+
+下文保留准备、首次失败及迁移时点记录；最新验收证据和状态以末节为准。用户已配置新仓库 DOUYIN_COOKIE，助手只核验 Secret 名称存在，未读取内容；离线工作流完全没有注入该 Secret。
 
 ## 环境恢复与历史核验
 
@@ -79,9 +81,9 @@ YAML 结构、manual-only、xcode-27、contents:read、固定完整 Actions SHA/
 PREPARATION = READY_FOR_MACOS_VALIDATION
 WINDOWS_STATIC = PASS
 WINDOWS_PYTHON_TESTS = 80/80 PASS
-MACOS_SWIFT_BUILD = PASS_TESTED_4396F84
-SWIFT_OFFLINE_TESTS = INCOMPLETE_HTTP_FIXTURE_FAILURE
-REPAIRED_RUNNER_MACOS = NOT_RUN
+MACOS_SWIFT_BUILD = PASS_TESTED_106BC06
+SWIFT_OFFLINE_TESTS = PASS
+REPAIRED_RUNNER_MACOS = PASS
 REAL_WORKLIST_REQUEST = NOT_RUN
 REAL_MEDIA_PROBE = NOT_RUN
 REAL_VIDEO_DOWNLOAD = NOT_RUN
@@ -102,7 +104,7 @@ AUTO_TRIGGERED = NO
 下一步先处理该账号的仓库写权限与 GitHub HTTPS 连通性，然后在项目目录执行普通 `git push origin main`。成功发布后才能按上一节先手动执行独立离线工作流。两项待处理状态分别为 `PUSH=NOT_COMPLETED`、`MACOS_VALIDATION=NOT_RUN`；不会将本机准备完成写成整项探测验收完成。
 
 
-## 当前发布状态：迁移至用户新仓库
+## 迁移发布时状态（历史）
 
 用户提供新空仓库 `https://github.com/a15762877559-ai/swiftdy`，当前认证账号 `a15762877559-ai` 对它具有写权限。先核对远端无任何 refs，再将原 origin 改名为 upstream，新增 origin 指向用户仓库；没有覆盖远端已有工作、创建 fork 或强推。main 正常推送并设置跟踪 origin/main，全部既有历史及准备提交均保留。
 
@@ -136,3 +138,28 @@ Artifact ID 12647213914，ZIP SHA-256 `490d6650317b9f8bc764b0540c39da2a0e29812ed
 同时补充固定安全诊断：即使结果文件缺失，也在 offline-tests.json 记录用例 ID、子进程退出码、服务端实际请求次数和失败类别。stderr 只在内存中分类，不能原样写盘；超时/无法启动同样记录失败并停止，不重试。新增四项 Windows 回归核对 loopback 沙箱范围、原始 stderr 不落盘、缺失观察证据可归档、超时不重试。本机全套 Python **84/84 PASS**，其中本任务 26 项；静态检查通过。仅改 `live_probe_tests.py`、`test_live_probe.py` 及本任务报告和证据，Swift、SafeStreamingTransport、真实入口与全部工作流未改。
 
 下一步：修正代码推送后，请用户重新打开独立离线工作流，选择 Run workflow/main，启动新提交的运行；不要使用 Re-run jobs 重跑旧 SHA。当前没有自动 dispatch 或 retry，没有真实列表、媒体请求、完整下载或生产主机批准。修正后的 macOS 运行仍为 NOT_RUN。
+
+
+## 最新真实 macOS 离线验收：40319014923 PASS
+
+[成功运行](https://github.com/a15762877559-ai/swiftdy/actions/runs/40319014923)，attempt=1，受测提交 `106bc0681898450d34fac803015802af35233114`，job=121558853881。用户已启动该运行；随后用户要求 run 时，助手发现同一提交的离线运行正在进行，因此复用并监测，没有重复 dispatch，也没有重试旧运行。
+
+macOS 27.0.1 (26A434)、Swift 6.4、Xcode 27.1、arm64；固定上游 SHA 与干净状态核验通过。build/baseline/offline 退出码全部 0，所有 GitHub job 步骤 success。测试如下：
+
+- 原有通用/认证 38、主机 20、优先证据 25，共 83/83 PASS。
+- 原版选中地址、精确主机、非 HTTPS/userinfo/端口/后缀伪装拒绝及不改选备用地址，12/12 策略断言 PASS。
+- 19/19 独立 Swift/URLSession 网络进程 PASS，逐例退出码均为 0。
+- 206 正确范围实际收到并接受 1 字节，发起取消并收到任务终态；第二次调用被拒绝，服务端仍只有一次请求。
+- 200 忽略 Range、HTML/JSON、403/429、错误范围、编码响应、认证挑战均拒绝；应用接受 0 字节并完成取消。
+- 301/302/307/308 和相对/不安全目标均不跟随；服务端验证没有跳转目标请求。只保存合规目标主机或拒绝布尔值。
+- 超量 chunked 用例：delegate_received_bytes=65536，accepted_bytes=0，BODY_BUDGET_EXCEEDED，cancel_requested=true、cancel_completed=true。严格网络接收一字节上限依旧 NOT_PROVEN，不能因应用量为 0 而改写。
+- 空体及断开连接正确判定失败，任务已经自然终止，cancel=false/false 是正常结果，不伪造取消完成。
+- 所有网络用例服务端实际请求数符合一次限制，Range=bytes=0-0，没有 Cookie/Authorization/其他受检认证头；没有重试、续传、媒体或 .part 文件。
+
+Artifact ID 12647952399，ZIP SHA-256 `78f41b73bd3183355d8a3b9b44ea822d61f84341703f7ce7a67a185026578532` 与 GitHub digest 一致。ZIP CRC、25 文件精确白名单和 runner 清单内 24 个文件哈希全部通过。另从受测提交的 Git blobs 重算 macOS 源码指纹，与 offline-source.json 完全匹配；未使用 Windows 换行字节冒充 macOS 源码。原 Artifact 字节归档在 `evidence/doustudio-media-host-live-probe-01/run-40319014923/`，另附 jobs、GitHub 元数据和核验结果；首次失败的 run-40317689736 完整保留。原始编译日志中的 ANSI 和尾部空格不为通过 diff --check 而篡改。
+
+修正后的 loopback 启动配置已获得实测成功，完整受控离线验收通过。本次只新增报告/证据，不改受测 Swift/Python/workflow 源码。没有依据此结果批准主机，也没有进行真实媒体请求或下载。
+
+用户声明并由 API 名称列表确认：新仓库现在存在 DOUYIN_COOKIE。只记录是否存在，不读取 Secret 内容、长度、摘要或其他派生标识。离线工作流没有引用 Secret，不能把这次离线 PASS 当作真实 Cookie 有效、真实媒体可响应或下载通过。
+
+当前任务的准备、Windows 验证、macOS 编译和完整离线验证均已完成。后续真实探测须用户另行手动打开 [DouStudioKit Media Host Live Probe](https://github.com/a15762877559-ai/swiftdy/actions/workflows/doustudio-media-host-live-probe.yml)，输入本人有权访问的规范主页并明确勾选授权；一次列表、最多两个精确主机各一次 Range GET，不跟随重定向、不下载完整视频。助手在本轮归档后停止，不自动运行该流程。
