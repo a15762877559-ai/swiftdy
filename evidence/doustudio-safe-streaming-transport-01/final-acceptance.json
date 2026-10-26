@@ -1,0 +1,38 @@
+{
+  "task": "DOUSTUDIOKIT_SAFE_STREAMING_TRANSPORT_01",
+  "run_id": 40285479553,
+  "run_url": "https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40285479553",
+  "tested_sha": "3f51aaebb84cfde8c1009b264298e52c8ecd4bf5",
+  "build_exit_code": 0,
+  "test_exit_code": 0,
+  "passed": 28,
+  "total": 28,
+  "status": {
+    "TRANSPORT_COMPILED": "PASS",
+    "ORIGINAL_DOWNLOADER_INTEGRATION": "PASS",
+    "STREAMING_PATH_VERIFIED": "PASS",
+    "APPLICATION_BYTE_BUDGET": "PASS",
+    "CANCEL_REQUEST": "PASS",
+    "CANCEL_COMPLETION": "PASS",
+    "BOUNDED_BUFFERING": "PASS",
+    "REDIRECT_REJECTION": "PASS",
+    "CREDENTIAL_ISOLATION": "PASS",
+    "PARTIAL_FILE_CLEANUP": "PASS",
+    "SECOND_MEDIA_REQUEST_REJECTION": "PASS",
+    "CONTROLLED_SERVER_TESTS": "PASS",
+    "DELEGATE_RECEIVE_LIMIT": "FAIL",
+    "STRICT_NETWORK_RECEIVE_LIMIT": "NOT_PROVEN",
+    "REAL_DOUYIN_DOWNLOAD": "NOT_RUN",
+    "UPSTREAM_SOURCE_CHANGED": "NO",
+    "ROOTNETSCOPE_CHANGED": "NO",
+    "VIDEOFLOW_CHANGED": "NO"
+  },
+  "queued_callback_after_cancel": "NOT_OBSERVED: ST-016 exercised queued application data and an in-progress callback during real cancellation; no newly delivered delegate callback after cancellation was observed",
+  "buffer_scope": "2 MiB application channel plus one <=64 KiB consumer piece (initial prefix may add <12 bytes), plus the current framework-provided callback Data; excludes OS/URLSession pending buffers. Callback maximum is recorded separately.",
+  "limitations": [
+    "No absolute receive limit: ST-007 received 105906176 delegate bytes.",
+    "Synthetic payloads have ftyp markers; these tests do not verify video decode or watermark.",
+    "No production media domain allowlist or real-media workflow integration in this task.",
+    "An owned bounded channel does not bound the URLSession-provided callback or OS pending buffers."
+  ]
+}

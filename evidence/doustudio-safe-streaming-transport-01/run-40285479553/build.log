@@ -1,0 +1,43 @@
+Building for debugging...
+[Planning deferred tasks]
+[23 / 38]
+[24 / 39] DouStudioKit
+[30 / 88]
+[34 / 88]
+[40 / 88]
+[44 / 88]
+[45 / 88]
+[49 / 88]
+[51 / 88]
+[54 / 88]
+[58 / 88]
+[61 / 88]
+[62 / 88]
+[63 / 88]
+[68 / 88]
+[73 / 88] DouStudioKit
+[74 / 88] DouStudioKit
+[82 / 89] SafeStreamingTests-product
+[85 / 92] SafeStreamingTests-product
+[85 / 92] DouStudioKit
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/ControlledTests.swift:24:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m22 |[0;0m     var expected_requests = 1
+ [0;36m23 |[0;0m     var post_cancel_callback_observation = "NOT_OBSERVED"
+ [0;36m24 |[0;0m     let strict_network_receive_limit = "NOT_PROVEN"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'strict_network_receive_limit' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m25 |[0;0m     let real_douyin_download = "NOT_RUN"
+ [0;36m26 |[0;0m }
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/ControlledTests.swift:25:9: [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+ [0;36m23 |[0;0m     var post_cancel_callback_observation = "NOT_OBSERVED"
+ [0;36m24 |[0;0m     let strict_network_receive_limit = "NOT_PROVEN"
+ [0;36m25 |[0;0m     let real_douyin_download = "NOT_RUN"
+    [0;36m|[0;0m         |- [1;33mwarning: [1;39mimmutable property will not be decoded because it is declared with an initial value which cannot be overwritten[0;0m
+    [0;36m|[0;0m         |- [1;39mnote: [1;39mset the initial value via the initializer or explicitly define a CodingKeys enum including a 'real_douyin_download' case to silence this warning[0;0m
+    [0;36m|[0;0m         `- [1;39mnote: [1;39mmake the property mutable instead[0;0m
+ [0;36m26 |[0;0m }
+ [0;36m27 |[0;0m 
+[90 / 92] SafeStreamingTests-product
+Build complete! (15.20 sec)
