@@ -1,0 +1,34 @@
+{
+  "statuses": {
+    "AUTH_PREFLIGHT": "PASS",
+    "COOKIE_CONFIGURATION": "READY",
+    "PROFILE_RESOLUTION": "PASS",
+    "WORKLIST_FETCH": "PASS",
+    "AUTHENTICATED_ACCESS_ACCEPTED": "YES",
+    "PAGINATION": "NOT_RUN",
+    "VIDEO_DOWNLOAD": "NOT_RUN",
+    "SIGNATURE_REVERSE_ENGINEERING": "NOT_STARTED",
+    "RUST_IMPLEMENTATION": "NOT_STARTED"
+  },
+  "observation": {
+    "fields": {
+      "cover_present": 21,
+      "description_present": 21,
+      "id_valid": 21,
+      "timestamp_valid": 21,
+      "video_present": 21
+    },
+    "http_status": 200,
+    "item_count": 21,
+    "request_count": 1,
+    "request_started": true,
+    "request_succeeded": true,
+    "valid_worklist": true
+  },
+  "credential_present": true,
+  "failure_category": null,
+  "raw_result_preserved": true,
+  "scope": "One authenticated first-page request only; field completeness is aggregate presence/validity, not media validation.",
+  "comparison": "Anonymous baseline 40271383018 returned 403; this authenticated request returned 200 and 21 valid items. This does not establish the cookie as the sole necessary condition.",
+  "server_count_note": "Requested count 18; server returned 21. Observed count is retained; no second request was made."
+}

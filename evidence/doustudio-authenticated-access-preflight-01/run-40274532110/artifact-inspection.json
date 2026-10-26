@@ -1,0 +1,26 @@
+{
+  "artifact_id": 12629692470,
+  "sha256": "09cf13a5d7309b6e4e53241cc320e59b8c20a6273ab49e2ea374635cfa038161",
+  "digest_match": true,
+  "bytes": 7780,
+  "file_count": 11,
+  "zip_crc": "PASS",
+  "allowlist": "PASS",
+  "files": [
+    "auth-exit-code.txt",
+    "auth-result.json",
+    "build-exit-code.txt",
+    "build.log",
+    "environment.json",
+    "input-validation.json",
+    "offline-exit-code.txt",
+    "offline.log",
+    "selftest-results.json",
+    "source-protection.json",
+    "stage-outcomes.json"
+  ],
+  "expires_at": "2026-10-29T05:30:59Z",
+  "retention_days": 3,
+  "credential_data_in_artifact": false,
+  "media_in_artifact": false
+}

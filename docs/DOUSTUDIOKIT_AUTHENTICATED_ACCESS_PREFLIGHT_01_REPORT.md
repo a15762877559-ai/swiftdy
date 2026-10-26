@@ -1,6 +1,6 @@
 # DOUSTUDIOKIT_AUTHENTICATED_ACCESS_PREFLIGHT_01
 
-2026-10-26，Asia/Shanghai。准备阶段已通过。最新用户手动运行 40274059566 在主页格式校验阶段 BLOCKED：授权已确认，但 profile_format_valid=false；认证步骤 skipped，Secret 未读取，未发送平台请求。此前准备记录保留，最新结果见末尾。固定上游 `qinjian0420/DouStudioKit@362dad3d082e9f63c8efd360acc653ba169d40a2`，不修改上游。
+2026-10-26，Asia/Shanghai。最新用户手动运行 40274532110 认证预检 PASS：仅一次请求，HTTP 200，21 条有效作品，全部五类字段完整性统计为 21/21。构建及 38/38 离线检查通过；分页和下载未执行。凭据仅记录 credential_present=true。此前输入格式阻塞与准备阶段记录保留为历史，最新详情见末尾。固定上游 `qinjian0420/DouStudioKit@362dad3d082e9f63c8efd360acc653ba169d40a2` 未修改。
 
 ## 基线与范围
 
@@ -146,4 +146,58 @@ PAGINATION = NOT_RUN
 VIDEO_DOWNLOAD = NOT_RUN
 SIGNATURE_REVERSE_ENGINEERING = NOT_STARTED
 RUST_IMPLEMENTATION = NOT_STARTED
+```
+
+
+## 最新用户手动运行 40274532110：认证预检通过
+
+- [真实运行](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40274532110)，workflow_dispatch，attempt=1，结论 success。本轮由用户手动启动；未自动触发或重试。
+- 受测提交 `f556ab6c1f277e6dfa22b53018095e9f8f1accc1`，固定上游 `362dad3d082e9f63c8efd360acc653ba169d40a2`，云端 tracked_source_clean=true。
+- macOS 27.0.1 (26A434)，arm64，Swift 6.4 (swiftlang-6.4.0.34.1)，Xcode 27.1 (27A9275)，运行器 xcode-27。
+- 用户授权与主页格式检查 PASS。构建 exit=0；离线自检 38/38 PASS、exit=0；认证预检 exit=0。离线 fixture 与真实请求分开记录，不把模拟结果算作平台请求。
+- `credential_present=true`。不记录凭据内容、长度、摘要或其他派生标识，未读取浏览器 Cookie。
+- 真实请求已开始，request_count=1，HTTP 200，request_succeeded=true、valid_worklist=true，返回有效作品 21 条。请求 count 参数为 18，但服务端实际返回 21；如实记录，不截断统计，也未请求下一页。
+- ID 有效 21/21、描述存在 21/21、发布时间有效 21/21、封面地址存在 21/21、视频地址存在 21/21。这是字段完整性检查，不代表媒体地址可下载或画面无水印。
+- AUTH_PREFLIGHT=PASS、WORKLIST_FETCH=PASS、AUTHENTICATED_ACCESS_ACCEPTED=YES；没有失败类别。未执行分页、视频下载、媒体解码、签名逆向或 Rust 实现。
+- 匿名基线 40271383018 为 HTTP 403 / ACCESS_RESTRICTED；本次登录态条件下为 HTTP 200 和有效作品列表。两次结果证明各自运行条件下的访问结果不同，不能证明 Cookie 是唯一必要条件，也不能推断匿名失败必然是签名问题。
+
+### 本次步骤 outcome
+
+| 步骤 | outcome |
+| --- | --- |
+| Set up job | success |
+| Checkout harness | success |
+| Validate explicit authorization and initialize evidence | success |
+| Checkout pinned upstream | success |
+| Verify upstream and environment | success |
+| Build harness without credentials | success |
+| Offline fixtures without credentials or network | success |
+| One authorized authenticated preflight | success |
+| Record outcomes and upstream protection | success |
+| Upload sanitized evidence | success |
+| Post Checkout pinned upstream | success |
+| Post Checkout harness | success |
+| Complete job | success |
+
+### 本次证据与保护检查
+
+[Artifact 12629692470](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40274532110/artifacts/12629692470)，7780 bytes，11 个显式白名单文件，保留 3 天。下载 ZIP 的 SHA-256 `09cf13a5d7309b6e4e53241cc320e59b8c20a6273ab49e2ea374635cfa038161` 与 GitHub 发布摘要一致，ZIP CRC 和文件白名单核验通过。到期时间 2026-10-29T05:30:59Z。
+
+原始脱敏文件逐字节保存于 `evidence/doustudio-authenticated-access-preflight-01/run-40274532110/`，另存运行步骤、Artifact 核验、验收判断和保护检查；没有保存媒体、Cookie、认证头、原始响应正文或带查询参数的请求/视频 URL。build.log 和 offline.log 均来自凭据注入前的步骤；真实认证结果仅保存固定状态及汇总数字。
+
+92 个受保护文件哈希一致；Harness 源码、全部既有工作流和历史证据无差异，既有未跟踪 RUN 报告哈希不变。RootNetScope、VideoFlow、zhuabao 未修改。本次仅新增本 RunID 证据并更新本报告，普通提交和推送，不强推、不重写历史。完成后停止，不继续其他接口测试。
+
+```ini
+AUTH_PREFLIGHT = PASS
+COOKIE_CONFIGURATION = READY
+PROFILE_RESOLUTION = PASS
+WORKLIST_FETCH = PASS
+AUTHENTICATED_ACCESS_ACCEPTED = YES
+PAGINATION = NOT_RUN
+VIDEO_DOWNLOAD = NOT_RUN
+SIGNATURE_REVERSE_ENGINEERING = NOT_STARTED
+RUST_IMPLEMENTATION = NOT_STARTED
+UPSTREAM_SOURCE_CHANGED = NO
+ROOTNETSCOPE_CHANGED = NO
+VIDEOFLOW_CHANGED = NO
 ```

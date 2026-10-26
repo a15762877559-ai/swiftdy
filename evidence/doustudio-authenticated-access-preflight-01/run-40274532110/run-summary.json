@@ -1,0 +1,94 @@
+{
+  "run_id": 40274532110,
+  "url": "https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40274532110",
+  "attempt": 1,
+  "event": "workflow_dispatch",
+  "test_commit": "f556ab6c1f277e6dfa22b53018095e9f8f1accc1",
+  "conclusion": "success",
+  "job_id": 121414359006,
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1
+    },
+    {
+      "name": "Checkout harness",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2
+    },
+    {
+      "name": "Validate explicit authorization and initialize evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3
+    },
+    {
+      "name": "Checkout pinned upstream",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4
+    },
+    {
+      "name": "Verify upstream and environment",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5
+    },
+    {
+      "name": "Build harness without credentials",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6
+    },
+    {
+      "name": "Offline fixtures without credentials or network",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7
+    },
+    {
+      "name": "One authorized authenticated preflight",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8
+    },
+    {
+      "name": "Record outcomes and upstream protection",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9
+    },
+    {
+      "name": "Upload sanitized evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10
+    },
+    {
+      "name": "Post Checkout pinned upstream",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 19
+    },
+    {
+      "name": "Post Checkout harness",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 20
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 21
+    }
+  ],
+  "build_exit_code": 0,
+  "offline_exit_code": 0,
+  "auth_exit_code": 0,
+  "offline_cases_passed": 38,
+  "automatic_retry": false
+}

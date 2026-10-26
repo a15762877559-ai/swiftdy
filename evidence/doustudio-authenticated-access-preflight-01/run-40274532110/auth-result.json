@@ -1,0 +1,29 @@
+{
+  "credential_present" : true,
+  "observation" : {
+    "fields" : {
+      "cover_present" : 21,
+      "description_present" : 21,
+      "id_valid" : 21,
+      "timestamp_valid" : 21,
+      "video_present" : 21
+    },
+    "http_status" : 200,
+    "item_count" : 21,
+    "request_count" : 1,
+    "request_started" : true,
+    "request_succeeded" : true,
+    "valid_worklist" : true
+  },
+  "statuses" : {
+    "AUTHENTICATED_ACCESS_ACCEPTED" : "YES",
+    "AUTH_PREFLIGHT" : "PASS",
+    "COOKIE_CONFIGURATION" : "READY",
+    "PAGINATION" : "NOT_RUN",
+    "PROFILE_RESOLUTION" : "PASS",
+    "RUST_IMPLEMENTATION" : "NOT_STARTED",
+    "SIGNATURE_REVERSE_ENGINEERING" : "NOT_STARTED",
+    "VIDEO_DOWNLOAD" : "NOT_RUN",
+    "WORKLIST_FETCH" : "PASS"
+  }
+}
