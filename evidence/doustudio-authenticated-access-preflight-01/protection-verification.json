@@ -1,0 +1,376 @@
+{
+  "all_92_protected_hashes_match": true,
+  "files": [
+    {
+      "path": ".github/workflows/doustudio-harness-offline.yml",
+      "hash": "9AA48B49BDDC5F6F4D122D61A5A6CF982BD8C05D79EF7C86FA8EAE1EF0687D17"
+    },
+    {
+      "path": ".github/workflows/doustudio-macos-build.yml",
+      "hash": "2451D682512C8B94F5BCD9AE48F9273405387DC4C7B4841B5C66E8712FAB9B94"
+    },
+    {
+      "path": ".github/workflows/doustudio-runtime-acceptance.yml",
+      "hash": "CA5A9B86FA4DE9A006173B1E1B49FAD43846C788FC0B5F943A9CC2539C7EC8FC"
+    },
+    {
+      "path": "docs/DOUSTUDIOKIT_GITHUB_ACTIONS_BUILD_01_FIX_REPORT.md",
+      "hash": "0CD2FCB30AB0DF822F73DD878A678389B42F9A1634728BEDD7AB8182A99A58B7"
+    },
+    {
+      "path": "docs/DOUSTUDIOKIT_GITHUB_ACTIONS_BUILD_01_REPORT.md",
+      "hash": "4629A579B37DEE5A68453983E349EFED3A384A6E060818EB4AAAF5FA16AC69B4"
+    },
+    {
+      "path": "docs/DOUSTUDIOKIT_HARNESS_OFFLINE_FIX_01_REPORT.md",
+      "hash": "64294097DAEC51241CD94CE5B1CB48983167077241835FC2F7438361AB51961F"
+    },
+    {
+      "path": "docs/DOUSTUDIOKIT_REAL_RUNTIME_ACCEPTANCE_01_REPORT.md",
+      "hash": "A7EC12865441AFCB8D2A8A1A12AA3BF6F06A4FD953F1A77F40E8B46ED95EE99A"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/diagnostic-local-validation.json",
+      "hash": "12C449DEA83584AD66D6F2E6224E9D04F4FDA672F0F48B9C27C921822F4DBCD8"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/final-acceptance.json",
+      "hash": "B1C37C35745E642F7873C763F67F106AAAA1B58B53F2FC5A2DC296DC01D86A15"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/protection-verification.json",
+      "hash": "20984628721D3FFFC011FBE948100B37846932B8CAA1F9BF029D5984F7907E23"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/repair-local-validation.json",
+      "hash": "53F1D26A044948652579555CA43537BD6C6BFACB721C2567EAFA9820203BDD24"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/artifact-inspection.json",
+      "hash": "4C6D215BA28E37C70A24868A092B0678F6FE579CD476C73B1CBADA52770B5157"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/build-exit-code.txt",
+      "hash": "9A271F2A916B0B6EE6CECB2426F0B3206EF074578BE55D9BC94F6F3FE3AB86AA"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/build.log",
+      "hash": "C5190C737C7771B7C85CB60929D246FA12BBC452A59EC17A1227D2CE17BB63E1"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/entry-guard-exit-code.txt",
+      "hash": "913F5D1DA2FEAF4DEECCC9E55CBB350A20F12B3F507E87BE85DBB77FDD3CB9BC"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/entry-guard.log",
+      "hash": "5D212986E06E2E3648050BD352CFA6DFEB2370F34651D4740F92762953E31341"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/environment.json",
+      "hash": "2827C3BDA2E32A705976857D128776F4182FA373B0562B6CA774A18E7E02536D"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/isolation.txt",
+      "hash": "297A25FDB5C16D1E1FB35276493CBF586CC24290A150848BCFA9F4A9BC82A9AA"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/selftest-exit-code.txt",
+      "hash": "4355A46B19D348DC2F57C046F8EF63D4538EBB936000F3C9EE954A27460DD865"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/selftest-results.json",
+      "hash": "7F3A4B15313B2721D6116A3504E20DDE11C75EAD3C878356F806E0D6AD03A9FD"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/selftest.log",
+      "hash": "25D25AFB4A7A72788B151C3479CE08673493D872A5869A60EDA2F066A0E725B8"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/source-protection.json",
+      "hash": "12AE0726959FAF99833F06831EF6C61334D451516A7051F82B9C7E01BAD2C528"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/stage-outcomes.json",
+      "hash": "3F77286AA2165DE0738E0A1189566C9EDC6C60D1838247AC2F7F1152EFD41FD5"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/artifact-inspection.json",
+      "hash": "BB20EE7467BC8683D6D1E9014BAED4E13946C2C7B7E9369FCE67B05ECEA1AB0A"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/build-exit-code.txt",
+      "hash": "9A271F2A916B0B6EE6CECB2426F0B3206EF074578BE55D9BC94F6F3FE3AB86AA"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/build.log",
+      "hash": "8F07E06F6FFF8DD7F2952DF910BE69745D81D52C3EF1E173DE37D218E7656B70"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/entry-guard-exit-code.txt",
+      "hash": "913F5D1DA2FEAF4DEECCC9E55CBB350A20F12B3F507E87BE85DBB77FDD3CB9BC"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/entry-guard.log",
+      "hash": "5D212986E06E2E3648050BD352CFA6DFEB2370F34651D4740F92762953E31341"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/environment.json",
+      "hash": "C05DF7262D6EDEA15AA943226BE9EBD76CF2080F9B57A678E4366888F0C04894"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/github-success.png",
+      "hash": "A3B79EE4D8F2754B472721221795780A6FDB0DE8895742EE0DA2B19C37FDFF14"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/isolation.txt",
+      "hash": "297A25FDB5C16D1E1FB35276493CBF586CC24290A150848BCFA9F4A9BC82A9AA"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/selftest-exit-code.txt",
+      "hash": "9A271F2A916B0B6EE6CECB2426F0B3206EF074578BE55D9BC94F6F3FE3AB86AA"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/selftest-results.json",
+      "hash": "F3FA2D79FCE247874EDBCDEFD0CF0004CE5FD990A7E4793847F8F873280B5A5D"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/selftest.log",
+      "hash": "9C7BA33DB3C9E510638EF784E435975710AB803D119451C91DA852CB400D7A52"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/source-protection.json",
+      "hash": "12AE0726959FAF99833F06831EF6C61334D451516A7051F82B9C7E01BAD2C528"
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/stage-outcomes.json",
+      "hash": "65A8F02413E2B1C28B5E522C1DF182B5120B4CB3870B07967455D7DDCE6FAA12"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/download-validation.json",
+      "hash": "7E17A342E218173DE2DA49E1A5BB5C35F8B905400A37181EC126FF016C113C8E"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/entrypoint-analysis.json",
+      "hash": "83F7E84DE22EB8EB3F3457125FEAE5CA02377257E015F37407C0114D63AEC734"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/failure-observations.json",
+      "hash": "2C04578833D937BD787192F3256C9ECF44E5FDB170B644467BAAF4C56EFCEE78"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/field-validation.json",
+      "hash": "E84C39379D2781F494E2C4DB0FEE483727259F1D03C7E932126CB849600AA8FA"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/final-acceptance.json",
+      "hash": "9DE7D8843A05EC3A77D090203AB975ACEBE5531EE99E7AAEF4D3747D916D7C00"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/pagination-result.json",
+      "hash": "6CC3096413DBC19138DA3174DC38A1A7538D114145B32921640A3AE27398B519"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/profile-resolution.json",
+      "hash": "9BA01D2774231474804E6B456D98DDC02B552CF571A278DBBA559097C06332BE"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/artifact-inspection.json",
+      "hash": "B9E2EBAB7591C252886C4183868B5D7C9B3C1DB532C5F6ACDB4893F5C7935143"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/download-validation.json",
+      "hash": "74B4F97351654D894D8C26A982B1F7A254FFCE2224040D655D7F3FAA56E4766B"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/entrypoint-analysis.json",
+      "hash": "17EC8E651A573E96EFC89DB59679BF989A42FE629D64EEC3E331A776BBF33117"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/failure-observations.json",
+      "hash": "89366704795AEB2B439A1B447F5ABC3CE318002AEE9937AF92C94E5CE379132E"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/field-validation.json",
+      "hash": "1C389BCDBAA9B597449EC2D1D39990EB2040FE8BC20168D88A653B20E511894A"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/final-acceptance.json",
+      "hash": "C331A820F5336A323ED9E9EEA3C7C753CD9A177B6919B7A8B2DDD63472EDF3BF"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/harness-build-exit-code.txt",
+      "hash": "9A271F2A916B0B6EE6CECB2426F0B3206EF074578BE55D9BC94F6F3FE3AB86AA"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/harness-build.log",
+      "hash": "D9423FCD98329A5790C020BD25ED05DEAD024CC6B5661AACBE6F9ABB3E81FCDC"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/pagination-result.json",
+      "hash": "298D27A89E5BD9251A5B8C65800DF45241CAFA0444F9053C98D29BA0436271F7"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/profile-resolution.json",
+      "hash": "D1A161CBDFC099A8E6EF16A3086BACA3C6D9049DF97C0C608E15FD66ED097683"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/run-summary.json",
+      "hash": "9A40A2BC57D0ED34C4ECE15D81689943E53D98DAE6FC657AECAE17333E1F9F8D"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/runtime-environment.json",
+      "hash": "5CE26ADF74FCE4C769540BBB3BD6A37038FFD43AAE9E53D9B392E40D25F34E59"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/stage-outcomes.json",
+      "hash": "DCDBEF68865400082A26BB7BC71AC9833E1361D228150EE73BC17D09B4E36C7D"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/worklist-result.json",
+      "hash": "8310B854D533B0C6979EC511F6D6F2BCEB8699F8CAE31D0F161BE63DE359E4DB"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/artifact-inspection.json",
+      "hash": "A57311F7CDBB31F5ACE41CD29C1FFF4A9BF09A1034D9F08F8D432ACED7910A2B"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/download-validation.json",
+      "hash": "74B4F97351654D894D8C26A982B1F7A254FFCE2224040D655D7F3FAA56E4766B"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/entrypoint-analysis.json",
+      "hash": "17EC8E651A573E96EFC89DB59679BF989A42FE629D64EEC3E331A776BBF33117"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/failure-observations.json",
+      "hash": "4B7B325628FB2D566A2BCB1E33E2E2E21C937F0167C9C5C774A1ADA79EB3EE2E"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/field-validation.json",
+      "hash": "1C389BCDBAA9B597449EC2D1D39990EB2040FE8BC20168D88A653B20E511894A"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/final-acceptance.json",
+      "hash": "C331A820F5336A323ED9E9EEA3C7C753CD9A177B6919B7A8B2DDD63472EDF3BF"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/input-validation-log.txt",
+      "hash": "F137FB5900A4B5F2292369485E8A164C86731AE100DEBBA0E41E00344A63DE6C"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/pagination-result.json",
+      "hash": "298D27A89E5BD9251A5B8C65800DF45241CAFA0444F9053C98D29BA0436271F7"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/preflight-verification.json",
+      "hash": "2CAB87048AC853ABB3526233B9A4B5989DD4610ECA412A956F9AFB0FFB7D4D99"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/profile-resolution.json",
+      "hash": "D1A161CBDFC099A8E6EF16A3086BACA3C6D9049DF97C0C608E15FD66ED097683"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/run-02-assessment.json",
+      "hash": "5647D703414DF1AACE734F7BF56BA81D719B3D1D5637FEF45DFBCB78683588EB"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/run-summary.json",
+      "hash": "E6F8C0281775892E463A5392333FBFFD05A2A871CD0ED04F93A61295A7EAA29D"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/runtime-environment.json",
+      "hash": "9F5DC0875ED559EAC381B3D2DDDE9E5B2F0781BE908EE700F6B14BDE46088910"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/stage-outcomes.json",
+      "hash": "33F7DF7DAAB39B73B6FA18687A6D89DDFC9E1C8A927D2B67E9472227E00ECF54"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/worklist-result.json",
+      "hash": "8310B854D533B0C6979EC511F6D6F2BCEB8699F8CAE31D0F161BE63DE359E4DB"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/artifact-inspection.json",
+      "hash": "60107EE7D22668DB0502C9AE772A94CB160902AB57033879ABBF07452B257331"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/download-validation.json",
+      "hash": "71406BE89C1D224E180870FBFCE351D94C093A6FBC0F3D6AF78FDE3036EFFED3"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/entrypoint-analysis.json",
+      "hash": "17EC8E651A573E96EFC89DB59679BF989A42FE629D64EEC3E331A776BBF33117"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/failure-observations.json",
+      "hash": "1C7A72CC14985ABC897A62284001953AB064AC24DD6A67823B9D946E4491986D"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/field-validation.json",
+      "hash": "80CB0F7F1754AE47D3C9C4CDC638529AAE40185AAA72FE984D3415C1C8A30296"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/final-acceptance.json",
+      "hash": "61BF5BE4EF5F7901990D160F3AA9B1E17635FDDDC13AF7025BFCB801103D80BD"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/harness-build-exit-code.txt",
+      "hash": "9A271F2A916B0B6EE6CECB2426F0B3206EF074578BE55D9BC94F6F3FE3AB86AA"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/harness-build.log",
+      "hash": "FDC5651331C667E9CA7BE3BD27C7B3720CDFD6A3E5EC2FF470758D22204F52BE"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/harness-exit-code.txt",
+      "hash": "53C234E5E8472B6AC51C1AE1CAB3FE06FAD053BEB8EBFD8977B010655BFDD3C3"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/offline-checks-from-job-log.json",
+      "hash": "AC3F1D48FFAB6BED2F72508BE2C3CC4755DD9E26C9B0BBED804E7F5DED2C18C9"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/pagination-result.json",
+      "hash": "6A603BEFD9DBD53B8D1C526EE88D2B3835E688FB6619BCF9D2892EE2B153BEDF"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/profile-resolution.json",
+      "hash": "DCFAFA329AD62BE6D19ECFBD32B3579ED2DD5EE5F9ACCBCD44A4C9FB8F44BDE4"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/run-summary.json",
+      "hash": "7DD0814155921708F073DD1DE104FF266D4DC2DAB1CA08E0FCDD09FD892A5ACB"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/runtime-assessment.json",
+      "hash": "51B5D1D211F6F4C51EF137BFB209209E46D1C0B2C9BAB44041D8F55F411B36ED"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/runtime-environment.json",
+      "hash": "FD69A7635FD12988FDACDE08F8A2536D47ABBCC02BBB84C2A8AC98E131103DFD"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/stage-outcomes.json",
+      "hash": "5CFC18E9034122B8D9D2AD0A009C9FBCDE59EDC3C3C1EF26069B4ABAC811DB20"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/worklist-result.json",
+      "hash": "4F4F098DE924444C460AECE1EEDEC47D0A090F6E1CD37B4121CC018380A3F84F"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/runtime-environment.json",
+      "hash": "2BC05DE5B9DF3224384051FB839197E895BC83515CF8D2157D857788ADA97E53"
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/worklist-result.json",
+      "hash": "C14C734BE75F5B037AE68F513BDA8A0BCBDAF16F23E568B4186CC6B1193F936D"
+    },
+    {
+      "path": "runtime-harness/Sources/RuntimeAcceptance/Observation.swift",
+      "hash": "FE102CF2B0055F8ACFA488F3375586E61A8D7F650A9A8DD0EBA3F13DFEFB8D63"
+    }
+  ],
+  "prior_untracked_report_unchanged": true,
+  "upstream_checkout_clean": true,
+  "force_push": false
+}

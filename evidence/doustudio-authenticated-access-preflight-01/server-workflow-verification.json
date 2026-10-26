@@ -1,0 +1,8 @@
+{
+  "name": "DouStudioKit Authenticated Access Preflight",
+  "path": ".github/workflows/doustudio-authenticated-preflight.yml",
+  "secret_value_accessed": false,
+  "workflow_id": 396665634,
+  "state": "active",
+  "authenticated_workflow_runs": 0
+}

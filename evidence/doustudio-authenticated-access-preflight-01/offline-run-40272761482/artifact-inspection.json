@@ -1,0 +1,15 @@
+{
+  "run_id": "40272761482",
+  "url": "https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40272761482",
+  "test_commit": "f3d716c93b8f61331626ae85444ea62c81f3c5c2",
+  "artifact_id": "12628594926",
+  "sha256": "8bf54ec56163dd73f680b88a6afdd0dd62465be95671b0349679b008de5e0919",
+  "zip_crc": "PASS",
+  "allowlist": "PASS",
+  "passed": 38,
+  "build_exit_code": 0,
+  "selftest_exit_code": 0,
+  "source_hashes_match_tested_commit": true,
+  "real_credential_used": false,
+  "authenticated_network_test": "NOT_RUN"
+}

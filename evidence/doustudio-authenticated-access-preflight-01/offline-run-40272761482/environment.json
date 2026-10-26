@@ -1,0 +1,18 @@
+{
+  "run_id": "40272761482",
+  "test_commit": "f3d716c93b8f61331626ae85444ea62c81f3c5c2",
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "macos": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "architecture": "arm64",
+  "mode": "OFFLINE_ONLY",
+  "runner": "xcode-27",
+  "source_hashes": {
+    "runtime-harness/Sources/RuntimeAcceptance/AuthPreflightSelfTest.swift": "792ba2d02be9fa1d7d9a666d5bdb4507edc74c0a859e663ca945ff8eeedca9df",
+    "runtime-harness/Sources/RuntimeAcceptance/AuthenticatedPreflight.swift": "a9118b07da3d7bbff553bace77e60015b46b0a1d12f73783a336521e7a6f42b7",
+    "runtime-harness/Sources/RuntimeAcceptance/Observation.swift": "fe102cf2b0055f8acfa488f3375586e61a8d7f650a9a8dd0eba3f13dfefb8d63",
+    "runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift": "545ec5f4a7ed6668928b43edfeff4170209eac467bf1d74089c9b97a8fcca16f",
+    "runtime-harness/Sources/RuntimeAcceptance/SelfTest.swift": "7c8f11b75e1b259301e568c05a4946ba0367eb5aca2de0cc1f837f8e10477729"
+  }
+}
