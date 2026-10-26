@@ -1,8 +1,28 @@
 {
   "repository": "a15762877559-ai/swiftdy",
-  "status": "PREPARING_COMMIT",
+  "status": "PUSHED",
+  "preparation_commit": "ff4aed62a5d848599b5cbf41e73a749d50badcbb",
+  "follow_up": "REPORT_PUBLICATION_INDEX_ONLY",
+  "registered_workflows": [
+    {
+      "id": 397124262,
+      "name": "DouStudioKit Single Video Real Download Offline Tests",
+      "path": ".github/workflows/doustudio-single-video-real-download-offline.yml",
+      "state": "active"
+    },
+    {
+      "id": 397124264,
+      "name": "DouStudioKit Single Video Real Download",
+      "path": ".github/workflows/doustudio-single-video-real-download.yml",
+      "state": "active"
+    }
+  ],
+  "offline_run_count": 0,
+  "real_run_count": 0,
   "workflows_triggered": false,
   "new_run_url": "NOT_RUN",
   "artifact_sha256": "NOT_RUN",
+  "SWIFT_BUILD": "NOT_RUN",
+  "OFFLINE_TESTS": "NOT_RUN",
   "REAL_VIDEO_DOWNLOAD": "NOT_RUN"
 }

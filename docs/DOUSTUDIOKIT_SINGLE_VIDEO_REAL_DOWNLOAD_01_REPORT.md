@@ -91,3 +91,10 @@ AUTO_TRIGGERED = NO
 ```
 
 新增代码包括 Runtime 的 SingleVideoRealDownload/SingleDownloadSelfTest、共享 StreamFileTools/SingleVideoDownloadBridge、四个 single_download Python 脚本、两个新工作流及本任务报告/证据。既有跟踪文件只修改 Package.swift、RuntimeAcceptance.swift、SafeStreamingTransport.swift、ControlledTests.swift、IntegrationMedia.swift；不改上游、RedirectNetworkSafety、PinnedProbeTunnel、旧工作流、历史证据、VideoFlow、RootNetScope、系统代理、v2rayN 或 Git 全局设置。
+
+
+## 发布核验
+
+准备代码和初始证据已正常提交并推送：`ff4aed62a5d848599b5cbf41e73a749d50badcbb`。GitHub 已登记独立离线工作流 ID 397124262 和真实单视频工作流 ID 397124264，state=active，核验时各自运行数为 0。没有触发 Actions。后续收尾提交只更新本节、publication.json、注册元数据及证据索引，不变更待验证源码。
+
+本任务仍停在阶段 A：Windows 116/116 PASS；新 Swift/macOS 构建与完整下载原生验收 NOT_RUN；真实列表、入口解析和完整 CDN 下载均 NOT_RUN。请先手动运行无 Secret 的 Offline Tests；全部通过后，另行手动选择真实工作流并完成双授权。此前单字节探测许可不作为本次完整下载许可。

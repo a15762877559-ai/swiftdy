@@ -31,7 +31,7 @@
     "probe-exit-code.txt": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
     "probe-summary.json": "88624bb6f0339953d68c527eadb6a3569ae2a2f397761966cab7ec50bbd0eed2",
     "protection-verification.json": "196214aecebb1c516a0b933362f889be9be0aa0c32e3b2bf289ca26786fbe64e",
-    "publication.json": "d2259ddf32c3398f362b71694daa56236f6ca58fdea96bebc04ad67334443448",
+    "publication.json": "a41e9a3de50184800d9c242d620f271dd79ec7e7672dbc56882ca17c82fb0084",
     "python-tests.log": "7506bb05e8eddd1d07312fa9f78949313f0a71a4d6de6f43308186821a55434b",
     "redaction-results.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
     "redirect-evidence.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
@@ -46,7 +46,8 @@
     "static-validation.json": "1f3b9e3913f66d6059e689c32258ed261b0e62f4e92f9d2aa0589cd11cbd8e5d",
     "transfer-results.json": "6178d747a07ef1c1ff1e3cab2af752ec27904622cc2586e519af67e8a7b4c275",
     "transport-cleanup.json": "6178d747a07ef1c1ff1e3cab2af752ec27904622cc2586e519af67e8a7b4c275",
-    "tunnel-tests.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    "tunnel-tests.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "workflow-registration.json": "4b2117b166d2f693ef478d45b54fc94ef2af7513f62087b6323d3faa4e20b5dc"
   },
   "source_files": {
     "runtime-harness/Package.swift": "87e5992e58c7dbad9fc7f7b7bc2534851da7c0050df5534d5532358d4f6742a2",
@@ -64,6 +65,6 @@
     "runtime-harness/validate_single_download.py": "3589fb8a3ca7171d490e300045dfcb736b4caf4bd561d172df1e2035555ead01",
     ".github/workflows/doustudio-single-video-real-download.yml": "9b9707a8677faed40eaa7678aae1401534e43636225c6d4437f24e5d40ab45aa",
     ".github/workflows/doustudio-single-video-real-download-offline.yml": "8af44f09b455ade6f9032e15a298f110578cb69f844d06d981f26d668b82f5dd",
-    "docs/DOUSTUDIOKIT_SINGLE_VIDEO_REAL_DOWNLOAD_01_REPORT.md": "3ead72b6ee1d44531e6561839f28db9d976f0a66e0b7c11f836a0e1f57f34f4b"
+    "docs/DOUSTUDIOKIT_SINGLE_VIDEO_REAL_DOWNLOAD_01_REPORT.md": "a931ea49c9a7718900414d4e1c90cb106c27897acb3afcfec0506611375d2d49"
   }
 }
