@@ -22,11 +22,11 @@
       "state": "active"
     }
   ],
-  "total_workflow_runs": 0,
+  "total_workflow_runs": 1,
   "workflows_triggered": false,
   "DOUYIN_COOKIE_configured": false,
-  "MACOS_SWIFT_BUILD": "NOT_RUN",
-  "SWIFT_OFFLINE_TESTS": "NOT_RUN",
+  "MACOS_SWIFT_BUILD": "PASS",
+  "SWIFT_OFFLINE_TESTS": "INCOMPLETE_HTTP_FIXTURE_FAILURE",
   "REAL_MEDIA_PROBE": "NOT_RUN",
   "REAL_VIDEO_DOWNLOAD": "NOT_RUN",
   "production_allowlist": "EMPTY",
@@ -51,7 +51,9 @@
     ]
   },
   "pending": [
-    "USER_MANUAL_MACOS_OFFLINE_VALIDATION",
+    "USER_MANUAL_RERUN_NEW_COMMIT_OFFLINE_VALIDATION",
     "CONFIGURE_NEW_REPOSITORY_SECRET_BEFORE_ANY_FUTURE_REAL_RUN"
-  ]
+  ],
+  "latest_manual_run": 40317689736,
+  "REPAIRED_RUNNER_MACOS": "NOT_RUN"
 }

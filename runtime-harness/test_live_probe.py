@@ -6,7 +6,7 @@ import http.client
 import threading
 from unittest.mock import patch
 import live_probe as runner
-from live_probe_tests import Handler, ThreadingHTTPServer
+from live_probe_tests import Handler, ThreadingHTTPServer, sandbox_command, process_failure, run as run_swift_tests
 
 class ProbeBoundaryTests(unittest.TestCase):
     def setUp(self):
@@ -153,5 +153,42 @@ class ProbeBoundaryTests(unittest.TestCase):
             self.assertIsNotNone(response.getheader('Location')); response.read(); connection.close()
             self.assertEqual(server.counts,{'redirect308':1})
         finally: server.shutdown(); server.server_close(); thread.join(timeout=2)
+
+    def test_offline_sandbox_matches_existing_loopback_scope(self):
+        command=sandbox_command('synthetic-binary',[],True)
+        self.assertIn('(deny network*)',command[2])
+        self.assertIn('(allow network-bind (local ip "localhost:*"))',command[2])
+        self.assertIn('(remote ip "localhost:*")',command[2])
+        self.assertNotIn('(remote ip "*:*")',command[2])
+        self.assertNotIn('allow network-',sandbox_command('synthetic-binary',[],False)[2])
+
+    def test_process_failure_drops_raw_stderr(self):
+        private=b'sandbox-exec: invalid profile https://fixture.invalid/a?secret=PRIVATE'
+        self.assertEqual(process_failure(private,1),'SANDBOX_PROFILE_REJECTED')
+        self.assertEqual(process_failure(b'PRIVATE_CRASH_BODY',-6),'SWIFT_PROCESS_SIGNAL')
+
+    def test_missing_observation_is_persisted_without_raw_stderr(self):
+        runner.write(self.folder,'policy-tests.json',{key:True for key in runner.POLICY})
+        result=type('Exit',(),{'returncode':0,'stderr':b''})()
+        failure=type('Exit',(),{'returncode':1,'stderr':b'sandbox-exec: invalid profile https://fixture.invalid/PRIVATE'})()
+        with patch.object(runner.subprocess,'run',side_effect=[result,failure]) as child:
+            with self.assertRaises(ValueError): run_swift_tests('synthetic-binary',self.folder)
+            self.assertEqual(child.call_count,2)
+        text=(self.folder/'offline-tests.json').read_text()
+        value=json.loads(text)
+        self.assertEqual(value['cases'][0]['failure_category'],'SANDBOX_PROFILE_REJECTED')
+        self.assertEqual(value['cases'][0]['server_requests'],0)
+        self.assertEqual(value['status'],'INCOMPLETE_OR_FAILED')
+        self.assertNotIn('PRIVATE',text); self.assertNotIn('://',text)
+
+    def test_fixture_timeout_is_persisted_without_retry(self):
+        runner.write(self.folder,'policy-tests.json',{key:True for key in runner.POLICY})
+        result=type('Exit',(),{'returncode':0,'stderr':b''})()
+        with patch.object(runner.subprocess,'run',side_effect=[result,runner.subprocess.TimeoutExpired('PRIVATE_COMMAND',45)]) as child:
+            with self.assertRaises(ValueError): run_swift_tests('synthetic-binary',self.folder)
+            self.assertEqual(child.call_count,2)
+        value=json.loads((self.folder/'offline-tests.json').read_text())
+        self.assertEqual(value['failure_category'],'SWIFT_PROCESS_TIMEOUT')
+        self.assertEqual(value['cases'][0]['status'],'FAIL')
 
 if __name__ == '__main__': unittest.main()

@@ -14,6 +14,29 @@ POLICY = {'original_last_address','per_host_one','exact_hosts','http_rejected','
           'backup_host_rejected','userinfo_rejected','port_rejected','fragment_rejected',
           'empty_rejected','original_bitrate','no_backup_substitution'}
 
+def sandbox_command(binary, args, network):
+    policy = '(version 1)(allow default)(deny network*)'
+    if network:
+        # Same loopback-only profile as the already validated integration runner.
+        # URLSession needs local socket binding as well as outbound loopback access.
+        policy += '(allow network-inbound (local ip "localhost:*"))(allow network-outbound (remote ip "localhost:*"))(allow network-bind (local ip "localhost:*"))'
+    return ['sandbox-exec','-p',policy,binary] + args
+
+def process_failure(stderr, code):
+    # stderr is inspected only in memory. Never publish a crash report, URL or arbitrary exception.
+    text = (stderr or b'').decode('utf-8',errors='replace').lower()
+    if 'sandbox-exec:' in text and any(word in text for word in ('parse','syntax','invalid','profile')):
+        return 'SANDBOX_PROFILE_REJECTED'
+    if code is not None and code < 0: return 'SWIFT_PROCESS_SIGNAL'
+    if 'operation not permitted' in text or 'sandbox deny' in text: return 'SANDBOX_OPERATION_REJECTED'
+    return 'MISSING_SWIFT_OBSERVATION'
+
+def save_results(folder, rows, category=None):
+    write(folder,'offline-tests.json',dict(scope='SYNTHETIC_LOOPBACK_ONLY',cases=rows,
+        real_worklist_requests=0,real_media_requests=0,
+        status='PASS' if len(rows)==len(CASES) and all(r['status']=='PASS' for r in rows) else 'INCOMPLETE_OR_FAILED',
+        failure_category=category))
+
 class Handler(BaseHTTPRequestHandler):
     protocol_version = 'HTTP/1.1'
     def log_message(self, *args):
@@ -84,20 +107,18 @@ def expected(case, observation):
 
 def run(binary, folder, sandbox=True):
     folder = Path(folder)
-    child = {k:os.environ[k] for k in ('PATH','TMPDIR','SYSTEMROOT') if k in os.environ}
+    child = {k:os.environ[k] for k in ('PATH','TMPDIR','HOME','SYSTEMROOT') if k in os.environ}
     child.update(OFFLINE_ONLY='1', PROBE_EVIDENCE_DIR=str(folder))
     def command(args, network):
         if not sandbox: return [binary] + args  # Unit-test hook; CLI always uses sandbox.
-        policy = '(version 1)(allow default)(deny network*)'
-        if network:
-            policy += '(allow network-inbound (local ip "127.0.0.1:*"))(allow network-outbound (remote ip "127.0.0.1:*"))'
-        return ['sandbox-exec','-p',policy,binary] + args
+        return sandbox_command(binary,args,network)
     result = subprocess.run(command(['--live-probe-policy-test'],False), env=child,
                             stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=60,check=False)
     policy = json.loads((folder/'policy-tests.json').read_text())
     if result.returncode != 0 or set(policy) != POLICY or not all(v is True for v in policy.values()):
         raise ValueError('POLICY_TEST_FAILED')
     rows = []
+    save_results(folder,rows)
     # No raw logs. Only fixed case IDs and whitelisted boolean/numeric fields leave this runner.
     for case in CASES:
         case_folder = folder / ('case-' + case); case_folder.mkdir()
@@ -107,8 +128,22 @@ def run(binary, folder, sandbox=True):
         thread = threading.Thread(target=server.serve_forever, daemon=True); thread.start()
         try:
             case_env = dict(child, PROBE_CASE_DIR=str(case_folder))
-            completed = subprocess.run(command(['--live-probe-fixture',case,str(server.server_port)],True),
-                env=case_env,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=45,check=False)
+            try:
+                completed = subprocess.run(command(['--live-probe-fixture',case,str(server.server_port)],True),
+                    env=case_env,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,timeout=45,check=False)
+            except (OSError,subprocess.TimeoutExpired) as error:
+                category = 'SWIFT_PROCESS_TIMEOUT' if isinstance(error,subprocess.TimeoutExpired) else 'SWIFT_PROCESS_START_FAILED'
+                rows.append(dict(id=case,status='FAIL',swift_exit_code=None,failure_category=category))
+                save_results(folder,rows,category)
+                raise ValueError(category) from None
+            if not (case_folder/'observation.json').is_file():
+                category = process_failure(completed.stderr,completed.returncode)
+                with server.guard:
+                    count = sum(server.counts.values())
+                rows.append(dict(id=case,status='FAIL',swift_exit_code=completed.returncode,
+                                 failure_category=category,server_requests=count))
+                save_results(folder,rows,category)
+                raise ValueError(category)
             observation = json.loads((case_folder/'observation.json').read_text())
             second_ok = case != 'second' or json.loads((case_folder/'second.json').read_text())['request_count'] == 0
             with server.guard:
@@ -121,8 +156,7 @@ def run(binary, folder, sandbox=True):
             passed = completed.returncode == 0 and expected(case,observation) and server_ok and body_ok and second_ok
             rows.append(dict(id=case,status='PASS' if passed else 'FAIL',swift_exit_code=completed.returncode,
                              server_single_request=server_ok,observation=observation))
-            write(folder,'offline-tests.json',dict(scope='SYNTHETIC_LOOPBACK_ONLY',cases=rows,
-                real_worklist_requests=0,real_media_requests=0,status='PASS' if len(rows)==len(CASES) and all(r['status']=='PASS' for r in rows) else 'INCOMPLETE_OR_FAILED'))
+            save_results(folder,rows,None if passed else 'SWIFT_CASE_ASSERTION_FAILED')
             if not passed: raise ValueError('SWIFT_CASE_FAILED')
         finally:
             server.shutdown(); server.server_close(); thread.join(timeout=2)

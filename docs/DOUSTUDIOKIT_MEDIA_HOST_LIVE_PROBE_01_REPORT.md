@@ -1,6 +1,6 @@
 # DOUSTUDIOKIT_MEDIA_HOST_LIVE_PROBE_01
 
-2026-10-26，Asia/Shanghai。已按用户要求迁移并正常推送至 `a15762877559-ai/swiftdy`，两个手动工作流已登记，未触发任何 Actions。原仓库保留为 upstream，新仓库为 origin。本地路径不变。真实媒体主机受控探测的代码和两个独立手动工作流已准备，Windows 检查通过。**本轮 macOS Swift 编译及 Swift/URLSession 离线测试 NOT_RUN，真实列表请求及真实媒体探测 NOT_RUN。** 当前不能声称新 Swift 代码已编译、离线用例已通过或真实媒体探测已通过。
+2026-10-26，Asia/Shanghai。已按用户要求迁移并正常推送至 `a15762877559-ai/swiftdy`，两个手动工作流已登记，未触发任何 Actions。原仓库保留为 upstream，新仓库为 origin。本地路径不变。真实媒体主机受控探测的代码和两个独立手动工作流已准备，Windows 检查通过。**最新用户手动运行 40317689736：macOS Swift 编译 PASS，原有 83 项 fixture 和新增 12 个策略断言 PASS；受控 HTTP 测试在第一例观察输出前失败。** 整体离线验收尚未通过。已修正测试启动器的 loopback 沙箱配置并补充失败诊断，Windows 84/84 PASS；修正后的 macOS 重跑 NOT_RUN，真实列表请求及真实媒体探测仍 NOT_RUN。下文准备阶段的 NOT_RUN/80 项记录保留为对应时点事实，最新状态见末节。
 
 ## 环境恢复与历史核验
 
@@ -79,8 +79,9 @@ YAML 结构、manual-only、xcode-27、contents:read、固定完整 Actions SHA/
 PREPARATION = READY_FOR_MACOS_VALIDATION
 WINDOWS_STATIC = PASS
 WINDOWS_PYTHON_TESTS = 80/80 PASS
-MACOS_SWIFT_BUILD = NOT_RUN
-SWIFT_OFFLINE_TESTS = NOT_RUN
+MACOS_SWIFT_BUILD = PASS_TESTED_4396F84
+SWIFT_OFFLINE_TESTS = INCOMPLETE_HTTP_FIXTURE_FAILURE
+REPAIRED_RUNNER_MACOS = NOT_RUN
 REAL_WORKLIST_REQUEST = NOT_RUN
 REAL_MEDIA_PROBE = NOT_RUN
 REAL_VIDEO_DOWNLOAD = NOT_RUN
@@ -116,3 +117,22 @@ Git HTTPS 连接中断的原因已定位为 Windows 系统代理与 Git 默认�
 - macOS Swift 编译及新增 Swift 离线测试仍为 NOT_RUN；工作流登记不是编译或验收通过。
 
 下一步由用户先打开上文更新后的独立离线工作流，选择 Run workflow/main。该流程无输入、无 Secret，只运行本机合成策略和 loopback HTTP 用例。收集编译/离线证据并通过后，再单独配置新仓库 Secret、决定是否手动授权真实探测。当前不执行任何真实探测、完整下载或主机批准。
+
+
+## 用户首次手动离线运行 40317689736 与启动器修正
+
+[实际运行](https://github.com/a15762877559-ai/swiftdy/actions/runs/40317689736)，attempt=1，受测提交 `4396f848028fa932a97d56cfcf08621c28808521`。job=121554319401，最终 failure，失败步骤是受控 Swift HTTP 测试；编译、原有 fixture、收尾检查和诊断上传均 success。环境 macOS 27.0.1 (26A434)、Swift 6.4、Xcode 27.1、arm64，上游固定 SHA 核验通过。
+
+- build-exit-code=0，macOS 编译 PASS。
+- baseline-exit-code=0，原有通用/认证 38、主机 20、优先证据 25，共 83/83 PASS。
+- policy-tests.json 的 12 个原版地址选择与精确主机策略断言全部 true。
+- offline-exit-code=1，未生成 offline-tests.json 或第一例已发布观察。不能把 95 个已通过断言等同整套 HTTP 测试通过，也不能认定任何一个真实媒体探测成功。
+- 工作流无 Secret 注入、真实请求为 0；新仓库缺少 DOUYIN_COOKIE 与本次离线失败无关。
+
+Artifact ID 12647213914，ZIP SHA-256 `490d6650317b9f8bc764b0540c39da2a0e29812edba12ad202307b9a3b6c83ad` 与 GitHub digest 一致；ZIP CRC、23 文件白名单及清单中 22 个文件哈希全部通过。原 Artifact 字节保存在 `evidence/doustudio-media-host-live-probe-01/run-40317689736/`，另附 jobs、GitHub 元数据和核验结果，不覆盖原运行证据。
+
+启动器诊断缺陷：旧版本丢弃 Swift stderr，结果文件不存在时只输出固定笼统失败，故现有 Artifact 不足以单独证明该子进程失败的具体系统原因。源码比较发现新启动器没有复用已验收集成测试的完整 loopback 沙箱配置，缺少 network-bind 许可，且离线子进程未传 HOME。本次改为既有受控集成工作流相同的 localhost-only inbound/outbound/bind 规则，并只为离线子进程补充 HOME；fixture 的实际目的地址仍为 literal 127.0.0.1，没有放开外网。是否解决 macOS 失败仍需实测，不能提前标记根因已证实修复。
+
+同时补充固定安全诊断：即使结果文件缺失，也在 offline-tests.json 记录用例 ID、子进程退出码、服务端实际请求次数和失败类别。stderr 只在内存中分类，不能原样写盘；超时/无法启动同样记录失败并停止，不重试。新增四项 Windows 回归核对 loopback 沙箱范围、原始 stderr 不落盘、缺失观察证据可归档、超时不重试。本机全套 Python **84/84 PASS**，其中本任务 26 项；静态检查通过。仅改 `live_probe_tests.py`、`test_live_probe.py` 及本任务报告和证据，Swift、SafeStreamingTransport、真实入口与全部工作流未改。
+
+下一步：修正代码推送后，请用户重新打开独立离线工作流，选择 Run workflow/main，启动新提交的运行；不要使用 Re-run jobs 重跑旧 SHA。当前没有自动 dispatch 或 retry，没有真实列表、媒体请求、完整下载或生产主机批准。修正后的 macOS 运行仍为 NOT_RUN。
