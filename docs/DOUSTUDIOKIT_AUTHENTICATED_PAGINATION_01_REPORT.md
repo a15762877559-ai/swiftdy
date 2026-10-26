@@ -100,3 +100,10 @@ VIDEOFLOW_CHANGED = NO
 ```
 
 这里 OFFLINE_SELF_TEST 专指当前源码的 macOS Swift 自检，Windows Python 离线检查单独记录为 27/27 PASS。
+
+## 发布核验
+
+- 准备代码及初始证据已普通提交并推送：`e64fd8d3e7719f4eb3305fbb7daf8b6ec2da6428`。
+- GitHub 只读 API 返回新工作流 ID `396701158`、名称/路径匹配、state=active；发布核验时 total_count=0。元数据见 `github-publication.json`。
+- 这证明 GitHub 已登记工作流，不代表 macOS 编译、Swift fixture、运行时表达式或真实分页已经通过。新分页运行 URL 和 Artifact 哈希仍为 NOT_RUN。
+- 最后一次提交仅补充本节和发布元数据，不改变待验证的 Harness/工作流源码。未触发认证或离线云端工作流；不自动重试。

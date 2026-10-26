@@ -1,0 +1,11 @@
+{
+  "workflow_id": 396701158,
+  "name": "DouStudioKit Authenticated Pagination Acceptance",
+  "path": ".github/workflows/doustudio-authenticated-pagination.yml",
+  "state": "active",
+  "html_url": "https://github.com/achusonwork-bit/doustudio-runtime-acceptance/blob/main/.github/workflows/doustudio-authenticated-pagination.yml",
+  "run_count": 0,
+  "automatically_triggered": false,
+  "published_commit": "e64fd8d3e7719f4eb3305fbb7daf8b6ec2da6428",
+  "checked_at_utc": "2026-10-26T06:07:16.9998900Z"
+}
