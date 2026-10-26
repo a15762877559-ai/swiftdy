@@ -1,0 +1,118 @@
+name: DouStudioKit Real Runtime Acceptance
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile_url:
+        description: 'Public profile: https://www.douyin.com/user/ID (no query or fragment)'
+        required: true
+        type: string
+      authorized_public_content:
+        description: 'I confirm this public profile and one video may be tested/downloaded'
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  runtime:
+    runs-on: xcode-27
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout acceptance harness
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Initialize evidence and validate explicit input
+        id: evidence
+        env:
+          RUNTIME_TEMP: ${{ runner.temp }}
+        run: python3 runtime-harness/prepare_evidence.py
+
+      - name: Checkout unchanged pinned upstream
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: qinjian0420/DouStudioKit
+          ref: 362dad3d082e9f63c8efd360acc653ba169d40a2
+          path: upstream
+          persist-credentials: false
+          fetch-depth: 1
+          submodules: false
+          lfs: false
+
+      - name: Verify upstream and record runtime environment
+        id: environment
+        run: |
+          test "$(git -C upstream rev-parse HEAD)" = 362dad3d082e9f63c8efd360acc653ba169d40a2
+          test -z "$(git -C upstream status --porcelain --untracked-files=no)"
+          python3 runtime-harness/prepare_evidence.py environment
+
+      - name: Compile independent harness
+        id: compile
+        run: |
+          set +e
+          swift build --package-path runtime-harness -c debug > "$EVIDENCE_DIR/harness-build.log" 2>&1
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$EVIDENCE_DIR/harness-build-exit-code.txt"
+          exit "$code"
+
+      - name: Check harness guards with offline fixtures
+        id: selftest
+        run: |
+          bin_dir=$(swift build --package-path runtime-harness -c debug --show-bin-path)
+          "$bin_dir/RuntimeAcceptance" --self-test
+
+      - name: Run user-authorized acceptance once
+        id: acceptance
+        run: |
+          bin_dir=$(swift build --package-path runtime-harness -c debug --show-bin-path)
+          set +e
+          "$bin_dir/RuntimeAcceptance"
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$EVIDENCE_DIR/harness-exit-code.txt"
+          exit "$code"
+
+      - name: Finalize truthful stage outcomes
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        env:
+          INIT_OUTCOME: ${{ steps.evidence.outcome }}
+          ENVIRONMENT_OUTCOME: ${{ steps.environment.outcome }}
+          COMPILE_OUTCOME: ${{ steps.compile.outcome }}
+          SELFTEST_OUTCOME: ${{ steps.selftest.outcome }}
+          ACCEPTANCE_OUTCOME: ${{ steps.acceptance.outcome }}
+        run: python3 runtime-harness/prepare_evidence.py finalize
+
+      - name: Upload sanitized evidence only
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: doustudio-runtime-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 3
+          if-no-files-found: error
+          include-hidden-files: false
+          path: |
+            ${{ steps.evidence.outputs.directory }}/runtime-environment.json
+            ${{ steps.evidence.outputs.directory }}/entrypoint-analysis.json
+            ${{ steps.evidence.outputs.directory }}/profile-resolution.json
+            ${{ steps.evidence.outputs.directory }}/worklist-result.json
+            ${{ steps.evidence.outputs.directory }}/pagination-result.json
+            ${{ steps.evidence.outputs.directory }}/field-validation.json
+            ${{ steps.evidence.outputs.directory }}/download-validation.json
+            ${{ steps.evidence.outputs.directory }}/failure-observations.json
+            ${{ steps.evidence.outputs.directory }}/final-acceptance.json
+            ${{ steps.evidence.outputs.directory }}/stage-outcomes.json
+            ${{ steps.evidence.outputs.directory }}/harness-build.log
+            ${{ steps.evidence.outputs.directory }}/harness-build-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/harness-exit-code.txt
+
+      - name: Remove temporary media
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        run: python3 runtime-harness/prepare_evidence.py cleanup
