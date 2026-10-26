@@ -1,0 +1,151 @@
+name: DouStudioKit macOS Build Check
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: xcode-27
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    env:
+      UPSTREAM_COMMIT: 362dad3d082e9f63c8efd360acc653ba169d40a2
+      EVIDENCE_DIR: ${{ runner.temp }}/doustudio-build-evidence
+    steps:
+      - name: Initialize build evidence
+        id: evidence
+        run: |
+          mkdir -p "$EVIDENCE_DIR"
+          printf '%s\n' "$UPSTREAM_COMMIT" > "$EVIDENCE_DIR/expected-commit.txt"
+          for step in verify environment dump-package build; do
+            printf 'NOT_RUN\n' > "$EVIDENCE_DIR/$step-exit-code.txt"
+          done
+
+      - name: Checkout pinned upstream source
+        id: checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: qinjian0420/DouStudioKit
+          ref: 362dad3d082e9f63c8efd360acc653ba169d40a2
+          path: upstream
+          persist-credentials: false
+          fetch-depth: 1
+          submodules: false
+          lfs: false
+
+      - name: Verify actual upstream HEAD
+        id: verify
+        working-directory: upstream
+        run: |
+          set +e
+          actual_commit=$(git rev-parse HEAD 2> "$EVIDENCE_DIR/verify.log")
+          git_status=$?
+          set -e
+          printf '%s\n' "$actual_commit" > "$EVIDENCE_DIR/actual-commit.txt"
+          status=0
+          if [[ "$git_status" -ne 0 || "$actual_commit" != "$UPSTREAM_COMMIT" ]]; then
+            printf 'Upstream HEAD verification failed.\n' >> "$EVIDENCE_DIR/verify.log"
+            status=1
+          fi
+          printf 'expected=%s\nactual=%s\n' "$UPSTREAM_COMMIT" "$actual_commit" >> "$EVIDENCE_DIR/verify.log"
+          printf '%s\n' "$status" > "$EVIDENCE_DIR/verify-exit-code.txt"
+          cat "$EVIDENCE_DIR/verify.log"
+          exit "$status"
+
+      - name: Record macOS and toolchain versions
+        id: environment
+        run: |
+          set +e
+          {
+            printf '%s\n' '--- sw_vers ---'
+            sw_vers
+            sw_status=$?
+            printf '%s\n' '--- swift --version ---'
+            swift --version
+            swift_status=$?
+            printf '%s\n' '--- xcodebuild -version ---'
+            xcodebuild -version
+            xcode_status=$?
+            printf '%s\n' '--- uname -m ---'
+            uname -m
+            arch_status=$?
+            printf 'command_exit_codes: sw_vers=%s swift=%s xcodebuild=%s uname=%s\n' \
+              "$sw_status" "$swift_status" "$xcode_status" "$arch_status"
+          } > "$EVIDENCE_DIR/environment.log" 2>&1
+          set -e
+          status=0
+          for code in "$sw_status" "$swift_status" "$xcode_status" "$arch_status"; do
+            if [[ "$code" -ne 0 ]]; then status=1; fi
+          done
+          printf '%s\n' "$status" > "$EVIDENCE_DIR/environment-exit-code.txt"
+          cat "$EVIDENCE_DIR/environment.log"
+          exit "$status"
+
+      - name: Inspect Swift package manifest
+        id: manifest
+        working-directory: upstream
+        run: |
+          set +e
+          swift package dump-package > "$EVIDENCE_DIR/dump-package.json" 2> "$EVIDENCE_DIR/dump-package.stderr.log"
+          status=$?
+          set -e
+          printf '%s\n' "$status" > "$EVIDENCE_DIR/dump-package-exit-code.txt"
+          cat "$EVIDENCE_DIR/dump-package.json"
+          cat "$EVIDENCE_DIR/dump-package.stderr.log"
+          exit "$status"
+
+      - name: Build Swift library in debug configuration
+        id: build
+        working-directory: upstream
+        run: |
+          set +e
+          swift build -c debug > "$EVIDENCE_DIR/build.log" 2>&1
+          status=$?
+          set -e
+          printf '%s\n' "$status" > "$EVIDENCE_DIR/build-exit-code.txt"
+          cat "$EVIDENCE_DIR/build.log"
+          exit "$status"
+
+      - name: Record step outcomes
+        if: ${{ always() }}
+        env:
+          EVIDENCE_OUTCOME: ${{ steps.evidence.outcome }}
+          CHECKOUT_OUTCOME: ${{ steps.checkout.outcome }}
+          VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+          ENVIRONMENT_OUTCOME: ${{ steps.environment.outcome }}
+          MANIFEST_OUTCOME: ${{ steps.manifest.outcome }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+        run: |
+          mkdir -p "$EVIDENCE_DIR"
+          printf 'evidence=%s\ncheckout=%s\nverify=%s\nenvironment=%s\ndump-package=%s\nbuild=%s\n' \
+            "$EVIDENCE_OUTCOME" "$CHECKOUT_OUTCOME" "$VERIFY_OUTCOME" \
+            "$ENVIRONMENT_OUTCOME" "$MANIFEST_OUTCOME" "$BUILD_OUTCOME" \
+            > "$EVIDENCE_DIR/step-outcomes.txt"
+          cat "$EVIDENCE_DIR/step-outcomes.txt"
+
+      - name: Upload non-sensitive build evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: doustudio-macos-build-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 3
+          if-no-files-found: error
+          include-hidden-files: false
+          path: |
+            ${{ runner.temp }}/doustudio-build-evidence/expected-commit.txt
+            ${{ runner.temp }}/doustudio-build-evidence/actual-commit.txt
+            ${{ runner.temp }}/doustudio-build-evidence/verify.log
+            ${{ runner.temp }}/doustudio-build-evidence/verify-exit-code.txt
+            ${{ runner.temp }}/doustudio-build-evidence/environment.log
+            ${{ runner.temp }}/doustudio-build-evidence/environment-exit-code.txt
+            ${{ runner.temp }}/doustudio-build-evidence/dump-package.json
+            ${{ runner.temp }}/doustudio-build-evidence/dump-package.stderr.log
+            ${{ runner.temp }}/doustudio-build-evidence/dump-package-exit-code.txt
+            ${{ runner.temp }}/doustudio-build-evidence/build.log
+            ${{ runner.temp }}/doustudio-build-evidence/build-exit-code.txt
+            ${{ runner.temp }}/doustudio-build-evidence/step-outcomes.txt
