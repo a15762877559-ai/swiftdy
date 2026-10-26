@@ -1,6 +1,6 @@
 # DOUSTUDIOKIT_REAL_RUNTIME_ACCEPTANCE_01
 
-日期：2026-10-26（Asia/Shanghai）。当前阶段：独立 Harness 与工作流准备。用户已在本轮提供公开主页链接，未将其设为工作流默认值或写入仓库；仍等待用户在 Actions 页面手动输入并触发。尚未执行抖音网络请求、视频下载或新 Harness 的云端编译。历史构建通过不能替代本轮运行验收。
+日期：2026-10-26（Asia/Shanghai）。最新结果：用户已手动触发运行 `40267311040`。独立 Harness 云端编译成功，但 Harness 离线自检失败，真实运行步骤被跳过；未执行抖音网络请求或视频下载。此次失败不能证明上游接口不可用。下文保留准备阶段说明，最新实测证据见“首次云端运行结果”。
 
 ## 仓库和基线
 
@@ -62,7 +62,7 @@
 
 Artifact 名称为 `doustudio-runtime-evidence-<run_id>-<attempt>`。九份 JSON 覆盖用户要求的八份及额外 profile-resolution.json，并上传 stage-outcomes.json、Harness 构建日志和退出码。没有目录通配符，没有原始响应或媒体上传。
 
-## 本地验证
+## 准备阶段本地验证快照
 
 执行 `python runtime-harness/validate_local.py`：106 项 PASS。使用既有 Python/PyYAML 和 Git Bash；未安装工具。
 
@@ -93,6 +93,31 @@ GitHub 服务端核验：PASS。工作流 ID `396629067`，API 返回正确名�
 
 准备就绪后，由用户进入 [Actions](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions)，选择 `DouStudioKit Real Runtime Acceptance` → Run workflow → main，手动输入要测试的公开主页并勾选授权确认，再运行。用户触发后才能读取真实日志/Artifact 并更新验收。此前聊天中的 URL 不作为本轮默认输入。
 
+## 首次云端运行结果
+
+- [运行 40267311040](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40267311040)，attempt=1，event=workflow_dispatch，status=completed，conclusion=failure。
+- 受测提交：`41255273882cfccf028c52dad4f15ca76515dbcb`；运行创建于北京时间 2026-10-26 12:06:06，最后更新时间 12:07:14。
+- Job ID：`121392414176`。输入/授权校验、上游检出和 SHA 校验、运行环境记录均成功。
+- 实际环境：macOS 27.0.1（26A434）、Apple Swift 6.4（swiftlang-6.4.0.34.1）、Xcode 27.1（27A9275）、arm64，运行器 xcode-27。
+- Harness 编译：PASS，`harness-build-exit-code.txt` 为 0，日志结尾 `Build complete! (24.75 sec)`。AVAssetReader 的 add/startReading/copyNextSampleBuffer 有 macOS 27 弃用警告，未阻止编译；不能据此判定实际解码结果。
+- 失败步骤：`Check harness guards with offline fixtures`。原始日志为 `Offline harness checks FAIL`，进程退出码 1。此步骤只使用内存 fixture，不发送网络请求。
+- 具体失败断言/异常代号未被现有自检日志输出，因此根因为 NOT_IDENTIFIED；不能把推测写成已确认原因。这是验收 Harness 自检失败，不能标成抖音服务端拒绝或上游运行不兼容。
+- `Run user-authorized acceptance once` 为 skipped；因此没有真实主页解析、作品请求、分页或下载结果。`harness-exit-code.txt` 不存在是该步骤未执行的预期结果，不能用编译退出码 0 替代。
+- 汇总、Artifact 上传、临时媒体清理均成功。未自动重试、修改上游或触发第二次运行。
+
+[Artifact 12627106573](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40267311040/artifacts/12627106573) 名为 `doustudio-runtime-evidence-40267311040-1`，5959 字节，12 个白名单文件；SHA-256 `7fa974fe2683a3690052cfe17b5baf6a352fc0a2639a36045862fdee7a66fd52` 与发布摘要一致，ZIP CRC 通过。保留 3 天，到期北京时间 2026-10-29 12:07:03。
+
+已核验的原始 Artifact 内容保存在 `evidence/doustudio-real-runtime-acceptance-01/run-40267311040/`，另附 run-summary.json 与 artifact-inspection.json。根目录九份准备模板保留，不用历史运行结果污染下次初始化。完整 Job 日志和 ZIP 保存在 `.git/task-validation/runtime-run-40267311040/`，不提交；发布证据没有 Cookie、令牌、签名内部值或带查询参数的完整 URL，没有视频。
+
+```ini
+HARNESS_BUILD = PASS
+HARNESS_OFFLINE_SELF_TEST = FAIL
+HARNESS_SELF_TEST_ROOT_CAUSE = NOT_IDENTIFIED
+REAL_RUNTIME_STEP = SKIPPED
+ARTIFACT_VERIFICATION = PASS
+AUTOMATIC_RERUN = NO
+```
+
 ## 当前验收状态
 
 ```ini
@@ -112,4 +137,4 @@ VIDEOFLOW_CHANGED = NO
 ROOTNETSCOPE_CHANGED = NO
 ```
 
-`evidence/doustudio-real-runtime-acceptance-01/` 当前均明确标为准备阶段/未执行；没有伪造真实主页、作品数、下载哈希或云端环境。
+网络验收状态继续保持 NOT_RUN；真实云端环境和 Harness 编译结果仅来自本次 run 子目录。没有把离线 fixture 视为用户主页数据，也没有把编译通过视为运行验收通过。后续需先定位 Harness 自检失败，再由用户决定下一次手动运行；本次按失败结果停止。

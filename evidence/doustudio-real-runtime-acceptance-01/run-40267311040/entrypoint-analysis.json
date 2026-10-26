@@ -1,0 +1,130 @@
+{
+  "phase": "STATIC_SOURCE_ANALYSIS",
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "public_interfaces_available": true,
+  "package_product": "library; no executable product",
+  "profile": {
+    "call": "LinkParser().parse(input)",
+    "result": "DouyinLinkTarget.user(secUid:modalWorkID:)",
+    "input_policy": "Only canonical HTTPS www.douyin.com/user/ID; no query, fragment, short-link expansion or default target"
+  },
+  "worklist": {
+    "call": "client.endpoints.accountTimeline(secUid:tab:.post,page:PageRequest(count:18,maxPages:3,cursor:0))",
+    "result": "AccountTimeline.works: [JSONNode]",
+    "response_key": "aweme_list",
+    "observer": "Public HTTPTransport adapter observes original URLSessionTransport responses; no endpoint or signer reimplementation"
+  },
+  "pagination": {
+    "request_cursor": "max_cursor",
+    "response_cursor": "max_cursor",
+    "continuation": "has_more",
+    "implementation": "Original PaginatedCollector updates cursor from RawPage.cursor",
+    "limitation": "AccountTimeline drops page metadata; transport observer records it without replacing the collector",
+    "excluded_api": "collectAccountBatched synthesizes startCursor + pages and infers hasMore from counts; not acceptable for this test"
+  },
+  "fields": {
+    "extractor": "DouyinExtractor.work(from:collectionTime:)",
+    "mapping": {
+      "id": "DouyinWork.id",
+      "description": "desc",
+      "published": "createTimestamp/createTime",
+      "cover": "staticCover/dynamicCover",
+      "video": "downloads .media(url:)"
+    },
+    "logging": "IDs as strings; descriptions and URLs only as validity/presence flags; no raw payload persisted"
+  },
+  "download": {
+    "call": "client.downloader.download(work:)",
+    "result": "DownloadOutcome.downloaded([URL]) / skipped / partial",
+    "implementation": "Original Downloader buffers HTTP response, writes .part then moves into DownloadLayout",
+    "limit": 1,
+    "eligibility": "One video target, explicit status.is_private=0, not deleted/prohibited, HTTPS douyinvod.com or douyin.com and subdomains",
+    "validation": "HTTP 200; no redirects; reject HTML/JSON; size/header/hash/write checks; MP4 ftyp; full AVFoundation video decode",
+    "limitations": [
+      "100 MiB cap is checked after response buffering, not during transfer",
+      "Original downloader accepts arbitrary 2xx bodies and has no decode validation; harness guards are reported as harness checks",
+      "Missing public visibility metadata or unsupported host blocks download",
+      "No watermark claim without independent evidence"
+    ]
+  },
+  "access_policy": {
+    "cookie": "Explicit empty cookie; no inherited DOUYIN_COOKIE",
+    "retries": 0,
+    "signing": "Only unchanged original request pipeline if user manually runs; no reverse engineering, patched signatures or identity acquisition",
+    "stop": "401/403/404/429, redirects, platform errors and possible challenges stop with sanitized reason; no retries or bypass"
+  },
+  "sources": [
+    {
+      "path": "Package.swift",
+      "lines": [
+        35,
+        51
+      ],
+      "sha256_local_checkout": "bf29b3727521847b313a5eef026d6cb092ab216350c63a6541dc656f1273c551",
+      "url": "https://github.com/qinjian0420/DouStudioKit/blob/362dad3d082e9f63c8efd360acc653ba169d40a2/Package.swift#L35"
+    },
+    {
+      "path": "Sources/DouStudioKit/Parsing/LinkParser.swift",
+      "lines": [
+        19,
+        231
+      ],
+      "sha256_local_checkout": "10798a527fbbb4a27909831cd32981fbfabdb31b857fe0716dd9f2bd970a5a94",
+      "url": "https://github.com/qinjian0420/DouStudioKit/blob/362dad3d082e9f63c8efd360acc653ba169d40a2/Sources/DouStudioKit/Parsing/LinkParser.swift#L19"
+    },
+    {
+      "path": "Sources/DouStudioKit/Networking/DouyinAPI.swift",
+      "lines": [
+        101,
+        338
+      ],
+      "sha256_local_checkout": "c288d212adbd6dce5456a6230d1b21e3c70fa3f999dbe0bb6a583e346ba10704",
+      "url": "https://github.com/qinjian0420/DouStudioKit/blob/362dad3d082e9f63c8efd360acc653ba169d40a2/Sources/DouStudioKit/Networking/DouyinAPI.swift#L101"
+    },
+    {
+      "path": "Sources/DouStudioKit/Collect/DouyinClient.swift",
+      "lines": [
+        394,
+        453
+      ],
+      "sha256_local_checkout": "850c39c6abd070b666c06cdb0fabf75b97a54a899e280c5f696839ce67cbb329",
+      "url": "https://github.com/qinjian0420/DouStudioKit/blob/362dad3d082e9f63c8efd360acc653ba169d40a2/Sources/DouStudioKit/Collect/DouyinClient.swift#L394"
+    },
+    {
+      "path": "Sources/DouStudioKit/Models/Entities.swift",
+      "lines": [
+        53,
+        174
+      ],
+      "sha256_local_checkout": "aca074e521afda97ebfbcf62574fedc6a1495e87c7bdc16d9177deb2f632c1bc",
+      "url": "https://github.com/qinjian0420/DouStudioKit/blob/362dad3d082e9f63c8efd360acc653ba169d40a2/Sources/DouStudioKit/Models/Entities.swift#L53"
+    },
+    {
+      "path": "Sources/DouStudioKit/Parsing/DouyinExtractor.swift",
+      "lines": [
+        52,
+        200
+      ],
+      "sha256_local_checkout": "e9b3cd8e7a8c23f8a6df7f9e39691e39af7038ddb2bc7e2e7724dc96ef58843f",
+      "url": "https://github.com/qinjian0420/DouStudioKit/blob/362dad3d082e9f63c8efd360acc653ba169d40a2/Sources/DouStudioKit/Parsing/DouyinExtractor.swift#L52"
+    },
+    {
+      "path": "Sources/DouStudioKit/Download/Downloader.swift",
+      "lines": [
+        160,
+        360
+      ],
+      "sha256_local_checkout": "cf410aa41a3ec8078b9682b8550c29074b4dcd5dd411c1f5e4d55e0e33c9a03d",
+      "url": "https://github.com/qinjian0420/DouStudioKit/blob/362dad3d082e9f63c8efd360acc653ba169d40a2/Sources/DouStudioKit/Download/Downloader.swift#L160"
+    },
+    {
+      "path": "Sources/DouStudioKit/Networking/DouyinAPIClient.swift",
+      "lines": [
+        115,
+        203
+      ],
+      "sha256_local_checkout": "48f3afc2784d98a940b824f4d94d9f9b443af566e5ec4d1ef96bddd330114168",
+      "url": "https://github.com/qinjian0420/DouStudioKit/blob/362dad3d082e9f63c8efd360acc653ba169d40a2/Sources/DouStudioKit/Networking/DouyinAPIClient.swift#L115"
+    }
+  ]
+}

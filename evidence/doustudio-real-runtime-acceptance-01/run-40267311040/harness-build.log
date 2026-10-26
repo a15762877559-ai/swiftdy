@@ -1,0 +1,64 @@
+Building for debugging...
+[Pre-planning 1 / 67]
+[Planning deferred tasks]
+[23 / 38]
+[24 / 39] DouStudioKit
+[31 / 88]
+[34 / 88]
+[40 / 88]
+[44 / 88]
+[45 / 88]
+[48 / 88]
+[49 / 88]
+[51 / 88]
+[54 / 88]
+[58 / 88]
+[61 / 88]
+[62 / 88]
+[63 / 88]
+[68 / 88]
+[69 / 88]
+[73 / 88] DouStudioKit
+[74 / 88] DouStudioKit
+[82 / 89]
+[82 / 89] DouStudioKit
+[84 / 89] DouStudioKit
+[84 / 89] RuntimeAcceptance-product
+[88 / 116]
+[91 / 116]
+[96 / 116]
+[97 / 116]
+[99 / 116]
+[100 / 116]
+[104 / 116]
+[106 / 116]
+[107 / 116]
+[111 / 116] RuntimeAcceptance-product
+[112 / 116] RuntimeAcceptance-product
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift:105:20: [1;33mwarning: [1;39m'add' was deprecated in macOS 27.0: Use the appropriate AVAssetReader.outputProvider(for:...) overload for your output and optional adaptor instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+[0;36m103 |[0;0m                 outputSettings: [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA])
+[0;36m104 |[0;0m             guard reader.canAdd(output) else { throw AcceptanceStop(code: "DECODER_UNAVAILABLE", blocked: false) }
+[0;36m105 |[0;0m             reader.add(output)
+    [0;36m|[0;0m                    `- [1;33mwarning: [1;39m'add' was deprecated in macOS 27.0: Use the appropriate AVAssetReader.outputProvider(for:...) overload for your output and optional adaptor instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+[0;36m106 |[0;0m             guard reader.startReading() else { throw AcceptanceStop(code: "DECODE_START_FAILED", blocked: false) }
+[0;36m107 |[0;0m             var frames = 0
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift:106:26: [1;33mwarning: [1;39m'startReading()' was deprecated in macOS 27.0: Use start() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+[0;36m104 |[0;0m             guard reader.canAdd(output) else { throw AcceptanceStop(code: "DECODER_UNAVAILABLE", blocked: false) }
+[0;36m105 |[0;0m             reader.add(output)
+[0;36m106 |[0;0m             guard reader.startReading() else { throw AcceptanceStop(code: "DECODE_START_FAILED", blocked: false) }
+    [0;36m|[0;0m                          `- [1;33mwarning: [1;39m'startReading()' was deprecated in macOS 27.0: Use start() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+[0;36m107 |[0;0m             var frames = 0
+[0;36m108 |[0;0m             while let sample = output.copyNextSampleBuffer() {
+
+/Users/runner/work/doustudio-runtime-acceptance/doustudio-runtime-acceptance/runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift:108:39: [1;33mwarning: [1;39m'copyNextSampleBuffer()' was deprecated in macOS 27.0: Use AVAssetReaderOutput.Provider.next() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+[0;36m106 |[0;0m             guard reader.startReading() else { throw AcceptanceStop(code: "DECODE_START_FAILED", blocked: false) }
+[0;36m107 |[0;0m             var frames = 0
+[0;36m108 |[0;0m             while let sample = output.copyNextSampleBuffer() {
+    [0;36m|[0;0m                                       `- [1;33mwarning: [1;39m'copyNextSampleBuffer()' was deprecated in macOS 27.0: Use AVAssetReaderOutput.Provider.next() instead[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration\DeprecatedDeclaration]8;;\]
+[0;36m109 |[0;0m                 guard CMSampleBufferGetImageBuffer(sample) != nil else {
+[0;36m110 |[0;0m                     throw AcceptanceStop(code: "DECODED_FRAME_MISSING", blocked: false)
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+[114 / 116] RuntimeAcceptance-product
+Build complete! (24.75 sec)

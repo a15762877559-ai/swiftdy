@@ -1,0 +1,12 @@
+{
+  "phase": "CLOUD_RUNTIME",
+  "status": "PASS",
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "macos": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "architecture": "arm64",
+  "runner_label": "xcode-27",
+  "run_id": "40267311040",
+  "test_repository_commit": "41255273882cfccf028c52dad4f15ca76515dbcb"
+}
