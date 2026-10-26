@@ -1,6 +1,6 @@
 # DOUSTUDIOKIT_MEDIA_HOST_LIVE_PROBE_01
 
-2026-10-26，Asia/Shanghai。真实媒体主机受控探测的代码和两个独立手动工作流已准备，Windows 检查通过。**本轮 macOS Swift 编译及 Swift/URLSession 离线测试 NOT_RUN，真实列表请求及真实媒体探测 NOT_RUN。** 当前不能声称新 Swift 代码已编译、离线用例已通过或真实媒体探测已通过。
+2026-10-26，Asia/Shanghai。已按用户要求迁移并正常推送至 `a15762877559-ai/swiftdy`，两个手动工作流已登记，未触发任何 Actions。原仓库保留为 upstream，新仓库为 origin。本地路径不变。真实媒体主机受控探测的代码和两个独立手动工作流已准备，Windows 检查通过。**本轮 macOS Swift 编译及 Swift/URLSession 离线测试 NOT_RUN，真实列表请求及真实媒体探测 NOT_RUN。** 当前不能声称新 Swift 代码已编译、离线用例已通过或真实媒体探测已通过。
 
 ## 环境恢复与历史核验
 
@@ -71,9 +71,9 @@ YAML 结构、manual-only、xcode-27、contents:read、固定完整 Actions SHA/
 
 基线 392 个跟踪文件中只修改入口文件且仅新增分支。上游未检出或修改；既有 SafeStreamingTransport、10 个旧工作流、历史报告和证据全部不变。RootNetScope、VideoFlow、系统代理、v2rayN 和 Git 全局配置没有修改。没有 reset --hard、强推、删除旧证据或触发任何 Actions。
 
-发布后先由用户手动运行 [DouStudioKit Media Host Live Probe Offline Tests](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/workflows/doustudio-media-host-live-probe-offline.yml)。它没有输入或 Secret，不能访问抖音。若编译/用例失败，根据其脱敏诊断修复并重新验证，不将准备状态升级为通过。
+发布后先由用户手动运行 [DouStudioKit Media Host Live Probe Offline Tests](https://github.com/a15762877559-ai/swiftdy/actions/workflows/doustudio-media-host-live-probe-offline.yml)。它没有输入或 Secret，不能访问抖音。若编译/用例失败，根据其脱敏诊断修复并重新验证，不将准备状态升级为通过。
 
-取得真实 macOS 编译和离线 PASS 后，另由用户决定是否手动运行 [DouStudioKit Media Host Live Probe](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/workflows/doustudio-media-host-live-probe.yml)，输入有权访问的规范公开主页并明确勾选授权；继续使用已有 DOUYIN_COOKIE Secret。该工作流会再次验证当前源码的编译和离线结果，再进行一次列表及最多两次受控探测。助手本轮不触发这两个工作流，不运行真实网络测试或下载。
+取得真实 macOS 编译和离线 PASS 后，另由用户决定是否手动运行 [DouStudioKit Media Host Live Probe](https://github.com/a15762877559-ai/swiftdy/actions/workflows/doustudio-media-host-live-probe.yml)，输入有权访问的规范公开主页并明确勾选授权；原仓库的 DOUYIN_COOKIE Secret 不会迁移；新仓库当前未配置该 Secret，未来真实运行前须由用户在新仓库 Actions Secrets 设置中添加，不要在聊天或代码中提供。该工作流会再次验证当前源码的编译和离线结果，再进行一次列表及最多两次受控探测。助手本轮不触发这两个工作流，不运行真实网络测试或下载。
 
 ```ini
 PREPARATION = READY_FOR_MACOS_VALIDATION
@@ -92,10 +92,27 @@ RUST_IMPLEMENTATION = NOT_STARTED
 AUTO_TRIGGERED = NO
 ```
 
-## 本轮提交与推送
+## 首次向原仓库发布的历史记录
 
 准备代码、报告和初始证据已普通提交：`9a3a7e48f3dbd354c88050f9dbedf45bdbb37988`。随后仅补充本文、发布状态和对应证据哈希，不改变受测 Python 或待验证 Swift 源码。两次普通推送（第二次仅临时使用 HTTP/1.1）均返回 `Recv failure: Connection was reset`，未发布。
 
 推送后重新使用 GitHub API 核验：远端 main 仍为 `a683ce1cd80eb714c453aed79c43de2b0a8b426a`；当前账号仍为 `a15762877559-ai`，push 权限仍为 false。故即使连接恢复，也需要先切换到有写权限的账号或由所有者授权。没有创建 fork、绕过权限或强推。工作流链接是预定发布入口，推送成功前不能视为 GitHub 已登记。
 
 下一步先处理该账号的仓库写权限与 GitHub HTTPS 连通性，然后在项目目录执行普通 `git push origin main`。成功发布后才能按上一节先手动执行独立离线工作流。两项待处理状态分别为 `PUSH=NOT_COMPLETED`、`MACOS_VALIDATION=NOT_RUN`；不会将本机准备完成写成整项探测验收完成。
+
+
+## 当前发布状态：迁移至用户新仓库
+
+用户提供新空仓库 `https://github.com/a15762877559-ai/swiftdy`，当前认证账号 `a15762877559-ai` 对它具有写权限。先核对远端无任何 refs，再将原 origin 改名为 upstream，新增 origin 指向用户仓库；没有覆盖远端已有工作、创建 fork 或强推。main 正常推送并设置跟踪 origin/main，全部既有历史及准备提交均保留。
+
+Git HTTPS 连接中断的原因已定位为 Windows 系统代理与 Git 默认路由不同。本轮仅在 Git 命令中通过 `-c http.proxy=http://127.0.0.1:7890` 沿用已有 Windows 代理；没有修改系统代理、v2rayN 或 Git 全局/本地代理配置。采用该路由后普通 push 成功。
+
+发布后 GitHub API 与本地 origin/main 均核对为 `492ff0d8115c8897b6f10a0c9d86762895e5eeb7`，ahead/behind=0/0、工作区干净。后续当前收尾提交只更新本文、publication.json 和 evidence-index.json，再普通推送，不修改 Swift/Python/workflow 源码。最终同步状态另由命令核验。
+
+- 独立离线工作流 ID：396987395，state=active。
+- 真实探测工作流 ID：396987397，state=active。
+- 新仓库 Actions 运行总数：0；助手没有 dispatch、重试或执行真实列表/媒体请求。
+- 新仓库 DOUYIN_COOKIE：未配置。旧仓库 Secret 无法自动迁移，也未读取其内容。
+- macOS Swift 编译及新增 Swift 离线测试仍为 NOT_RUN；工作流登记不是编译或验收通过。
+
+下一步由用户先打开上文更新后的独立离线工作流，选择 Run workflow/main。该流程无输入、无 Secret，只运行本机合成策略和 loopback HTTP 用例。收集编译/离线证据并通过后，再单独配置新仓库 Secret、决定是否手动授权真实探测。当前不执行任何真实探测、完整下载或主机批准。

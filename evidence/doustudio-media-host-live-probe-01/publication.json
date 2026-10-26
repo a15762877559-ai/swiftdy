@@ -1,19 +1,57 @@
 {
-  "repository": "achusonwork-bit/doustudio-runtime-acceptance",
+  "repository": "a15762877559-ai/swiftdy",
+  "original_repository": "achusonwork-bit/doustudio-runtime-acceptance",
   "authenticated_account": "a15762877559-ai",
-  "push_permission": false,
-  "preparation_commit": "9a3a7e48f3dbd354c88050f9dbedf45bdbb37988",
-  "follow_up": "DOCUMENTATION_AND_EVIDENCE_ONLY",
-  "push_status": "NOT_COMPLETED",
-  "push_attempts": 2,
-  "push_error": "HTTPS_CONNECTION_RESET",
-  "remote_main_verified_via": "GITHUB_API",
-  "remote_main": "a683ce1cd80eb714c453aed79c43de2b0a8b426a",
-  "workflows_registered": "NOT_PUBLISHED",
+  "push_permission": true,
+  "push_status": "SUCCESS",
+  "published_commit_verified": "492ff0d8115c8897b6f10a0c9d86762895e5eeb7",
+  "follow_up": "REPORT_AND_PUBLICATION_EVIDENCE_ONLY",
+  "remotes": {
+    "origin": "a15762877559-ai/swiftdy",
+    "upstream": "achusonwork-bit/doustudio-runtime-acceptance"
+  },
+  "workflows": [
+    {
+      "id": 396987395,
+      "name": "DouStudioKit Media Host Live Probe Offline Tests",
+      "state": "active"
+    },
+    {
+      "id": 396987397,
+      "name": "DouStudioKit Media Host Live Probe",
+      "state": "active"
+    }
+  ],
+  "total_workflow_runs": 0,
   "workflows_triggered": false,
+  "DOUYIN_COOKIE_configured": false,
+  "MACOS_SWIFT_BUILD": "NOT_RUN",
+  "SWIFT_OFFLINE_TESTS": "NOT_RUN",
+  "REAL_MEDIA_PROBE": "NOT_RUN",
+  "REAL_VIDEO_DOWNLOAD": "NOT_RUN",
+  "production_allowlist": "EMPTY",
+  "git_proxy_scope": "PER_COMMAND_EXISTING_WINDOWS_ROUTE_ONLY",
+  "previous_original_repository_attempt": {
+    "repository": "achusonwork-bit/doustudio-runtime-acceptance",
+    "authenticated_account": "a15762877559-ai",
+    "push_permission": false,
+    "preparation_commit": "9a3a7e48f3dbd354c88050f9dbedf45bdbb37988",
+    "follow_up": "DOCUMENTATION_AND_EVIDENCE_ONLY",
+    "push_status": "NOT_COMPLETED",
+    "push_attempts": 2,
+    "push_error": "HTTPS_CONNECTION_RESET",
+    "remote_main_verified_via": "GITHUB_API",
+    "remote_main": "a683ce1cd80eb714c453aed79c43de2b0a8b426a",
+    "workflows_registered": "NOT_PUBLISHED",
+    "workflows_triggered": false,
+    "pending": [
+      "REPOSITORY_WRITE_PERMISSION",
+      "GITHUB_HTTPS_CONNECTIVITY",
+      "MANUAL_MACOS_OFFLINE_VALIDATION"
+    ]
+  },
   "pending": [
-    "REPOSITORY_WRITE_PERMISSION",
-    "GITHUB_HTTPS_CONNECTIVITY",
-    "MANUAL_MACOS_OFFLINE_VALIDATION"
+    "USER_MANUAL_MACOS_OFFLINE_VALIDATION",
+    "CONFIGURE_NEW_REPOSITORY_SECRET_BEFORE_ANY_FUTURE_REAL_RUN"
   ]
 }

@@ -15,7 +15,7 @@
     "probe-exit-code.txt": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
     "probe-summary.json": "def4cf86d1766535ddd514dda22c5c009e1b985796bb2d92b3b8d5f65bbfdfad",
     "protection-verification.json": "b9de7c737dbe096e57013ad72f7f867b9d1587b3fa27a5f1b9dc26156d65c03c",
-    "publication.json": "25cfc7f806c30b7a42af18e41973ec8d9be45bad97a1925f5fbcfb2b21962d98",
+    "publication.json": "fec932751dbf79011e2cf2d9887d66b03c5648ffc230e7b9294781c60c39ddd5",
     "python-tests.log": "2f970348897584a0f613e17e3398683fac643096cab4ff9f3506916c30845a71",
     "redaction-results.json": "6e7932b46756e1aea75f450b1fee3228135270b8fd1d721e68844b5cb1d413f3",
     "redirect-evidence.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
@@ -34,7 +34,8 @@
     "runtime-harness/validate_live_probe.py": "4b3d670c6cf8d5cc0949d5181a4be89961482c9fd97a47c94fa650bfc38cdbbb",
     ".github/workflows/doustudio-media-host-live-probe.yml": "f24992d0ffb2f89ff0ff822b25e1b9b68f22e23666a7ce60d025bd61deb324cd",
     ".github/workflows/doustudio-media-host-live-probe-offline.yml": "6620f7acd7166b89ed4e57d31a3110b6a29bda9bd1b44a9682f5859f9536d3d8",
-    "docs/DOUSTUDIOKIT_MEDIA_HOST_LIVE_PROBE_01_REPORT.md": "c4ddb599bdace455feef7aa9c205a3be30e7ad5a62246a1cbc06f54db3ff7591"
+    "docs/DOUSTUDIOKIT_MEDIA_HOST_LIVE_PROBE_01_REPORT.md": "0be052bc4f49812c21968d735e3ae1a4f2987315f4a9d2316feee1f7b7da8c15"
   },
-  "hash_scope": "GIT_NORMALIZED_LF_TEXT_BYTES"
+  "hash_scope": "GIT_NORMALIZED_LF_TEXT_BYTES",
+  "publication_repository": "a15762877559-ai/swiftdy"
 }
