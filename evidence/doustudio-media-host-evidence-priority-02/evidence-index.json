@@ -4,13 +4,15 @@
   "files": {
     "alternate-host-summary.json": "77cc509fce9e68963d6c9f65a4bae3e3daed4c2e678871f198cd7e23465525a2",
     "audit-summary.json": "0235d22eb2838baff491aa7c3e2f960e68f35f659877dc2ea733cd6e39e8e1ca",
+    "github-publication.json": "1cb82507a66b1c9e732667a4ba8938045cc86ee00897fc208a95978af7a16e9b",
     "local-validation.json": "252b403bfe3faa8c86cd124f430cdf8fcb075376d2bb5406d2b40d5089dd959e",
-    "protection-check.json": "39f28a2723d8a5c47b4c1a668a920563ee1178b5b148d4a2c4e8222b28306949",
+    "protection-check.json": "5717772189d1acce6c858b65520116de16c25202b0a3f79ee53e5ef6ed279e7d",
     "python-tests.log": "d130a41fe16b1e7fe68cf8ee9b0643cd2f52306f01e55edbedd6ca4ca8a9e199",
     "quota-integrity-results.json": "77cc509fce9e68963d6c9f65a4bae3e3daed4c2e678871f198cd7e23465525a2",
     "security-redaction-results.json": "77cc509fce9e68963d6c9f65a4bae3e3daed4c2e678871f198cd7e23465525a2",
     "selected-host-summary.json": "77cc509fce9e68963d6c9f65a4bae3e3daed4c2e678871f198cd7e23465525a2",
     "selected-work-evidence.json": "77cc509fce9e68963d6c9f65a4bae3e3daed4c2e678871f198cd7e23465525a2",
     "source-association-results.json": "77cc509fce9e68963d6c9f65a4bae3e3daed4c2e678871f198cd7e23465525a2"
-  }
+  },
+  "published_source_sha": "8d50b102e4996626a309dc61f75d028df1f6f5d8"
 }

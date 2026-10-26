@@ -20,7 +20,7 @@
 4. 每条唯一视频保留一条 selected 记录，含 work_ref、selected_host、全部来源路径、匹配数、selection_method、selection_match、scheme/port/userinfo 和独立安全检查。work_ref 仅为运行内顺序号，真实作品 ID 不输出也不哈希。
 5. 来源匹配与 URL 安全性分开：unsafe URL 可以确实来自原版 Extractor，但仍不能使整体 complete 成立。无地址、无精确来源、非规范主机、结构超限或不一致均失败关闭。
 6. 真实 ID 只在内存中用于去重；重复作品不重复计数。同 ID 的地址或来源集合冲突则失败。多个来源关联分别计入 source_field_counts，不能增加 selected_work_count。
-7. 全部主要记录完成后才遍历备用地址。备用 URL 不再生成详细记录，按规范化主机聚合 occurrences、来源字段类别和运行内作品引用。独立预算保持 **1000 次备用 URL 统计**，没有提高原全局上限；超限只标记 ALTERNATE_SUMMARY_TRUNCATED，主要证据和完成状态不受其影响。
+7. 全部主要记录完成后才进行备用地址汇总统计。第一阶段仍需在内存中扫描来源字符串以精确匹配；这些扫描不消耗备用统计额度。备用 URL 不再生成详细记录，按规范化主机聚合 occurrences、来源字段类别和运行内作品引用。独立预算保持 **1000 次备用 URL 统计**，没有提高原全局上限；超限只标记 ALTERNATE_SUMMARY_TRUNCATED，主要证据和完成状态不受其影响。
 
 输入防护：最多 50 条作品、每条最多 128 个码率项、每个 URL 数组最多 256 项；通用结构限制深度 20、节点数 100000、字符串总量 4 MiB、单字符串 16384 bytes、单数组 1024 项、单对象 512 键。超限拒绝主要证据，不静默采用部分输入。它们是响应到内存后的结构预算，不宣称网络接收上限。没有为了绕过旧记录额度而提高它；原全局详细记录机制已拆分为必需记录和独立汇总。
 
@@ -88,6 +88,8 @@ AUTO_TRIGGERED = NO
 
 ## 手动执行和停止点
 
-准备提交/发布 SHA 在发布记录中补充；实际受测 SHA 暂为 NOT_RUN。只执行本地验证，未触发任何 Actions。原未跟踪 RUN 报告不暂存；旧运行证据不删除、不修改；普通提交推送，无强制推送。
+源码准备提交已普通推送：`8d50b102e4996626a309dc61f75d028df1f6f5d8`。GitHub 已登记工作流 ID `396849434`、state=active，核验时 total_runs=0。实际受测 SHA 暂为 NOT_RUN；注册成功不等于编译或测试通过。收尾提交只补充报告和发布证据，不改变源码。
+
+只执行本地验证，未触发任何 Actions。329 个既有文件（含旧未跟踪 RUN 报告）核验只有已列明的 5 个文件发生修改；SafeStreamingTransport、下载工作流、所有历史证据及上游未变。原未跟踪 RUN 报告不暂存；普通提交推送，无强制推送。
 
 下一步用户打开 [独立离线工作流](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/workflows/doustudio-media-host-evidence-tests.yml)，Run workflow → main → Run workflow，无需主页或 Cookie 输入。离线成功仅证明证据逻辑，不代表媒体主机批准。只有取得真实离线 PASS 后，才进入用户另行手动运行一次主机观察的阶段。本轮到准备发布为止停止。

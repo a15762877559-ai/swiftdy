@@ -12,5 +12,8 @@
   "download_workflow_unchanged": true,
   "online_workflow_change": "Artifact whitelist only, three additional JSON files",
   "real_cookie_read": false,
-  "real_requests": false
+  "real_requests": false,
+  "existing_files_checked": 329,
+  "old_untracked_run_report_unchanged": true,
+  "historical_evidence_unchanged": true
 }
