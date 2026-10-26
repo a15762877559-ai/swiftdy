@@ -22,13 +22,6 @@ struct MediaHostRecord: Codable {
     let approved = false
 }
 
-struct MediaHostCollection: Codable {
-    var records: [MediaHostRecord] = []
-    var truncated = false
-    var selected_video_count = 0
-    var selected_source_unmatched = 0
-}
-
 enum MediaHostAudit {
     static func describe(_ value: String, id: String, alias: String, role: String, field: String, selected: Bool) -> MediaHostRecord {
         var r = MediaHostRecord(evidence_id:id, work_alias:alias, role:role, source_field:field, selected_by_original_extractor:selected)
@@ -65,46 +58,7 @@ enum MediaHostAudit {
     }
 
     static func collect(_ items: [JSONNode]) -> MediaHostCollection {
-        var output = MediaHostCollection()
-        for (index,item) in items.prefix(50).enumerated() {
-            let alias = String(format:"WORK-%03d",index + 1) // Run-local ordinal; no real ID or ID hash.
-            let work = DouyinExtractor(options:ExtractionOptions(preferOriginalQuality:false)).work(from:item,collectionTime:"")
-            var selected: String?
-            if work.kind == .video, work.downloads.count == 1, case .media(let value) = work.downloads[0] {
-                selected = value; output.selected_video_count += 1
-            }
-            var matched = false
-            func append(_ nodes: [JSONNode], field: String, role: String) {
-                if nodes.count > 20 { output.truncated = true }
-                for (n,node) in nodes.prefix(20).enumerated() {
-                    guard let value = node.raw as? String else { continue }
-                    guard output.records.count < 1000 else { output.truncated = true; continue }
-                    let activeField = field.hasPrefix("video.bit_rate[") == !item.nodes("video.bit_rate").isEmpty
-                    let chosen = role == "video_playback" && activeField && selected == value
-                    if chosen { matched = true }
-                    output.records.append(describe(value,id:String(format:"HOST-%04d",output.records.count + 1),alias:alias,
-                        role:role,field:field + "[\(n)]",selected:chosen))
-                }
-            }
-            // Classify image/live-photo video subfields separately; never eligible video candidates.
-            let playRole = work.kind == .video ? "video_playback" : "non_video_work_resource"
-            append(item.nodes("video.play_addr.url_list"),field:"video.play_addr.url_list",role:playRole)
-            let rates = item.nodes("video.bit_rate")
-            if rates.count > 50 { output.truncated = true }
-            for (n,rate) in rates.prefix(50).enumerated() {
-                append(rate.nodes("play_addr.url_list"),field:"video.bit_rate[\(n)].play_addr.url_list",role:playRole)
-            }
-            for field in ["video.cover.url_list","video.dynamic_cover.url_list","video.origin_cover.url_list"] {
-                append(item.nodes(field),field:field,role:"cover_image")
-            }
-            for field in ["author.avatar_thumb.url_list","author.avatar_medium.url_list","author.avatar_larger.url_list"] {
-                append(item.nodes(field),field:field,role:"avatar_image")
-            }
-            append(item.nodes("music.play_url.url_list"),field:"music.play_url.url_list",role:"other_audio")
-            if selected != nil && !matched { output.selected_source_unmatched += 1 }
-        }
-        if items.count > 50 { output.truncated = true }
-        return output
+        SelectedHostEvidence.collect(items)
     }
 
     static func write<T: Encodable>(_ value: T, _ name: String, _ folder: URL) throws {
@@ -128,7 +82,7 @@ enum MediaHostAudit {
             let endpoints = await client.endpoints
             let page = try await endpoints.accountTimeline(secUid:input.userID,tab:.post,page:PageRequest(count:18,maxPages:1,cursor:0))
             collection = collect(page.works)
-            succeeded = !collection.truncated && collection.selected_source_unmatched == 0 && collection.selected_video_count > 0
+            succeeded = collection.complete
             if !succeeded { failure = "INCOMPLETE_OR_NO_VIDEO_HOST_EVIDENCE" }
         } catch { failure = (error as? AuthPreflightError)?.rawValue ?? "SANITIZED_AUDIT_ERROR" }
         let observation = await observer?.snapshot() ?? AuthObservation()
@@ -138,6 +92,7 @@ enum MediaHostAudit {
             let collection_completed: Bool
             let failure_category: String?
             let truncated: Bool
+            let ALTERNATE_SUMMARY_TRUNCATED: Bool
             let selected_video_count: Int
             let selected_source_unmatched: Int
             let MEDIA_HOSTS_IDENTIFIED: String
@@ -153,10 +108,14 @@ enum MediaHostAudit {
         }
         try write(collection.records.filter { $0.role == "video_playback" },"candidate-hosts.json",folder)
         try write(collection,"host-provenance.json",folder)
+        try write(collection.selected,"selected-work-evidence.json",folder)
+        try write(collection.hosts,"selected-host-summary.json",folder)
+        try write(collection.alternates,"alternate-host-summary.json",folder)
         try write(collection.records,"host-security-review.json",folder)
         try write([String](),"approved-hosts.json",folder) // Never auto-promote a response host.
         try write(Summary(credential_present:!cookie.trimmingCharacters(in:.whitespacesAndNewlines).isEmpty,
             observation:observation,collection_completed:succeeded,failure_category:failure,truncated:collection.truncated,
+            ALTERNATE_SUMMARY_TRUNCATED:collection.ALTERNATE_SUMMARY_TRUNCATED,
             selected_video_count:collection.selected_video_count,selected_source_unmatched:collection.selected_source_unmatched,
             MEDIA_HOSTS_IDENTIFIED:collection.records.contains(where: { $0.role == "video_playback" && $0.normalized_host != nil }) ? "YES" : "NO",
             HOST_PROVENANCE:succeeded ? "PASS" : "PARTIAL"),"audit-summary.json",folder)

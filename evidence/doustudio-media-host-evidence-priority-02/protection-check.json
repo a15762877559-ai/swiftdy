@@ -1,0 +1,16 @@
+{
+  "baseline": "c4fcb9bd1f4eede023ee2d48ad42a02b0a6744f1",
+  "existing_modified": [
+    ".github/workflows/doustudio-media-host-audit.yml",
+    "runtime-harness/Sources/RuntimeAcceptance/MediaHostAudit.swift",
+    "runtime-harness/Sources/RuntimeAcceptance/MediaHostAuditSelfTest.swift",
+    "runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift",
+    "runtime-harness/media_host_audit.py"
+  ],
+  "upstream_unchanged": true,
+  "safe_streaming_transport_unchanged": true,
+  "download_workflow_unchanged": true,
+  "online_workflow_change": "Artifact whitelist only, three additional JSON files",
+  "real_cookie_read": false,
+  "real_requests": false
+}

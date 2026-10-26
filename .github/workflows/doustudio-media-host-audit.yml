@@ -95,6 +95,9 @@ jobs:
           include-hidden-files: false
           path: |
             ${{ steps.evidence.outputs.directory }}/candidate-hosts.json
+            ${{ steps.evidence.outputs.directory }}/selected-work-evidence.json
+            ${{ steps.evidence.outputs.directory }}/selected-host-summary.json
+            ${{ steps.evidence.outputs.directory }}/alternate-host-summary.json
             ${{ steps.evidence.outputs.directory }}/host-provenance.json
             ${{ steps.evidence.outputs.directory }}/host-security-review.json
             ${{ steps.evidence.outputs.directory }}/approved-hosts.json

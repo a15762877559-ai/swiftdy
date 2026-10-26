@@ -1,0 +1,95 @@
+name: DouStudioKit Media Host Evidence Tests
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline:
+    runs-on: xcode-27
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout harness
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Initialize offline evidence
+        id: evidence
+        env:
+          HOST_TEMP: ${{ runner.temp }}
+        run: python3 runtime-harness/host_evidence_tests.py initialize
+      - name: Checkout fixed upstream
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: qinjian0420/DouStudioKit
+          ref: 362dad3d082e9f63c8efd360acc653ba169d40a2
+          path: upstream
+          persist-credentials: false
+          fetch-depth: 1
+          submodules: false
+          lfs: false
+      - name: Verify fixed source and environment
+        run: python3 runtime-harness/host_evidence_tests.py environment
+      - name: Build real Swift Harness
+        id: compile
+        run: |
+          set +e
+          swift build --package-path runtime-harness -c debug > "$HOST_EVIDENCE_DIR/build.log" 2>&1
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$HOST_EVIDENCE_DIR/build-exit-code.txt"
+          test "$code" -eq 0
+          bin_dir=$(swift build --package-path runtime-harness -c debug --show-bin-path)
+          printf 'binary=%s/RuntimeAcceptance\n' "$bin_dir" >> "$GITHUB_OUTPUT"
+      - name: All related Swift fixtures with network denied
+        id: offline
+        env:
+          OFFLINE_ONLY: '1'
+          HOST_BIN: ${{ steps.compile.outputs.binary }}
+        run: |
+          ulimit -c 0
+          set +e
+          sandbox-exec -p '(version 1)(allow default)(deny network*)' "$HOST_BIN" --media-host-evidence-self-test > "$HOST_EVIDENCE_DIR/offline.log" 2>&1
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$HOST_EVIDENCE_DIR/offline-exit-code.txt"
+          exit "$code"
+      - name: Validate evidence and source protection
+        id: finalize
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        env:
+          BUILD_OUTCOME: ${{ steps.compile.outcome }}
+          OFFLINE_OUTCOME: ${{ steps.offline.outcome }}
+        run: python3 runtime-harness/host_evidence_tests.py finalize
+      - name: Upload verified offline diagnostics
+        if: ${{ always() && steps.finalize.outcome == 'success' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: doustudio-host-evidence-tests-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 3
+          if-no-files-found: error
+          include-hidden-files: false
+          path: |
+            ${{ steps.evidence.outputs.directory }}/selected-work-evidence.json
+            ${{ steps.evidence.outputs.directory }}/selected-host-summary.json
+            ${{ steps.evidence.outputs.directory }}/alternate-host-summary.json
+            ${{ steps.evidence.outputs.directory }}/source-association-results.json
+            ${{ steps.evidence.outputs.directory }}/quota-integrity-results.json
+            ${{ steps.evidence.outputs.directory }}/security-redaction-results.json
+            ${{ steps.evidence.outputs.directory }}/evidence-index.json
+            ${{ steps.evidence.outputs.directory }}/environment.json
+            ${{ steps.evidence.outputs.directory }}/build-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/offline-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/build.log
+            ${{ steps.evidence.outputs.directory }}/offline.log
+            ${{ steps.evidence.outputs.directory }}/selftest-results.json
+            ${{ steps.evidence.outputs.directory }}/host-selftest-results.json
+            ${{ steps.evidence.outputs.directory }}/priority-selftest-results.json
+            ${{ steps.evidence.outputs.directory }}/stage-outcomes.json
+            ${{ steps.evidence.outputs.directory }}/source-protection.json
+            ${{ steps.evidence.outputs.directory }}/approved-hosts.json

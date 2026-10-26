@@ -9,11 +9,12 @@ struct RuntimeAcceptance {
     static let upstream = "362dad3d082e9f63c8efd360acc653ba169d40a2"
 
     @MainActor static func main() async {
-        if Array(CommandLine.arguments.dropFirst()) == ["--media-host-audit-self-test"] {
+        if [["--media-host-audit-self-test"],["--media-host-evidence-self-test"]].contains(Array(CommandLine.arguments.dropFirst())) {
             do {
                 let baseline = try await SelfTest.run()
                 let audit = try await MediaHostAuditSelfTest.run()
-                if !baseline || !audit { exit(1) }
+                let priority = try await HostEvidencePrioritySelfTest.run()
+                if !baseline || !audit || !priority { exit(1) }
             } catch { print("HOST_AUDIT_OFFLINE_ERROR"); exit(1) }
             return
         }

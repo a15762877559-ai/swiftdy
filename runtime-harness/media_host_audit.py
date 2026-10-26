@@ -7,13 +7,15 @@ import subprocess
 import sys
 from auth_preflight import input_values, command, write, SHA
 
-AUDIT_FILES = ('candidate-hosts.json','host-provenance.json','host-security-review.json','approved-hosts.json','audit-summary.json')
+AUDIT_FILES = ('candidate-hosts.json','host-provenance.json','host-security-review.json','approved-hosts.json','audit-summary.json',
+    'selected-work-evidence.json','selected-host-summary.json','alternate-host-summary.json')
 ARTIFACT_FILES = AUDIT_FILES + ('evidence-index.json','input-validation.json','environment.json','source-protection.json',
     'stage-outcomes.json','build.log','build-exit-code.txt','offline.log','offline-exit-code.txt',
     'selftest-results.json','host-selftest-results.json','audit-exit-code.txt')
 
 def seed(folder):
     for name in AUDIT_FILES[:4]: write(folder,name,[])
+    for name in AUDIT_FILES[5:]: write(folder,name,[])
     write(folder,'audit-summary.json',dict(collection_completed=False,HOST_SECURITY_REVIEW='BLOCKED',
         PRODUCTION_ALLOWLIST='EMPTY',APPROVED_HOSTS=0,REAL_MEDIA_REQUEST='NOT_RUN',REAL_VIDEO_DOWNLOAD='NOT_RUN',
         APPLICATION_BYTE_BUDGET='PASS',byte_budget_evidence_run='40289436585',STRICT_NETWORK_RECEIVE_LIMIT='NOT_PROVEN'))

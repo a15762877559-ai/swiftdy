@@ -1,0 +1,13 @@
+{
+  "static_validation": "PASS",
+  "python_tests": 20,
+  "python_tests_status": "PASS",
+  "yaml": "PASS",
+  "shell": "PASS",
+  "artifact_whitelist": "PASS",
+  "actionlint": "NOT_INSTALLED_NOT_RUN",
+  "SWIFT_BUILD": "NOT_RUN",
+  "OFFLINE_TESTS": "NOT_RUN",
+  "OFFLINE_WORKFLOW": "NOT_RUN",
+  "AUTO_TRIGGERED": "NO"
+}
