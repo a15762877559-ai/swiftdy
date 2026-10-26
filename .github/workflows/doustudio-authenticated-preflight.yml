@@ -1,0 +1,107 @@
+name: DouStudioKit Authenticated Access Preflight
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile_url:
+        description: 'Public profile URL: https://www.douyin.com/user/ID (no query or fragment)'
+        required: true
+        type: string
+      authorized_own_session:
+        description: 'I authorize use of my own login session for one public worklist request'
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: xcode-27
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout harness
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Validate explicit authorization and initialize evidence
+        id: evidence
+        env:
+          AUTH_TEMP: ${{ runner.temp }}
+        run: python3 runtime-harness/auth_preflight.py initialize
+      - name: Checkout pinned upstream
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: qinjian0420/DouStudioKit
+          ref: 362dad3d082e9f63c8efd360acc653ba169d40a2
+          path: upstream
+          persist-credentials: false
+          fetch-depth: 1
+          submodules: false
+          lfs: false
+      - name: Verify upstream and environment
+        run: python3 runtime-harness/auth_preflight.py environment
+      - name: Build harness without credentials
+        id: compile
+        run: |
+          set +e
+          swift build --package-path runtime-harness -c debug > "$AUTH_EVIDENCE_DIR/build.log" 2>&1
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$AUTH_EVIDENCE_DIR/build-exit-code.txt"
+          test "$code" -eq 0
+          bin_dir=$(swift build --package-path runtime-harness -c debug --show-bin-path)
+          printf 'binary=%s/RuntimeAcceptance\n' "$bin_dir" >> "$GITHUB_OUTPUT"
+      - name: Offline fixtures without credentials or network
+        id: offline
+        env:
+          OFFLINE_ONLY: '1'
+          AUTH_BIN: ${{ steps.compile.outputs.binary }}
+        run: |
+          set +e
+          sandbox-exec -p '(version 1)(allow default)(deny network*)' "$AUTH_BIN" --self-test > "$AUTH_EVIDENCE_DIR/offline.log" 2>&1
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$AUTH_EVIDENCE_DIR/offline-exit-code.txt"
+          exit "$code"
+      - name: One authorized authenticated preflight
+        id: auth
+        env:
+          DOUYIN_COOKIE: ${{ secrets.DOUYIN_COOKIE }}
+          AUTH_BIN: ${{ steps.compile.outputs.binary }}
+        run: |
+          set +x
+          ulimit -c 0
+          python3 runtime-harness/auth_preflight.py run
+      - name: Record outcomes and upstream protection
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        env:
+          INIT_OUTCOME: ${{ steps.evidence.outcome }}
+          BUILD_OUTCOME: ${{ steps.compile.outcome }}
+          OFFLINE_OUTCOME: ${{ steps.offline.outcome }}
+          AUTH_OUTCOME: ${{ steps.auth.outcome }}
+        run: python3 runtime-harness/auth_preflight.py finalize
+      - name: Upload sanitized evidence
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: doustudio-auth-preflight-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 3
+          if-no-files-found: error
+          include-hidden-files: false
+          path: |
+            ${{ steps.evidence.outputs.directory }}/input-validation.json
+            ${{ steps.evidence.outputs.directory }}/environment.json
+            ${{ steps.evidence.outputs.directory }}/source-protection.json
+            ${{ steps.evidence.outputs.directory }}/stage-outcomes.json
+            ${{ steps.evidence.outputs.directory }}/build.log
+            ${{ steps.evidence.outputs.directory }}/build-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/offline.log
+            ${{ steps.evidence.outputs.directory }}/offline-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/selftest-results.json
+            ${{ steps.evidence.outputs.directory }}/auth-result.json
+            ${{ steps.evidence.outputs.directory }}/auth-exit-code.txt

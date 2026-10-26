@@ -227,6 +227,7 @@ enum SelfTest {
         if let url = request(0).url {
             print("URL_SHAPE legacy_path_matches=\(url.path == "/aweme/v1/web/aweme/post/");components_path_matches=\(URLComponents(url: url, resolvingAgainstBaseURL: false)?.path == "/aweme/v1/web/aweme/post/");host_matches=\(url.host == "www.douyin.com")")
         }
+        results += await AuthPreflightSelfTest.run()
         let passed = results.allSatisfy { $0.status == "PASS" }
         struct Summary: Encodable {
             let mode = "OFFLINE_FIXTURES_ONLY"

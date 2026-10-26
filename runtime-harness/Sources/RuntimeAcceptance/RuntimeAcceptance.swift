@@ -24,6 +24,13 @@ struct RuntimeAcceptance {
             print("ONLINE_ENTRY_DISABLED_IN_OFFLINE_MODE")
             exit(64)
         }
+        if CommandLine.arguments.contains("--authenticated-preflight") {
+            do {
+                let passed = try await AuthenticatedPreflight.run(environment: ProcessInfo.processInfo.environment)
+                if !passed { exit(2) }
+            } catch { exit(1) } // No credential-bearing exception descriptions.
+            return
+        }
         do { try await execute() }
         catch {
             // Never stringify an upstream error: descriptions may contain URLs or bodies.
