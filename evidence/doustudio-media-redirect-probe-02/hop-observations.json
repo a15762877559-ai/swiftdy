@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "dns_address_count" : 0,
+    "network_target_check" : "NOT_REQUIRED_FOR_ORIGINAL_SCOPE",
+    "observation" : {
+      "accepted_bytes" : 0,
+      "approved" : false,
+      "authentication_headers_sent" : false,
+      "cancel_completed" : true,
+      "cancel_requested" : true,
+      "completion_callbacks" : 1,
+      "content_length_one" : false,
+      "content_range_valid" : false,
+      "content_type" : "NOT_RECEIVED",
+      "delegate_received_bytes" : 0,
+      "host" : "www.douyin.com",
+      "http_status" : 302,
+      "range_zero_only" : true,
+      "redirect_host" : "v5-dy-ov-experiment.zjcdn.com",
+      "redirect_target_rejected" : false,
+      "request_count" : 1,
+      "result" : "HTTP_REDIRECT_NOT_FOLLOWED"
+    },
+    "role" : "www"
+  },
+  {
+    "dns_address_count" : 3,
+    "network_target_check" : "PASS_PUBLIC_DNS_AND_NUMERIC_ADDRESS_PIN",
+    "observation" : {
+      "accepted_bytes" : 1,
+      "approved" : false,
+      "authentication_headers_sent" : false,
+      "cancel_completed" : true,
+      "cancel_requested" : true,
+      "completion_callbacks" : 1,
+      "content_length_one" : true,
+      "content_range_valid" : true,
+      "content_type" : "VIDEO",
+      "delegate_received_bytes" : 1,
+      "host" : "v5-dy-ov-experiment.zjcdn.com",
+      "http_status" : 206,
+      "range_zero_only" : true,
+      "redirect_target_rejected" : false,
+      "request_count" : 1,
+      "result" : "VIDEO_RANGE_206_ONE_BYTE"
+    },
+    "role" : "target",
+    "tunnel" : {
+      "accepted_connections" : 1,
+      "connect_authority_matched" : true,
+      "credential_headers_seen" : false,
+      "outbound_connections" : 1,
+      "public_address_pinned" : true,
+      "rejected_connections" : 0,
+      "stopped" : true
+    }
+  }
+]

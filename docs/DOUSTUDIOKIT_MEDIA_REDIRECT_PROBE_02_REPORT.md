@@ -1,6 +1,8 @@
 # DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02
 
-2026-10-26，Asia/Shanghai。代码、两个独立手动工作流、脱敏证据及 Windows 验证已准备。**Windows Python 99/99 PASS；本任务新增 Swift 的 macOS 编译、重定向/地址固定通道用例尚未运行，均为 NOT_RUN。** 本轮没有触发 GitHub Actions、授权列表、DNS 媒体目标解析、真实下一跳请求、sf11 请求或完整下载。
+2026-10-26，Asia/Shanghai。**最新用户手动真实运行 40328292259 已完成：www 首跳 302，精确下一跳 v5-dy-ov-experiment.zjcdn.com 返回有效 206 视频类型响应，delegate/应用各 1 字节，取消已完成。** 一次作品列表 HTTP 200/21 条，媒体 GET 共两次、无重试或第三跳。本次原版已选地址主机全部为 www，sf11 已选数量为 0，明确记录 NO_ELIGIBLE_SAMPLE 并跳过。
+
+独立离线运行 40327671659 与真实工作流中的再次离线验证均 PASS：macOS 编译、83 项基线、12 个老策略、19 个老 HTTP 用例，以及本任务 41 个策略、25 个链路、3 个固定通道用例。Windows Python 99/99 PASS。**没有完整视频下载或无水印验证，生产主机白名单仍为空。** 以下准备阶段的 NOT_RUN 为历史记录，最新结果见末节。
 
 ## 仓库与保护
 
@@ -57,7 +59,7 @@ www 首次 GET 使用 Range: bytes=0-0，自动重定向回调始终拒绝。只
 
 delegate_received_bytes 和 accepted_bytes 独立记录。取消后的系统/URLSession 缓冲可能已超收，严格物理网络接收一字节上限仍为 NOT_PROVEN。DIRECT_MEDIA 仅表示有效视频类型的 206 一字节响应，不证明完整视频、可播放性或无水印。探测目标的临时 scope 不产生生产白名单批准。
 
-## 验证结果与未完成项
+## 验证结果与未完成项（准备时点）
 
 Windows 实际执行 `python -B -m unittest discover -s runtime-harness -p test_*.py -v`：**99/99 PASS**，其中本任务新增 15 项；包括授权/凭据前置、两层离线门禁、最小子进程环境、超时不重试、子进程无结果不伪造成功、敏感内容拒绝、禁止生产批准、Artifact 明确清单及本机 HTTP fixture。测试中发现并修正了服务器变量名遮蔽 HTTP 模块的问题；最终日志已归档。超时或结果缺失后，请求计数标为 null/未知，不伪造实际 0 次。
 
@@ -90,13 +92,13 @@ TASK = DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02
 PREPARATION = READY_FOR_MACOS_OFFLINE_VALIDATION
 WINDOWS_STATIC = PASS
 WINDOWS_PYTHON_TESTS = 99/99 PASS
-MACOS_SWIFT_BUILD = NOT_RUN
-SWIFT_REDIRECT_OFFLINE_TESTS = NOT_RUN
-WWW_INITIAL_RESPONSE = NOT_RUN
-WWW_REDIRECT_HOST = NOT_OBSERVED_THIS_TASK
-REDIRECT_TARGET_PROBE = NOT_RUN
+MACOS_SWIFT_BUILD = PASS_TESTED_C4621E0
+SWIFT_REDIRECT_OFFLINE_TESTS = PASS
+WWW_INITIAL_RESPONSE = REDIRECT
+WWW_REDIRECT_HOST = v5-dy-ov-experiment.zjcdn.com
+REDIRECT_TARGET_PROBE = DIRECT_MEDIA
 SF11_PROBE = NOT_RUN
-MEDIA_REQUEST_COUNT = 0
+MEDIA_REQUEST_COUNT = 2
 MEDIA_RETRIES = 0
 UNAPPROVED_REDIRECT_FOLLOWED = NO
 FULL_VIDEO_DOWNLOADED = NO
@@ -112,3 +114,57 @@ RUST_IMPLEMENTATION = NOT_STARTED
 准备源码提交 `bdc7deca5681943fdde4d367f970a1d60633104e` 已普通推送至 origin/main。GitHub 已登记独立离线工作流 ID 397058440、真实探测工作流 ID 397058441，二者 state=active，核验时各自运行数均为 0。登记不是 Swift 编译或用例通过；本轮未 dispatch。后续收尾提交仅更新本节、发布元数据与证据索引，不改变待验证代码。
 
 最终交付仍需用户先手动运行新离线工作流。当前未获得新 Swift/macOS 结果，未尝试下一跳 GET 或 sf11 GET，也没有下载完整视频。
+
+
+## 用户手动离线验收：40327671659 PASS
+
+[独立离线运行](https://github.com/a15762877559-ai/swiftdy/actions/runs/40327671659)，受测提交 `c4621e00ede76603e792dd633e807acaf12b609a`，attempt=1，job=121588491663。全部 job 步骤 success；构建、原回归与新回归退出码均为 0。新 Swift 代码在 macOS 上实际编译成功，没有用 Windows 静态检查替代。
+
+- 原基线 83/83、原策略 12/12、原 HTTP 用例 19/19 全部 PASS。
+- 本任务策略 41/41、重定向链 25/25、固定通道 3/3 全部 PASS。
+- 正确 Location 的受控第二跳、错误主机/不安全 URL/私网与混合 DNS 拒绝、第二跳再次重定向停止、异常响应、sf11 样本有/无和独立名额均通过。
+- pinnedRelay：精确 CONNECT 匹配、一次接入/一次外连、中转响应正确；wrongAuthority：主机不匹配、外连 0；tlsFailure：URLSession 使用默认 TLS 校验并拒绝错误服务，确认请求经本机通道。三例均清理完成，无凭据或媒体文件。
+- 通道 fixture 使用的是 loopback 工厂，public_address_pinned=false 是预期的测试标志；公网 IP 的分类由独立策略用例验证。此结果不冒充真实 CDN 的 DNS/TLS 或视频响应。
+
+Artifact ID 12652017286，ZIP SHA-256 `4149b48f9bebf0c6eaa7427504b1a21b06285c0871aecdb5d6129b0c6e373de7` 与 GitHub digest 一致；CRC、32 文件精确白名单和清单中 31 个文件哈希全部通过。macOS 的源码 seal 与受测 Git blobs 重算结果一致。原始诊断字节归档于 `evidence/doustudio-media-redirect-probe-02/run-40327671659/`，另附 jobs、GitHub Artifact 元数据和核验记录。助手没有触发这次运行。
+
+该流程没有 Secret 输入或真实列表/媒体请求；WWW_INITIAL_RESPONSE、REDIRECT_TARGET_PROBE、SF11_PROBE 均 NOT_RUN，媒体请求数为 0。离线验收通过只意味着可继续用户手动授权的真实工作流，不代表真实探测或完整下载通过。
+
+
+## 用户真实二跳验证：40328292259
+
+[真实运行](https://github.com/a15762877559-ai/swiftdy/actions/runs/40328292259)，受测提交 `c4621e00ede76603e792dd633e807acaf12b609a`，attempt=1，job=121590672562。用户在独立离线验收通过后自行运行。助手只监测、核验和归档，没有 dispatch、重跑、补采列表或追加任何媒体请求。
+
+构建、全部旧/新离线用例、在线步骤、收尾及上传步骤均 success；固定上游 SHA 与干净状态通过，build/baseline/offline/redirect-offline/probe 退出码全为 0。macOS 源码 seal 与受测 Git blobs 一致。真实请求与离线 fixture 分开归档。
+
+### 列表、样本与请求计数
+
+仅一次授权作品列表，HTTP 200，21 条；id/description/timestamp/cover/video 字段有效数均为 21。没有详情请求或第二页。原版选中来源计数：www.douyin.com=21、sf11-cdn-tos.douyinstatic.com=0。sf11_sample_status=NO_ELIGIBLE_SAMPLE，sf11_reason=NO_SELECTED_HOST_SAMPLE，SF11_PROBE=NOT_RUN；本次明确是已选样本缺失，不是调度限制或 www 链失败。不能改选备用资源或用本次结果倒推旧列表原始内容。
+
+实际计数：列表 1，www 1，target 1，sf11 0，总媒体 GET 2，重试 0。不曾请求第三跳或任何未许可主机。
+
+| 角色 | 主机 | HTTP/分类 | Content-Type | Content-Range | delegate/应用字节 | 取消发起/完成 |
+|---|---|---|---|---|---|---|
+| www | www.douyin.com | 302 / REDIRECT | 未获取正文响应类型 | 未验证 | 0/0 | true/true |
+| target | v5-dy-ov-experiment.zjcdn.com | 206 / DIRECT_MEDIA | VIDEO（video/*） | valid=true；bytes 0-0/N | 1/1 | true/true |
+| sf11 | sf11-cdn-tos.douyinstatic.com | NOT_RUN / NO_ELIGIBLE_SAMPLE | NOT_RUN | NOT_RUN | 不适用 | 不适用 |
+
+下一跳 Content-Length=1，range_zero_only=true、completion_callbacks=1，VIDEO_RANGE_206_ONE_BYTE。Evidence 按设计只保存视频类型分类和范围合法性，不保存具体 MIME 子类型或资源总长，故不进一步声称 MP4、完整文件或可播放性。
+
+### 目标安全与隔离
+
+本次原始 Location 仅在内存中使用，经绝对 HTTPS、精确主机、userinfo/端口/形式校验后进行 DNS 检查。dns_address_count=3，所有结果通过公网策略；network_target_check=PASS_PUBLIC_DNS_AND_NUMERIC_ADDRESS_PIN。临时通道 accepted_connections=1、outbound_connections=1、connect_authority_matched=true、public_address_pinned=true、credential_headers_seen=false、stopped=true。通道只连接已校验的数字地址，URLSession 保留原始域名与默认 TLS 校验，没有证书旁路或其他地址回退。
+
+两次媒体请求 authentication_headers_sent=false，均独立无凭据会话，使用 Range: bytes=0-0。首跳自动重定向被拒绝；下一跳是通过检查后的独立请求，并非启用自动跟随。下一跳没有再发生重定向。请求没有 Cookie/Authorization、无自动续传，没有正文/签名/完整 URL/作品 ID/.part/媒体文件写盘。
+
+本次 delegate 正文计数确为 1，但不能推断底层网络物理接收严格不超过 1 字节；STRICT_NETWORK_RECEIVE_LIMIT 仍 NOT_PROVEN。DIRECT_MEDIA 只代表此次受限视频类型 206 响应，不代表生产主机审核、完整视频下载、解码或无水印通过。
+
+### 证据与停止点
+
+Artifact ID 12652596419，ZIP SHA-256 `f317261f2267a3ad1d9dc63287475890473e2f594d9d1956c9b1c546068b6dee` 与 GitHub digest 一致。CRC、32 文件白名单及 runner 清单 31 个文件哈希全部通过；源码 seal 亦独立核验。原 Artifact 字节位于 `evidence/doustudio-media-redirect-probe-02/run-40328292259/`，另附 jobs、GitHub 元数据和核验结果；离线成功运行单独保存。原始日志的 ANSI/尾部空格保留，不为 diff --check 修改原证据。
+
+根目录结果更新为本次真实状态，补充编译/离线摘要；完整首跳/下一跳头部与字节标志以 hop-observations.json 为准。旧兼容诊断文件可能保留占位，不用它们覆盖新 hop 证据。没有修改本次受测源码或任何工作流。
+
+本轮二跳验证的实际响应目标已取得；sf11 按缺失样本规则跳过，未擅自增加采样。最终状态：WWW_INITIAL_RESPONSE=REDIRECT，WWW_REDIRECT_HOST=v5-dy-ov-experiment.zjcdn.com，REDIRECT_TARGET_PROBE=DIRECT_MEDIA，SF11_PROBE=NOT_RUN（NO_ELIGIBLE_SAMPLE），MEDIA_REQUEST_COUNT=2，MEDIA_RETRIES=0，UNAPPROVED_REDIRECT_FOLLOWED=NO，FULL_VIDEO_DOWNLOADED=NO。HOST_SECURITY_REVIEW 继续 BLOCKED，生产白名单为空，NO_WATERMARK=NOT_TESTED，Rust 未开始。
+
+归档后停止，不自动开展完整下载或生产批准。后续任何完整下载仍需独立任务与验收，不能由本次 DIRECT_MEDIA 自动放行。

@@ -19,12 +19,14 @@
       "state": "active"
     }
   ],
-  "new_offline_runs": 0,
-  "new_live_runs": 0,
-  "new_run_url": "NOT_RUN",
-  "new_artifact_sha256": "NOT_RUN",
-  "MACOS_SWIFT_BUILD": "NOT_RUN",
-  "SWIFT_REDIRECT_OFFLINE_TESTS": "NOT_RUN",
-  "REAL_REDIRECT_PROBE": "NOT_RUN",
-  "FULL_VIDEO_DOWNLOADED": "NO"
+  "new_offline_runs": 1,
+  "new_live_runs": 1,
+  "new_run_url": "REAL_RUN_40328292259",
+  "new_artifact_sha256": "f317261f2267a3ad1d9dc63287475890473e2f594d9d1956c9b1c546068b6dee",
+  "MACOS_SWIFT_BUILD": "PASS",
+  "SWIFT_REDIRECT_OFFLINE_TESTS": "PASS",
+  "REAL_REDIRECT_PROBE": "DIRECT_MEDIA",
+  "FULL_VIDEO_DOWNLOADED": "NO",
+  "offline_run_id": 40327671659,
+  "live_run_id": 40328292259
 }

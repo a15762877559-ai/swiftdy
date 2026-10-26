@@ -1,1 +1,6 @@
-[]
+{
+  "status": "PASS",
+  "body_persisted": false,
+  "media_files_persisted": false,
+  "raw_urls_persisted": false
+}

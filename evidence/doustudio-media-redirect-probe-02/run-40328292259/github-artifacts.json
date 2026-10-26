@@ -1,0 +1,25 @@
+{
+  "total_count": 1,
+  "artifacts": [
+    {
+      "id": 12652596419,
+      "node_id": "MDg6QXJ0aWZhY3QxMjY1MjU5NjQxOQ==",
+      "name": "doustudio-redirect-probe-40328292259-1",
+      "size_in_bytes": 21749,
+      "url": "https://api.github.com/repos/a15762877559-ai/swiftdy/actions/artifacts/12652596419",
+      "archive_download_url": "https://api.github.com/repos/a15762877559-ai/swiftdy/actions/artifacts/12652596419/zip",
+      "expired": false,
+      "digest": "sha256:f317261f2267a3ad1d9dc63287475890473e2f594d9d1956c9b1c546068b6dee",
+      "created_at": "2026-10-26T13:12:57Z",
+      "updated_at": "2026-10-26T13:12:57Z",
+      "expires_at": "2026-10-29T13:12:56Z",
+      "workflow_run": {
+        "id": 40328292259,
+        "repository_id": 1434301730,
+        "head_repository_id": 1434301730,
+        "head_branch": "main",
+        "head_sha": "c4621e00ede76603e792dd633e807acaf12b609a"
+      }
+    }
+  ]
+}

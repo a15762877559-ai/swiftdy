@@ -1,0 +1,145 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 121588491663,
+      "run_id": 40327671659,
+      "workflow_name": "DouStudioKit Media Redirect Probe 02 Offline Tests",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/a15762877559-ai/swiftdy/actions/runs/40327671659",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVX21Is8AAAAcTz0ljw",
+      "head_sha": "c4621e00ede76603e792dd633e807acaf12b609a",
+      "url": "https://api.github.com/repos/a15762877559-ai/swiftdy/actions/jobs/121588491663",
+      "html_url": "https://github.com/a15762877559-ai/swiftdy/actions/runs/40327671659/job/121588491663",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-26T13:05:52Z",
+      "started_at": "2026-10-26T13:05:55Z",
+      "completed_at": "2026-10-26T13:08:35Z",
+      "name": "probe",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-26T13:05:55Z",
+          "completed_at": "2026-10-26T13:05:56Z"
+        },
+        {
+          "name": "Checkout harness",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-26T13:05:56Z",
+          "completed_at": "2026-10-26T13:05:58Z"
+        },
+        {
+          "name": "Initialize and validate explicit authorization",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-26T13:05:58Z",
+          "completed_at": "2026-10-26T13:05:59Z"
+        },
+        {
+          "name": "Checkout pinned upstream",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-26T13:05:59Z",
+          "completed_at": "2026-10-26T13:06:00Z"
+        },
+        {
+          "name": "Verify upstream and environment",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-26T13:06:00Z",
+          "completed_at": "2026-10-26T13:06:04Z"
+        },
+        {
+          "name": "Build without credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-26T13:06:04Z",
+          "completed_at": "2026-10-26T13:06:50Z"
+        },
+        {
+          "name": "Baseline fixtures with all network denied",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-26T13:06:50Z",
+          "completed_at": "2026-10-26T13:06:52Z"
+        },
+        {
+          "name": "Real Swift policy and controlled loopback HTTP tests without credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-26T13:06:52Z",
+          "completed_at": "2026-10-26T13:07:38Z"
+        },
+        {
+          "name": "Redirect chains and numeric-address tunnel fixtures on loopback only",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-26T13:07:38Z",
+          "completed_at": "2026-10-26T13:08:30Z"
+        },
+        {
+          "name": "Verify source protection and sanitized evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-26T13:08:30Z",
+          "completed_at": "2026-10-26T13:08:30Z"
+        },
+        {
+          "name": "Upload verified diagnostics only",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-26T13:08:30Z",
+          "completed_at": "2026-10-26T13:08:32Z"
+        },
+        {
+          "name": "Post Checkout pinned upstream",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-26T13:08:32Z",
+          "completed_at": "2026-10-26T13:08:32Z"
+        },
+        {
+          "name": "Post Checkout harness",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-26T13:08:32Z",
+          "completed_at": "2026-10-26T13:08:32Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-26T13:08:32Z",
+          "completed_at": "2026-10-26T13:08:33Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/a15762877559-ai/swiftdy/check-runs/121588491663",
+      "labels": [
+        "xcode-27"
+      ],
+      "runner_id": 1000000003,
+      "runner_name": "GitHub Actions 1000000003",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}
