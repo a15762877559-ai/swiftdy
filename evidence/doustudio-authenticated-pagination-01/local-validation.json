@@ -1,0 +1,124 @@
+{
+  "python_tests": {
+    "status": "PASS",
+    "total": 27,
+    "cases": [
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_child_isolation.test_child_isolation",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_cookie_control_characters.test_cookie_control_characters",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_duplicate_offline_id.test_duplicate_offline_id",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_exception_suppressed_no_retry.test_exception_suppressed_no_retry",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_excess_request_result_rejected.test_excess_request_result_rejected",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_exhaustion_inconclusive_is_not_error.test_exhaustion_inconclusive_is_not_error",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_failed_build.test_failed_build",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_failed_offline_case.test_failed_offline_case",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_finalizer_reports_upstream_protection_failure.test_finalizer_reports_upstream_protection_failure",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_initialize_does_not_persist_secret_or_profile.test_initialize_does_not_persist_secret_or_profile",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_invalid_profile.test_invalid_profile",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_missing_consent.test_missing_consent",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_missing_cookie.test_missing_cookie",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_missing_offline_case.test_missing_offline_case",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_missing_offline_suite.test_missing_offline_suite",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_nonzero_exit_propagates.test_nonzero_exit_propagates",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_pagination.PaginationLauncherTests.test_zero_exit_without_result_fails.test_zero_exit_without_result_fails",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_preflight.CredentialIsolation.test_blank_secret.test_blank_secret",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_preflight.CredentialIsolation.test_child_failure_is_not_success.test_child_failure_is_not_success",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_preflight.CredentialIsolation.test_child_isolation_and_no_secret_serialization.test_child_isolation_and_no_secret_serialization",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_preflight.CredentialIsolation.test_exception_details_suppressed.test_exception_details_suppressed",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_preflight.CredentialIsolation.test_initializer_does_not_persist_credential.test_initializer_does_not_persist_credential",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_preflight.CredentialIsolation.test_injected_secret.test_injected_secret",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_preflight.CredentialIsolation.test_invalid_profile.test_invalid_profile",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_preflight.CredentialIsolation.test_missing_secret.test_missing_secret",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_preflight.CredentialIsolation.test_no_authorization.test_no_authorization",
+        "status": "PASS"
+      },
+      {
+        "name": "test_auth_preflight.CredentialIsolation.test_zero_exit_without_success_result_is_failure.test_zero_exit_without_success_result_is_failure",
+        "status": "PASS"
+      }
+    ]
+  },
+  "yaml_and_shell": "PASS",
+  "credential_isolation": "PASS",
+  "artifact_allowlist_files": 13,
+  "swift_build": "NOT_RUN_NO_TOOLCHAIN",
+  "swift_fixtures": "NOT_RUN_NO_TOOLCHAIN",
+  "actionlint": "NOT_INSTALLED_NOT_RUN",
+  "cloud_run": "NOT_RUN",
+  "no_automatic_dispatch": true
+}

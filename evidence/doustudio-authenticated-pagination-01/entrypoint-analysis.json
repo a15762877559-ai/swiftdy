@@ -1,0 +1,19 @@
+{
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "public_entry": "DouyinClient.endpoints.accountTimeline",
+  "original_loop": "PaginatedCollector.collect",
+  "source_path": "Sources/DouStudioKit/Networking/DouyinAPI.swift",
+  "loop_line": 151,
+  "endpoint_line": 288,
+  "page_request": {
+    "count": 18,
+    "maxPages": 3,
+    "cursor": 0
+  },
+  "maxRetry": 0,
+  "response_passed_to_collector": "original bytes after validation",
+  "next_cursor_generation": "upstream collector from previous server max_cursor; no Harness synthesis",
+  "banned_batched_collector_called": false,
+  "downloader_called": false,
+  "original_single_request_transport_unchanged": true
+}

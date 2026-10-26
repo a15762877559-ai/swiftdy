@@ -1,0 +1,129 @@
+{
+  "original_suite_cases": 38,
+  "new_suite_cases": 24,
+  "total": 62,
+  "execution": "NOT_RUN",
+  "isolation_on_cloud": "sandbox-exec deny network*",
+  "cases": [
+    {
+      "id": "PAG-001",
+      "name": "Two-page original collector",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-002",
+      "name": "Three-page original collector and hard cap",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-003",
+      "name": "First-page exhaustion",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-004",
+      "name": "Empty first page",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-005",
+      "name": "Missing cursor",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-006",
+      "name": "Invalid cursor zero",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-007",
+      "name": "Stalled cursor",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-008",
+      "name": "Cursor cycle",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-009",
+      "name": "Duplicate across pages",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-010",
+      "name": "Duplicate within page",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-011",
+      "name": "403 stops",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-012",
+      "name": "429 on second page stops",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-013",
+      "name": "HTML challenge stops",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-014",
+      "name": "Response schema changed",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-015",
+      "name": "Missing has_more",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-016",
+      "name": "Empty with more",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-017",
+      "name": "Redirect stops",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-018",
+      "name": "Invalid work identity",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-019",
+      "name": "Platform error",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-020",
+      "name": "Wrong next request cursor",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-021",
+      "name": "Media endpoint forbidden",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-022",
+      "name": "Foreign host and credential boundary",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-023",
+      "name": "Evidence excludes identifiers and cursor values",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "PAG-024",
+      "name": "Network exception stops without retry",
+      "status": "NOT_RUN"
+    }
+  ]
+}

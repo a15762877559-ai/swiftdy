@@ -1,0 +1,1155 @@
+{
+  "protected_unchanged": 162,
+  "allowed_existing_file_edits": 1,
+  "checks": [
+    {
+      "path": ".github/workflows/doustudio-authenticated-preflight.yml",
+      "sha256_before": "596ae7849464bafab75eb381b2a634bea64ae14e510e0a50188a47edf4de00e8",
+      "sha256_after": "596ae7849464bafab75eb381b2a634bea64ae14e510e0a50188a47edf4de00e8",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": ".github/workflows/doustudio-harness-offline.yml",
+      "sha256_before": "9aa48b49bddc5f6f4d122d61a5a6cf982bd8c05d79ef7c86fa8eae1ef0687d17",
+      "sha256_after": "9aa48b49bddc5f6f4d122d61a5a6cf982bd8c05d79ef7c86fa8eae1ef0687d17",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": ".github/workflows/doustudio-macos-build.yml",
+      "sha256_before": "2451d682512c8b94f5bcd9ae48f9273405387dc4c7b4841b5c66e8712fab9b94",
+      "sha256_after": "2451d682512c8b94f5bcd9ae48f9273405387dc4c7b4841b5c66e8712fab9b94",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": ".github/workflows/doustudio-runtime-acceptance.yml",
+      "sha256_before": "ca5a9b86fa4de9a006173b1e1b49fad43846c788fc0b5f943a9cc2539c7ec8fc",
+      "sha256_after": "ca5a9b86fa4de9a006173b1e1b49fad43846c788fc0b5f943a9cc2539c7ec8fc",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "docs/DOUSTUDIOKIT_AUTHENTICATED_ACCESS_PREFLIGHT_01_REPORT.md",
+      "sha256_before": "07d5e0b586713c9643e51815e05e25088dc83f7dcc9d12f2246ec8c3563d269c",
+      "sha256_after": "07d5e0b586713c9643e51815e05e25088dc83f7dcc9d12f2246ec8c3563d269c",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "docs/DOUSTUDIOKIT_GITHUB_ACTIONS_BUILD_01_FIX_REPORT.md",
+      "sha256_before": "0cd2fcb30ab0df822f73dd878a678389b42f9a1634728bedd7ab8182a99a58b7",
+      "sha256_after": "0cd2fcb30ab0df822f73dd878a678389b42f9a1634728bedd7ab8182a99a58b7",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "docs/DOUSTUDIOKIT_GITHUB_ACTIONS_BUILD_01_REPORT.md",
+      "sha256_before": "4629a579b37dee5a68453983e349efed3a384a6e060818eb4aaaf5fa16ac69b4",
+      "sha256_after": "4629a579b37dee5a68453983e349efed3a384a6e060818eb4aaaf5fa16ac69b4",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "docs/DOUSTUDIOKIT_HARNESS_OFFLINE_FIX_01_REPORT.md",
+      "sha256_before": "64294097daec51241cd94ce5b1cb48983167077241835fc2f7438361ab51961f",
+      "sha256_after": "64294097daec51241cd94ce5b1cb48983167077241835fc2f7438361ab51961f",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "docs/DOUSTUDIOKIT_REAL_RUNTIME_ACCEPTANCE_01_REPORT.md",
+      "sha256_before": "a7ec12865441afcb8d2a8a1a12aa3bf6f06a4fd953f1a77f40e8b46ed95ee99a",
+      "sha256_after": "a7ec12865441afcb8d2a8a1a12aa3bf6f06a4fd953f1a77f40e8b46ed95ee99a",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/local-validation.json",
+      "sha256_before": "5817b477380c52308679ad9ee4941a1a498a7f50209ad7a09b97207949d9f694",
+      "sha256_after": "5817b477380c52308679ad9ee4941a1a498a7f50209ad7a09b97207949d9f694",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272545784/artifact-inspection.json",
+      "sha256_before": "147652cafe67aeb5dae11ecd37b0e1dbe3dcac5d025fe453a1c3675ff78a8098",
+      "sha256_after": "147652cafe67aeb5dae11ecd37b0e1dbe3dcac5d025fe453a1c3675ff78a8098",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272545784/build-exit-code.txt",
+      "sha256_before": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "sha256_after": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272545784/build.log",
+      "sha256_before": "9d97dda6e541b0b05ccda04c9c464d1e6efb643f9cef7d473ee8c2fe182b028e",
+      "sha256_after": "9d97dda6e541b0b05ccda04c9c464d1e6efb643f9cef7d473ee8c2fe182b028e",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272545784/entry-guard-exit-code.txt",
+      "sha256_before": "913f5d1da2feaf4deeccc9e55cbb350a20f12b3f507e87be85dbb77fdd3cb9bc",
+      "sha256_after": "913f5d1da2feaf4deeccc9e55cbb350a20f12b3f507e87be85dbb77fdd3cb9bc",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272545784/entry-guard.log",
+      "sha256_before": "5d212986e06e2e3648050bd352cfa6dfeb2370f34651d4740f92762953e31341",
+      "sha256_after": "5d212986e06e2e3648050bd352cfa6dfeb2370f34651d4740f92762953e31341",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272545784/environment.json",
+      "sha256_before": "727663da2bfde13af7906dac20f867940befd6dd3e3c85f1657b70c3a6a19699",
+      "sha256_after": "727663da2bfde13af7906dac20f867940befd6dd3e3c85f1657b70c3a6a19699",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272545784/isolation.txt",
+      "sha256_before": "297a25fdb5c16d1e1fb35276493cbf586cc24290a150848bcfa9f4a9bc82a9aa",
+      "sha256_after": "297a25fdb5c16d1e1fb35276493cbf586cc24290a150848bcfa9f4a9bc82a9aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272545784/selftest-exit-code.txt",
+      "sha256_before": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "sha256_after": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272545784/selftest-results.json",
+      "sha256_before": "926519ba192eb3a18f7d47880e84bbfa1ec958e1842e66a4294792a9bd1bf576",
+      "sha256_after": "926519ba192eb3a18f7d47880e84bbfa1ec958e1842e66a4294792a9bd1bf576",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272545784/selftest.log",
+      "sha256_before": "02885e7e895db5257ca065a08c0132d833ba55f77792167b8a496927ec557d9b",
+      "sha256_after": "02885e7e895db5257ca065a08c0132d833ba55f77792167b8a496927ec557d9b",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272545784/source-protection.json",
+      "sha256_before": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+      "sha256_after": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272545784/stage-outcomes.json",
+      "sha256_before": "65a8f02413e2b1c28b5e522c1df182b5120b4cb3870b07967455d7ddce6faa12",
+      "sha256_after": "65a8f02413e2b1c28b5e522c1df182b5120b4cb3870b07967455d7ddce6faa12",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/artifact-inspection.json",
+      "sha256_before": "43605e6b759f36379df86f84c49a5e96fe5d9803112e27178d52a3b2812ae253",
+      "sha256_after": "43605e6b759f36379df86f84c49a5e96fe5d9803112e27178d52a3b2812ae253",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/build-exit-code.txt",
+      "sha256_before": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "sha256_after": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/build.log",
+      "sha256_before": "a3f5b8fd493cbc542facfcc75f2d9d9720b0e9134080ee48e3845ace27721504",
+      "sha256_after": "a3f5b8fd493cbc542facfcc75f2d9d9720b0e9134080ee48e3845ace27721504",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/entry-guard-exit-code.txt",
+      "sha256_before": "913f5d1da2feaf4deeccc9e55cbb350a20f12b3f507e87be85dbb77fdd3cb9bc",
+      "sha256_after": "913f5d1da2feaf4deeccc9e55cbb350a20f12b3f507e87be85dbb77fdd3cb9bc",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/entry-guard.log",
+      "sha256_before": "5d212986e06e2e3648050bd352cfa6dfeb2370f34651d4740f92762953e31341",
+      "sha256_after": "5d212986e06e2e3648050bd352cfa6dfeb2370f34651d4740f92762953e31341",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/environment.json",
+      "sha256_before": "8828b5cfd2304f5687915a4b307a16334c10197816e14ad57d3036c327cb6270",
+      "sha256_after": "8828b5cfd2304f5687915a4b307a16334c10197816e14ad57d3036c327cb6270",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/github-success.png",
+      "sha256_before": "c0dcc1ac19905e9b158067e02f1051fcd0deec67c6961c2978ebb7a7a38493e0",
+      "sha256_after": "c0dcc1ac19905e9b158067e02f1051fcd0deec67c6961c2978ebb7a7a38493e0",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/isolation.txt",
+      "sha256_before": "297a25fdb5c16d1e1fb35276493cbf586cc24290a150848bcfa9f4a9bc82a9aa",
+      "sha256_after": "297a25fdb5c16d1e1fb35276493cbf586cc24290a150848bcfa9f4a9bc82a9aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/selftest-exit-code.txt",
+      "sha256_before": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "sha256_after": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/selftest-results.json",
+      "sha256_before": "97543283d59422f2059f93c6b64eb180425f39c5608b4c571e52cbc782a1c2c1",
+      "sha256_after": "97543283d59422f2059f93c6b64eb180425f39c5608b4c571e52cbc782a1c2c1",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/selftest.log",
+      "sha256_before": "bb11fe7fdfc7ecf383ef36b2b4f182985f60d54968c711784bbebf8712907dc7",
+      "sha256_after": "bb11fe7fdfc7ecf383ef36b2b4f182985f60d54968c711784bbebf8712907dc7",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/source-protection.json",
+      "sha256_before": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+      "sha256_after": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/offline-run-40272761482/stage-outcomes.json",
+      "sha256_before": "65a8f02413e2b1c28b5e522c1df182b5120b4cb3870b07967455d7ddce6faa12",
+      "sha256_after": "65a8f02413e2b1c28b5e522c1df182b5120b4cb3870b07967455d7ddce6faa12",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/preparation-acceptance.json",
+      "sha256_before": "a98218bb46332fec8f3f5a48054ee8f89ab26ef54ab7fc7b8b3e5c5c37b90f5d",
+      "sha256_after": "a98218bb46332fec8f3f5a48054ee8f89ab26ef54ab7fc7b8b3e5c5c37b90f5d",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/protection-verification.json",
+      "sha256_before": "ad5759f009a0c91e5b99ae679fe3c767f78b9b5f61558e70ea72b6e2cd3e449a",
+      "sha256_after": "ad5759f009a0c91e5b99ae679fe3c767f78b9b5f61558e70ea72b6e2cd3e449a",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/python-tests.log",
+      "sha256_before": "95a00b459198a02051cf073e20b7a291313c2be9f7b5025d69eaab0a10820820",
+      "sha256_after": "95a00b459198a02051cf073e20b7a291313c2be9f7b5025d69eaab0a10820820",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274059566/acceptance-assessment.json",
+      "sha256_before": "244151f3530f6aa1fb3ad32a38c4d30dd28f38a2ce7ceadae362abfe4111111a",
+      "sha256_after": "244151f3530f6aa1fb3ad32a38c4d30dd28f38a2ce7ceadae362abfe4111111a",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274059566/artifact-inspection.json",
+      "sha256_before": "9f398abdb3dd179c5464569fc6a1bef425587a22ee7ab48ef9af7f1550a81182",
+      "sha256_after": "9f398abdb3dd179c5464569fc6a1bef425587a22ee7ab48ef9af7f1550a81182",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274059566/auth-exit-code.txt",
+      "sha256_before": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
+      "sha256_after": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274059566/auth-result.json",
+      "sha256_before": "027842cd18d0997af9290c2d74208baabd6d791999e60de4efd431dd5f9b03bf",
+      "sha256_after": "027842cd18d0997af9290c2d74208baabd6d791999e60de4efd431dd5f9b03bf",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274059566/build-exit-code.txt",
+      "sha256_before": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
+      "sha256_after": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274059566/input-exit-log.txt",
+      "sha256_before": "5b755f901cd72cf4d7f3c5bbd74f0c5197892d29a03489ff1942f0f9ae919405",
+      "sha256_after": "5b755f901cd72cf4d7f3c5bbd74f0c5197892d29a03489ff1942f0f9ae919405",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274059566/input-validation.json",
+      "sha256_before": "ed2fe5a84bb39e9f82d8dc81aa8838d745d00686c5eb2b4244a2b13fb612365c",
+      "sha256_after": "ed2fe5a84bb39e9f82d8dc81aa8838d745d00686c5eb2b4244a2b13fb612365c",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274059566/offline-exit-code.txt",
+      "sha256_before": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
+      "sha256_after": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274059566/protection-verification.json",
+      "sha256_before": "88dd5f1324622a80f2a58c7aa866ada8e16f697fc0f779a0fe48cc6c696f97d0",
+      "sha256_after": "88dd5f1324622a80f2a58c7aa866ada8e16f697fc0f779a0fe48cc6c696f97d0",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274059566/run-summary.json",
+      "sha256_before": "256a2816e055aa8b34c2e6130798c9ed38b0d081b3f88763f9d9d31f569be010",
+      "sha256_after": "256a2816e055aa8b34c2e6130798c9ed38b0d081b3f88763f9d9d31f569be010",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274059566/stage-outcomes.json",
+      "sha256_before": "388182eae6a3194f318daab6c615a231a27bebac10980db4274c4228695bc33f",
+      "sha256_after": "388182eae6a3194f318daab6c615a231a27bebac10980db4274c4228695bc33f",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/acceptance-assessment.json",
+      "sha256_before": "3c0b7cfdf32db5cb7f84a3a7e61a13cbf561276858b63fffaacac30b196f260a",
+      "sha256_after": "3c0b7cfdf32db5cb7f84a3a7e61a13cbf561276858b63fffaacac30b196f260a",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/artifact-inspection.json",
+      "sha256_before": "dae6c85dcf6925bc7412cd680ebda3483c1fb5eb8f1035280b44443b8864dd9f",
+      "sha256_after": "dae6c85dcf6925bc7412cd680ebda3483c1fb5eb8f1035280b44443b8864dd9f",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/auth-exit-code.txt",
+      "sha256_before": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "sha256_after": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/auth-result.json",
+      "sha256_before": "b68a6f58d57ced4af654447444bd7c0adb682c90e4b0b367ca6d2024cb80fb09",
+      "sha256_after": "b68a6f58d57ced4af654447444bd7c0adb682c90e4b0b367ca6d2024cb80fb09",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/build-exit-code.txt",
+      "sha256_before": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "sha256_after": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/build.log",
+      "sha256_before": "98a3958f43be1b40d804cae3b598c6e84eaa26728f4b1252d91615dcf74168ea",
+      "sha256_after": "98a3958f43be1b40d804cae3b598c6e84eaa26728f4b1252d91615dcf74168ea",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/environment.json",
+      "sha256_before": "57ff67d423d4bb71a90657bda34bf54d675e09bba953bb287012e753707a2aaa",
+      "sha256_after": "57ff67d423d4bb71a90657bda34bf54d675e09bba953bb287012e753707a2aaa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/input-validation.json",
+      "sha256_before": "6eee64d0f08b1f679ea31ce958ed623fb9f741d732f16a12688893cde5a16308",
+      "sha256_after": "6eee64d0f08b1f679ea31ce958ed623fb9f741d732f16a12688893cde5a16308",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/offline-exit-code.txt",
+      "sha256_before": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "sha256_after": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/offline.log",
+      "sha256_before": "6ff4c48016ba3e98c169e4228e80e1133c75baef419adf05c10ca14318d65e12",
+      "sha256_after": "6ff4c48016ba3e98c169e4228e80e1133c75baef419adf05c10ca14318d65e12",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/protection-verification.json",
+      "sha256_before": "0cc9a3ec0897a9e8a9b55d777124b96ec1948162ad9e5a755bf90ec4adb10cfd",
+      "sha256_after": "0cc9a3ec0897a9e8a9b55d777124b96ec1948162ad9e5a755bf90ec4adb10cfd",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/run-summary.json",
+      "sha256_before": "de31b2f22d49ef90dea1704176b7af3795041acb1f289b92c24c8b08ff131fe1",
+      "sha256_after": "de31b2f22d49ef90dea1704176b7af3795041acb1f289b92c24c8b08ff131fe1",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/selftest-results.json",
+      "sha256_before": "97543283d59422f2059f93c6b64eb180425f39c5608b4c571e52cbc782a1c2c1",
+      "sha256_after": "97543283d59422f2059f93c6b64eb180425f39c5608b4c571e52cbc782a1c2c1",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/source-protection.json",
+      "sha256_before": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+      "sha256_after": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/run-40274532110/stage-outcomes.json",
+      "sha256_before": "49afbd93097c88315e935abdf71474e05b6eea699cc066df67450a9f9681913f",
+      "sha256_after": "49afbd93097c88315e935abdf71474e05b6eea699cc066df67450a9f9681913f",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-authenticated-access-preflight-01/server-workflow-verification.json",
+      "sha256_before": "d104007fd41e5bf62ca34bc74d8002accedcc4fffe29bde1559683431e02d2e4",
+      "sha256_after": "d104007fd41e5bf62ca34bc74d8002accedcc4fffe29bde1559683431e02d2e4",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/diagnostic-local-validation.json",
+      "sha256_before": "12c449dea83584ad66d6f2e6224e9d04f4fda672f0f48b9c27c921822f4dbcd8",
+      "sha256_after": "12c449dea83584ad66d6f2e6224e9d04f4fda672f0f48b9c27c921822f4dbcd8",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/final-acceptance.json",
+      "sha256_before": "b1c37c35745e642f7873c763f67f106aaaa1b58b53f2fc5a2dc296dc01d86a15",
+      "sha256_after": "b1c37c35745e642f7873c763f67f106aaaa1b58b53f2fc5a2dc296dc01d86a15",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/protection-verification.json",
+      "sha256_before": "20984628721d3fffc011fbe948100b37846932b8caa1f9bf029d5984f7907e23",
+      "sha256_after": "20984628721d3fffc011fbe948100b37846932b8caa1f9bf029d5984f7907e23",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/repair-local-validation.json",
+      "sha256_before": "53f1d26a044948652579555ca43537bd6c6bfacb721c2567eafa9820203bdd24",
+      "sha256_after": "53f1d26a044948652579555ca43537bd6c6bfacb721c2567eafa9820203bdd24",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/artifact-inspection.json",
+      "sha256_before": "4c6d215ba28e37c70a24868a092b0678f6fe579cd476c73b1cbada52770b5157",
+      "sha256_after": "4c6d215ba28e37c70a24868a092b0678f6fe579cd476c73b1cbada52770b5157",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/build-exit-code.txt",
+      "sha256_before": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "sha256_after": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/build.log",
+      "sha256_before": "c5190c737c7771b7c85cb60929d246fa12bbc452a59ec17a1227d2ce17bb63e1",
+      "sha256_after": "c5190c737c7771b7c85cb60929d246fa12bbc452a59ec17a1227d2ce17bb63e1",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/entry-guard-exit-code.txt",
+      "sha256_before": "913f5d1da2feaf4deeccc9e55cbb350a20f12b3f507e87be85dbb77fdd3cb9bc",
+      "sha256_after": "913f5d1da2feaf4deeccc9e55cbb350a20f12b3f507e87be85dbb77fdd3cb9bc",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/entry-guard.log",
+      "sha256_before": "5d212986e06e2e3648050bd352cfa6dfeb2370f34651d4740f92762953e31341",
+      "sha256_after": "5d212986e06e2e3648050bd352cfa6dfeb2370f34651d4740f92762953e31341",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/environment.json",
+      "sha256_before": "2827c3bda2e32a705976857d128776f4182fa373b0562b6ca774a18e7e02536d",
+      "sha256_after": "2827c3bda2e32a705976857d128776f4182fa373b0562b6ca774a18e7e02536d",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/isolation.txt",
+      "sha256_before": "297a25fdb5c16d1e1fb35276493cbf586cc24290a150848bcfa9f4a9bc82a9aa",
+      "sha256_after": "297a25fdb5c16d1e1fb35276493cbf586cc24290a150848bcfa9f4a9bc82a9aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/selftest-exit-code.txt",
+      "sha256_before": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "sha256_after": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/selftest-results.json",
+      "sha256_before": "7f3a4b15313b2721d6116a3504e20dde11c75ead3c878356f806e0d6ad03a9fd",
+      "sha256_after": "7f3a4b15313b2721d6116a3504e20dde11c75ead3c878356f806e0d6ad03a9fd",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/selftest.log",
+      "sha256_before": "25d25afb4a7a72788b151c3479ce08673493d872a5869a60eda2f066a0e725b8",
+      "sha256_after": "25d25afb4a7a72788b151c3479ce08673493d872a5869a60eda2f066a0e725b8",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/source-protection.json",
+      "sha256_before": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+      "sha256_after": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270208701/stage-outcomes.json",
+      "sha256_before": "3f77286aa2165de0738e0a1189566c9edc6c60d1838247ac2f7f1152efd41fd5",
+      "sha256_after": "3f77286aa2165de0738e0a1189566c9edc6c60d1838247ac2f7f1152efd41fd5",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/artifact-inspection.json",
+      "sha256_before": "bb20ee7467bc8683d6d1e9014baed4e13946c2c7b7e9369fce67b05ecea1ab0a",
+      "sha256_after": "bb20ee7467bc8683d6d1e9014baed4e13946c2c7b7e9369fce67b05ecea1ab0a",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/build-exit-code.txt",
+      "sha256_before": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "sha256_after": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/build.log",
+      "sha256_before": "8f07e06f6fff8dd7f2952df910be69745d81d52c3ef1e173de37d218e7656b70",
+      "sha256_after": "8f07e06f6fff8dd7f2952df910be69745d81d52c3ef1e173de37d218e7656b70",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/entry-guard-exit-code.txt",
+      "sha256_before": "913f5d1da2feaf4deeccc9e55cbb350a20f12b3f507e87be85dbb77fdd3cb9bc",
+      "sha256_after": "913f5d1da2feaf4deeccc9e55cbb350a20f12b3f507e87be85dbb77fdd3cb9bc",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/entry-guard.log",
+      "sha256_before": "5d212986e06e2e3648050bd352cfa6dfeb2370f34651d4740f92762953e31341",
+      "sha256_after": "5d212986e06e2e3648050bd352cfa6dfeb2370f34651d4740f92762953e31341",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/environment.json",
+      "sha256_before": "c05df7262d6edea15aa943226be9ebd76cf2080f9b57a678e4366888f0c04894",
+      "sha256_after": "c05df7262d6edea15aa943226be9ebd76cf2080f9b57a678e4366888f0c04894",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/github-success.png",
+      "sha256_before": "a3b79ee4d8f2754b472721221795780a6fdb0de8895742ee0da2b19c37fdff14",
+      "sha256_after": "a3b79ee4d8f2754b472721221795780a6fdb0de8895742ee0da2b19c37fdff14",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/isolation.txt",
+      "sha256_before": "297a25fdb5c16d1e1fb35276493cbf586cc24290a150848bcfa9f4a9bc82a9aa",
+      "sha256_after": "297a25fdb5c16d1e1fb35276493cbf586cc24290a150848bcfa9f4a9bc82a9aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/selftest-exit-code.txt",
+      "sha256_before": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "sha256_after": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/selftest-results.json",
+      "sha256_before": "f3fa2d79fce247874edbcdefd0cf0004ce5fd990a7e4793847f8f873280b5a5d",
+      "sha256_after": "f3fa2d79fce247874edbcdefd0cf0004ce5fd990a7e4793847f8f873280b5a5d",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/selftest.log",
+      "sha256_before": "9c7ba33db3c9e510638ef784e435975710ab803d119451c91da852cb400d7a52",
+      "sha256_after": "9c7ba33db3c9e510638ef784e435975710ab803d119451c91da852cb400d7a52",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/source-protection.json",
+      "sha256_before": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+      "sha256_after": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-harness-offline-fix-01/run-40270472151/stage-outcomes.json",
+      "sha256_before": "65a8f02413e2b1c28b5e522c1df182b5120b4cb3870b07967455d7ddce6faa12",
+      "sha256_after": "65a8f02413e2b1c28b5e522c1df182b5120b4cb3870b07967455d7ddce6faa12",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/download-validation.json",
+      "sha256_before": "7e17a342e218173de2da49e1a5bb5c35f8b905400a37181ec126ff016c113c8e",
+      "sha256_after": "7e17a342e218173de2da49e1a5bb5c35f8b905400a37181ec126ff016c113c8e",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/entrypoint-analysis.json",
+      "sha256_before": "83f7e84de22eb8eb3f3457125feae5ca02377257e015f37407c0114d63aec734",
+      "sha256_after": "83f7e84de22eb8eb3f3457125feae5ca02377257e015f37407c0114d63aec734",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/failure-observations.json",
+      "sha256_before": "2c04578833d937bd787192f3256c9ecf44e5fdb170b644467baaf4c56efcee78",
+      "sha256_after": "2c04578833d937bd787192f3256c9ecf44e5fdb170b644467baaf4c56efcee78",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/field-validation.json",
+      "sha256_before": "e84c39379d2781f494e2c4db0fee483727259f1d03c7e932126cb849600aa8fa",
+      "sha256_after": "e84c39379d2781f494e2c4db0fee483727259f1d03c7e932126cb849600aa8fa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/final-acceptance.json",
+      "sha256_before": "9de7d8843a05ec3a77d090203ab975acebe5531ee99e7aaef4d3747d916d7c00",
+      "sha256_after": "9de7d8843a05ec3a77d090203ab975acebe5531ee99e7aaef4d3747d916d7c00",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/pagination-result.json",
+      "sha256_before": "6cc3096413dbc19138da3174dc38a1a7538d114145b32921640a3ae27398b519",
+      "sha256_after": "6cc3096413dbc19138da3174dc38a1a7538d114145b32921640a3ae27398b519",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/profile-resolution.json",
+      "sha256_before": "9ba01d2774231474804e6b456d98ddc02b552cf571a278dbba559097c06332be",
+      "sha256_after": "9ba01d2774231474804e6b456d98ddc02b552cf571a278dbba559097c06332be",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/artifact-inspection.json",
+      "sha256_before": "b9e2ebab7591c252886c4183868b5d7c9b3c1db532c5f6acdb4893f5c7935143",
+      "sha256_after": "b9e2ebab7591c252886c4183868b5d7c9b3c1db532c5f6acdb4893f5c7935143",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/download-validation.json",
+      "sha256_before": "74b4f97351654d894d8c26a982b1f7a254ffce2224040d655d7f3faa56e4766b",
+      "sha256_after": "74b4f97351654d894d8c26a982b1f7a254ffce2224040d655d7f3faa56e4766b",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/entrypoint-analysis.json",
+      "sha256_before": "17ec8e651a573e96efc89db59679bf989a42fe629d64eec3e331a776bbf33117",
+      "sha256_after": "17ec8e651a573e96efc89db59679bf989a42fe629d64eec3e331a776bbf33117",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/failure-observations.json",
+      "sha256_before": "89366704795aeb2b439a1b447f5abc3ce318002aee9937af92c94e5ce379132e",
+      "sha256_after": "89366704795aeb2b439a1b447f5abc3ce318002aee9937af92c94e5ce379132e",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/field-validation.json",
+      "sha256_before": "1c389bcdbaa9b597449ec2d1d39990eb2040fe8bc20168d88a653b20e511894a",
+      "sha256_after": "1c389bcdbaa9b597449ec2d1d39990eb2040fe8bc20168d88a653b20e511894a",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/final-acceptance.json",
+      "sha256_before": "c331a820f5336a323ed9e9eea3c7c753cd9a177b6919b7a8b2ddd63472edf3bf",
+      "sha256_after": "c331a820f5336a323ed9e9eea3c7c753cd9a177b6919b7a8b2ddd63472edf3bf",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/harness-build-exit-code.txt",
+      "sha256_before": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "sha256_after": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/harness-build.log",
+      "sha256_before": "d9423fcd98329a5790c020bd25ed05dead024cc6b5661aacbe6f9abb3e81fcdc",
+      "sha256_after": "d9423fcd98329a5790c020bd25ed05dead024cc6b5661aacbe6f9abb3e81fcdc",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/pagination-result.json",
+      "sha256_before": "298d27a89e5bd9251a5b8c65800df45241cafa0444f9053c98d29ba0436271f7",
+      "sha256_after": "298d27a89e5bd9251a5b8c65800df45241cafa0444f9053c98d29ba0436271f7",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/profile-resolution.json",
+      "sha256_before": "d1a161cbdfc099a8e6ef16a3086baca3c6d9049df97c0c608e15fd66ed097683",
+      "sha256_after": "d1a161cbdfc099a8e6ef16a3086baca3c6d9049df97c0c608e15fd66ed097683",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/run-summary.json",
+      "sha256_before": "9a40a2bc57d0ed34c4ece15d81689943e53d98dae6fc657aecae17333e1f9f8d",
+      "sha256_after": "9a40a2bc57d0ed34c4ece15d81689943e53d98dae6fc657aecae17333e1f9f8d",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/runtime-environment.json",
+      "sha256_before": "5ce26adf74fce4c769540bbb3bd6a37038ffd43aae9e53d9b392e40d25f34e59",
+      "sha256_after": "5ce26adf74fce4c769540bbb3bd6a37038ffd43aae9e53d9b392e40d25f34e59",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/stage-outcomes.json",
+      "sha256_before": "dcdbef68865400082a26bb7bc71ac9833e1361d228150ee73bc17d09b4e36c7d",
+      "sha256_after": "dcdbef68865400082a26bb7bc71ac9833e1361d228150ee73bc17d09b4e36c7d",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40267311040/worklist-result.json",
+      "sha256_before": "8310b854d533b0c6979ec511f6d6f2bceb8699f8cae31d0f161be63de359e4db",
+      "sha256_after": "8310b854d533b0c6979ec511f6d6f2bceb8699f8cae31d0f161be63de359e4db",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/artifact-inspection.json",
+      "sha256_before": "a57311f7cdbb31f5ace41cd29c1fff4a9bf09a1034d9f08f8d432aced7910a2b",
+      "sha256_after": "a57311f7cdbb31f5ace41cd29c1fff4a9bf09a1034d9f08f8d432aced7910a2b",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/download-validation.json",
+      "sha256_before": "74b4f97351654d894d8c26a982b1f7a254ffce2224040d655d7f3faa56e4766b",
+      "sha256_after": "74b4f97351654d894d8c26a982b1f7a254ffce2224040d655d7f3faa56e4766b",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/entrypoint-analysis.json",
+      "sha256_before": "17ec8e651a573e96efc89db59679bf989a42fe629d64eec3e331a776bbf33117",
+      "sha256_after": "17ec8e651a573e96efc89db59679bf989a42fe629d64eec3e331a776bbf33117",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/failure-observations.json",
+      "sha256_before": "4b7b325628fb2d566a2bcb1e33e2e2e21c937f0167c9c5c774a1ada79eb3ee2e",
+      "sha256_after": "4b7b325628fb2d566a2bcb1e33e2e2e21c937f0167c9c5c774a1ada79eb3ee2e",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/field-validation.json",
+      "sha256_before": "1c389bcdbaa9b597449ec2d1d39990eb2040fe8bc20168d88a653b20e511894a",
+      "sha256_after": "1c389bcdbaa9b597449ec2d1d39990eb2040fe8bc20168d88a653b20e511894a",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/final-acceptance.json",
+      "sha256_before": "c331a820f5336a323ed9e9eea3c7c753cd9a177b6919b7a8b2ddd63472edf3bf",
+      "sha256_after": "c331a820f5336a323ed9e9eea3c7c753cd9a177b6919b7a8b2ddd63472edf3bf",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/input-validation-log.txt",
+      "sha256_before": "f137fb5900a4b5f2292369485e8a164c86731ae100debba0e41e00344a63de6c",
+      "sha256_after": "f137fb5900a4b5f2292369485e8a164c86731ae100debba0e41e00344a63de6c",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/pagination-result.json",
+      "sha256_before": "298d27a89e5bd9251a5b8c65800df45241cafa0444f9053c98d29ba0436271f7",
+      "sha256_after": "298d27a89e5bd9251a5b8c65800df45241cafa0444f9053c98d29ba0436271f7",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/preflight-verification.json",
+      "sha256_before": "2cab87048ac853abb3526233b9a4b5989dd4610eca412a956f9afb0ffb7d4d99",
+      "sha256_after": "2cab87048ac853abb3526233b9a4b5989dd4610eca412a956f9afb0ffb7d4d99",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/profile-resolution.json",
+      "sha256_before": "d1a161cbdfc099a8e6ef16a3086baca3c6d9049df97c0c608e15fd66ed097683",
+      "sha256_after": "d1a161cbdfc099a8e6ef16a3086baca3c6d9049df97c0c608e15fd66ed097683",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/run-02-assessment.json",
+      "sha256_before": "5647d703414df1aace734f7bf56ba81d719b3d1d5637fef45dfbcb78683588eb",
+      "sha256_after": "5647d703414df1aace734f7bf56ba81d719b3d1d5637fef45dfbcb78683588eb",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/run-summary.json",
+      "sha256_before": "e6f8c0281775892e463a5392333fbffd05a2a871cd0ed04f93a61295a7eaa29d",
+      "sha256_after": "e6f8c0281775892e463a5392333fbffd05a2a871cd0ed04f93a61295a7eaa29d",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/runtime-environment.json",
+      "sha256_before": "9f5dc0875ed559eac381b3d2ddde9e5b2f0781be908ee700f6b14bde46088910",
+      "sha256_after": "9f5dc0875ed559eac381b3d2ddde9e5b2f0781be908ee700f6b14bde46088910",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/stage-outcomes.json",
+      "sha256_before": "33f7df7daab39b73b6fa18687a6d89ddfc9e1c8a927d2b67e9472227e00ecf54",
+      "sha256_after": "33f7df7daab39b73b6fa18687a6d89ddfc9e1c8a927d2b67e9472227e00ecf54",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271049168/worklist-result.json",
+      "sha256_before": "8310b854d533b0c6979ec511f6d6f2bceb8699f8cae31d0f161be63de359e4db",
+      "sha256_after": "8310b854d533b0c6979ec511f6d6f2bceb8699f8cae31d0f161be63de359e4db",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/artifact-inspection.json",
+      "sha256_before": "60107ee7d22668db0502c9ae772a94cb160902ab57033879abbf07452b257331",
+      "sha256_after": "60107ee7d22668db0502c9ae772a94cb160902ab57033879abbf07452b257331",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/download-validation.json",
+      "sha256_before": "71406be89c1d224e180870fbfce351d94c093a6fbc0f3d6af78fde3036effed3",
+      "sha256_after": "71406be89c1d224e180870fbfce351d94c093a6fbc0f3d6af78fde3036effed3",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/entrypoint-analysis.json",
+      "sha256_before": "17ec8e651a573e96efc89db59679bf989a42fe629d64eec3e331a776bbf33117",
+      "sha256_after": "17ec8e651a573e96efc89db59679bf989a42fe629d64eec3e331a776bbf33117",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/failure-observations.json",
+      "sha256_before": "1c7a72cc14985abc897a62284001953ab064ac24dd6a67823b9d946e4491986d",
+      "sha256_after": "1c7a72cc14985abc897a62284001953ab064ac24dd6a67823b9d946e4491986d",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/field-validation.json",
+      "sha256_before": "80cb0f7f1754ae47d3c9c4cdc638529aae40185aaa72fe984d3415c1c8a30296",
+      "sha256_after": "80cb0f7f1754ae47d3c9c4cdc638529aae40185aaa72fe984d3415c1c8a30296",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/final-acceptance.json",
+      "sha256_before": "61bf5be4ef5f7901990d160f3aa9b1e17635fdddc13af7025bfcb801103d80bd",
+      "sha256_after": "61bf5be4ef5f7901990d160f3aa9b1e17635fdddc13af7025bfcb801103d80bd",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/harness-build-exit-code.txt",
+      "sha256_before": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "sha256_after": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/harness-build.log",
+      "sha256_before": "fdc5651331c667e9ca7be3bd27c7b3720cdfd6a3e5ec2ff470758d22204f52be",
+      "sha256_after": "fdc5651331c667e9ca7be3bd27c7b3720cdfd6a3e5ec2ff470758d22204f52be",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/harness-exit-code.txt",
+      "sha256_before": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+      "sha256_after": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/offline-checks-from-job-log.json",
+      "sha256_before": "ac3f1d48ffab6bed2f72508be2c3cc4755dd9e26c9b0bbed804e7f5ded2c18c9",
+      "sha256_after": "ac3f1d48ffab6bed2f72508be2c3cc4755dd9e26c9b0bbed804e7f5ded2c18c9",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/pagination-result.json",
+      "sha256_before": "6a603befd9dbd53b8d1c526ee88d2b3835e688fb6619bcf9d2892ee2b153bedf",
+      "sha256_after": "6a603befd9dbd53b8d1c526ee88d2b3835e688fb6619bcf9d2892ee2b153bedf",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/profile-resolution.json",
+      "sha256_before": "dcfafa329ad62be6d19ecfbd32b3579ed2dd5ee5f9accbcd44a4c9fb8f44bde4",
+      "sha256_after": "dcfafa329ad62be6d19ecfbd32b3579ed2dd5ee5f9accbcd44a4c9fb8f44bde4",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/run-summary.json",
+      "sha256_before": "7dd0814155921708f073dd1de104ff266d4dc2dab1ca08e0fcdd09fd892a5acb",
+      "sha256_after": "7dd0814155921708f073dd1de104ff266d4dc2dab1ca08e0fcdd09fd892a5acb",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/runtime-assessment.json",
+      "sha256_before": "51b5d1d211f6f4c51ef137bfb209209e46d1c0b2c9bab44041d8f55f411b36ed",
+      "sha256_after": "51b5d1d211f6f4c51ef137bfb209209e46d1c0b2c9bab44041d8f55f411b36ed",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/runtime-environment.json",
+      "sha256_before": "fd69a7635fd12988fdacde08f8a2536d47abbcc02bbb84c2a8ac98e131103dfd",
+      "sha256_after": "fd69a7635fd12988fdacde08f8a2536d47abbcc02bbb84c2a8ac98e131103dfd",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/stage-outcomes.json",
+      "sha256_before": "5cfc18e9034122b8d9d2ad0a009c9fbcde59edc3c3c1ef26069b4abac811db20",
+      "sha256_after": "5cfc18e9034122b8d9d2ad0a009c9fbcde59edc3c3c1ef26069b4abac811db20",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/run-40271383018/worklist-result.json",
+      "sha256_before": "4f4f098de924444c460aece1eedec47d0a090f6e1cd37b4121cc018380a3f84f",
+      "sha256_after": "4f4f098de924444c460aece1eedec47d0a090f6e1cd37b4121cc018380a3f84f",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/runtime-environment.json",
+      "sha256_before": "2bc05de5b9df3224384051fb839197e895bc83515cf8d2157d857788ada97e53",
+      "sha256_after": "2bc05de5b9df3224384051fb839197e895bc83515cf8d2157d857788ada97e53",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "evidence/doustudio-real-runtime-acceptance-01/worklist-result.json",
+      "sha256_before": "c14c734be75f5b037ae68f513bda8a0bcbdaf16f23e568b4186cc6b1193f936d",
+      "sha256_after": "c14c734be75f5b037ae68f513bda8a0bcbdaf16f23e568b4186cc6b1193f936d",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "runtime-harness/Package.swift",
+      "sha256_before": "c84b4e9e34ee14796f9ae6adcf728ca0ae7a563d862c87154e49dae863cdb076",
+      "sha256_after": "c84b4e9e34ee14796f9ae6adcf728ca0ae7a563d862c87154e49dae863cdb076",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "runtime-harness/Sources/RuntimeAcceptance/AuthPreflightSelfTest.swift",
+      "sha256_before": "792ba2d02be9fa1d7d9a666d5bdb4507edc74c0a859e663ca945ff8eeedca9df",
+      "sha256_after": "792ba2d02be9fa1d7d9a666d5bdb4507edc74c0a859e663ca945ff8eeedca9df",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "runtime-harness/Sources/RuntimeAcceptance/AuthenticatedPreflight.swift",
+      "sha256_before": "a9118b07da3d7bbff553bace77e60015b46b0a1d12f73783a336521e7a6f42b7",
+      "sha256_after": "a9118b07da3d7bbff553bace77e60015b46b0a1d12f73783a336521e7a6f42b7",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "runtime-harness/Sources/RuntimeAcceptance/Observation.swift",
+      "sha256_before": "fe102cf2b0055f8acfa488f3375586e61a8d7f650a9a8dd0eba3f13dfefb8d63",
+      "sha256_after": "fe102cf2b0055f8acfa488f3375586e61a8d7f650a9a8dd0eba3f13dfefb8d63",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift",
+      "sha256_before": "545ec5f4a7ed6668928b43edfeff4170209eac467bf1d74089c9b97a8fcca16f",
+      "sha256_after": "ab734eefb4eb5966625a78dce15c691d7732d0809beb18a862acb4eb5a6ef12b",
+      "unchanged": false,
+      "allowed_main_dispatch_edit": true
+    },
+    {
+      "path": "runtime-harness/Sources/RuntimeAcceptance/SelfTest.swift",
+      "sha256_before": "7c8f11b75e1b259301e568c05a4946ba0367eb5aca2de0cc1f837f8e10477729",
+      "sha256_after": "7c8f11b75e1b259301e568c05a4946ba0367eb5aca2de0cc1f837f8e10477729",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "runtime-harness/auth_preflight.py",
+      "sha256_before": "e9b3a5156898acbf2e1a574000e016db427a462e82d9fcd9c5cc3113307b150b",
+      "sha256_after": "e9b3a5156898acbf2e1a574000e016db427a462e82d9fcd9c5cc3113307b150b",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "runtime-harness/offline_evidence.py",
+      "sha256_before": "eb775cc85ea91646d2373c80a532c0ab804f8cf766d08b599aba015474d08162",
+      "sha256_after": "eb775cc85ea91646d2373c80a532c0ab804f8cf766d08b599aba015474d08162",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "runtime-harness/prepare_evidence.py",
+      "sha256_before": "3b0c6be8472eb351002a6119bd822515c07592775469206e36af06bdc42b46b9",
+      "sha256_after": "3b0c6be8472eb351002a6119bd822515c07592775469206e36af06bdc42b46b9",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "runtime-harness/test_auth_preflight.py",
+      "sha256_before": "827b8fa63e923252dec17ea86b92f6f8698da3843a74ac921055e1683c1b7e7c",
+      "sha256_after": "827b8fa63e923252dec17ea86b92f6f8698da3843a74ac921055e1683c1b7e7c",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "runtime-harness/validate_auth_preflight.py",
+      "sha256_before": "dbd05a29bd2ab6948192718647dd1144c661983876d4756cc174a2546412412a",
+      "sha256_after": "dbd05a29bd2ab6948192718647dd1144c661983876d4756cc174a2546412412a",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "runtime-harness/validate_local.py",
+      "sha256_before": "b1359c835cb695fa0d95581ae18cb0a81866fa8ceae29711a526ffdd0e72115c",
+      "sha256_after": "b1359c835cb695fa0d95581ae18cb0a81866fa8ceae29711a526ffdd0e72115c",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "runtime-harness/validate_offline.py",
+      "sha256_before": "5676c4ca7dce0365ac55aed10e026bc804c73440f943ac118f7648e66f16c159",
+      "sha256_after": "5676c4ca7dce0365ac55aed10e026bc804c73440f943ac118f7648e66f16c159",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    },
+    {
+      "path": "docs/DOUSTUDIOKIT_GITHUB_ACTIONS_BUILD_01_RUN_REPORT.md",
+      "sha256_before": "9b2b91b02f765a1b63128bebfbd3111092888836dc6ace2df02dd9a2328480e4",
+      "sha256_after": "9b2b91b02f765a1b63128bebfbd3111092888836dc6ace2df02dd9a2328480e4",
+      "unchanged": true,
+      "allowed_main_dispatch_edit": false
+    }
+  ],
+  "upstream_source_changed": false,
+  "RootNetScope_changed": false,
+  "VideoFlow_changed": false,
+  "other_projects_changed": false,
+  "git_global_config_changed": false,
+  "system_proxy_changed": false,
+  "v2rayN_changed": false,
+  "preexisting_untracked_run_report_staged": false
+}

@@ -1,0 +1,23 @@
+{
+  "run_url": "NOT_RUN",
+  "tested_commit": "NOT_RUN",
+  "artifact_sha256": "NOT_RUN",
+  "page_results": [],
+  "statuses": {
+    "HARNESS_BUILD": "NOT_RUN",
+    "OFFLINE_SELF_TEST": "NOT_RUN",
+    "AUTHENTICATED_PROFILE_ACCESS": "NOT_RUN",
+    "FIRST_PAGE_FETCH": "NOT_RUN",
+    "MULTI_PAGE_FETCH": "NOT_RUN",
+    "PAGINATION_CURSOR_CHAIN": "NOT_VERIFIED",
+    "PAGINATION_CORRECTNESS": "NOT_VERIFIED",
+    "VIDEO_DOWNLOAD": "NOT_RUN",
+    "MEDIA_INTEGRITY": "NOT_RUN",
+    "NO_WATERMARK": "NOT_TESTED",
+    "RUST_IMPLEMENTATION": "NOT_STARTED",
+    "UPSTREAM_SOURCE_CHANGED": "NO",
+    "ROOTNETSCOPE_CHANGED": "NO",
+    "VIDEOFLOW_CHANGED": "NO"
+  },
+  "credential_checked": false
+}

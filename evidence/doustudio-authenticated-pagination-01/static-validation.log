@@ -1,0 +1,3 @@
+Protected baseline hashes PASS: 162
+PASS: YAML, manual trigger, pins, secret step isolation, offline gate, bash syntax, 13-file Artifact allowlist, bounded original collector, 24 fixture definitions
+Swift compilation/fixture execution: NOT_RUN (no Windows toolchain). actionlint: NOT_RUN (not installed).
