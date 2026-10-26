@@ -1,0 +1,7 @@
+{
+  "INIT_OUTCOME": "success",
+  "ENVIRONMENT_OUTCOME": "success",
+  "COMPILE_OUTCOME": "success",
+  "SELFTEST_OUTCOME": "success",
+  "ACCEPTANCE_OUTCOME": "failure"
+}

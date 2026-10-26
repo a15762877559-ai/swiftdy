@@ -1,0 +1,105 @@
+{
+  "run_id": 40271383018,
+  "url": "https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40271383018",
+  "attempt": 1,
+  "event": "workflow_dispatch",
+  "created_at_Asia_Shanghai": "2026-10-26T12:53:42+08:00",
+  "test_commit": "643d1bd74813b5d527a9b6dd867bec5a6e1983f3",
+  "conclusion": "failure",
+  "job_id": 121404746433,
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1
+    },
+    {
+      "name": "Checkout acceptance harness",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2
+    },
+    {
+      "name": "Initialize evidence and validate explicit input",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3
+    },
+    {
+      "name": "Checkout unchanged pinned upstream",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4
+    },
+    {
+      "name": "Verify upstream and record runtime environment",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5
+    },
+    {
+      "name": "Compile independent harness",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6
+    },
+    {
+      "name": "Check harness guards with offline fixtures",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7
+    },
+    {
+      "name": "Run user-authorized acceptance once",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 8
+    },
+    {
+      "name": "Finalize truthful stage outcomes",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9
+    },
+    {
+      "name": "Upload sanitized evidence only",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10
+    },
+    {
+      "name": "Remove temporary media",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 11
+    },
+    {
+      "name": "Post Checkout unchanged pinned upstream",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 21
+    },
+    {
+      "name": "Post Checkout acceptance harness",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 22
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 23
+    }
+  ],
+  "harness_build_exit": 0,
+  "offline_selftest": "PASS_19_OF_19",
+  "runtime_exit": 2,
+  "failure_category": "ACCESS_RESTRICTED",
+  "safe_error_code": "HTTP_403",
+  "request_count_observed": 1,
+  "media_download_attempted": false,
+  "automatic_retry": false,
+  "scope": "User manually triggered this additional run; agent only collected results."
+}

@@ -1,0 +1,19 @@
+{
+  "correctness" : "NOT_VERIFIED",
+  "limit" : 3,
+  "records" : [
+    {
+      "count" : 0,
+      "cumulativeCount" : 0,
+      "cursorStalled" : false,
+      "cursorValid" : false,
+      "duplicateIDs" : 0,
+      "error" : "HTTP_403",
+      "page" : 1,
+      "requestCursor" : "0",
+      "uniqueCount" : 0
+    }
+  ],
+  "status" : "BLOCKED",
+  "stop_reason" : "ERROR_OR_BLOCK"
+}

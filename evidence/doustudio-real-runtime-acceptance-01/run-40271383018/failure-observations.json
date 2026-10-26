@@ -1,0 +1,9 @@
+{
+  "observations" : [
+    {
+      "classification" : "BLOCKED",
+      "code" : "HTTP_403",
+      "phase" : "worklist"
+    }
+  ]
+}

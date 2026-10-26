@@ -1,0 +1,27 @@
+{
+  "statuses": {
+    "TASK": "DOUSTUDIOKIT_REAL_RUNTIME_ACCEPTANCE_01_RUN_02",
+    "HARNESS_BUILD": "PASS",
+    "HARNESS_OFFLINE_SELF_TEST": "PASS",
+    "CURRENT_INTERFACE_COMPATIBILITY": "FAIL",
+    "MEDIA_INTEGRITY": "NOT_VERIFIED",
+    "MULTI_PAGE_FETCH": "BLOCKED",
+    "NO_WATERMARK": "NOT_TESTED",
+    "PAGINATION_CORRECTNESS": "NOT_VERIFIED",
+    "PROFILE_URL_RESOLUTION": "PASS",
+    "ROOTNETSCOPE_CHANGED": "NO",
+    "RUST_IMPLEMENTATION": "NOT_STARTED",
+    "UPSTREAM_SOURCE_CHANGED": "NO",
+    "VIDEO_DOWNLOAD": "BLOCKED",
+    "VIDEOFLOW_CHANGED": "NO",
+    "WORK_ITEM_FIELDS": "NOT_RUN",
+    "WORKLIST_FETCH": "BLOCKED"
+  },
+  "failure_category": "ACCESS_RESTRICTED",
+  "scope": "Anonymous access in this run; not a global compatibility verdict",
+  "media_integrity_normalization": "Original NOT_RUN is retained in raw Artifact; assessment uses NOT_VERIFIED per requested vocabulary.",
+  "cookie_mode": "EXPLICIT_EMPTY",
+  "cookie_required": "NOT_PROVEN",
+  "signature_failure": "NOT_PROVEN",
+  "empty_account": "NOT_PROVEN"
+}

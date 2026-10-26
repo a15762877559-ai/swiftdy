@@ -1,6 +1,6 @@
 # DOUSTUDIOKIT_REAL_RUNTIME_ACCEPTANCE_01
 
-日期：2026-10-26（Asia/Shanghai）。最新 RUN_02 运行 `40271049168` 在输入校验阶段停止，编译、自检和真实接口步骤均 skipped。用户输入 URL 格式与授权确认的组合校验未通过，日志无法区分具体条件；没有抖音请求或媒体下载。最新结论见末尾“RUN_02 实测结果”；此前内容保留为历史记录。
+日期：2026-10-26（Asia/Shanghai）。最新用户手动运行 `40271383018`：Harness 编译和 19/19 离线检查 PASS，主页解析 PASS；首次真实作品列表请求返回 HTTP 403，归类 ACCESS_RESTRICTED，分页和下载均阻塞。仅证明本次匿名访问受限，不证明签名失败或所有访问方式均不可用。完整证据见末尾“用户再次手动运行”。
 
 ## 仓库和基线
 
@@ -209,4 +209,79 @@ UPSTREAM_SOURCE_CHANGED = NO
 ROOTNETSCOPE_CHANGED = NO
 VIDEOFLOW_CHANGED = NO
 RUST_IMPLEMENTATION = NOT_STARTED
+```
+
+
+## 用户再次手动运行：40271383018
+
+用户在前次输入失败后自行再次触发，并要求查看结果。观察到两个新记录：`40271332955`（北京时间 12:53:06）仍在输入初始化失败，真实验收 skipped；随后[40271383018](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40271383018)（12:53:42）通过输入校验并执行真实请求。这里详细验收后者；没有由代理 dispatch 或重试。
+
+### 提交、环境与结果
+
+- 受测提交仍为 `643d1bd74813b5d527a9b6dd867bec5a6e1983f3`，main，attempt=1；本地前次报告提交 3d77ce3 尚未推送，且仅修改报告与证据，不影响受测源码。
+- 上游固定 `362dad3d082e9f63c8efd360acc653ba169d40a2`，检出、SHA 与源码保护校验成功。
+- xcode-27 / arm64，macOS 27.0.1 (26A434)，Apple Swift 6.4 (swiftlang-6.4.0.34.1)，Xcode 27.1 (27A9275)。
+- Harness 编译 exit=0；离线自检日志明确 `OFFLINE SUMMARY total=19 passed=19 failed=0`，step outcome=success；真实验收 exit=2。
+- 主页解析 PASS：本地解析得到 55 字符标识，仅记录标识哈希和长度，没有展开短链或打印主页。此 PASS 不表示已验证远端账号身份/可见性。
+- 真实作品列表只发生 1 次传输：HTTP 403，响应 46 bytes；正文未记录，失败 phase=worklist，code=HTTP_403，classification=BLOCKED。本轮业务失败分类为 **ACCESS_RESTRICTED**。
+- **Cookie 模式为显式空值**。这是既定匿名测试；Harness 同时拒绝非空 Cookie/Authorization 请求头。403 不能证明“必须 Cookie”、签名错误、验证码、地区限制或其他具体根因，也不能证明提供 Cookie 就能通过。没有读取 Cookie 或尝试绕过限制。
+
+### 作品、分页和下载
+
+| 页码 | 请求游标 | 下一页游标 | has_more | 本页/累计已解析作品 | 重复 ID | 结果 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 0 | 未获得 | 未获得 | 0 / 0 | 0（无可比较作品） | HTTP_403，立即停止 |
+
+pages_received=1 是 Harness 创建的**错误页记录**，不是成功收到一页作品。实际可采集作品数量未知，不能据此推断账号为空；ID、描述/标题、发布时间、封面和视频地址均无真实字段证据，WORK_ITEM_FIELDS=NOT_RUN。
+
+没有第二页请求，无法验证服务端游标传递；MULTI_PAGE_FETCH=BLOCKED，PAGINATION_CORRECTNESS=NOT_VERIFIED，stop_reason=ERROR_OR_BLOCK，不是 SERVER_EXHAUSTED，也没有游标停滞证据。
+
+download attempted=false，VIDEO_DOWNLOAD=BLOCKED，无媒体文件、媒体 HTTP 响应、哈希或解码结果；MEDIA_INTEGRITY=NOT_VERIFIED，NO_WATERMARK=NOT_TESTED。未上传媒体，临时媒体清理步骤成功。
+
+当前接口兼容性在这次匿名条件下验收 FAIL；不能外推为固定上游在所有授权访问条件下都不可用。100 MiB 检查仍是响应缓冲后的检查，不是真正的传输流量上限。
+
+### 每个步骤 outcome
+
+| 步骤 | outcome |
+| --- | --- |
+| Set up job | success |
+| Checkout acceptance harness | success |
+| Initialize evidence and validate explicit input | success |
+| Checkout unchanged pinned upstream | success |
+| Verify upstream and record runtime environment | success |
+| Compile independent harness | success |
+| Check harness guards with offline fixtures | success |
+| Run user-authorized acceptance once | failure |
+| Finalize truthful stage outcomes | success |
+| Upload sanitized evidence only | success |
+| Remove temporary media | success |
+| Post Checkout unchanged pinned upstream | success |
+| Post Checkout acceptance harness | success |
+| Complete job | success |
+
+### Artifact 与保护
+
+[Artifact 12628552481](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40271383018/artifacts/12628552481)，6670 bytes，13 个白名单文件，保留 3 天，到期北京时间 2026-10-29 12:54:29。SHA-256 `07e477bd247c159931357f9844ddc5a5436590b711bbe96e35c0f3097f3bbe28` 与发布摘要一致，ZIP CRC/名单/JSON 核验通过，无媒体或敏感认证材料。
+
+原始 Artifact 保存在 `evidence/doustudio-real-runtime-acceptance-01/run-40271383018/`；另附从 Job 日志提取的 19 项离线结果、逐步骤 run-summary、Artifact 核验和本轮业务分类。原始 MEDIA_INTEGRITY=NOT_RUN 保留不改，报告按约定枚举表示为 NOT_VERIFIED。
+
+本次仅更新报告并新增该 RunID 证据，源码和全部工作流未改，先前历史证据快照哈希一致。上游、RootNetScope、VideoFlow 未改，Rust 未开始。已在首次 403 后停止，没有重试或请求认证材料。
+
+```ini
+TASK = DOUSTUDIOKIT_REAL_RUNTIME_ACCEPTANCE_01_RUN_02
+HARNESS_BUILD = PASS
+HARNESS_OFFLINE_SELF_TEST = PASS
+CURRENT_INTERFACE_COMPATIBILITY = FAIL
+MEDIA_INTEGRITY = NOT_VERIFIED
+MULTI_PAGE_FETCH = BLOCKED
+NO_WATERMARK = NOT_TESTED
+PAGINATION_CORRECTNESS = NOT_VERIFIED
+PROFILE_URL_RESOLUTION = PASS
+ROOTNETSCOPE_CHANGED = NO
+RUST_IMPLEMENTATION = NOT_STARTED
+UPSTREAM_SOURCE_CHANGED = NO
+VIDEO_DOWNLOAD = BLOCKED
+VIDEOFLOW_CHANGED = NO
+WORK_ITEM_FIELDS = NOT_RUN
+WORKLIST_FETCH = BLOCKED
 ```
