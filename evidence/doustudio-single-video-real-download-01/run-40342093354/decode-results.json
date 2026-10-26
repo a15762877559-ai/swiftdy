@@ -1,0 +1,28 @@
+{
+  "FULL_DECODE" : "PASS",
+  "MEDIA_DECODE" : "PASS",
+  "proof" : {
+    "audio_decode" : "NOT_RUN",
+    "codec" : "avc1",
+    "container_complete" : true,
+    "corruption_assessment" : "NO_DECODER_ERRORS_OBSERVED",
+    "corruption_detected" : false,
+    "decode_method" : "FULL_SEQUENTIAL_VIDEO_TRACK_TO_PIXEL_BUFFERS",
+    "decoded_frames" : 9084,
+    "duration_seconds" : 302.834,
+    "end_decoded" : true,
+    "file_bytes" : 71521945,
+    "first_frame_seconds" : 0,
+    "frame_rate" : 29.997,
+    "full_decode_completed" : true,
+    "height" : 1080,
+    "last_frame_seconds" : 302.76600000000002,
+    "middle_decoded" : true,
+    "NO_WATERMARK" : "NOT_VERIFIED",
+    "repeated_sha256_matches" : true,
+    "sha256" : "9e66883b3f97920b2c712e7874dce2d96d8df5c211d2ae68f647b2e7678fad0c",
+    "start_decoded" : true,
+    "video_tracks" : 1,
+    "width" : 1920
+  }
+}

@@ -1,3 +1,33 @@
 {
-  "status": "NOT_RUN"
+  "APPLICATION_BYTE_BUDGET" : "PASS",
+  "max_media_bytes" : 104857600,
+  "STRICT_NETWORK_RECEIVE_LIMIT" : "NOT_PROVEN",
+  "transport" : {
+    "accepted_bytes" : 71521945,
+    "backpressure_waits" : 0,
+    "buffered_send_calls" : 0,
+    "bytes_after_cancel" : 0,
+    "cancel_completed" : false,
+    "cancel_requested" : false,
+    "completion_callbacks" : 1,
+    "completion_received" : true,
+    "content_type" : "video\/mp4",
+    "cookie_removed" : false,
+    "declared_bytes" : 71521945,
+    "delegate_received_bytes" : 71521945,
+    "discarded_buffered_bytes" : 0,
+    "discarded_callback_bytes" : 0,
+    "full_resource_range" : false,
+    "http_status" : 200,
+    "max_buffered_bytes" : 49152,
+    "max_delegate_callback_bytes" : 81902,
+    "media_requests_started" : 1,
+    "pinned_session_proxy" : true,
+    "queued_callbacks_after_cancel" : 0,
+    "range_removed" : true,
+    "rejected_second_requests" : 0,
+    "stream_calls" : 1,
+    "terminal_transitions" : 1
+  },
+  "written_bytes" : 71521945
 }

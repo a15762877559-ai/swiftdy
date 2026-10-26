@@ -1,0 +1,227 @@
+[
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-001",
+    "name" : "21 selected records survive 1260 alternate URLs",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-002",
+    "name" : "Every selected source uses actual last address",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-003",
+    "name" : "Separate alternate budget capped at old limit",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-004",
+    "name" : "Primary host aggregation equals works",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-005",
+    "name" : "Original tuple chooses resolution before FPS and bitrate",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-006",
+    "name" : "Missing bit_rate fallback uses last URL",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-007",
+    "name" : "Empty bit_rate fallback",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-008",
+    "name" : "All exact source matches retained without claiming uniqueness",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-009",
+    "name" : "Four source associations are one work",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-010",
+    "name" : "Exact mismatch never guessed by host",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-011",
+    "name" : "Missing address remains explicit unmatched work",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-012",
+    "name" : "Cover avatar audio album cannot enter video summary",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-013",
+    "name" : "Duplicate work ID counted once without exporting ID",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-014",
+    "name" : "Conflicting duplicate fails closed",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-015",
+    "name" : "No raw address credentials title or real ID in evidence",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-016",
+    "name" : "Work limit fails closed before sampling",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-017",
+    "name" : "Bitrate structure limit fails closed",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-018",
+    "name" : "URL field structure limit fails closed",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-019",
+    "name" : "Nested input limit fails closed",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-020",
+    "name" : "No automatic approval or wildcard output",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-021",
+    "name" : "Exact alternate quota is not truncated",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-022",
+    "name" : "Unsafe selected URL cannot be complete",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-023",
+    "name" : "Original tuple tie-break verification",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-024",
+    "name" : "Original tuple tie-break verification",
+    "status" : "PASS"
+  },
+  {
+    "actual" : "true",
+    "errorCategory" : "NONE",
+    "expected" : "fixed_condition_true",
+    "function" : "SelectedHostEvidence",
+    "id" : "PRI-025",
+    "name" : "Original tuple tie-break verification",
+    "status" : "PASS"
+  }
+]

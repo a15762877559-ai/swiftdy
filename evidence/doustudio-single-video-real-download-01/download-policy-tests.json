@@ -1,3 +1,7 @@
 {
-  "status": "NOT_RUN"
+  "deterministic_first_www" : true,
+  "empty_rejected" : true,
+  "no_alternate_cdn" : true,
+  "ordinary_video" : true,
+  "original_last_url" : true
 }

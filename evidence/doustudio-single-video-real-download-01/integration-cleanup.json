@@ -1,3 +1,5 @@
 {
-  "status": "NOT_RUN"
+  "residual_download_files_before_wrapper_cleanup": 0,
+  "media_workspace_removed": true,
+  "fixture_workspace_removed": true
 }

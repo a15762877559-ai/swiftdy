@@ -1,3 +1,4 @@
 {
-  "status": "NOT_RUN"
+  "residual_files_before_runner_cleanup": 0,
+  "runner_cleanup_succeeded": true
 }

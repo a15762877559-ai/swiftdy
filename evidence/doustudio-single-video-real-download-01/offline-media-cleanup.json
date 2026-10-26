@@ -1,3 +1,4 @@
 {
-  "status": "NOT_RUN"
+  "media_files_retained": false,
+  "fixture_workspace_ephemeral": true
 }

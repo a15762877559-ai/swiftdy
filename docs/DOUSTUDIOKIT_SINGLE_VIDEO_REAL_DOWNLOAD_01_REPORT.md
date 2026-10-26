@@ -1,6 +1,8 @@
 # DOUSTUDIOKIT_SINGLE_VIDEO_REAL_DOWNLOAD_01
 
-2026-10-26，Asia/Shanghai。用户首次离线运行 **40336326372** 的 Runtime/共享模块和受控下载 executable 均编译 PASS，既有 Runtime/HTTP/重定向回归 PASS；后续旧传输 28 个子进程全部退出 2、无用例结果且服务端零请求，集成与新完整视频用例未开始。**整套 OFFLINE_TESTS=FAIL，真实下载 NOT_RUN。** 已修正新增编排的工作目录与测试目录身份校验、补充固定启动诊断和失败状态展示；修正版 Windows **119/119 PASS**，修正版 macOS 仍待用户手动运行。下文保留初始准备记录，最新诊断见末节。
+2026-10-26，Asia/Shanghai。**用户手动真实运行 40342093354 完整单视频下载与视频完整性验收 PASS**，受测提交 `58da18f563530c1fdbcdf38398274a8b9ca38027`。CDN 返回完整 200/video/mp4，声明、delegate、应用接受和实际文件量均为 **71521945 bytes（约 68.209 MiB）**；双次 SHA-256 一致。1920×1080、302.834 秒、约 29.997 FPS、avc1；全片实际解码 **9084 帧**，开头/中间/结尾通过、reader 完整结束，未观察到解码错误。
+
+实际列表 1 次、入口 1 次、CDN 1 次、重试 0；无额外重定向、换视频或换 CDN。临时文件全部删除，Artifact 没有视频/音频/截图。新旧离线用例在该次真实工作流中全部通过；独立离线运行 40338804416 也已由 API 核验 success。**NO_WATERMARK=NOT_VERIFIED、生产白名单仍为空、严格网络接收硬上限仍 NOT_PROVEN。** 下文保留准备和首次失败记录，最新真实证据以末节为准。
 
 ## 基线与原版调用审计
 
@@ -45,7 +47,7 @@ MAX_MEDIA_BYTES=104857600。声明长度超限在响应头阶段拒绝；未知�
 
 每次下载在 Runner 临时父目录下创建全新 video-UUID 目录，原版部分文件也只在其中。Bridge 在成功、失败、取消和解码错误后取消并等待实际传输终态，再移除该所属目录。外层 Python 在子进程退出/超时后再次核验并删除专属 `doustudio-single-video-media-UUID` 父目录；路径必须为 runner.temp 的直接子目录且非符号链接，不能删除任意路径。超时结果缺失时请求计数标为 null，不伪造零请求、取消完成或下载成功。硬性进程中止无法提供的 delegate 终态不冒充验证通过。
 
-## 离线测试与当前状态
+## 离线测试与当前状态（准备时点）
 
 Windows 执行：`python -B -m unittest discover -s runtime-harness -p test_*.py -v`，**116/116 PASS，本任务新增 17 项**。新增验证独立下载授权、缺 Cookie/控制字符拒绝、必须通过两层前置门禁、子进程隔离、零退出无结果拒绝、超时不重试/未知计数、所属目录清理及拒绝无关目录、清理幂等、敏感值拒绝、禁止生产批准、请求次数、以及完整/部分 Range 和未知长度 chunked fixture 的真实 Windows loopback 响应。Windows fixture 检查不替代 Swift 或真实媒体解码。
 
@@ -74,16 +76,16 @@ YAML、workflow_dispatch、双授权、最小权限、固定上游/官方 Action
 
 ```ini
 TASK = DOUSTUDIOKIT_SINGLE_VIDEO_REAL_DOWNLOAD_01
-SWIFT_BUILD = NOT_RUN
-OFFLINE_TESTS = NOT_RUN
-REAL_WORKLIST = NOT_RUN
-REDIRECT_RESOLUTION = NOT_RUN
-REAL_VIDEO_DOWNLOAD = NOT_RUN
-APPLICATION_BYTE_BUDGET = NOT_RUN
-MEDIA_FILE_INTEGRITY = NOT_RUN
-MEDIA_DECODE = NOT_RUN
-FULL_DECODE = NOT_RUN
-TEMP_FILE_CLEANUP = NOT_RUN
+SWIFT_BUILD = PASS
+OFFLINE_TESTS = PASS
+REAL_WORKLIST = PASS
+REDIRECT_RESOLUTION = PASS
+REAL_VIDEO_DOWNLOAD = PASS
+APPLICATION_BYTE_BUDGET = PASS
+MEDIA_FILE_INTEGRITY = PASS
+MEDIA_DECODE = PASS
+FULL_DECODE = PASS
+TEMP_FILE_CLEANUP = PASS
 NO_WATERMARK = NOT_VERIFIED
 PRODUCTION_ALLOWLIST = EMPTY
 RUST_IMPLEMENTATION = NOT_STARTED
@@ -121,3 +123,52 @@ Windows 修正版 **119/119 PASS**，本任务累计新增 20 项。新增回归
 Artifact ID 12655834700，ZIP SHA-256 `0b1ab0ad683b68c568fa63c770620990db62f73f94e15d8b9142d58b6281f718` 与 GitHub digest 一致；CRC、50 文件白名单及清单内 49 个文件哈希通过，源码 seal 与受测 Git blobs 一致。原始诊断位于 `evidence/doustudio-single-video-real-download-01/run-40336326372/`，另附 jobs/Artifact 元数据和验证记录；原始 download-summary 的 OFFLINE_TESTS=NOT_RUN 作为当次展示缺陷原样保留，不改写历史文件。根目录最新汇总则标记该次整套离线失败。
 
 修正代码普通推送后，请用户在独立 Offline Tests 页面点击 **Run workflow/main** 测试新提交，不要 Re-run jobs 旧 SHA。修正版原生测试仍 NOT_RUN，当前不应运行真实下载流程。助手没有自动重跑、触发真实工作流或读取 Douyin Secret。
+
+
+## 最新真实验收：40342093354 PASS
+
+[用户手动真实运行](https://github.com/a15762877559-ai/swiftdy/actions/runs/40342093354)，attempt=1，受测提交 `58da18f563530c1fdbcdf38398274a8b9ca38027`，job=121639228200。这是 **DouStudioKit Single Video Real Download**，不是单字节探测或离线-only 流程。用户通过工作流双授权后执行；助手只下载和检查诊断包，不再次执行真实列表、入口或 CDN 请求。所有步骤 success。
+
+另核验独立 Offline Tests 的 [40338804416](https://github.com/a15762877559-ai/swiftdy/actions/runs/40338804416) 已从排队转为 success，同一受测 SHA。本节逐项和哈希证据来自真实工作流内再次执行的全部前置回归，不把仅查询到的独立 run 状态充当另一份已下载的 Artifact。
+
+### 编译与离线门禁
+
+Runtime/共享支持模块和 SafeStreamingTests executable 均编译成功，所有退出码为 0。原基线 83/83、原策略 12/12、原 HTTP 19/19、重定向策略 41/41、链路 25/25、固定通道 3/3，旧受控传输 **28/28**、原版 Client/Extractor/Downloader 集成 **28/28**，新下载选择策略 **5/5**、新全视频用例 **16/16** 全部 PASS。
+
+旧传输子进程已正常产生结果，新增工作目录/身份比较修正后的完整回归实测成功。首次失败的原始子类没有日志，因此不倒写其确切 guard 原因。未知长度超限取消、声明超限、部分/单字节 206、断开、TLS 不可绕过、无凭据/无 Range、无重试/续传、损坏媒体拒绝和清理均有本次同源原生证据。没有因失败修改断言来放行。
+
+### 一次真实完整下载
+
+列表 HTTP 200，21 条，字段有效数均为 21；按固定策略选择索引 0 的普通视频。原版 Extractor 的实际 www 地址入口返回 302，自动跳转被拒绝；本次 Location 在内存通过精确目标、HTTPS、结构和 DNS 校验。DNS 结果数为 3，公网数字地址固定通道一次接入/一次外连、authority 匹配、无 CONNECT 凭据、已请求关闭。正常 TLS 域名和证书校验保持启用。
+
+CDN 独立完整 GET 返回 **200 / video/mp4**，没有二次重定向，原无界 Range 被移除。列表/入口/CDN 请求数各为 1，重试 0。SessionStore 为空，安全传输重建非认证头；metrics.cookie_removed=false 表示传输输入本来没有 Cookie，不表示保留了认证 Cookie。合成服务的无认证/无 Range 检查也全部通过。
+
+| 项目 | 实际结果 |
+|---|---|
+| HTTP 声明长度 | 71521945 bytes |
+| delegate 实际正文量 | 71521945 bytes |
+| 应用接受量 / 实际文件量 | 71521945 / 71521945 bytes |
+| 字节预算 | ≤104857600，PASS |
+| 流式调用 / 缓冲回退 | 1 / 0 |
+| 任务完成回调 / 终态转换 | 1 / 1 |
+| cancel_requested / cancel_completed | false / false，正常完整 EOF 无需取消 |
+| 实测自有缓冲峰值 / 单次 delegate 块峰值 | 49152 / 81902 bytes |
+| 完成依据 | 声明长度一致、完整容器、全片视频解码 |
+
+该次真实接收量恰好在预算内，不使严格物理网络接收上限变为已证明；保留 STRICT_NETWORK_RECEIVE_LIMIT=NOT_PROVEN，方案 A 仅保证应用接受与实际写盘预算。
+
+### 媒体完整性与全片解码
+
+容器 box 完整，单个视频轨道、时长 **302.834 秒**、自然尺寸 **1920×1080**、帧率约 **29.997**、编码 **avc1（H.264）**。文件存在、非空、非符号链接，文件大小与接受量及声明长度一致。
+
+两次流式 SHA-256 一致：`9e66883b3f97920b2c712e7874dce2d96d8df5c211d2ae68f647b2e7678fad0c`。AVAssetReader 将全视频轨道逐帧解码到像素缓冲，实际 **9084 帧**；首帧时间 0，末帧约 302.766 秒，start/middle/end 均 true，reader 正常完整结束。FULL_DECODE=PASS 是实际全片视频轨道验证，不是三张截图的抽样。corruption_assessment=NO_DECODER_ERRORS_OBSERVED、corruption_detected=false；它只描述本次解码检查未观察到错误，不扩大为对所有播放器/所有轨道的保证。音频解码 NOT_RUN，未声称音频轨道也经过解码验收。
+
+没有保存截图或做可靠水印画面检查，**NO_WATERMARK=NOT_VERIFIED**。完整下载成功和全片可解码不能推出无水印。
+
+### 清理、Artifact 与最终状态
+
+Swift 所属 UUID 目录清理 PASS、外层父目录清理 PASS，外层清理前残留文件数为 0，.part 数为 0。视频仅在 Runner 临时目录存在，验证后已删除，不能从 Artifact 获取原视频。没有上传音频、截图、正文、完整 Location、签名、标题或真实作品 ID。
+
+Artifact ID **12660471380**；ZIP SHA-256 **db30957c5d799115505679163a2903137d8299df96a7af0a5a65a9032446df1e**，与 GitHub digest 一致；CRC、50 文件精确白名单、清单内 49 个文件哈希全部通过。macOS 源码 seal 与受测提交 Git blobs 重算一致，并独立重跑全部 JSON 门禁与真实结果一致性验证。原 Artifact 字节位于 `evidence/doustudio-single-video-real-download-01/run-40342093354/`，另附 jobs、Artifact 元数据、核验记录；首次失败 run-40336326372 完整保留。原始日志的 ANSI/尾部空格不为 diff --check 改写。
+
+根目录必需 JSON 已更新为本次真实验收结果。仅更新报告与脱敏证据，没有修改已通过的 Swift/Python/工作流，也没有追加真实下载。生产白名单继续为空、Rust 未开始、AUTO_TRIGGERED=NO。本任务的单视频完整下载与视频完整性目标已取得真实 PASS 证据；本轮至此停止，不自动扩大到批量下载、其他 CDN 或生产主机批准。

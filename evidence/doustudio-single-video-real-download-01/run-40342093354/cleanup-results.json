@@ -1,0 +1,6 @@
+{
+  "partial_files_before_cleanup": 0,
+  "swift_cleanup": "PASS",
+  "wrapper_cleanup": "PASS",
+  "wrapper_residual_files_before_cleanup": 0
+}
