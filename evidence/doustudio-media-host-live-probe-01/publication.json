@@ -2,7 +2,18 @@
   "repository": "achusonwork-bit/doustudio-runtime-acceptance",
   "authenticated_account": "a15762877559-ai",
   "push_permission": false,
-  "local_commit": "PENDING",
-  "push_status": "NOT_ATTEMPTED",
-  "workflows_triggered": false
+  "preparation_commit": "9a3a7e48f3dbd354c88050f9dbedf45bdbb37988",
+  "follow_up": "DOCUMENTATION_AND_EVIDENCE_ONLY",
+  "push_status": "NOT_COMPLETED",
+  "push_attempts": 2,
+  "push_error": "HTTPS_CONNECTION_RESET",
+  "remote_main_verified_via": "GITHUB_API",
+  "remote_main": "a683ce1cd80eb714c453aed79c43de2b0a8b426a",
+  "workflows_registered": "NOT_PUBLISHED",
+  "workflows_triggered": false,
+  "pending": [
+    "REPOSITORY_WRITE_PERMISSION",
+    "GITHUB_HTTPS_CONNECTIVITY",
+    "MANUAL_MACOS_OFFLINE_VALIDATION"
+  ]
 }

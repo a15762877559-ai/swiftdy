@@ -94,4 +94,8 @@ AUTO_TRIGGERED = NO
 
 ## 本轮提交与推送
 
-准备代码、报告和证据将使用普通 Git 提交；GitHub 当前账号写权限不足。实际提交 ID、推送结果和待处理项见 `evidence/doustudio-media-host-live-probe-01/publication.json`。工作流链接是预定发布入口，推送成功前不能视为 GitHub 已登记。
+准备代码、报告和初始证据已普通提交：`9a3a7e48f3dbd354c88050f9dbedf45bdbb37988`。随后仅补充本文、发布状态和对应证据哈希，不改变受测 Python 或待验证 Swift 源码。两次普通推送（第二次仅临时使用 HTTP/1.1）均返回 `Recv failure: Connection was reset`，未发布。
+
+推送后重新使用 GitHub API 核验：远端 main 仍为 `a683ce1cd80eb714c453aed79c43de2b0a8b426a`；当前账号仍为 `a15762877559-ai`，push 权限仍为 false。故即使连接恢复，也需要先切换到有写权限的账号或由所有者授权。没有创建 fork、绕过权限或强推。工作流链接是预定发布入口，推送成功前不能视为 GitHub 已登记。
+
+下一步先处理该账号的仓库写权限与 GitHub HTTPS 连通性，然后在项目目录执行普通 `git push origin main`。成功发布后才能按上一节先手动执行独立离线工作流。两项待处理状态分别为 `PUSH=NOT_COMPLETED`、`MACOS_VALIDATION=NOT_RUN`；不会将本机准备完成写成整项探测验收完成。

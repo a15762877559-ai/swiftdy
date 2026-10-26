@@ -5,27 +5,27 @@
   "MACOS_SWIFT_BUILD": "NOT_RUN",
   "REAL_MEDIA_PROBE": "NOT_RUN",
   "files": {
-    "approved-hosts.json": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
-    "baseline-exit-code.txt": "f86154b05bd9276604fb556db91658ea7f7fd98a6fc0e1874a006cfd703328f3",
-    "build-exit-code.txt": "f86154b05bd9276604fb556db91658ea7f7fd98a6fc0e1874a006cfd703328f3",
-    "credential-isolation-results.json": "38cb235b90fbeaec3304c76fcb46a43eae4dd087a8a3bdd100a94f59bbe0cb46",
-    "host-observations.json": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
-    "local-validation.json": "edcf70418c866a365972f5d7d3ec9f96f0b1298c557a25ce6363e866acfecd8a",
-    "offline-exit-code.txt": "f86154b05bd9276604fb556db91658ea7f7fd98a6fc0e1874a006cfd703328f3",
-    "probe-exit-code.txt": "f86154b05bd9276604fb556db91658ea7f7fd98a6fc0e1874a006cfd703328f3",
-    "probe-summary.json": "c6fd3f91083673e2e39046e5f14b60fe75341c77d6a5998b083c5a0bf54299f9",
-    "protection-verification.json": "ecfd6233e8f60cf8d6eeb64e0e7cc142c0624f4c7aa094d8b5bb73731a2578a6",
-    "publication.json": "a99894e738a6aff36b7bd2194b38f72447e7371dd990dd29a230daf81db76c99",
-    "python-tests.log": "07e6f4887f11b054c0a15d4158aa3f4182dfbb0185ed1d3ca91d5ddc385e1f32",
-    "redaction-results.json": "e48cfcc71128ca7dd1d48019461405354138613a734ea5271047ccdbf3495db0",
-    "redirect-evidence.json": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
-    "repository-recovery.json": "1a68ca3972146b13f9afc85bf831adda482d3f737e0b89103f16691952e067f8",
-    "request-count-results.json": "c097e5fe16dbcc9162576c4bd0ad129c185462714b39479a39ea48f7cfc920a2",
-    "response-header-evidence.json": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
-    "static-validation.json": "02d6a4454c9b42834eb84219dea6c5d9894b1d9824ac69740bb91780c2804507"
+    "approved-hosts.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "baseline-exit-code.txt": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
+    "build-exit-code.txt": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
+    "credential-isolation-results.json": "cc93100636561780ff2b0894d9cc1e4cc0f3e55e8de89f51464fbaf19942454f",
+    "host-observations.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "local-validation.json": "64474280facad12a7ba6729425777cb64d2169f7c4d0aefee0ed1d27940fe6fb",
+    "offline-exit-code.txt": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
+    "probe-exit-code.txt": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
+    "probe-summary.json": "def4cf86d1766535ddd514dda22c5c009e1b985796bb2d92b3b8d5f65bbfdfad",
+    "protection-verification.json": "b9de7c737dbe096e57013ad72f7f867b9d1587b3fa27a5f1b9dc26156d65c03c",
+    "publication.json": "25cfc7f806c30b7a42af18e41973ec8d9be45bad97a1925f5fbcfb2b21962d98",
+    "python-tests.log": "2f970348897584a0f613e17e3398683fac643096cab4ff9f3506916c30845a71",
+    "redaction-results.json": "6e7932b46756e1aea75f450b1fee3228135270b8fd1d721e68844b5cb1d413f3",
+    "redirect-evidence.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "repository-recovery.json": "168d1844b2b074d0df488c38a323b3d36e57e05f8e855636852c01a8833878bb",
+    "request-count-results.json": "cdb3caa27823ed2a7077986519ec1890e0ce303638b4a598b380271dca4a9867",
+    "response-header-evidence.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "static-validation.json": "6ec437ffa9feb35f27e35bd590f7473e054edc0061698259b5c4928fb5b4ab9f"
   },
   "source_files": {
-    "runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift": "e3a201f1c07c56e51c19eb23ddafc5980201c3e7012b91058a33228720310b7d",
+    "runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift": "a636de03a7d0d77b9a234b4887bf5010719bdd5af4c86a8e2173af09bee7b8c3",
     "runtime-harness/Sources/RuntimeAcceptance/MediaHostLiveProbe.swift": "9db2043be6580dcc5ce9019cd85115ebb5f6d2236118934083116331c1ad9805",
     "runtime-harness/Sources/RuntimeAcceptance/LiveProbeSelfTest.swift": "cab6cbe0b6256b00f6a72c9b0f29f6068d10ef45364b986f173f9595febd409b",
     "runtime-harness/live_probe.py": "a05ff5207a05f9b1fa20fbbe6077371ce9c81400f3c61166fcb21d01961688c3",
@@ -33,7 +33,8 @@
     "runtime-harness/test_live_probe.py": "dd34076c5aa1f689ae0d6bd4020ad0b2a4494767ef812a0d9860f58655da9c7e",
     "runtime-harness/validate_live_probe.py": "4b3d670c6cf8d5cc0949d5181a4be89961482c9fd97a47c94fa650bfc38cdbbb",
     ".github/workflows/doustudio-media-host-live-probe.yml": "f24992d0ffb2f89ff0ff822b25e1b9b68f22e23666a7ce60d025bd61deb324cd",
-    ".github/workflows/doustudio-media-host-live-probe-offline.yml": "076dfdd0374883c9dcff3a858c4096629b673a88b3922304878e5b457d6ead3e",
-    "docs/DOUSTUDIOKIT_MEDIA_HOST_LIVE_PROBE_01_REPORT.md": "a5fdd8f1bd869c5c02353e691b96c06edc43034718a62a9bdeae6212d7bbc904"
-  }
+    ".github/workflows/doustudio-media-host-live-probe-offline.yml": "6620f7acd7166b89ed4e57d31a3110b6a29bda9bd1b44a9682f5859f9536d3d8",
+    "docs/DOUSTUDIOKIT_MEDIA_HOST_LIVE_PROBE_01_REPORT.md": "c4ddb599bdace455feef7aa9c205a3be30e7ad5a62246a1cbc06f54db3ff7591"
+  },
+  "hash_scope": "GIT_NORMALIZED_LF_TEXT_BYTES"
 }
