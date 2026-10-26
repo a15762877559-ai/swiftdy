@@ -1,0 +1,17 @@
+{
+  "initial_commit": "6ea41a4c3e66ce3430fbf23cdb44f2902a30fc1d",
+  "tested_commit": "55c18d73d12b42a40a37344943a3bdf2b8cb89f8",
+  "existing_files_checked": 247,
+  "existing_files_changed": [
+    "runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/ControlledTests.swift"
+  ],
+  "existing_change": "Two controlled integration entry dispatches only",
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "upstream_clean": true,
+  "original_transport_unchanged": true,
+  "existing_workflows_unchanged": true,
+  "existing_untracked_run_report_unchanged": true,
+  "real_download_gate": "CLOSED",
+  "other_projects_accessed_or_changed": false,
+  "proxy_or_global_git_configuration_changed": false
+}

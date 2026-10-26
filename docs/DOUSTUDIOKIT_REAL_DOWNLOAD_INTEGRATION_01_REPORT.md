@@ -72,18 +72,103 @@
 
 本地 Python、YAML、Shell 语法和保护检查通过，详见 `evidence/doustudio-real-download-integration-01/local-validation.json`。Windows 没有 Swift/actionlint，未安装或虚构运行结果。247 个既有文件中，仅受控测试 main 新增入口；原 Transport、Package.swift、全部既有工作流、原匿名/认证/分页 Harness、历史证据及未跟踪 RUN 报告不变。
 
-真实 macOS 编译、集成结果、运行 URL、Artifact 哈希将在实际运行后填写。
+真实 macOS 受控集成 **28/28 PASS**。编译、fixture 生成、测试总进程及全部 28 个 Swift 用例的退出码均为 0。所有测试在 localhost 沙箱内运行，没有抖音请求或真实 Secret。
+
+- 成功运行：https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40289436585
+- 受测 SHA：`55c18d73d12b42a40a37344943a3bdf2b8cb89f8`
+- 环境：xcode-27 / arm64 / macOS 27.0.1 (26A434) / Swift 6.4 / Xcode 27.1 (27A9275)。
+- Artifact：`12635159856`，10 个白名单文件，ZIP CRC 通过，本地 SHA-256 与 GitHub digest 一致：`d4697e223488284ab04f6158c3126bd31aeaa99b426bdacc87a98b31a66b04b4`。
+- 完整证据：`evidence/doustudio-real-download-integration-01/run-40289436585/`；包含逐项结果、原始编译日志、步骤 outcome、各文件哈希、服务器计数和清理结果。
+
+### 实际运行历史和修复
+
+1. https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40288207207 ：受测 `306bc1f6e2e13bfa4e5dbc6f00c27017a6bcca1e`，编译失败。新增 adapter 调用原版 HTTPResponse 初始化器漏传必需的 `finalURL` 参数；修复为显式 `nil`。集成测试未运行。Artifact SHA-256：`756a5c84fc616166253a91d810086a0c36d728afca2bcd967f42aa1d69045b10`。
+2. https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40288574060 ：受测 `d02591770533eb6d95b26f06b3914041f7d3f543`，编译和合成视频生成/30 帧解码通过，集成 4/28 通过。新 adapter 使用 URL.path 比较有末尾斜杠的端点，重现已有 OFF-002 记录的 Foundation 路径行为，列表请求在网络前被 HOST_SCOPE_REJECTED 拒绝。改为 URLComponents.path 精确比较；INT-022 增加合法完整路径、缺斜杠、额外子路径及近似路径回归。未放宽匹配范围。Artifact SHA-256：`2c80ac729f4298c5ed8e06144350379d7d795b62113138b5d4fa1dc1144fd0f1`。
+3. 当前运行：全部 28 项通过。两个历史失败运行的原始证据均保存，未覆盖。
+
+### GitHub 步骤结果
+
+| 步骤 | Outcome |
+|---|---|
+| Set up job | success |
+| Checkout tests | success |
+| Initialize isolated runner workspace | success |
+| Checkout pinned upstream | success |
+| Verify upstream and environment | success |
+| Build shared transport and integration Harness | success |
+| Original client Extractor Downloader and AVFoundation on loopback only | success |
+| Record outcome and source protection | success |
+| Upload diagnostic files only | success |
+| Post Checkout pinned upstream | success |
+| Post Checkout tests | success |
+| Complete job | success |
+
+### 逐项真实结果
+
+负向用例的 PASS 表示正确拒绝预期错误，不表示损坏媒体下载成功。所有用例的实际分类等于预期分类，断言列表均为空。
+
+| 用例 | 结果 | 实际安全分类 | Swift 退出码 | 列表请求 | 媒体请求 | 清理 |
+|---|---|---|---:|---:|---:|---|
+| INT-001 | PASS | PASS | 0 | 1 | 1 | PASS |
+| INT-002 | PASS | INDEX_REJECTED | 0 | 1 | 0 | PASS |
+| INT-003 | PASS | INDEX_REJECTED | 0 | 1 | 0 | PASS |
+| INT-004 | PASS | NON_VIDEO_REJECTED | 0 | 1 | 0 | PASS |
+| INT-005 | PASS | NON_VIDEO_REJECTED | 0 | 1 | 0 | PASS |
+| INT-006 | PASS | MEDIA_UNIT_COUNT_REJECTED | 0 | 1 | 0 | PASS |
+| INT-007 | PASS | INDEX_REJECTED | 0 | 1 | 0 | PASS |
+| INT-008 | PASS | HOST_SCOPE_REJECTED | 0 | 1 | 0 | PASS |
+| INT-009 | PASS | HOST_SCOPE_REJECTED | 0 | 1 | 0 | PASS |
+| INT-010 | PASS | NON_MEDIA_RESPONSE | 0 | 1 | 1 | PASS |
+| INT-011 | PASS | NON_MEDIA_RESPONSE | 0 | 1 | 1 | PASS |
+| INT-012 | PASS | MP4_CONTAINER_REJECTED | 0 | 1 | 1 | PASS |
+| INT-013 | PASS | MP4_CONTAINER_REJECTED | 0 | 1 | 1 | PASS |
+| INT-014 | PASS | MEDIA_DECODE_FAILED | 0 | 1 | 1 | PASS |
+| INT-015 | PASS | APPLICATION_BYTE_BUDGET_REACHED | 0 | 1 | 1 | PASS |
+| INT-016 | PASS | EMPTY_RESPONSE | 0 | 1 | 1 | PASS |
+| INT-017 | PASS | NETWORK_ERROR | 0 | 1 | 1 | PASS |
+| INT-018 | PASS | TIMEOUT | 0 | 1 | 1 | PASS |
+| INT-019 | PASS | CALLER_CANCELLED | 0 | 1 | 1 | PASS |
+| INT-020 | PASS | PASS | 0 | 1 | 1 | PASS |
+| INT-021 | PASS | PROFILE_REJECTED | 0 | 0 | 0 | PASS |
+| INT-022 | PASS | PASS | 0 | 0 | 0 | PASS |
+| INT-023 | PASS | ACCESS_RESTRICTED | 0 | 1 | 0 | PASS |
+| INT-024 | PASS | RATE_LIMITED | 0 | 1 | 0 | PASS |
+| INT-025 | PASS | SECOND_LIST_REQUEST_REJECTED | 0 | 1 | 0 | PASS |
+| INT-026 | PASS | REDIRECT_REJECTED | 0 | 1 | 1 | PASS |
+| INT-027 | PASS | CONSENT_REQUIRED | 0 | 0 | 0 | PASS |
+| INT-028 | PASS | SYNTHETIC_CREDENTIAL_MISSING | 0 | 0 | 0 | PASS |
+
+### 文件、字节和取消证据
+
+INT-001 / INT-020：原版 Extractor 得到单视频作品；原版 Downloader 返回 downloaded 单文件，stream_calls=1、buffered_send_calls=0。文件 2329 bytes，两次 SHA-256 一致：`f192ca70e5473d13354796e210b71540a49aff2550db9c4ea07d993560fb6403`；MP4 容器和视频轨道可读，AVAssetReader 实际解码 30 帧且正常结束。INT-014 保留容器和轨道的损坏媒体确实得到 MEDIA_DECODE_FAILED。
+
+| 用例 | 服务端发送 payload | delegate_received_bytes | accepted_bytes | written_bytes | cancel_requested / completed | 取消完成延迟 |
+|---|---:|---:|---:|---:|---|---|
+| INT-001 | 2329 | 2329 | 2329 | 2329 | False / False | N/A ms |
+| INT-015 | 105906176 | 105512960 | 104202240 | 102170624 | True / True | 3.028988838195801 ms |
+| INT-019 | 131072 | 65536 | 65536 | 65536 | True / True | 1.017928123474121 ms |
+| INT-020 | 2329 | 2329 | 2329 | 2329 | False / False | N/A ms |
+
+INT-015 的 delegate 接收 105512960 bytes，超过 104857600 上限 655360 bytes。本轮再次实际证实：应用预算有效不代表严格网络接收上限。accepted_bytes 和 written_bytes 都在预算内，取消后未再接受数据，完成回调/终态各一次。该用例 2 MiB 应用队列峰值，单次 delegate 回调最大 4 MiB；这些计数不等于整个 URLSession 或操作系统内存上限。成功下载未请求取消，cancel_completed=false 为正常情况。
+
+INT-011/017 原版下载器留下零字节 .part，INT-015/019 留下部分文件；Harness 在受控结束时删除各自独立 UUID 目录，全部 28 项清理成功。wrapper 清理前下载残留文件数已经为 0，随后媒体及 fixture 工作区均移除。Artifact 不包含这些媒体或 .part。
+
+服务器核验每个用例最多一次列表和一次媒体请求；INT-020 第二次媒体请求被拒绝、服务器仍只有一次；INT-025 第二次列表请求未到达服务器。302 未访问重定向目标。媒体端无 Cookie/Authorization、无无界 Range。凭据证据仅记录模拟 credential_present 布尔值。
+
+### 交付与保护检查
+
+源代码提交 `306bc1f`、`d025917`、`55c18d7` 均为普通提交推送；最终证据提交仅增加报告和诊断证据，不改变受测源码。247 个既有文件的哈希比较见 protection-check.json；只有 ControlledTests.swift 新增两个受控入口，原 Transport、全部既有工作流及历史证据不变。上游本地 checkout 固定 SHA 且工作区干净，云端 source-protection 同样通过。旧未跟踪 RUN 报告未暂存。未访问或修改其他项目，未改代理、全局 Git 配置或任何真实 Secret。
 
 ```ini
 TASK = DOUSTUDIOKIT_REAL_DOWNLOAD_INTEGRATION_01
-ORIGINAL_EXTRACTOR_INTEGRATION = NOT_RUN
-ORIGINAL_DOWNLOADER_INTEGRATION = NOT_RUN
-SAFE_STREAMING_INTEGRATION = NOT_RUN
+ORIGINAL_EXTRACTOR_INTEGRATION = PASS
+ORIGINAL_DOWNLOADER_INTEGRATION = PASS
+SAFE_STREAMING_INTEGRATION = PASS
 HOST_ALLOWLIST_AUDIT = BLOCKED
-MEDIA_DECODE_FIXTURE = NOT_RUN
-APPLICATION_BYTE_BUDGET = NOT_RUN
+MEDIA_DECODE_FIXTURE = PASS
+APPLICATION_BYTE_BUDGET = PASS
 STRICT_NETWORK_RECEIVE_LIMIT = NOT_PROVEN
-INTEGRATION_TESTS = NOT_RUN
+INTEGRATION_TESTS = PASS
 REAL_DOUYIN_DOWNLOAD = NOT_RUN
 REAL_MEDIA_INTEGRITY = NOT_VERIFIED
 NO_WATERMARK = NOT_TESTED

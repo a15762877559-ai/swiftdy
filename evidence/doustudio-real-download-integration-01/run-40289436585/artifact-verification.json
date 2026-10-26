@@ -1,0 +1,19 @@
+{
+  "artifact_id": 12635159856,
+  "zip_sha256": "d4697e223488284ab04f6158c3126bd31aeaa99b426bdacc87a98b31a66b04b4",
+  "github_digest_matched": true,
+  "zip_crc": "PASS",
+  "artifact_whitelist": "PASS",
+  "files": {
+    "runtime-environment.json": "c8761cb7b9dcd7edd5e855ad03cb778aa83889a0d0e883cb6c803f07aae385d7",
+    "build.log": "6460c36c7aa797822e35760dc01ce5ee6dfd6c7de44f501cffb330f6403c83f9",
+    "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "runner-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "integration-results.json": "a6b95ac3f5e12ff9133fc69abbb9fe22a57c2c0f8ca4f39fca4a53cbf74f32cb",
+    "integration-server-counters.json": "c0e92456de7c258408d2bdfd5c30ffab3daebe1d98cf0cf18d7df02a88c605e3",
+    "integration-process.log": "d28ba5e073b3edd4e18025cd7f659b2b80762d1dbd7365ca42fbdfd621b6b274",
+    "integration-cleanup.json": "043477ab3786fddb69caf2e49a80f95e87d074611b4c5eda4e26be0fe0a2753b",
+    "source-protection.json": "dfbe334c2d7cb396ed129dbecaf44884722eda768c933ba6fdf2c0253f80a333",
+    "stage-outcomes.json": "b244a294fc249942417fec2a6ef93deed3072b3b5a63e73bde47cb16265a6a49"
+  }
+}
