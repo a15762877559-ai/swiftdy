@@ -1,0 +1,47 @@
+{
+  "WINDOWS_STATIC": "PASS",
+  "MACOS_SWIFT_BUILD": "NOT_RUN",
+  "SWIFT_OFFLINE_TESTS": "NOT_RUN",
+  "REAL_MEDIA_PROBE": "NOT_RUN",
+  "checks": [
+    {
+      "file": ".github/workflows/doustudio-media-host-live-probe.yml",
+      "status": "PASS",
+      "checks": "manual_only_pinned_versions_secret_isolation_artifact_whitelist_bash_syntax"
+    },
+    {
+      "file": ".github/workflows/doustudio-media-host-live-probe-offline.yml",
+      "status": "PASS",
+      "checks": "manual_only_pinned_versions_secret_isolation_artifact_whitelist_bash_syntax"
+    },
+    {
+      "file": "runtime-harness/live_probe.py",
+      "status": "PASS",
+      "checks": "python_syntax"
+    },
+    {
+      "file": "runtime-harness/live_probe_tests.py",
+      "status": "PASS",
+      "checks": "python_syntax"
+    },
+    {
+      "file": "runtime-harness/test_live_probe.py",
+      "status": "PASS",
+      "checks": "python_syntax"
+    },
+    {
+      "file": "runtime-harness/validate_live_probe.py",
+      "status": "PASS",
+      "checks": "python_syntax"
+    },
+    {
+      "status": "PASS",
+      "checks": "baseline_protected_only_entry_additions_no_downloader_no_buffered_transport"
+    },
+    {
+      "status": "PASS",
+      "checks": "historical_published_evidence_git_blob_hashes",
+      "files": 23
+    }
+  ]
+}

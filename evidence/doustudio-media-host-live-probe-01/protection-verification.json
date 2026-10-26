@@ -1,0 +1,15 @@
+{
+  "baseline_commit": "a683ce1cd80eb714c453aed79c43de2b0a8b426a",
+  "baseline_tracked_files": 392,
+  "modified_existing_files": [
+    "runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift"
+  ],
+  "entrypoint_change": "ADDITIONS_ONLY",
+  "SafeStreamingTransport": "UNCHANGED",
+  "existing_workflows": "UNCHANGED",
+  "historical_evidence": "UNCHANGED",
+  "upstream_source": "NOT_CHECKED_OUT_OR_MODIFIED_THIS_SESSION",
+  "other_projects": "NOT_MODIFIED",
+  "system_proxy": "NOT_MODIFIED",
+  "git_global_config": "NOT_MODIFIED"
+}

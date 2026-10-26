@@ -1,0 +1,12 @@
+{
+  "python_version": "3.13.3",
+  "total_python_tests": 80,
+  "new_python_tests": 22,
+  "python_exit_code": 0,
+  "swift_available": false,
+  "MACOS_SWIFT_BUILD": "NOT_RUN",
+  "SWIFT_OFFLINE_TESTS": "NOT_RUN",
+  "actionlint": "NOT_RUN_NOT_INSTALLED",
+  "real_network_tests": "NOT_RUN",
+  "windows_loopback_http_fixture_tests": 2
+}

@@ -9,6 +9,16 @@ struct RuntimeAcceptance {
     static let upstream = "362dad3d082e9f63c8efd360acc653ba169d40a2"
 
     @MainActor static func main() async {
+        if Array(CommandLine.arguments.dropFirst()) == ["--live-probe-policy-test"] {
+            do { if !(try LiveProbeSelfTest.policy()) { exit(1) } }
+            catch { exit(1) }
+            return
+        }
+        if CommandLine.arguments.dropFirst().first == "--live-probe-fixture" {
+            do { if !(try await LiveProbeSelfTest.fixture(Array(CommandLine.arguments.dropFirst(2)))) { exit(1) } }
+            catch { exit(1) }
+            return
+        }
         if [["--media-host-audit-self-test"],["--media-host-evidence-self-test"]].contains(Array(CommandLine.arguments.dropFirst())) {
             do {
                 let baseline = try await SelfTest.run()
@@ -43,6 +53,11 @@ struct RuntimeAcceptance {
         if ProcessInfo.processInfo.environment["OFFLINE_ONLY"] == "1" {
             print("ONLINE_ENTRY_DISABLED_IN_OFFLINE_MODE")
             exit(64)
+        }
+        if Array(CommandLine.arguments.dropFirst()) == ["--media-host-live-probe"] {
+            do { if !(try await MediaHostLiveProbe.run(ProcessInfo.processInfo.environment)) { exit(2) } }
+            catch { exit(1) }
+            return
         }
         if Array(CommandLine.arguments.dropFirst()) == ["--media-host-audit"] {
             do {

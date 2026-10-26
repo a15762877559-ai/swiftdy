@@ -1,0 +1,134 @@
+name: DouStudioKit Media Host Live Probe
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile_url:
+        description: 'Authorized canonical public profile (no query)'
+        type: string
+        required: true
+      authorized_own_session:
+        description: 'I authorize ONE worklist and at most ONE Range GET per specified host; no redirects or full downloads'
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: xcode-27
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout harness
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Initialize and validate explicit authorization
+        id: evidence
+        env:
+          PROBE_MODE: live
+        run: python3 runtime-harness/live_probe.py initialize
+      - name: Checkout pinned upstream
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: qinjian0420/DouStudioKit
+          ref: 362dad3d082e9f63c8efd360acc653ba169d40a2
+          path: upstream
+          persist-credentials: false
+          fetch-depth: 1
+          submodules: false
+          lfs: false
+      - name: Verify upstream and environment
+        run: python3 runtime-harness/live_probe.py environment
+      - name: Build without credentials
+        id: compile
+        run: |
+          set +e
+          swift build --package-path runtime-harness -c debug > "$PROBE_EVIDENCE_DIR/build.log" 2>&1
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$PROBE_EVIDENCE_DIR/build-exit-code.txt"
+          test "$code" -eq 0
+          bin_dir=$(swift build --package-path runtime-harness -c debug --show-bin-path)
+          printf 'binary=%s/RuntimeAcceptance\n' "$bin_dir" >> "$GITHUB_OUTPUT"
+      - name: Baseline fixtures with all network denied
+        id: baseline
+        env:
+          OFFLINE_ONLY: '1'
+          PROBE_BIN: ${{ steps.compile.outputs.binary }}
+        run: |
+          set +e
+          sandbox-exec -p '(version 1)(allow default)(deny network*)' "$PROBE_BIN" --media-host-evidence-self-test > "$PROBE_EVIDENCE_DIR/baseline.log" 2>&1
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$PROBE_EVIDENCE_DIR/baseline-exit-code.txt"
+          exit "$code"
+      - name: Real Swift policy and controlled loopback HTTP tests without credentials
+        id: offline
+        env:
+          OFFLINE_ONLY: '1'
+          PROBE_BIN: ${{ steps.compile.outputs.binary }}
+        run: |
+          set +e
+          python3 -B runtime-harness/live_probe_tests.py
+          code=$?
+          set -e
+          printf '%s\n' "$code" > "$PROBE_EVIDENCE_DIR/offline-exit-code.txt"
+          test "$code" -eq 0
+          python3 -B runtime-harness/live_probe.py offline-seal
+      - name: Explicitly authorized worklist and isolated one-byte media probes
+        id: live
+        env:
+          DOUYIN_COOKIE: ${{ secrets.DOUYIN_COOKIE }}
+          PROBE_BIN: ${{ steps.compile.outputs.binary }}
+        run: |
+          set +x
+          ulimit -c 0
+          python3 -B runtime-harness/live_probe.py run
+      - name: Verify source protection and sanitized evidence
+        id: finalize
+        if: ${{ always() && steps.evidence.outputs.directory != '' }}
+        env:
+          BUILD_OUTCOME: ${{ steps.compile.outcome }}
+          OFFLINE_OUTCOME: ${{ steps.offline.outcome }}
+          PROBE_OUTCOME: ${{ steps.live.outcome }}
+        run: python3 -B runtime-harness/live_probe.py finalize
+      - name: Upload verified diagnostics only
+        if: ${{ always() && steps.finalize.outcome == 'success' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: doustudio-live-probe-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 3
+          if-no-files-found: error
+          include-hidden-files: false
+          path: |
+            ${{ steps.evidence.outputs.directory }}/probe-summary.json
+            ${{ steps.evidence.outputs.directory }}/host-observations.json
+            ${{ steps.evidence.outputs.directory }}/response-header-evidence.json
+            ${{ steps.evidence.outputs.directory }}/redirect-evidence.json
+            ${{ steps.evidence.outputs.directory }}/credential-isolation-results.json
+            ${{ steps.evidence.outputs.directory }}/request-count-results.json
+            ${{ steps.evidence.outputs.directory }}/redaction-results.json
+            ${{ steps.evidence.outputs.directory }}/approved-hosts.json
+            ${{ steps.evidence.outputs.directory }}/evidence-index.json
+            ${{ steps.evidence.outputs.directory }}/environment.json
+            ${{ steps.evidence.outputs.directory }}/source-protection.json
+            ${{ steps.evidence.outputs.directory }}/stage-outcomes.json
+            ${{ steps.evidence.outputs.directory }}/input-validation.json
+            ${{ steps.evidence.outputs.directory }}/build.log
+            ${{ steps.evidence.outputs.directory }}/build-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/baseline.log
+            ${{ steps.evidence.outputs.directory }}/baseline-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/offline-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/probe-exit-code.txt
+            ${{ steps.evidence.outputs.directory }}/offline-tests.json
+            ${{ steps.evidence.outputs.directory }}/policy-tests.json
+            ${{ steps.evidence.outputs.directory }}/selftest-results.json
+            ${{ steps.evidence.outputs.directory }}/host-selftest-results.json
+            ${{ steps.evidence.outputs.directory }}/priority-selftest-results.json
+            ${{ steps.evidence.outputs.directory }}/offline-source.json
