@@ -23,14 +23,31 @@
       "contains_real_selected_video_host": false
     }
   ],
-  "existing_json_files_scanned": 163,
   "real_media_url_fields_found": 0,
   "actual_host_fields_found": 0,
-  "observed_real_media_hosts": [],
-  "explanation": "Successful worklist evidence retains counts only. Loopback fixtures and code suffix policies are not observed production media hosts.",
+  "explanation": "Prepared baseline lacked hosts. Current real one-request response yielded 5 video-field hosts; 17 of 21 selected source mappings survived capped collection. Exact raw sanitized evidence retained in run directory.",
   "upstream_sha": "362dad3d082e9f63c8efd360acc653ba169d40a2",
   "extractor_method": "DouyinExtractor.work(from:collectionTime:) -> classifyVideo -> selectBitrate",
   "selection": "Sort bitrate entries ascending by max(height,width), FPS, bit_rate, data_size; select last entry and its last play_addr.url_list URL. Without bit_rate select last video.play_addr.url_list URL.",
   "no_quality_probe": true,
-  "no_media_requests": true
+  "no_media_requests": true,
+  "preparation_observation": {
+    "existing_json_files_scanned": 163,
+    "observed_real_media_hosts": []
+  },
+  "source_run": "40292928113",
+  "tested_commit": "83e1aba315f53e766b2f77f12462c7501d2aeba1",
+  "observed_real_media_hosts": [
+    "sf11-cdn-tos.douyinstatic.com",
+    "sf6-cdn-tos.douyinstatic.com",
+    "v26-web.douyinvod.com",
+    "v26-webf.douyinvod.com",
+    "www.douyin.com"
+  ],
+  "total_records": 1000,
+  "video_records": 864,
+  "selected_video_count": 21,
+  "selected_source_unmatched": 4,
+  "truncated": true,
+  "run_local_aliases_only": true
 }

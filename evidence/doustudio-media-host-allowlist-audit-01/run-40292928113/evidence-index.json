@@ -1,0 +1,25 @@
+{
+  "run_id": "40292928113",
+  "test_commit": "83e1aba315f53e766b2f77f12462c7501d2aeba1",
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "files": {
+    "candidate-hosts.json": "2c006bc27d1331fbdb8748ce5c6e295808e48c3c54bd50f5c63e2758cd98195c",
+    "host-provenance.json": "324c0c68736577991cc3338b075e9d901437247e451020ff3fc815d186731ada",
+    "host-security-review.json": "a59e20839f5e1ae1b95917fd80fedd87a77b398daef447e3019db1820206e1a8",
+    "approved-hosts.json": "ace810d7e2cbb4f8c40ce09dc8e191ae466adb4e1a7d49c59f2215b411d38b05",
+    "audit-summary.json": "be8f840f67911127b7d8ddf8e9edac486ad3219c6623ecd04d2acd84d72e385c",
+    "input-validation.json": "28a5df7d76d659ccb70af6c0d95f1bee0c52d37eb21726de346602561262e2ed",
+    "environment.json": "0507c45bdd0042bdbd496faba515eea21ba9764e6f64a4153ae788fcf4aa98ce",
+    "source-protection.json": "12ae0726959faf99833f06831ef6c61334d451516a7051f82b9c7e01bad2c528",
+    "stage-outcomes.json": "98ccf5369f46e8e74fb4d6fb697440271aba9c386c11e0eea2bcc9884b239666",
+    "build.log": "587307da3e5b284daca0added705c917da0991c15bee05887e7231bd988b378e",
+    "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "offline.log": "0c36e5c01776c306cc905a4a73a2e049ae406608887910634b04431fde3b73b2",
+    "offline-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "selftest-results.json": "97543283d59422f2059f93c6b64eb180425f39c5608b4c571e52cbc782a1c2c1",
+    "host-selftest-results.json": "2a0140ad343102c6d13faacab7415379e1afa82355da440bb44a7942f05610fa",
+    "audit-exit-code.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+  },
+  "automatic_host_approval": false,
+  "media_requests": 0
+}

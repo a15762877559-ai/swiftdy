@@ -1,0 +1,12 @@
+{
+  "build_exit_code": 0,
+  "offline_exit_code": 0,
+  "audit_exit_code": 2,
+  "offline_passed": 58,
+  "github_conclusion": "failure",
+  "failed_step": "One authorized worklist request and string-only host observation",
+  "failure_category": "INCOMPLETE_OR_NO_VIDEO_HOST_EVIDENCE",
+  "retry_triggered": false,
+  "media_requests": 0,
+  "hosts_approved": 0
+}

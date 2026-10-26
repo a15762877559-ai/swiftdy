@@ -1,0 +1,33 @@
+{
+  "APPLICATION_BYTE_BUDGET" : "PASS",
+  "APPROVED_HOSTS" : 0,
+  "HOST_PROVENANCE" : "PARTIAL",
+  "HOST_SECURITY_REVIEW" : "BLOCKED",
+  "MEDIA_HOSTS_IDENTIFIED" : "YES",
+  "PRODUCTION_ALLOWLIST" : "EMPTY",
+  "REAL_MEDIA_REQUEST" : "NOT_RUN",
+  "REAL_VIDEO_DOWNLOAD" : "NOT_RUN",
+  "STRICT_NETWORK_RECEIVE_LIMIT" : "NOT_PROVEN",
+  "byte_budget_evidence_run" : "40289436585",
+  "collection_completed" : false,
+  "credential_present" : true,
+  "failure_category" : "INCOMPLETE_OR_NO_VIDEO_HOST_EVIDENCE",
+  "observation" : {
+    "fields" : {
+      "cover_present" : 21,
+      "description_present" : 21,
+      "id_valid" : 21,
+      "timestamp_valid" : 21,
+      "video_present" : 21
+    },
+    "http_status" : 200,
+    "item_count" : 21,
+    "request_count" : 1,
+    "request_started" : true,
+    "request_succeeded" : true,
+    "valid_worklist" : true
+  },
+  "selected_source_unmatched" : 4,
+  "selected_video_count" : 21,
+  "truncated" : true
+}

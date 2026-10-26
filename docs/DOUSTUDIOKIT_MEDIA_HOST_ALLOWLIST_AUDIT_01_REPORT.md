@@ -1,6 +1,37 @@
 # DOUSTUDIOKIT_MEDIA_HOST_ALLOWLIST_AUDIT_01
 
-准备阶段已完成，主机审计仍为 **BLOCKED：缺少实际播放主机证据**。已审核精确白名单为 0 项。本轮未触发新工作流，未请求抖音作品列表或媒体，未读取真实 Cookie。只准备独立手动主机观察工作流，等待用户运行后再进行逐主机独立审查。
+用户手动运行已核验：**编译 PASS、Swift 离线检查 58/58 PASS、单次作品列表 HTTP 200/21 条；主机审计仍 BLOCKED**。观察到 5 个播放字段主机，但采集记录被上限截断，4 条选中地址未关联到来源，且独立关联证据不足。批准主机仍为 0；未发出任何真实媒体请求，未自动触发或重试，未读取 Secret 值。
+
+## 用户手动运行结果（2026-10-26）
+
+- [实际运行 40292928113](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40292928113)，受测提交 `83e1aba315f53e766b2f77f12462c7501d2aeba1`，原版上游 SHA 保持固定。
+- macOS 27.0.1 / arm64 / Swift 6.4 / Xcode 27.1；build-exit-code=0，offline-exit-code=0。
+- 原有通用/认证 fixture 38/38，新主机 fixture 20/20，合计 58/58 通过。
+- 工作流失败在 `One authorized worklist request and string-only host observation`，audit-exit-code=2，固定类别 `INCOMPLETE_OR_NO_VIDEO_HOST_EVIDENCE`。不是编译失败、登录失败、HTTP 403 或视频大小问题。
+- 认证请求只发生 1 次，HTTP 200，21 条有效作品。凭据只记录 credential_present=true。
+- 诊断记录总数 1000，其中播放字段记录 864；truncated=true；21 条已选视频中仅 17 条完成字段关联，selected_source_unmatched=4。证据证明触及总记录上限；没有原始响应，不能断言是否还同时触及其他数组上限。按现有完整性门禁退出是正确行为，不能把部分采样当成完整 PASS。
+- Artifact ID `12637495195`，17 个文件。ZIP SHA-256 `3a9b549159f4dcd394d013d69b91ee8576a0a5a804f7ada84905cfe129d29448` 与 GitHub digest 匹配，CRC 和 runner 文件哈希清单全部通过，未包含媒体、原始响应或完整媒体 URL。
+- 原始脱敏证据保存在 `evidence/doustudio-media-host-allowlist-audit-01/run-40292928113/`，包括 jobs.json 的每步 outcome。证据校验、上传和上游保护步骤均 success。
+
+### 已观察到的候选与审核决定
+
+| 精确主机 | 播放字段记录数 | 与 Extractor 已选 URL 匹配记录数 | 决定 |
+|---|---:|---:|---|
+| sf6-cdn-tos.douyinstatic.com | 1 | 0 | 候选，未批准 |
+| sf11-cdn-tos.douyinstatic.com | 1 | 1 | 候选，未批准 |
+| v26-web.douyinvod.com | 287 | 0 | 候选，未批准 |
+| v26-webf.douyinvod.com | 288 | 0 | 候选，未批准 |
+| www.douyin.com | 287 | 16 | 候选，未批准 |
+
+这些是记录数，不是不同视频数，也不是发出的媒体请求数。来源字段及 HOST-xxxx / WORK-xxx 关联保存于 candidate-hosts.json、host-provenance.json 和原始 run 目录；没有真实作品 ID。`sf11-cdn-tos.douyinstatic.com` 对应首条作品 `video.play_addr.url_list[1]`；不以 URL 名称推断媒体内容。
+
+其他资源主机 `p3-pc-sign.douyinpic.com`、`p3-pc.douyinpic.com`、`p9-pc-sign.douyinpic.com` 单独排除，不进入视频候选白名单。所有 5 个播放字段主机的已观察字符串均为 HTTPS、无 userinfo、无非标准端口、无 IP/本机名称；这些语法事实不能证明 DNS 目标安全或无重定向。
+
+限定官方开发者/云服务文档的 6 次检索未返回足够的精确主机资料（见 public-association-review.json）。这不证明主机不合法，也不能据此认定可信。尤其 www.douyin.com 出现在已选播放地址中，不等于已证明它是无重定向的直接媒体响应端点。本轮没有 HEAD/GET 探测、DNS 查询或跟随重定向。
+
+结论：已有作品响应支持 5 个候选的字段来源，但完整来源审计仍 PARTIAL；独立服务关联和网络目标安全证据不足，HOST_SECURITY_REVIEW=BLOCKED，approved-hosts.json 保持空数组。不会仅凭后缀批准，也不会改选未被 Extractor 选中的备用 CDN 来规避门禁。
+
+本轮只归档这次结果，不更改限额或提取代码、不重试。最小后续方案是单独改进证据收集顺序：优先记录每条作品的原版已选地址来源，再按主机聚合并保留引用，避免大量备用 URL 挤满诊断配额；离线验证后仍需用户另行手动采样。之后才对精确候选补齐独立审核依据。此方案尚未执行。
 
 ## 仓库及已有证据
 
@@ -20,7 +51,7 @@
 
 结构扫描了既有 evidence 下 163 个 JSON：没有记录实际媒体 URL 字段或实际主机字段。命中 play_addr/host 等文本的其他文件是离线用例名称，不能当成生产地址。只输出结构统计，未打印任何完整媒体 URL。来源文件 SHA-256 见 host-provenance.json/evidence-index.json。
 
-目前四类主机均需明确区分：已观察到的真实播放主机 0；有独立关联证据的真实主机 0；批准主机 0；待逐主机审核/被拒绝的已观察主机 0。这里的 0 表示证据尚缺，不表示实际响应没有视频 URL。
+准备时没有实际主机记录；本次运行后已观察 5 个真实播放字段主机，5 个均待审核，独立关联证据充分的主机 0，批准主机 0。不是因语法不合格而拒绝这 5 个主机，而是暂缓批准。这里的批准数 0 不表示实际响应没有视频 URL。
 
 ## 固定版本的地址选择和下载路径
 
@@ -61,8 +92,8 @@
 
 - Windows Python 边界测试 **12/12 PASS**：缺 Secret、未授权、控制字符、非法/缺失主页、子进程环境隔离、超时不重试、非零退出、零退出无结果拒绝、禁止自动批准、证据含 URL 拒绝、Artifact 白名单。详见 python-tests.log/json。
 - YAML 结构、bash -n、单请求代码路径、Secret 步骤隔离、固定版本、Artifact 白名单、既有文件保护检查 **PASS**。actionlint 未安装，明确 NOT_RUN。
-- 新增 Swift 主机 fixture **20 项，NOT_RUN**；工作流首先在 deny network 沙箱中运行原有 19 项通用 + 19 项认证 fixture 和新 20 项。全部通过后才运行一次作品列表观察。
-- **macOS 编译 NOT_RUN**。按本轮要求没有触发工作流，因此 Windows 检查不能替代 Swift 编译或云端验收，也不宣称主机观察成功。
+- 新增 Swift 主机 fixture **20/20 PASS**；实际运行在 deny network 沙箱中完成原有 19 项通用 + 19 项认证 fixture 和新 20 项。全部通过后才发生一次作品列表观察。
+- **macOS 编译 PASS**，证据来自用户手动运行。此前准备阶段的 NOT_RUN 历史记录保持原样，不把本地检查改写成云端验证。
 - Artifact 仅 17 个明确诊断文件、保留 3 天，不含媒体或原始响应。finalize 检查 JSON 无完整 URL/敏感标记并确认 approved-hosts 为空；检查失败则禁止上传。凭据步骤 stdout/stderr 丢弃，异常只用固定类别；离线日志不带真实凭据。
 
 ## 方案 A 与保护
@@ -78,7 +109,7 @@
 ```ini
 TASK = DOUSTUDIOKIT_MEDIA_HOST_ALLOWLIST_AUDIT_01
 EXISTING_EVIDENCE_REUSED = YES
-MEDIA_HOSTS_IDENTIFIED = NO
+MEDIA_HOSTS_IDENTIFIED = YES
 HOST_PROVENANCE = PARTIAL
 HOST_SECURITY_REVIEW = BLOCKED
 APPROVED_HOSTS = 0
@@ -97,10 +128,10 @@ VIDEOFLOW_CHANGED = NO
 AUTO_TRIGGERED = NO
 ```
 
-## 用户手动运行及停止点
+## 发布历史与当前停止点
 
 准备源码和交付文件已普通提交并推送：`c70012534863d6f5572637d31699acfc16e1b0cf`。GitHub 只读核验已登记工作流 ID `396810963`、state=active，核验时 total_runs=0。注册状态不代表 Swift 编译、离线用例或主机审计通过；发布元数据见 github-publication.json。后续收尾提交仅补充该发布记录和证据索引，不变更源码。
 
-打开 [主机审计工作流](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/workflows/doustudio-media-host-audit.yml)，选择 Run workflow → main，输入自己有权访问的规范公开主页，勾选 authorized_own_session，再手动运行。Cookie 继续使用现有仓库 Secret，不填入主页框，也不发送到聊天。
+用户现已运行一次，结果见本文开头。当前停止，不再次触发或请求用户立即重跑；重复同样的采样可能再次遇到记录上限。
 
-工作流成功只代表主机观察完成，**不代表候选已批准**。运行后应读取脱敏 Artifact，完成来源、公开资料和目标安全审查。批准前生产精确白名单保持为空；本轮至此停止，不触发作品请求或下载。
+工作流执行不代表候选已批准。本次只有部分来源证据，尚未完成精确主机安全审查。批准前生产精确白名单保持为空；本轮至此停止，不触发新的作品请求或下载。

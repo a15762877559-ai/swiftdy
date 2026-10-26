@@ -1,19 +1,85 @@
 {
   "status": "BLOCKED",
-  "reviews": [],
-  "observed_hosts": [],
-  "supported_hosts": [],
+  "reviews": [
+    {
+      "host": "sf11-cdn-tos.douyinstatic.com",
+      "https": true,
+      "userinfo_present": false,
+      "nonstandard_port": false,
+      "ip_or_numeric_host": false,
+      "forbidden_local_or_reserved_name": false,
+      "url_shape": "CANDIDATE_ONLY",
+      "dns_target_check": "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "redirect_risk": "UNKNOWN_MEDIA_NOT_REQUESTED",
+      "public_service_association": "INSUFFICIENT_INDEPENDENT_EXACT_HOST_EVIDENCE",
+      "approved": false,
+      "reason": "Observed in authenticated response, but provenance collection is truncated and independent service/target evidence is insufficient. No suffix-based approval."
+    },
+    {
+      "host": "sf6-cdn-tos.douyinstatic.com",
+      "https": true,
+      "userinfo_present": false,
+      "nonstandard_port": false,
+      "ip_or_numeric_host": false,
+      "forbidden_local_or_reserved_name": false,
+      "url_shape": "CANDIDATE_ONLY",
+      "dns_target_check": "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "redirect_risk": "UNKNOWN_MEDIA_NOT_REQUESTED",
+      "public_service_association": "INSUFFICIENT_INDEPENDENT_EXACT_HOST_EVIDENCE",
+      "approved": false,
+      "reason": "Observed in authenticated response, but provenance collection is truncated and independent service/target evidence is insufficient. No suffix-based approval."
+    },
+    {
+      "host": "v26-web.douyinvod.com",
+      "https": true,
+      "userinfo_present": false,
+      "nonstandard_port": false,
+      "ip_or_numeric_host": false,
+      "forbidden_local_or_reserved_name": false,
+      "url_shape": "CANDIDATE_ONLY",
+      "dns_target_check": "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "redirect_risk": "UNKNOWN_MEDIA_NOT_REQUESTED",
+      "public_service_association": "INSUFFICIENT_INDEPENDENT_EXACT_HOST_EVIDENCE",
+      "approved": false,
+      "reason": "Observed in authenticated response, but provenance collection is truncated and independent service/target evidence is insufficient. No suffix-based approval."
+    },
+    {
+      "host": "v26-webf.douyinvod.com",
+      "https": true,
+      "userinfo_present": false,
+      "nonstandard_port": false,
+      "ip_or_numeric_host": false,
+      "forbidden_local_or_reserved_name": false,
+      "url_shape": "CANDIDATE_ONLY",
+      "dns_target_check": "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "redirect_risk": "UNKNOWN_MEDIA_NOT_REQUESTED",
+      "public_service_association": "INSUFFICIENT_INDEPENDENT_EXACT_HOST_EVIDENCE",
+      "approved": false,
+      "reason": "Observed in authenticated response, but provenance collection is truncated and independent service/target evidence is insufficient. No suffix-based approval."
+    },
+    {
+      "host": "www.douyin.com",
+      "https": true,
+      "userinfo_present": false,
+      "nonstandard_port": false,
+      "ip_or_numeric_host": false,
+      "forbidden_local_or_reserved_name": false,
+      "url_shape": "CANDIDATE_ONLY",
+      "dns_target_check": "NOT_VERIFIED_NO_DNS_LOOKUP",
+      "redirect_risk": "UNKNOWN_MEDIA_NOT_REQUESTED",
+      "public_service_association": "INSUFFICIENT_INDEPENDENT_EXACT_HOST_EVIDENCE",
+      "approved": false,
+      "reason": "Observed in authenticated response, but provenance collection is truncated and independent service/target evidence is insufficient. No suffix-based approval."
+    }
+  ],
   "approved_hosts": [],
-  "rejected_observed_hosts": [],
-  "pending_reason": "ACTUAL_SELECTED_MEDIA_HOST_EVIDENCE_MISSING",
-  "public_association_lookup": "NOT_RUN_NO_ACTUAL_CANDIDATE",
-  "dns_and_redirect_checks": "NOT_RUN_NO_MEDIA_PROBES",
-  "requirements": [
-    "Exact HTTPS host independently reviewed",
-    "No suffix or wildcard trust",
-    "No IP literal, userinfo, nonstandard port, local/reserved target",
-    "Public service association evidence required",
-    "DNS target safety must be established separately; URL syntax alone is insufficient",
-    "Redirects forbidden; no automatic promotion"
-  ]
+  "excluded_resource_hosts": [
+    "p3-pc-sign.douyinpic.com",
+    "p3-pc.douyinpic.com",
+    "p9-pc-sign.douyinpic.com",
+    "sf11-cdn-tos.douyinstatic.com",
+    "sf6-cdn-tos.douyinstatic.com"
+  ],
+  "redirect_following": "FORBIDDEN_NOT_TESTED",
+  "media_requests": 0
 }

@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-26",
+  "method": "Primary-source search only; no candidate-host HTTP requests, media probes or DNS queries",
+  "queries": [
+    "\"v26-web.douyinvod.com\" site:open.douyin.com",
+    "\"douyinstatic.com\" site:open.douyin.com",
+    "\"v26-webf.douyinvod.com\" site:volcengine.com",
+    "\"sf11-cdn-tos.douyinstatic.com\" site:open.douyin.com",
+    "\"sf6-cdn-tos.douyinstatic.com\" site:volcengine.com",
+    "site:open.douyin.com \"www.douyin.com/aweme/v1/play\""
+  ],
+  "result": "NO_SEARCH_RESULTS",
+  "interpretation": "Limited searches found no sufficient independent exact-host support; this is not proof that the hosts are illegitimate.",
+  "approved_hosts": []
+}
