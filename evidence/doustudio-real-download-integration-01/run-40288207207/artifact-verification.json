@@ -1,0 +1,15 @@
+{
+  "artifact_id": 12635336776,
+  "zip_sha256": "756a5c84fc616166253a91d810086a0c36d728afca2bcd967f42aa1d69045b10",
+  "github_digest_matched": true,
+  "zip_crc": "PASS",
+  "artifact_whitelist": "PASS",
+  "files": {
+    "runtime-environment.json": "19d31df8198a2b975059759599dc6e9d2cbab481ff4cee97cc46343799c95940",
+    "build.log": "42e44ee0511b3c9c6831b1a104c5d4aa7569eab5db3bbe06e7a9e1bb9e4c2f25",
+    "build-exit-code.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "runner-exit-code.txt": "b0b978b79d5085555087a7a95fa550f0019515d6b376f745cc2411d56976a88d",
+    "source-protection.json": "dfbe334c2d7cb396ed129dbecaf44884722eda768c933ba6fdf2c0253f80a333",
+    "stage-outcomes.json": "93f53afb1cabab6d86f1cf0685474cadaae2f6795cd0d71f06901189a02354f7"
+  }
+}

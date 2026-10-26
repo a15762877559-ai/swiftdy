@@ -87,6 +87,6 @@ actor IntegrationListTransport: HTTPTransport {
         guard http.statusCode == 200, data.count <= 16384,
               let object = try JSONSerialization.jsonObject(with:data) as? [String:Any],
               object["status_code"] as? Int == 0, object["aweme_list"] is [[String:Any]] else { throw IntegrationError.list }
-        return HTTPResponse(statusCode:200,headers:["Content-Type":"application/json"],body:data)
+        return HTTPResponse(statusCode:200,headers:["Content-Type":"application/json"],body:data,finalURL:nil)
     }
 }

@@ -1,0 +1,86 @@
+{
+  "jobs": [
+    {
+      "id": 121456819338,
+      "name": "controlled",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 40288207207,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Checkout tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Initialize isolated runner workspace",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Checkout pinned upstream",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Verify upstream and environment",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Build shared transport and integration Harness",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 6
+        },
+        {
+          "name": "Original client Extractor Downloader and AVFoundation on loopback only",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7
+        },
+        {
+          "name": "Record outcome and source protection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Upload diagnostic files only",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Checkout pinned upstream",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Post Checkout tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        }
+      ]
+    }
+  ]
+}
