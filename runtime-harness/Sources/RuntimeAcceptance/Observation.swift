@@ -124,7 +124,10 @@ actor ObservingTransport: HTTPTransport {
               let url = request.url, safeHTTPS(url.absoluteString) != nil else {
             throw AcceptanceStop(code: "REQUEST_SCOPE_REJECTED", blocked: true)
         }
-        let api = url.host == "www.douyin.com" && url.path == "/aweme/v1/web/aweme/post/"
+        // URL.path drops the trailing slash on the macOS Foundation runtime.
+        // URLComponents preserves it, so keep the exact endpoint boundary.
+        let api = url.host == "www.douyin.com"
+            && URLComponents(url: url, resolvingAgainstBaseURL: false)?.path == "/aweme/v1/web/aweme/post/"
         var requestCursor: Int64 = 0
         if api {
             guard apiRequests < 3, pages.last?.hasMore != false else {

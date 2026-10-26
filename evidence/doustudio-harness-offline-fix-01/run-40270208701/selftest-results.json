@@ -1,0 +1,153 @@
+{
+  "cases" : [
+    {
+      "actual" : "identifier_matches=true",
+      "errorCategory" : "NONE",
+      "expected" : "user identifier matches offline_fixture",
+      "function" : "LinkParser.parse",
+      "id" : "OFF-001",
+      "name" : "Profile identifier",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true",
+      "errorCategory" : "UNEXPECTED_ACCEPTANCE_STOP",
+      "expected" : "pages=2;second_cursor=900",
+      "function" : "ObservingTransport.send\/observePage",
+      "id" : "OFF-002",
+      "name" : "Server cursor propagation",
+      "status" : "FAIL"
+    },
+    {
+      "actual" : "code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true",
+      "errorCategory" : "UNEXPECTED_ACCEPTANCE_STOP",
+      "expected" : "hasMore=false;fields=1",
+      "function" : "ObservingTransport.observePage",
+      "id" : "OFF-003",
+      "name" : "Terminal state and fields",
+      "status" : "FAIL"
+    },
+    {
+      "actual" : "code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true",
+      "errorCategory" : "UNEXPECTED_ACCEPTANCE_STOP",
+      "expected" : "CURSOR_STALLED_OR_CYCLIC",
+      "function" : "ObservingTransport.observePage",
+      "id" : "OFF-004",
+      "name" : "Repeated cursor rejection",
+      "status" : "FAIL"
+    },
+    {
+      "actual" : "code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true",
+      "errorCategory" : "NONE",
+      "expected" : "throws blocked=true",
+      "function" : "ObservingTransport.send",
+      "id" : "OFF-005",
+      "name" : "HTTP access rejection",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true",
+      "errorCategory" : "NONE",
+      "expected" : "throws blocked=true",
+      "function" : "ObservingTransport.observePage",
+      "id" : "OFF-006",
+      "name" : "HTML challenge rejection",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true",
+      "errorCategory" : "ASSERTION_MISMATCH",
+      "expected" : "REQUEST_CURSOR_MISMATCH",
+      "function" : "ObservingTransport.sendChecked",
+      "id" : "OFF-007",
+      "name" : "Request cursor mismatch",
+      "status" : "FAIL"
+    },
+    {
+      "actual" : "rejected=4;unrelated_rejected=true",
+      "errorCategory" : "NONE",
+      "expected" : "reject 4 unsafe URLs and unrelated profile",
+      "function" : "safeHTTPS\/LinkParser.parse",
+      "id" : "OFF-008",
+      "name" : "Unsafe URLs",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "status=Optional(0);cursor=Optional(900);bool=nil;fraction=nil",
+      "errorCategory" : "NONE",
+      "expected" : "status=0;cursor=900;boolean\/fraction rejected",
+      "function" : "integer",
+      "id" : "OFF-009",
+      "name" : "JSON integer types",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "number_present=true;number_string=1;bool=Optional(true)",
+      "errorCategory" : "NONE",
+      "expected" : "has_more numeric 1",
+      "function" : "JSONSerialization\/NSNumber",
+      "id" : "OFF-010",
+      "name" : "Pagination flag type",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "id_matches=true;description_matches=true;timestamp=1",
+      "errorCategory" : "NONE",
+      "expected" : "fixture ID\/description\/timestamp preserved",
+      "function" : "DouyinExtractor.work",
+      "id" : "OFF-011",
+      "name" : "Model field mapping",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true",
+      "errorCategory" : "UNEXPECTED_ACCEPTANCE_STOP",
+      "expected" : "PAGE_LIMIT_OR_EXHAUSTED",
+      "function" : "ObservingTransport.sendChecked",
+      "id" : "OFF-012",
+      "name" : "Stop after server exhaustion",
+      "status" : "FAIL"
+    },
+    {
+      "actual" : "code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true",
+      "errorCategory" : "ASSERTION_MISMATCH",
+      "expected" : "one error page HTTP_403;zero fields;no candidate",
+      "function" : "ObservingTransport.send catch",
+      "id" : "OFF-013",
+      "name" : "Failed-page state",
+      "status" : "FAIL"
+    },
+    {
+      "actual" : "code=MEDIA_HOST_OUTSIDE_ALLOWLIST;blocked=true",
+      "errorCategory" : "NONE",
+      "expected" : "MEDIA_HOST_OUTSIDE_ALLOWLIST",
+      "function" : "ObservingTransport.allowMedia",
+      "id" : "OFF-014",
+      "name" : "Media host allowlist",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "code=MEDIA_CONTAINER_NOT_MP4;blocked=false",
+      "errorCategory" : "NONE",
+      "expected" : "MEDIA_CONTAINER_NOT_MP4;no media hash",
+      "function" : "ObservingTransport.sendChecked",
+      "id" : "OFF-015",
+      "name" : "Reject HTML media bytes",
+      "status" : "PASS"
+    },
+    {
+      "actual" : "missing=UPSTREAM_MISSING_CREDENTIALS,true;storage=UPSTREAM_STORAGE_ERROR,false",
+      "errorCategory" : "NONE",
+      "expected" : "missing credentials BLOCKED;storage FAIL",
+      "function" : "RuntimeAcceptance.classify",
+      "id" : "OFF-016",
+      "name" : "Exception classification",
+      "status" : "PASS"
+    }
+  ],
+  "mediaDownloaded" : false,
+  "mode" : "OFFLINE_FIXTURES_ONLY",
+  "onlineEntryCalled" : false,
+  "status" : "FAIL",
+  "transport" : "FixtureTransport (memory only)"
+}

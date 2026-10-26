@@ -185,6 +185,44 @@ enum SelfTest {
             try check(missing.blocked && !storage.blocked && missing.code == "UPSTREAM_MISSING_CREDENTIALS" && storage.code == "UPSTREAM_STORAGE_ERROR", actual)
             return actual
         }
+        await runCase("OFF-017", "Exact endpoint routing regression", "ObservingTransport.sendChecked", "exact endpoint reaches worklist;4 near-miss endpoints rejected before transport") {
+            let observer = ObservingTransport(base: FixtureTransport([response(last)]))
+            _ = try await observer.send(request(0), options: TransportOptions())
+            let snapshot = await observer.snapshot()
+            try check(snapshot.exchanges.count == 1 && snapshot.exchanges[0].kind == "worklist" && snapshot.pages.count == 1,
+                      "exchanges=\(snapshot.exchanges.count);kind=\(snapshot.exchanges.first?.kind ?? "missing");pages=\(snapshot.pages.count)")
+            let addresses = [
+                "https://www.douyin.com/aweme/v1/web/aweme/post",
+                "https://www.douyin.com/aweme/v1/web/aweme/post/extra",
+                "https://www.douyin.com/aweme/v1/web/aweme/poster/",
+                "https://example.org/aweme/v1/web/aweme/post/"
+            ]
+            for address in addresses {
+                let rejected = ObservingTransport(base: FixtureTransport([]))
+                _ = try await expectStop("UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT", blocked: true) {
+                    _ = try await rejected.send(SignedRequest(method: .get, baseURL: address, query: "max_cursor=0", headers: [:]), options: TransportOptions())
+                }
+                let state = await rejected.snapshot()
+                try check(state.exchanges.isEmpty && state.pages.isEmpty, "unexpected_fixture_consumption_or_page")
+            }
+            return "exact_endpoint_worklist=true;near_miss_rejected=4;near_miss_transport_calls=0"
+        }
+        await runCase("OFF-018", "HTTP rejection exact category", "ObservingTransport.sendChecked", "HTTP_403;blocked=true;worklist exchange recorded") {
+            let observer = ObservingTransport(base: FixtureTransport([response("", status: 403)]))
+            let actual = try await expectStop("HTTP_403", blocked: true) {
+                _ = try await observer.send(request(0), options: TransportOptions())
+            }
+            let state = await observer.snapshot()
+            try check(state.exchanges.count == 1 && state.exchanges[0].kind == "worklist" && state.exchanges[0].status == 403,
+                      "worklist_403_exchange_missing")
+            return actual + ";worklist_exchange=true"
+        }
+        await runCase("OFF-019", "HTML rejection exact category", "ObservingTransport.observePage", "NON_JSON_POSSIBLE_ACCESS_CHALLENGE;blocked=true") {
+            let observer = ObservingTransport(base: FixtureTransport([response("<html>challenge</html>")]))
+            return try await expectStop("NON_JSON_POSSIBLE_ACCESS_CHALLENGE", blocked: true) {
+                _ = try await observer.send(request(0), options: TransportOptions())
+            }
+        }
         // Diagnostic scalars explain Foundation URL behavior without logging a URL.
         if let url = request(0).url {
             print("URL_SHAPE legacy_path_matches=\(url.path == "/aweme/v1/web/aweme/post/");components_path_matches=\(URLComponents(url: url, resolvingAgainstBaseURL: false)?.path == "/aweme/v1/web/aweme/post/");host_matches=\(url.host == "www.douyin.com")")

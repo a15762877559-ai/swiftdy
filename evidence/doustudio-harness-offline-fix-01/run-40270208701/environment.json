@@ -1,0 +1,16 @@
+{
+  "run_id": "40270208701",
+  "test_commit": "dc1b2a485b93ffc3d381ebd396ac1525d9d8af01",
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "macos": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "architecture": "arm64",
+  "mode": "OFFLINE_ONLY",
+  "runner": "xcode-27",
+  "source_hashes": {
+    "runtime-harness/Sources/RuntimeAcceptance/Observation.swift": "560d55251a0d4a173ae99e06ef36f1af2d199cc011b57715f25b8b186f8e35cc",
+    "runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift": "4257e21c0f11f7b3fb5ef231286f53fab26bc095368aa93b866cd2cf693f644e",
+    "runtime-harness/Sources/RuntimeAcceptance/SelfTest.swift": "0008989096a5b58c6cec3120e32ddf71cd9c9fb92496fd73c03beda7940e4e31"
+  }
+}

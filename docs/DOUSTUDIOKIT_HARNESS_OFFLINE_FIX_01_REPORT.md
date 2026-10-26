@@ -53,17 +53,25 @@ Windows 无 Swift 和 actionlint，未安装新工具，不宣称本地 Swift �
 
 ## 云端诊断与修复
 
-待实际运行后补记。先仅运行新增离线工作流；若失败，必须取得具体用例和实际值，只有有证据的修复才允许第二次离线验收。根因不明确时停止，不盲目循环。
+诊断提交 `dc1b2a485b93ffc3d381ebd396ac1525d9d8af01` 的[首次离线运行 40270208701](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40270208701) 编译 exit=0，自检 exit=1：16 项中 10 PASS、6 FAIL。失败为 OFF-002、003、004、007、012、013，均因端点被误判，得到 `UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT`。
+
+原始首个失败对应 OFF-002：预期 `pages=2;second_cursor=900`，实际在第一次 send 时抛出上述异常，尚未进入分页映射。根因位于 Observation.swift 的 sendChecked 端点判定（修复前第 140 行附近）：Foundation URL.path 不保留此端点末尾斜杠，而代码与带斜杠路径比较。真实诊断 `URL_SHAPE legacy_path_matches=false;components_path_matches=true;host_matches=true` 证实差异。这是 Harness 对 Foundation API 的使用错误，不是 fixture 输入/预期错误；没有证据证明 Swift API 最近发生变更。
+
+修复只将路径取值改为 URLComponents.path，仍精确比较相同主机和完整路径，不改为前缀匹配，不放宽边界。新增 OFF-017 验证正确端点进入 worklist，缺少末尾斜杠、额外子路径、相近路径和外域这 4 个近似地址均拒绝；OFF-018/019 精确验证 HTTP_403/HTML challenge 错误类别。原 OFF-005/006 仅要求 blocked=true，在诊断版中因错误路由也满足条件，故保留原断言并用新增用例避免假阳性。
+
+首次 Artifact `12627759572`，SHA256 `95174c6116caead919f3717b240cdc88c14c433676864a806afbb184bf4bd862`，已核验下载哈希、ZIP CRC 和 11 文件白名单；保存到本轮证据 run-40270208701。真实隔离为 OS_SANDBOX_DENY_NETWORK，入口保护退出 64，上游 SHA 正确且源码干净。
+
+修复后的本地静态验证 96 项 PASS（诊断专用“尚未修复”检查已移除），19 个固定用例；git diff --check 通过。后续仅再执行一次独立离线回归，结果待补记。
 
 ```ini
 TASK = DOUSTUDIOKIT_HARNESS_OFFLINE_FIX_01
-ROOT_CAUSE = UNRESOLVED
-FAILED_ASSERTION = UNKNOWN
+ROOT_CAUSE = IDENTIFIED
+FAILED_ASSERTION = OFF-002
 HARNESS_FIX = NOT_APPLIED
-HARNESS_BUILD = NOT_RUN
-HARNESS_OFFLINE_SELF_TEST = NOT_RUN
+HARNESS_BUILD = PASS
+HARNESS_OFFLINE_SELF_TEST = FAIL
 OFFLINE_REGRESSION = NOT_RUN
-GITHUB_ACTIONS_RUN = NOT_RUN
+GITHUB_ACTIONS_RUN = https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40270208701
 REAL_DOUYIN_API = NOT_RUN
 WORKLIST_FETCH = NOT_RUN
 MULTI_PAGE_FETCH = NOT_RUN

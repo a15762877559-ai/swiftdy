@@ -1,0 +1,35 @@
+BEGIN OFF-001 | Profile identifier | function=LinkParser.parse
+{"actual":"identifier_matches=true","function":"LinkParser.parse","status":"PASS","expected":"user identifier matches offline_fixture","id":"OFF-001","name":"Profile identifier","errorCategory":"NONE"}
+BEGIN OFF-002 | Server cursor propagation | function=ObservingTransport.send/observePage
+{"id":"OFF-002","status":"FAIL","expected":"pages=2;second_cursor=900","actual":"code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true","name":"Server cursor propagation","function":"ObservingTransport.send\/observePage","errorCategory":"UNEXPECTED_ACCEPTANCE_STOP"}
+BEGIN OFF-003 | Terminal state and fields | function=ObservingTransport.observePage
+{"id":"OFF-003","status":"FAIL","expected":"hasMore=false;fields=1","actual":"code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true","name":"Terminal state and fields","function":"ObservingTransport.observePage","errorCategory":"UNEXPECTED_ACCEPTANCE_STOP"}
+BEGIN OFF-004 | Repeated cursor rejection | function=ObservingTransport.observePage
+{"status":"FAIL","expected":"CURSOR_STALLED_OR_CYCLIC","function":"ObservingTransport.observePage","name":"Repeated cursor rejection","actual":"code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true","errorCategory":"UNEXPECTED_ACCEPTANCE_STOP","id":"OFF-004"}
+BEGIN OFF-005 | HTTP access rejection | function=ObservingTransport.send
+{"status":"PASS","expected":"throws blocked=true","function":"ObservingTransport.send","name":"HTTP access rejection","actual":"code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true","errorCategory":"NONE","id":"OFF-005"}
+BEGIN OFF-006 | HTML challenge rejection | function=ObservingTransport.observePage
+{"function":"ObservingTransport.observePage","status":"PASS","expected":"throws blocked=true","actual":"code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true","name":"HTML challenge rejection","errorCategory":"NONE","id":"OFF-006"}
+BEGIN OFF-007 | Request cursor mismatch | function=ObservingTransport.sendChecked
+{"function":"ObservingTransport.sendChecked","status":"FAIL","expected":"REQUEST_CURSOR_MISMATCH","actual":"code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true","name":"Request cursor mismatch","errorCategory":"ASSERTION_MISMATCH","id":"OFF-007"}
+BEGIN OFF-008 | Unsafe URLs | function=safeHTTPS/LinkParser.parse
+{"function":"safeHTTPS\/LinkParser.parse","status":"PASS","expected":"reject 4 unsafe URLs and unrelated profile","actual":"rejected=4;unrelated_rejected=true","name":"Unsafe URLs","errorCategory":"NONE","id":"OFF-008"}
+BEGIN OFF-009 | JSON integer types | function=integer
+{"function":"integer","status":"PASS","expected":"status=0;cursor=900;boolean\/fraction rejected","actual":"status=Optional(0);cursor=Optional(900);bool=nil;fraction=nil","name":"JSON integer types","errorCategory":"NONE","id":"OFF-009"}
+BEGIN OFF-010 | Pagination flag type | function=JSONSerialization/NSNumber
+{"function":"JSONSerialization\/NSNumber","status":"PASS","expected":"has_more numeric 1","actual":"number_present=true;number_string=1;bool=Optional(true)","name":"Pagination flag type","errorCategory":"NONE","id":"OFF-010"}
+BEGIN OFF-011 | Model field mapping | function=DouyinExtractor.work
+{"function":"DouyinExtractor.work","status":"PASS","expected":"fixture ID\/description\/timestamp preserved","actual":"id_matches=true;description_matches=true;timestamp=1","name":"Model field mapping","errorCategory":"NONE","id":"OFF-011"}
+BEGIN OFF-012 | Stop after server exhaustion | function=ObservingTransport.sendChecked
+{"function":"ObservingTransport.sendChecked","status":"FAIL","expected":"PAGE_LIMIT_OR_EXHAUSTED","actual":"code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true","name":"Stop after server exhaustion","errorCategory":"UNEXPECTED_ACCEPTANCE_STOP","id":"OFF-012"}
+BEGIN OFF-013 | Failed-page state | function=ObservingTransport.send catch
+{"function":"ObservingTransport.send catch","status":"FAIL","expected":"one error page HTTP_403;zero fields;no candidate","actual":"code=UNEXPECTED_REQUEST_OR_DOWNLOAD_LIMIT;blocked=true","name":"Failed-page state","errorCategory":"ASSERTION_MISMATCH","id":"OFF-013"}
+BEGIN OFF-014 | Media host allowlist | function=ObservingTransport.allowMedia
+{"function":"ObservingTransport.allowMedia","status":"PASS","expected":"MEDIA_HOST_OUTSIDE_ALLOWLIST","actual":"code=MEDIA_HOST_OUTSIDE_ALLOWLIST;blocked=true","name":"Media host allowlist","errorCategory":"NONE","id":"OFF-014"}
+BEGIN OFF-015 | Reject HTML media bytes | function=ObservingTransport.sendChecked
+{"function":"ObservingTransport.sendChecked","status":"PASS","expected":"MEDIA_CONTAINER_NOT_MP4;no media hash","actual":"code=MEDIA_CONTAINER_NOT_MP4;blocked=false","name":"Reject HTML media bytes","errorCategory":"NONE","id":"OFF-015"}
+BEGIN OFF-016 | Exception classification | function=RuntimeAcceptance.classify
+{"function":"RuntimeAcceptance.classify","status":"PASS","expected":"missing credentials BLOCKED;storage FAIL","actual":"missing=UPSTREAM_MISSING_CREDENTIALS,true;storage=UPSTREAM_STORAGE_ERROR,false","name":"Exception classification","errorCategory":"NONE","id":"OFF-016"}
+URL_SHAPE legacy_path_matches=false;components_path_matches=true;host_matches=true
+OFFLINE SUMMARY total=16 passed=10 failed=6
+Offline harness checks FAIL
