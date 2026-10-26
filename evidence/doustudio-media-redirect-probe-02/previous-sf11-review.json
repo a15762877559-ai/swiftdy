@@ -1,0 +1,15 @@
+{
+  "previous_run_id": 40319832707,
+  "tested_commit": "85d0b6c2ae8657fa41c21613b058fdeb95c78269",
+  "previous_report_commit": "f2ed64f8eefa3e5b7a24a701b3220d35b3b2066e",
+  "previous_worklist_count": 1,
+  "previous_work_count": 21,
+  "previous_media_count": 1,
+  "previous_www_status": 302,
+  "previous_www_redirect_completed": true,
+  "global_one_host_scheduling_limit": false,
+  "www_redirect_stopped_sf11": false,
+  "conclusion": "NO_ELIGIBLE_SF11_IN_PREVIOUS_SELECTED_SET",
+  "raw_missing_vs_eligibility_detail": "NOT_RECORDED_IN_PREVIOUS_ARTIFACT",
+  "new_missing_sample_status": "NO_ELIGIBLE_SAMPLE"
+}

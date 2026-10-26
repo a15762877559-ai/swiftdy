@@ -1,0 +1,27 @@
+{
+  "TASK": "DOUSTUDIOKIT_MEDIA_REDIRECT_PROBE_02",
+  "WINDOWS_STATIC": "PASS",
+  "MACOS_SWIFT_BUILD": "NOT_RUN",
+  "SWIFT_REDIRECT_OFFLINE_TESTS": "NOT_RUN",
+  "REAL_REDIRECT_PROBE": "NOT_RUN",
+  "checks": [
+    {
+      "file": ".github/workflows/doustudio-media-redirect-probe.yml",
+      "status": "PASS",
+      "checks": "manual_only_secret_gate_pins_bash_syntax_explicit_artifacts"
+    },
+    {
+      "file": ".github/workflows/doustudio-media-redirect-probe-offline.yml",
+      "status": "PASS",
+      "checks": "manual_only_secret_gate_pins_bash_syntax_explicit_artifacts"
+    },
+    {
+      "status": "PASS",
+      "checks": "only_existing_task_and_entry_files_modified_historical_and_transport_protected"
+    },
+    {
+      "status": "PASS",
+      "checks": "dns_numeric_pin_single_connect_three_roles_original_extractor_no_detail"
+    }
+  ]
+}

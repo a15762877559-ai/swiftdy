@@ -1,0 +1,12 @@
+{
+  "python_version": "3.13.3",
+  "python_exit_code": 0,
+  "total_python_tests": 99,
+  "new_task_python_tests": 15,
+  "windows_controlled_server_tests": "PASS",
+  "MACOS_SWIFT_BUILD": "NOT_RUN",
+  "SWIFT_REDIRECT_OFFLINE_TESTS": "NOT_RUN",
+  "actionlint": "NOT_RUN_NOT_INSTALLED",
+  "REAL_MEDIA_PROBE": "NOT_RUN",
+  "automatic_workflow_dispatch": false
+}

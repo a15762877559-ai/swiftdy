@@ -1,0 +1,18 @@
+{
+  "baseline_commit": "f2ed64f8eefa3e5b7a24a701b3220d35b3b2066e",
+  "baseline_tracked_files": 506,
+  "modified_existing_files": [
+    "runtime-harness/Sources/RuntimeAcceptance/MediaHostLiveProbe.swift",
+    "runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift"
+  ],
+  "existing_workflows": "UNCHANGED",
+  "historical_reports_and_evidence": "UNCHANGED",
+  "SafeStreamingTransport": "UNCHANGED",
+  "transport_sha256": "2456887e7982c92bef429760900f46f37d2663835becf3daa2128b2131202ab1",
+  "fixed_upstream": "NOT_MODIFIED",
+  "VideoFlow": "NOT_MODIFIED",
+  "RootNetScope": "NOT_MODIFIED",
+  "system_proxy": "NOT_MODIFIED",
+  "v2rayN": "NOT_MODIFIED",
+  "git_global_config": "NOT_MODIFIED"
+}

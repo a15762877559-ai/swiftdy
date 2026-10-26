@@ -51,6 +51,7 @@ enum LiveProbePolicy {
 // One data task, no downloader and no buffered transport fallback. SafeStreamingTransport is unchanged:
 // its MP4 prefix and 100 MiB contract are deliberately not repurposed for a one-byte diagnostic.
 final class LiveProbeTask: NSObject, URLSessionDataDelegate, @unchecked Sendable {
+    enum Scope: Sendable, Equatable { case original, redirectTarget }
     private let lock = NSLock()
     private var observed: LiveProbeObservation
     private var task: URLSessionDataTask?
@@ -58,7 +59,19 @@ final class LiveProbeTask: NSObject, URLSessionDataDelegate, @unchecked Sendable
     private var continuation: CheckedContinuation<LiveProbeObservation, Never>?
     private var used = false
     private var callerCancelled = false
-    init(host: String) { observed = LiveProbeObservation(host:host) }
+    private let scope: Scope
+    private let proxyPort: Int?
+    private let captureLocation: Bool
+    private var capturedLocation: URL?
+    init(host: String, scope: Scope = .original, proxyPort: Int? = nil, captureLocation: Bool = false) {
+        observed = LiveProbeObservation(host:host); self.scope = scope
+        self.proxyPort = proxyPort; self.captureLocation = captureLocation
+    }
+    // Memory only, never Codable or printed. Consumed only after the first task reaches its terminal callback.
+    func takeLocation() -> URL? {
+        lock.lock(); defer { lock.unlock() }
+        let value = capturedLocation; capturedLocation = nil; return value
+    }
 
     func run(_ url: URL, fixture: Bool = false) async -> LiveProbeObservation {
         await withTaskCancellationHandler {
@@ -70,7 +83,9 @@ final class LiveProbeTask: NSObject, URLSessionDataDelegate, @unchecked Sendable
                 }
                 used = true
                 let local = url.scheme == "http" && url.host == "127.0.0.1" && url.port != nil && url.user == nil && url.password == nil
-                guard (fixture ? local : (LiveProbePolicy.allowed(url.absoluteString) && url.host?.lowercased() == observed.host)) else {
+                let allowed = scope == .original ? LiveProbePolicy.allowed(url.absoluteString) : RedirectProbePolicy.targetAllowed(url)
+                guard (fixture ? local : (allowed && url.host?.lowercased() == observed.host)),
+                      proxyPort == nil || (scope == .redirectTarget && (1024...65535).contains(proxyPort!)) else {
                     observed.result = "REQUEST_SCOPE_REJECTED"; continuation.resume(returning:observed); return
                 }
                 guard !callerCancelled else {
@@ -82,6 +97,12 @@ final class LiveProbeTask: NSObject, URLSessionDataDelegate, @unchecked Sendable
                 config.urlCredentialStorage = nil; config.urlCache = nil
                 config.requestCachePolicy = .reloadIgnoringLocalCacheData
                 config.connectionProxyDictionary = [:]
+                if let proxyPort {
+                    // Explicit local CONNECT tunnel pins the outbound numeric address. No PAC or bypass entries.
+                    config.connectionProxyDictionary = ["HTTPEnable":1,"HTTPProxy":"127.0.0.1","HTTPPort":proxyPort,
+                        "HTTPSEnable":1,"HTTPSProxy":"127.0.0.1","HTTPSPort":proxyPort,
+                        "ProxyAutoConfigEnable":0,"ExceptionsList":[String](),"ExcludeSimpleHostnames":0]
+                }
                 config.timeoutIntervalForRequest = 15; config.timeoutIntervalForResource = 20
                 config.httpMaximumConnectionsPerHost = 1
                 let queue = OperationQueue(); queue.maxConcurrentOperationCount = 1
@@ -111,6 +132,10 @@ final class LiveProbeTask: NSObject, URLSessionDataDelegate, @unchecked Sendable
     }
     private func redirect(_ response: HTTPURLResponse, target: URL?) {
         observed.http_status = response.statusCode
+        if captureLocation {
+            capturedLocation = RedirectProbePolicy.absoluteLocation(response.value(forHTTPHeaderField:"Location"))
+            if capturedLocation == nil { observed.redirect_target_rejected = true }
+        }
         if let target {
             let r = MediaHostAudit.describe(target.absoluteString,id:"REDIRECT",alias:"REDIRECT",role:"video_playback",field:"target",selected:false)
             if r.url_shape == "CANDIDATE_ONLY" { observed.redirect_host = r.normalized_host }
@@ -186,7 +211,11 @@ final class LiveProbeTask: NSObject, URLSessionDataDelegate, @unchecked Sendable
         if observed.result == "VIDEO_RANGE_206_ONE_BYTE" && observed.delegate_received_bytes > 1 {
             observed.result = "BODY_BUDGET_EXCEEDED"
         }
-        if !observed.cancel_requested { observed.result = error == nil ? "EMPTY_OR_INCOMPLETE_BODY" : "NETWORK_OR_TIMEOUT_ERROR" }
+        if !observed.cancel_requested {
+            let native = error as NSError?
+            let tls = native?.domain == NSURLErrorDomain && (-1206 ... -1200).contains(native?.code ?? 0)
+            observed.result = error == nil ? "EMPTY_OR_INCOMPLETE_BODY" : (tls ? "TLS_ERROR" : "NETWORK_OR_TIMEOUT_ERROR")
+        }
         let result = observed, waiter = continuation
         continuation = nil; self.task = nil; self.session = nil
         lock.unlock()

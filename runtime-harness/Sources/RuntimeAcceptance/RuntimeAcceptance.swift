@@ -9,6 +9,15 @@ struct RuntimeAcceptance {
     static let upstream = "362dad3d082e9f63c8efd360acc653ba169d40a2"
 
     @MainActor static func main() async {
+        if Array(CommandLine.arguments.dropFirst()) == ["--redirect-probe-policy-test"] {
+            do { if !(try RedirectProbeSelfTest.policy()) { exit(1) } } catch { exit(1) }; return
+        }
+        if CommandLine.arguments.dropFirst().first == "--redirect-probe-fixture" {
+            do { if !(try await RedirectProbeSelfTest.fixture(Array(CommandLine.arguments.dropFirst(2)))) { exit(1) } } catch { exit(1) }; return
+        }
+        if ["--redirect-tunnel-fixture","--redirect-tunnel-tls-fixture"].contains(CommandLine.arguments.dropFirst().first ?? "") {
+            do { if !(try await RedirectProbeSelfTest.tunnel(Array(CommandLine.arguments.dropFirst(2)),tls:CommandLine.arguments.contains("--redirect-tunnel-tls-fixture"))) { exit(1) } } catch { exit(1) }; return
+        }
         if Array(CommandLine.arguments.dropFirst()) == ["--live-probe-policy-test"] {
             do { if !(try LiveProbeSelfTest.policy()) { exit(1) } }
             catch { exit(1) }
@@ -53,6 +62,9 @@ struct RuntimeAcceptance {
         if ProcessInfo.processInfo.environment["OFFLINE_ONLY"] == "1" {
             print("ONLINE_ENTRY_DISABLED_IN_OFFLINE_MODE")
             exit(64)
+        }
+        if Array(CommandLine.arguments.dropFirst()) == ["--media-redirect-probe"] {
+            do { if !(try await MediaRedirectProbe.run(ProcessInfo.processInfo.environment)) { exit(2) } } catch { exit(1) }; return
         }
         if Array(CommandLine.arguments.dropFirst()) == ["--media-host-live-probe"] {
             do { if !(try await MediaHostLiveProbe.run(ProcessInfo.processInfo.environment)) { exit(2) } }
