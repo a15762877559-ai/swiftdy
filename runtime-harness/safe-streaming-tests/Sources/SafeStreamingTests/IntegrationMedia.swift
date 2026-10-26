@@ -41,8 +41,8 @@ enum IntegrationMedia {
         guard values.isRegularFile == true, values.isSymbolicLink != true, let size = values.fileSize,
               size > 0, size <= SafeStreamingTransport.MAX_MEDIA_BYTES, Int64(size) == accepted else { throw IntegrationError.file }
         proof.file_bytes = Int64(size)
-        proof.sha256 = try ControlledTests.hash(file)
-        proof.repeated_sha256_matches = proof.sha256 == (try ControlledTests.hash(file))
+        proof.sha256 = try StreamFileTools.hash(file)
+        proof.repeated_sha256_matches = proof.sha256 == (try StreamFileTools.hash(file))
         guard proof.repeated_sha256_matches else { throw IntegrationError.file }
         try verifyBoxes(file,size:Int64(size)); proof.mp4_container = true
         let asset = AVURLAsset(url:file)

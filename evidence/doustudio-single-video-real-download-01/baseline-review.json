@@ -1,0 +1,20 @@
+{
+  "project_path": "D:/Projects/swiftdy",
+  "origin": "a15762877559-ai/swiftdy",
+  "initial_head": "ad5c7c55f81a290c58378d7c30a54b6b04aaeaeb",
+  "initial_origin_main": "ad5c7c55f81a290c58378d7c30a54b6b04aaeaeb",
+  "initial_worktree": "CLEAN",
+  "previous_live_run": 40328292259,
+  "previous_result": "VALID_ONE_BYTE_206_ONLY_NOT_FULL_DOWNLOAD",
+  "actual_requests_this_task": {
+    "worklist": 0,
+    "entry": 0,
+    "cdn": 0
+  },
+  "temporary_download_scope": [
+    "www.douyin.com",
+    "v5-dy-ov-experiment.zjcdn.com"
+  ],
+  "production_allowlist": [],
+  "single_video_authorization_required": true
+}

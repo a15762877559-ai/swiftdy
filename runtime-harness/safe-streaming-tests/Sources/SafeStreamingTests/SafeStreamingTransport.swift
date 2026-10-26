@@ -36,9 +36,13 @@ struct StreamMetrics: Codable, Sendable {
     var backpressure_waits = 0
     var discarded_callback_bytes = 0
     var stream_calls = 0
+    var media_requests_started = 0
     var buffered_send_calls = 0
     var rejected_second_requests = 0
     var http_status: Int?
+    var content_type: String?
+    var full_resource_range = false
+    var pinned_session_proxy = false
     var declared_bytes: Int64?
     var range_removed = false
     var cookie_removed = false
@@ -64,6 +68,7 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
     private let verifiedHosts: Set<String>
     private let timeout: TimeInterval
     private let testConsumerDelay: Int
+    private let pinnedProxyPort: Int?
     private var metrics = StreamMetrics()
     private var session: URLSession?
     private var task: URLSessionDataTask?
@@ -80,9 +85,10 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
     private var exactBoundary = false
     private var cancelTime: Date?
 
-    init(extractedMediaURL: URL, verifiedMediaHosts: Set<String>, timeout: TimeInterval = 10) {
+    init(extractedMediaURL: URL, verifiedMediaHosts: Set<String>, timeout: TimeInterval = 10, pinnedProxyPort: Int? = nil) {
         allowedURL = extractedMediaURL; verifiedHosts = verifiedMediaHosts
         testLoopback = false; self.timeout = timeout; testConsumerDelay = 0
+        self.pinnedProxyPort = pinnedProxyPort
         super.init()
     }
     // Kept internal to the controlled-test executable; cannot accept an external host.
@@ -90,7 +96,7 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
         guard loopbackURL.scheme == "http", loopbackURL.host == "127.0.0.1",
               let port = loopbackURL.port, port >= 1024 else { throw SafeStreamError.scope }
         allowedURL = loopbackURL; testLoopback = true; verifiedHosts = []
-        self.timeout = timeout; testConsumerDelay = consumerDelayMilliseconds; super.init()
+        self.timeout = timeout; testConsumerDelay = consumerDelayMilliseconds; pinnedProxyPort = nil; super.init()
     }
     func snapshot() -> StreamMetrics { lock.synchronized { metrics } }
     func send(_ request: SignedRequest, options: TransportOptions) async throws -> HTTPResponse {
@@ -102,6 +108,7 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
             guard !used else { metrics.rejected_second_requests += 1; throw SafeStreamError.second }
             used = true; metrics.stream_calls += 1
             guard request.method == .get, request.body == nil, options.proxy == nil, options.extraHeaders.isEmpty,
+                  pinnedProxyPort == nil || (1024...65535).contains(pinnedProxyPort!),
                   let url = request.url, url == allowedURL, url.user == nil, url.password == nil, url.fragment == nil,
                   (testLoopback || (url.scheme == "https" && (url.port == nil || url.port == 443) && verifiedHosts.contains(url.host ?? ""))),
                   !request.headers.keys.contains(where: { ["authorization","proxy-authorization"].contains($0.lowercased()) }) else { throw SafeStreamError.scope }
@@ -145,12 +152,19 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
             configuration.urlCredentialStorage = nil
             configuration.urlCache = nil
             configuration.connectionProxyDictionary = [:]
+            if let port = pinnedProxyPort {
+                configuration.connectionProxyDictionary = ["HTTPEnable":1,"HTTPProxy":"127.0.0.1","HTTPPort":port,
+                    "HTTPSEnable":1,"HTTPSProxy":"127.0.0.1","HTTPSPort":port,"ProxyAutoConfigEnable":0,
+                    "ExceptionsList":[String](),"ExcludeSimpleHostnames":0]
+                metrics.pinned_session_proxy = true
+            }
             configuration.timeoutIntervalForRequest = timeout
             configuration.timeoutIntervalForResource = timeout * 3
             let delegateQueue = OperationQueue(); delegateQueue.maxConcurrentOperationCount = 1
             let session = URLSession(configuration: configuration, delegate: self, delegateQueue: delegateQueue)
             self.session = session
             let task = session.dataTask(with: request); self.task = task
+            metrics.media_requests_started += 1
             task.resume()
         }
     }
@@ -201,6 +215,7 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
             let type = (http.value(forHTTPHeaderField: "Content-Type") ?? "").split(separator: ";").first.map(String.init)?.lowercased() ?? ""
             guard ["video/mp4","video/quicktime","application/octet-stream"].contains(type),
                   (http.value(forHTTPHeaderField: "Content-Encoding") ?? "identity").lowercased() == "identity" else { failLocked(.type); completionHandler(.cancel); return }
+            metrics.content_type = type
             if let value = http.value(forHTTPHeaderField: "Content-Length") {
                 guard let count = Int64(value), count >= 0 else { failLocked(.length); completionHandler(.cancel); return }
                 declared = count; metrics.declared_bytes = count
@@ -209,6 +224,7 @@ final class SafeStreamingTransport: NSObject, StreamingHTTPTransport, URLSession
             }
             if http.statusCode == 206 {
                 guard let count = declared, http.value(forHTTPHeaderField: "Content-Range") == "bytes 0-\(count - 1)/\(count)" else { failLocked(.range); completionHandler(.cancel); return }
+                metrics.full_resource_range = true
             } else if http.value(forHTTPHeaderField: "Content-Range") != nil { failLocked(.range); completionHandler(.cancel); return }
             let head = StreamHead(statusCode: http.statusCode, headers: ["Content-Type":type], contentLength:declared)
             if let waiter = headWaiter { headWaiter = nil; waiter.resume(returning: head) }

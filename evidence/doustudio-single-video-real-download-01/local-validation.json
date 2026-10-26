@@ -1,0 +1,12 @@
+{
+  "python_version": "3.13.3",
+  "total_python_tests": 116,
+  "new_python_tests": 17,
+  "python_exit_code": 0,
+  "WINDOWS_STATIC": "PASS",
+  "SWIFT_BUILD": "NOT_RUN",
+  "OFFLINE_SWIFT_DOWNLOAD_TESTS": "NOT_RUN",
+  "REAL_VIDEO_DOWNLOAD": "NOT_RUN",
+  "actionlint": "NOT_RUN_NOT_INSTALLED",
+  "automatically_triggered": false
+}

@@ -9,6 +9,15 @@ struct RuntimeAcceptance {
     static let upstream = "362dad3d082e9f63c8efd360acc653ba169d40a2"
 
     @MainActor static func main() async {
+        if Array(CommandLine.arguments.dropFirst()) == ["--single-download-policy-test"] {
+            do { if !(try SingleDownloadSelfTest.policy()) { exit(1) } } catch { exit(1) }; return
+        }
+        if Array(CommandLine.arguments.dropFirst()) == ["--single-download-generate-fixture"] {
+            do { try await SingleDownloadSelfTest.generate() } catch { exit(1) }; return
+        }
+        if CommandLine.arguments.dropFirst().first == "--single-download-fixture" {
+            do { if !(try await SingleDownloadSelfTest.fixture(Array(CommandLine.arguments.dropFirst(2)))) { exit(1) } } catch { exit(1) }; return
+        }
         if Array(CommandLine.arguments.dropFirst()) == ["--redirect-probe-policy-test"] {
             do { if !(try RedirectProbeSelfTest.policy()) { exit(1) } } catch { exit(1) }; return
         }
@@ -62,6 +71,9 @@ struct RuntimeAcceptance {
         if ProcessInfo.processInfo.environment["OFFLINE_ONLY"] == "1" {
             print("ONLINE_ENTRY_DISABLED_IN_OFFLINE_MODE")
             exit(64)
+        }
+        if Array(CommandLine.arguments.dropFirst()) == ["--single-video-real-download"] {
+            do { if !(try await SingleVideoRealDownload.run(ProcessInfo.processInfo.environment)) { exit(2) } } catch { exit(1) }; return
         }
         if Array(CommandLine.arguments.dropFirst()) == ["--media-redirect-probe"] {
             do { if !(try await MediaRedirectProbe.run(ProcessInfo.processInfo.environment)) { exit(2) } } catch { exit(1) }; return

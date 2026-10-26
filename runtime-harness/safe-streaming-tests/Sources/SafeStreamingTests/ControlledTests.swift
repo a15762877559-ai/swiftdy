@@ -29,10 +29,7 @@ struct ControlledResult: Codable {
     static let cases = (1...28).map { String(format:"ST-%03d",$0) }
     static let failureCases: Set<String> = ["ST-002","ST-003","ST-007","ST-009","ST-010","ST-011","ST-012","ST-013","ST-014","ST-015","ST-016","ST-022","ST-023","ST-024","ST-026","ST-027","ST-028"]
     static func hash(_ url: URL) throws -> String {
-        let handle = try FileHandle(forReadingFrom:url); defer { try? handle.close() }
-        var hash = SHA256()
-        while let data = try handle.read(upToCount:65536), !data.isEmpty { hash.update(data:data) }
-        return hash.finalize().map { String(format:"%02x",$0) }.joined()
+        try StreamFileTools.hash(url)
     }
     static func files(_ root: URL) -> [URL] {
         guard let enumerator = FileManager.default.enumerator(at:root,includingPropertiesForKeys:[.isRegularFileKey,.isSymbolicLinkKey]) else { return [] }

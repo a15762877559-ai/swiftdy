@@ -1,0 +1,21 @@
+{
+  "baseline_commit": "ad5c7c55f81a290c58378d7c30a54b6b04aaeaeb",
+  "modified_existing_files": [
+    "runtime-harness/Package.swift",
+    "runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift",
+    "runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/ControlledTests.swift",
+    "runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/IntegrationMedia.swift",
+    "runtime-harness/safe-streaming-tests/Sources/SafeStreamingTests/SafeStreamingTransport.swift"
+  ],
+  "original_transport_sha256": "2456887e7982c92bef429760900f46f37d2663835becf3daa2128b2131202ab1",
+  "adapted_transport_sha256": "717489f3152a898deddd98c9b0b49438e7bd07f397646c0fbb0bad9148937ae2",
+  "data_budget_cancel_and_terminal_implementation": "BYTE_IDENTICAL_TO_BASELINE",
+  "old_workflows": "UNCHANGED",
+  "historical_reports_and_evidence": "UNCHANGED",
+  "fixed_upstream": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "upstream_modified": false,
+  "VideoFlow_modified": false,
+  "RootNetScope_modified": false,
+  "system_proxy_modified": false,
+  "git_global_config_modified": false
+}
