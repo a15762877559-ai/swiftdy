@@ -1,0 +1,28 @@
+{
+  "artifact_id": 12628352141,
+  "name": "doustudio-runtime-evidence-40271049168-1",
+  "size_in_bytes": 4706,
+  "sha256": "bfe2bb64770b49f296b4c58742a07f39c4173853b01e02635d2d1359fecd432c",
+  "digest_match": true,
+  "zip_crc": "PASS",
+  "file_count": 10,
+  "file_allowlist": "PASS",
+  "files": [
+    "download-validation.json",
+    "entrypoint-analysis.json",
+    "failure-observations.json",
+    "field-validation.json",
+    "final-acceptance.json",
+    "pagination-result.json",
+    "profile-resolution.json",
+    "runtime-environment.json",
+    "stage-outcomes.json",
+    "worklist-result.json"
+  ],
+  "retention_days": 3,
+  "expires_at": "2026-10-29T04:49:49Z",
+  "contains_media": false,
+  "query_url_and_credential_pattern_check": "PASS",
+  "missing_build_and_runtime_exit_files": "Expected: those stages were skipped",
+  "template_values_are_not_live_environment_or_runtime_results": true
+}

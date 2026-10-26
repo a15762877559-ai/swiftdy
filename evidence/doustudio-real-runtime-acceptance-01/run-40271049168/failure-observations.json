@@ -1,0 +1,9 @@
+{
+  "observations": [
+    {
+      "phase": "input",
+      "code": "EXPLICIT_CONSENT_AND_CANONICAL_PROFILE_REQUIRED",
+      "classification": "BLOCKED"
+    }
+  ]
+}

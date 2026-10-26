@@ -1,0 +1,23 @@
+{
+  "statuses": {
+    "TASK": "DOUSTUDIOKIT_REAL_RUNTIME_ACCEPTANCE_01_RUN_02",
+    "HARNESS_BUILD": "NOT_RUN",
+    "HARNESS_OFFLINE_SELF_TEST": "NOT_RUN",
+    "PROFILE_URL_RESOLUTION": "NOT_RUN",
+    "WORKLIST_FETCH": "NOT_RUN",
+    "MULTI_PAGE_FETCH": "NOT_RUN",
+    "PAGINATION_CORRECTNESS": "NOT_VERIFIED",
+    "WORK_ITEM_FIELDS": "NOT_RUN",
+    "VIDEO_DOWNLOAD": "NOT_RUN",
+    "MEDIA_INTEGRITY": "NOT_VERIFIED",
+    "NO_WATERMARK": "NOT_TESTED",
+    "CURRENT_INTERFACE_COMPATIBILITY": "NOT_VERIFIED",
+    "UPSTREAM_SOURCE_CHANGED": "NO",
+    "ROOTNETSCOPE_CHANGED": "NO",
+    "VIDEOFLOW_CHANGED": "NO",
+    "RUST_IMPLEMENTATION": "NOT_STARTED"
+  },
+  "failure_category": "UNKNOWN",
+  "input_guard": "BLOCKED",
+  "normalization": "Raw artifact NOT_RUN for pagination correctness/media integrity/interface compatibility is reported as NOT_VERIFIED per RUN_02 vocabulary; original artifact is preserved."
+}

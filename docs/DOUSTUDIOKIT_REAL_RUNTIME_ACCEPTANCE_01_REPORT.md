@@ -1,6 +1,6 @@
 # DOUSTUDIOKIT_REAL_RUNTIME_ACCEPTANCE_01
 
-日期：2026-10-26（Asia/Shanghai）。最新结果：用户已手动触发运行 `40267311040`。独立 Harness 云端编译成功，但 Harness 离线自检失败，真实运行步骤被跳过；未执行抖音网络请求或视频下载。此次失败不能证明上游接口不可用。下文保留准备阶段说明，最新实测证据见“首次云端运行结果”。
+日期：2026-10-26（Asia/Shanghai）。最新 RUN_02 运行 `40271049168` 在输入校验阶段停止，编译、自检和真实接口步骤均 skipped。用户输入 URL 格式与授权确认的组合校验未通过，日志无法区分具体条件；没有抖音请求或媒体下载。最新结论见末尾“RUN_02 实测结果”；此前内容保留为历史记录。
 
 ## 仓库和基线
 
@@ -118,7 +118,7 @@ ARTIFACT_VERIFICATION = PASS
 AUTOMATIC_RERUN = NO
 ```
 
-## 当前验收状态
+## 首次运行时的验收状态（历史）
 
 ```ini
 BUILD_BASELINE = PASS
@@ -138,3 +138,75 @@ ROOTNETSCOPE_CHANGED = NO
 ```
 
 网络验收状态继续保持 NOT_RUN；真实云端环境和 Harness 编译结果仅来自本次 run 子目录。没有把离线 fixture 视为用户主页数据，也没有把编译通过视为运行验收通过。后续需先定位 Harness 自检失败，再由用户决定下一次手动运行；本次按失败结果停止。
+
+
+## RUN_02 实测结果
+
+任务 `DOUSTUDIOKIT_REAL_RUNTIME_ACCEPTANCE_01_RUN_02`。本轮复用已有 Harness 和真实运行工作流，没有重新开发、修补或重建工作流。
+
+### 执行前确认
+
+- 本地 HEAD 与远端 main 均为 `643d1bd74813b5d527a9b6dd867bec5a6e1983f3`，无未提交跟踪源码改动。唯一既有未跟踪 RUN 报告保持原样并排除提交。
+- Harness 三份 Swift 源码的 Git blob SHA-256 与[19/19 离线验收 40270472151](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40270472151) Artifact 中的 source_hashes 完全一致；受测源码提交 `44fb339dd5aea5e5b4a8c478aa4c82d8d4c9f77b` 到本轮 HEAD 的 runtime-harness/ 与真实工作流没有差异。OFF-002 修复仍在。
+- 同一 Package.swift 与 ../upstream 依赖；上游仍配置固定 `362dad3d082e9f63c8efd360acc653ba169d40a2`。三页、一条视频、maxRetry=0、显式空 cookie、拒绝携带认证头及禁止重定向的保护仍在，不调用 collectAccountBatched。
+- **100 MiB 检查在原版响应完整缓冲后执行，不是网络传输量/带宽上限，无法保证一次响应最多传输 100 MiB。**
+- 没有代填主页、复用旧 URL、读取认证材料或自动 dispatch；以下仅收集用户已手动触发的一次运行。
+
+### 运行与失败证据
+
+- [真实运行 40271049168](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40271049168)，attempt=1，workflow_dispatch，main，受测提交 `643d1bd74813b5d527a9b6dd867bec5a6e1983f3`。北京时间 2026-10-26 12:49:43 创建，conclusion=failure。
+- Job `121403737101` 在 Initialize evidence and validate explicit input 步骤 exit=2。日志：`Input blocked: enter a canonical public profile URL without query/fragment and confirm consent.`
+- Artifact failure-observations.json：phase=input，code=EXPLICIT_CONSENT_AND_CANONICAL_PROFILE_REQUIRED，classification=BLOCKED。
+- 本轮失败分类：**UNKNOWN（输入校验阶段）**。原因是代码将“规范主页 URL”和“authorized_public_content=true”合并检查；现有诊断无法证明是 URL 不合法还是未勾选确认。不能据此填写 PROFILE_PARSE_ERROR、ACCESS_RESTRICTED、签名失败或其他抖音服务端类别。未改代码来追查用户输入，也未输出原始输入。
+- 上游检出、macOS/Swift/Xcode 环境记录、Harness 编译、自检和真实验收全部 skipped。本轮 Artifact 环境/业务状态文件主要来自初始化模板，不能当作本轮实际环境或接口结果；历史 19/19 PASS 不替代本轮自检 NOT_RUN。
+- 因未进入真实阶段：未解析主页、未请求作品、无实际页记录/作品 ID/标题/时间/封面/视频字段证据，也没有 HTTP 状态、下一页游标或真实媒体文件。作品数是“未测”，不能将模板的空值/0 当成实际空账号。没有 SERVER_EXHAUSTED 证据。
+- 没有下载，因此文件哈希、媒体正文与解码均未验证，无水印 NOT_TESTED。未遇到可观测的抖音 403/429/挑战响应，不推断服务端行为。
+
+### 每个步骤 outcome
+
+| 步骤 | outcome |
+| --- | --- |
+| Set up job | success |
+| Checkout acceptance harness | success |
+| Initialize evidence and validate explicit input | failure |
+| Checkout unchanged pinned upstream | skipped |
+| Verify upstream and record runtime environment | skipped |
+| Compile independent harness | skipped |
+| Check harness guards with offline fixtures | skipped |
+| Run user-authorized acceptance once | skipped |
+| Finalize truthful stage outcomes | success |
+| Upload sanitized evidence only | success |
+| Remove temporary media | success |
+| Post Checkout acceptance harness | success |
+| Complete job | success |
+
+编译、自检、真实运行退出码均 NOT_RUN；仅输入初始化退出码 2。对应日志与退出码文件缺失是步骤跳过的预期结果，不补造成功退出码。
+
+### Artifact 和交付
+
+[Artifact 12628352141](https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40271049168/artifacts/12628352141)：`doustudio-runtime-evidence-40271049168-1`，4706 bytes，10 个 JSON 白名单文件，保留 3 天，到期北京时间 2026-10-29 12:49:49。SHA-256 `bfe2bb64770b49f296b4c58742a07f39c4173853b01e02635d2d1359fecd432c` 与 GitHub 摘要一致；ZIP CRC、文件名单和 JSON 解析通过。没有媒体、认证材料或带查询参数的完整 URL。
+
+原始 Artifact 文件保持原样保存到 `evidence/doustudio-real-runtime-acceptance-01/run-40271049168/`，另附 run-summary.json、artifact-inspection.json、input-validation-log.txt、preflight-verification.json 和 run-02-assessment.json。完整 Job 日志与 ZIP 仅存在 .git/task-validation/runtime-run-40271049168/，不提交。
+
+按本轮枚举要求，原始 Artifact 的 PAGINATION_CORRECTNESS / MEDIA_INTEGRITY / CURRENT_INTERFACE_COMPATIBILITY=NOT_RUN 在验收表中写为 NOT_VERIFIED；原始文件不覆盖，转换说明独立保存。其余未测业务状态保持 NOT_RUN。
+
+本轮只提交本报告与新 RunID 证据目录；原源码、两份已有工作流、离线工作流及历史证据快照哈希全部未变，没有修改上游或其他项目。失败后不自动重试，已停止；本轮结果不能证明 DouStudioKit 的真实接口是否可用。
+
+```ini
+TASK = DOUSTUDIOKIT_REAL_RUNTIME_ACCEPTANCE_01_RUN_02
+HARNESS_BUILD = NOT_RUN
+HARNESS_OFFLINE_SELF_TEST = NOT_RUN
+PROFILE_URL_RESOLUTION = NOT_RUN
+WORKLIST_FETCH = NOT_RUN
+MULTI_PAGE_FETCH = NOT_RUN
+PAGINATION_CORRECTNESS = NOT_VERIFIED
+WORK_ITEM_FIELDS = NOT_RUN
+VIDEO_DOWNLOAD = NOT_RUN
+MEDIA_INTEGRITY = NOT_VERIFIED
+NO_WATERMARK = NOT_TESTED
+CURRENT_INTERFACE_COMPATIBILITY = NOT_VERIFIED
+UPSTREAM_SOURCE_CHANGED = NO
+ROOTNETSCOPE_CHANGED = NO
+VIDEOFLOW_CHANGED = NO
+RUST_IMPLEMENTATION = NOT_STARTED
+```

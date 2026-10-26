@@ -1,0 +1,102 @@
+{
+  "run_id": 40271049168,
+  "run_url": "https://github.com/achusonwork-bit/doustudio-runtime-acceptance/actions/runs/40271049168",
+  "event": "workflow_dispatch",
+  "attempt": 1,
+  "status": "completed",
+  "conclusion": "failure",
+  "created_at_Asia_Shanghai": "2026-10-26T12:49:43+08:00",
+  "test_commit": "643d1bd74813b5d527a9b6dd867bec5a6e1983f3",
+  "upstream_configured_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "upstream_checkout_this_run": "SKIPPED",
+  "initialization_exit_code": 2,
+  "harness_build_exit_code": "NOT_RUN",
+  "offline_selftest_exit_code": "NOT_RUN",
+  "runtime_exit_code": "NOT_RUN",
+  "failure_category": "UNKNOWN",
+  "failure_phase": "INPUT_VALIDATION",
+  "safe_error_code": "EXPLICIT_CONSENT_AND_CANONICAL_PROFILE_REQUIRED",
+  "reason_detail": "Combined URL/consent guard failed; available diagnostics cannot distinguish which condition. No inference of platform rejection or signature failure.",
+  "job_id": 121403737101,
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1
+    },
+    {
+      "name": "Checkout acceptance harness",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2
+    },
+    {
+      "name": "Initialize evidence and validate explicit input",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 3
+    },
+    {
+      "name": "Checkout unchanged pinned upstream",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 4
+    },
+    {
+      "name": "Verify upstream and record runtime environment",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 5
+    },
+    {
+      "name": "Compile independent harness",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 6
+    },
+    {
+      "name": "Check harness guards with offline fixtures",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 7
+    },
+    {
+      "name": "Run user-authorized acceptance once",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 8
+    },
+    {
+      "name": "Finalize truthful stage outcomes",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9
+    },
+    {
+      "name": "Upload sanitized evidence only",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10
+    },
+    {
+      "name": "Remove temporary media",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 11
+    },
+    {
+      "name": "Post Checkout acceptance harness",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 22
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 23
+    }
+  ],
+  "automatic_retry": false
+}

@@ -1,0 +1,25 @@
+{
+  "task": "DOUSTUDIOKIT_REAL_RUNTIME_ACCEPTANCE_01_RUN_02",
+  "preflight": "PASS",
+  "head": "643d1bd74813b5d527a9b6dd867bec5a6e1983f3",
+  "remote_main": "643d1bd74813b5d527a9b6dd867bec5a6e1983f3",
+  "offline_run": "40270472151",
+  "tested_source_commit": "44fb339dd5aea5e5b4a8c478aa4c82d8d4c9f77b",
+  "source_hashes_match": {
+    "runtime-harness/Sources/RuntimeAcceptance/Observation.swift": "fe102cf2b0055f8acfa488f3375586e61a8d7f650a9a8dd0eba3f13dfefb8d63",
+    "runtime-harness/Sources/RuntimeAcceptance/RuntimeAcceptance.swift": "4257e21c0f11f7b3fb5ef231286f53fab26bc095368aa93b866cd2cf693f644e",
+    "runtime-harness/Sources/RuntimeAcceptance/SelfTest.swift": "2c943c1881980534400520b81f3142c6c826b54a9faa2f52938a205e6ec80e45"
+  },
+  "offline_cases_passed": 19,
+  "harness_package_and_workflow_unchanged_since_test": true,
+  "uncommitted_tracked_changes": false,
+  "existing_untracked_report_excluded": true,
+  "max_pages": 3,
+  "max_media_downloads": 1,
+  "max_retry": 0,
+  "cookie": "EXPLICIT_EMPTY_NOT_READ",
+  "limit_100_MiB": "POST_RESPONSE_BUFFERING_NOT_NETWORK_TRAFFIC_CAP",
+  "dispatch": "USER_MANUAL_RUN_40271049168",
+  "prior_latest_runtime_run": "40267311040",
+  "protected_snapshot_hashes_unchanged": true
+}

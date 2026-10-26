@@ -1,0 +1,7 @@
+{
+  "INIT_OUTCOME": "failure",
+  "ENVIRONMENT_OUTCOME": "skipped",
+  "COMPILE_OUTCOME": "skipped",
+  "SELFTEST_OUTCOME": "skipped",
+  "ACCEPTANCE_OUTCOME": "skipped"
+}

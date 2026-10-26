@@ -1,0 +1,2 @@
+2026-10-26T04:49:49.1089520Z Input blocked: enter a canonical public profile URL without query/fragment and confirm consent.
+2026-10-26T04:49:49.1154740Z ##[error]Process completed with exit code 2.

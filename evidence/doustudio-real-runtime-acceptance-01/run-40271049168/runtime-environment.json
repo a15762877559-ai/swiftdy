@@ -1,0 +1,10 @@
+{
+  "phase": "PREPARATION",
+  "status": "NOT_RUN",
+  "requested_runner": "xcode-27",
+  "local_platform": "Windows",
+  "local_swift_compiler": "UNAVAILABLE",
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "build_baseline_run": "40264063807",
+  "new_harness_cloud_compilation": "NOT_RUN"
+}
