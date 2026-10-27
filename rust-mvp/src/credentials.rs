@@ -20,6 +20,8 @@ pub enum Status {
     Empty,
     Duplicated,
     InvalidFormat,
+    Unknown,
+    MalformedCandidate,
 }
 impl Status {
     pub fn label(self) -> &'static str {
@@ -29,13 +31,59 @@ impl Status {
             Self::Empty => "EMPTY",
             Self::Duplicated => "DUPLICATED",
             Self::InvalidFormat => "INVALID_FORMAT",
+            Self::Unknown => "UNKNOWN",
+            Self::MalformedCandidate => "MALFORMED_CANDIDATE",
         }
     }
 }
 
 // Same whole-segment trimming and first '=' split as the original signer.
+fn raw_segments(raw: &str) -> impl Iterator<Item = &str> {
+    raw.split(';').filter(|s| !s.trim().is_empty())
+}
 fn segments(raw: &str) -> impl Iterator<Item = &str> {
-    raw.split(';').map(str::trim).filter(|s| !s.is_empty())
+    raw_segments(raw).map(str::trim)
+}
+
+#[derive(Clone, Copy)]
+enum ScanMode {
+    StrictValidation,
+    DiagnosticInspection,
+}
+
+fn valid_name(name: &str) -> bool {
+    !name.is_empty()
+        && name
+            .bytes()
+            .all(|b| b.is_ascii_alphanumeric() || b"!#$%&'*+-.^_`|~".contains(&b))
+}
+
+// Both modes use the same trim, first '=' split and exact key comparison.
+// Diagnostic mode skips an entire unreliable segment; it never repairs or splits on newline.
+fn parsed_segment(segment: &str, mode: ScanMode) -> Option<(&str, &str)> {
+    let pair = segment.trim().split_once('=')?;
+    if matches!(mode, ScanMode::DiagnosticInspection)
+        && (segment.chars().any(char::is_control) || !valid_name(pair.0))
+    {
+        return None;
+    }
+    Some(pair)
+}
+
+fn malformed_candidate(raw: &str, names: &[&str]) -> bool {
+    raw_segments(raw)
+        .filter(|segment| parsed_segment(segment, ScanMode::DiagnosticInspection).is_none())
+        .any(|segment| {
+            let text = segment.trim();
+            names.iter().any(|name| {
+                text.strip_prefix(name).is_some_and(|tail| {
+                    tail.is_empty()
+                        || tail.starts_with(|c: char| {
+                            c == '=' || !c.is_ascii_alphanumeric() && c != '_'
+                        })
+                })
+            })
+        })
 }
 pub fn valid_structure(raw: &str) -> bool {
     structure_error(raw).is_none()
@@ -76,10 +124,7 @@ fn structure_error(raw: &str) -> Option<&'static str> {
         if name.chars().any(char::is_whitespace) {
             return Some("COOKIE_FIELD_NAME_WHITESPACE");
         }
-        if !name
-            .bytes()
-            .all(|b| b.is_ascii_alphanumeric() || b"!#$%&'*+-.^_`|~".contains(&b))
-        {
+        if !valid_name(name) {
             return Some("COOKIE_FIELD_NAME_INVALID");
         }
     }
@@ -94,12 +139,13 @@ fn structure_error(raw: &str) -> Option<&'static str> {
 fn field<'a>(
     raw: &'a str,
     names: &'static [&'static str],
+    mode: ScanMode,
 ) -> (&'static str, Status, Option<&'a str>) {
     let mut selected = None;
     let mut empty = None;
     for &name in names {
-        let mut values = segments(raw)
-            .filter_map(|s| s.split_once('='))
+        let mut values = raw_segments(raw)
+            .filter_map(|s| parsed_segment(s, mode))
             .filter(|(key, _)| *key == name)
             .map(|(_, value)| value);
         if let Some(value) = values.next() {
@@ -126,7 +172,9 @@ pub fn resolve<'a>(raw: &'a str, names: &'static [&'static str]) -> Result<&'a s
     if !valid_structure(raw) {
         return Err(Error::Credential);
     }
-    field(raw, names).2.ok_or(Error::Credential)
+    field(raw, names, ScanMode::StrictValidation)
+        .2
+        .ok_or(Error::Credential)
 }
 
 #[derive(Debug)]
@@ -134,15 +182,82 @@ pub struct Diagnostic {
     pub fields: [(&'static str, Status); 2],
     pub structure_valid: bool,
     pub structure_error: Option<&'static str>,
+    /// Status restricted to reliably parseable segments; Missing means not observed there.
+    pub observed_fields: [(&'static str, Status); 2],
+    pub inspection_complete: bool,
+    pub malformed_candidates: [bool; 2],
+    strict_validation_passed: bool,
 }
 impl Diagnostic {
     pub fn passed(&self) -> bool {
-        self.structure_valid && self.fields.iter().all(|(_, s)| *s == Status::Present)
+        self.strict_validation_passed
+    }
+    pub fn inspection_label(&self) -> &'static str {
+        if self.inspection_complete {
+            "COMPLETE"
+        } else {
+            "PARTIAL"
+        }
+    }
+    pub fn strict_label(&self) -> &'static str {
+        if self.passed() {
+            "PASS"
+        } else {
+            "REJECT"
+        }
+    }
+    fn observation_label(&self, index: usize) -> &'static str {
+        if self.observed_fields[index].1 == Status::Missing {
+            "NOT_OBSERVED_IN_PARSEABLE_SEGMENTS"
+        } else {
+            "CONFIRMED_IN_PARSEABLE_SEGMENTS"
+        }
+    }
+    fn parseable_label(&self, index: usize) -> &'static str {
+        if self.observed_fields[index].1 == Status::Missing {
+            "NOT_OBSERVED"
+        } else {
+            self.observed_fields[index].1.label()
+        }
+    }
+    pub fn json(&self) -> serde_json::Value {
+        let fields = [0, 1].map(|i| {
+            serde_json::json!({
+                "name": self.fields[i].0,
+                "status": self.fields[i].1.label(),
+                "observation": self.observation_label(i),
+                "parseable_status": self.parseable_label(i),
+                "malformed_candidate": self.malformed_candidates[i],
+            })
+        });
+        serde_json::json!({
+            "task": "DOUSTUDIOKIT_WINDOWS_COOKIE_DIAGNOSTIC_02",
+            "mode": "DiagnosticInspection",
+            "COOKIE_STRUCTURE": if self.structure_valid { "PASS" } else { "FAIL" },
+            "STRUCTURE_REASON": self.structure_error.unwrap_or("NONE"),
+            "MSTOKEN_FIELD": self.fields[0].1.label(),
+            "UIFID_FIELD": self.fields[1].1.label(),
+            "required_fields": { "msToken": fields[0], "UIFID": fields[1] },
+            "FIELD_INSPECTION": self.inspection_label(),
+            "LOCAL_CREDENTIAL_STRUCTURE": if self.passed() { "PASS" } else { "FAIL" },
+            "STRICT_SIGNING_VALIDATION": self.strict_label(),
+            "SIGNING_ALLOWED": "NO",
+            "SIGNING": "NOT_RUN",
+            "NETWORK_REQUESTS": 0,
+            "DNS_REQUESTS": 0,
+            "REAL_HTTP_REQUESTS": 0,
+            "REAL_MEDIA_REQUESTS": 0,
+        })
     }
     pub fn render(&self) -> String {
         let mut out = String::from("DouStudioKit Offline Credential Check\n\nNetwork access: DISABLED\nSigning: NOT_RUN\nHTTP requests: 0\n\nRequired fields:\n");
-        for (name, status) in self.fields {
-            out.push_str(&format!("  {name}: {}\n", status.label()));
+        for (index, (name, status)) in self.fields.iter().enumerate() {
+            out.push_str(&format!(
+                "  {name}: {} [{}; parseable_status={}]\n",
+                status.label(),
+                self.observation_label(index),
+                self.parseable_label(index)
+            ));
         }
         out.push_str("UIFID aliases (one required, case-sensitive, priority order):\n  ");
         out.push_str(&UIFID_NAMES.join(" | "));
@@ -157,25 +272,53 @@ impl Diagnostic {
         } else {
             "REQUIRED_FIELD_MISSING"
         };
-        out.push_str(&format!("\n\nCookie structure: {}\nFailure reason: {reason}\nLOCAL_CREDENTIAL_STRUCTURE = {}\nNo request was sent.\n", if self.passed() { "PASS" } else { "FAIL" }, if self.passed() { "PASS" } else { "FAIL" }));
+        out.push_str(&format!("\n\nCOOKIE_STRUCTURE = {}\nSTRUCTURE_REASON = {}\nFailure reason: {reason}\nFIELD_INSPECTION = {}\nLOCAL_CREDENTIAL_STRUCTURE = {}\nSTRICT_SIGNING_VALIDATION = {}\nSIGNING_ALLOWED = NO\nNETWORK_REQUESTS = 0\nNo request was sent.\n", if self.structure_valid { "PASS" } else { "FAIL" }, self.structure_error.unwrap_or("NONE"), self.inspection_label(), if self.passed() { "PASS" } else { "FAIL" }, self.strict_label()));
+        if !self.inspection_complete {
+            out.push_str("PARTIAL: field states describe parseable segments only; unobserved fields are UNKNOWN, not proven absent.\n");
+        }
         out
     }
 }
 pub fn inspect(raw: &str) -> Diagnostic {
     let structure_error = structure_error(raw);
     let structure_valid = structure_error.is_none();
-    let fields = [TOKEN_NAMES, UIFID_NAMES].map(|names| {
-        if !structure_valid && !raw.trim().is_empty() {
-            (names[0], Status::InvalidFormat)
+    let inspection_complete = structure_valid || raw.trim().is_empty();
+    // Never process an over-limit input as a complete scan.
+    let within_limit = raw.len() <= COOKIE_LIMIT;
+    let observed_fields = [TOKEN_NAMES, UIFID_NAMES].map(|names| {
+        let (name, status, _) = if within_limit {
+            field(raw, names, ScanMode::DiagnosticInspection)
         } else {
-            let (name, status, _) = field(raw, names);
-            (name, status)
-        }
+            (names[0], Status::Missing, None)
+        };
+        (name, status)
     });
+    let malformed_candidates =
+        [TOKEN_NAMES, UIFID_NAMES].map(|names| within_limit && malformed_candidate(raw, names));
+    let fields = [0, 1].map(|i| {
+        let (name, observed) = observed_fields[i];
+        let status = if observed == Status::Duplicated {
+            observed
+        } else if malformed_candidates[i] {
+            Status::MalformedCandidate
+        } else if observed == Status::Missing && !inspection_complete {
+            Status::Unknown
+        } else {
+            observed
+        };
+        (name, status)
+    });
+    // Calls strict credential resolution only, never a signer or client.
+    let strict_validation_passed =
+        resolve(raw, TOKEN_NAMES).is_ok() && resolve(raw, UIFID_NAMES).is_ok();
     Diagnostic {
         fields,
         structure_valid,
         structure_error,
+        observed_fields,
+        inspection_complete,
+        malformed_candidates,
+        strict_validation_passed,
     }
 }
 
@@ -187,6 +330,9 @@ pub fn diagnose(secret: Zeroizing<String>) -> Diagnostic {
 
 #[derive(clap::Args)]
 pub struct Options {
+    /// Print only the sanitized diagnostic JSON to stdout.
+    #[arg(long)]
+    pub json: bool,
     /// Read an explicitly selected local UTF-8 TXT outside the repository.
     #[arg(long)]
     pub cookie_file: Option<std::path::PathBuf>,
@@ -211,7 +357,14 @@ pub fn run(options: Options) -> Result<()> {
     #[cfg(not(feature = "offline-test"))]
     let secret = crate::credential_file::input(options.cookie_file.as_deref())?;
     let diagnostic = diagnose(secret);
-    print!("{}", diagnostic.render());
+    if options.json {
+        println!(
+            "{}",
+            serde_json::to_string_pretty(&diagnostic.json()).map_err(|_| Error::Schema)?
+        );
+    } else {
+        print!("{}", diagnostic.render());
+    }
     if diagnostic.passed() {
         Ok(())
     } else {
@@ -225,17 +378,31 @@ mod tests {
 
     #[test]
     fn borrowed_parser_retains_value_bytes_and_alias_priority() {
-        let (name, status, value) = field("uifid=; UIFID_TEMP=a=b==; msToken=t", UIFID_NAMES);
+        let (name, status, value) = field(
+            "uifid=; UIFID_TEMP=a=b==; msToken=t",
+            UIFID_NAMES,
+            ScanMode::StrictValidation,
+        );
         assert_eq!(
             (name, status, value),
             ("UIFID_TEMP", Status::Present, Some("a=b=="))
         );
         assert_eq!(
-            field("msToken=; msToken=t", TOKEN_NAMES).1,
+            field(
+                "msToken=; msToken=t",
+                TOKEN_NAMES,
+                ScanMode::StrictValidation
+            )
+            .1,
             Status::Duplicated
         );
         assert_eq!(
-            field("msToken=;unrelated=x;unrelated=y", TOKEN_NAMES).1,
+            field(
+                "msToken=;unrelated=x;unrelated=y",
+                TOKEN_NAMES,
+                ScanMode::StrictValidation
+            )
+            .1,
             Status::Empty
         );
     }

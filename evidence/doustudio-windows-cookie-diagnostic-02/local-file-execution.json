@@ -1,0 +1,11 @@
+{
+  "task": "DOUSTUDIOKIT_WINDOWS_COOKIE_DIAGNOSTIC_02",
+  "executed_at_utc": "2026-10-27T05:25:49.134424+00:00",
+  "production_credential_check_invocations_with_user_file": 1,
+  "exit_code": 1,
+  "json_schema_check": "PASS",
+  "raw_input_read_by_wrapper": false,
+  "user_file_modified": false,
+  "real_http_requests": 0,
+  "real_media_requests": 0
+}

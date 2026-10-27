@@ -25,6 +25,8 @@ GitHub 工作流 **DouStudioKit Windows Rust MVP Offline Acceptance** 只有 `wo
 .\target\release\doustudio.exe credential-check
 # 用户主动选择 TXT 输入；文件必须在 Git 仓库之外
 .\target\release\doustudio.exe credential-check --cookie-file 'D:\Secrets\douyin-cookie.txt'
+# 同一离线诊断的脱敏 JSON，stdout 只有 JSON；失败退出码仍为 1
+.\target\release\doustudio.exe credential-check --cookie-file 'D:\Secrets\douyin-cookie.txt' --json
 ```
 
 TXT 只保存完整 Cookie 字符串（UTF-8，可有 BOM 和一个结尾换行），不放主页、`Cookie:` 标签、域名行或 JSON。程序直接读取文件，不在命令行传 Cookie，不打印路径、内容、值长度或摘要，不改写原文件。读取权限由 Windows 实际只读打开检查；失败只返回固定错误。拒绝仓库内文件、UNC/映射网络盘、设备路径、ADS、相对路径、符号链接、目录 junction/其他重解析点和多硬链接文件；读取期间锁定文件及祖先目录，防止路径被替换。不要将真实 TXT 放入仓库、日志或 Artifact。
@@ -33,11 +35,13 @@ TXT 只保存完整 Cookie 字符串（UTF-8，可有 BOM 和一个结尾换行�
 
 必需字段共享于正式签名器和诊断器：大小写敏感的 `msToken`，以及优先级依次为 `uifid`、`uifid_temp`、`uifidtemp`、`UIFID`、`UIFID_TEMP`、`UIFIDTEMP` 的一个非空字段。不要求额外字段，不自动获取或生成凭证。输出选中的实际 UIFID 字段名；全部缺失时用 `uifid: MISSING` 并列出接受的别名，不表示必须使用小写 `uifid`。
 
-- `PRESENT` / `MISSING` / `EMPTY` / `DUPLICATED` / `INVALID_FORMAT` 分别表示本地可用、缺失、空值、同名重复、格式无效。
+- `PRESENT` / `MISSING` / `EMPTY` / `DUPLICATED` 分别表示在可可靠解析的片段中确认存在、完整扫描确认缺失、空值、同名重复。`PRESENT` 只说明本地字段结构，不证明凭证有效。
 - 用分号分字段，忽略空段、多余分号和字段段首尾空白；只在第一个等号处分割，值内等号保留。字段名与等号之间不能插入空白，等号后非空值的前导空格按原逻辑保留，不擅自修复。
 - 不同 UIFID 别名不是同名重复，仍按原优先级选择第一个非空值；同名必需字段的所有出现均计数，包括空值。任何接受的 UIFID 别名重复都会失败，无关字段重复不影响必需字段。
-- 相比原实现，空值重复不再被忽略，未选中 UIFID 别名的重复也会被拒绝；无等号、空字段名、非法字段名及控制字符会拒绝。正式 Session 与诊断共用这些规则，避免诊断通过而正式解析失败。
-- UTF-8/本地文件读取失败返回 `COOKIE_FILE_REJECTED_OR_UNREADABLE`。整体结构无效时必需字段报告 `INVALID_FORMAT`；空输入报告缺失且结构失败。失败退出码为 1；成功为 0。
+- 正式 Session/签名使用 `StrictValidation`：空值重复、未选中 UIFID 别名重复，以及任何既有结构错误仍会拒绝。离线诊断使用同一分段、字段名、大小写、等号及别名规则的 `DiagnosticInspection`，跳过无法可靠解析的整段，继续检查其他片段。不按换行重新拆分，也不修复输入。
+- `COOKIE_STRUCTURE` / `STRUCTURE_REASON` 单独描述整体格式；`FIELD_INSPECTION = PARTIAL` 表示部分扫描，此时未观察到的必需字段显示 `UNKNOWN`，不能解释为绝对不存在。疑似必需字段但无法可靠解析的片段标为 `MALFORMED_CANDIDATE`。已经确认的同名重复仍为 `DUPLICATED`。
+- `required_fields` 的 JSON 包含静态字段名、最终状态、观察状态、`parseable_status` 和疑似片段布尔标记。即使同时有正常字段与疑似片段，也能区分已经确认的 `PRESENT` 和尚不能可靠判断的整体字段状态。输出不含片段位置、内容、数量、长度或摘要。
+- UTF-8/本地文件读取失败返回 `COOKIE_FILE_REJECTED_OR_UNREADABLE`。空输入可完整确认字段缺失，同时整体结构失败。`LOCAL_CREDENTIAL_STRUCTURE = PASS` 需要严格结构和必需字段校验都通过；失败退出码为 1，成功为 0。`STRICT_SIGNING_VALIDATION` 只是严格凭证校验结果，命令始终输出 `SIGNING_ALLOWED = NO`，不会调用签名器。
 
 格式错误现输出固定的具体原因：`COOKIE_EMBEDDED_LINE_BREAK`（内部换行）、`COOKIE_CONTROL_CHARACTER`（其他控制字符）、`COOKIE_HEADER_LABEL_PRESENT`（带 Cookie 请求头标签）、`COOKIE_SEGMENT_MISSING_EQUALS`（非空段没有等号）、`COOKIE_FIELD_NAME_EMPTY`、`COOKIE_FIELD_NAME_WHITESPACE`、`COOKIE_FIELD_NAME_INVALID`、`COOKIE_INPUT_EMPTY`、`COOKIE_NO_FIELDS` 或 `COOKIE_INPUT_LIMIT_EXCEEDED`。这些是同一格式检查的细分结果，不输出问题段、字符、位置、数量或实际长度，也不会自动修复输入。浏览器显示为一行可能只是显示效果；诊断只依据文件实际内容，不能凭通用 `INVALID_FORMAT` 推断用户复制错误。
 
