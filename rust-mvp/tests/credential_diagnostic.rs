@@ -74,10 +74,10 @@ fn required_field_matrix_shared_with_signing_session() {
         ),
         ("UIFID_TEMP=a;mstoken=b", Missing, Present),
         ("Uifid_temp=a;msToken=b", Present, Missing),
-        ("UIFID_TEMP=a;msToken=b\n", MalformedCandidate, Present),
-        ("UIFID_TEMP=a;msToken=b\0", MalformedCandidate, Present),
-        ("UIFID_TEMP=a;msToken=b\u{85}", MalformedCandidate, Present),
-        ("UIFID_TEMP=a;msToken =b", MalformedCandidate, Present),
+        ("UIFID_TEMP=a;msToken=b\n", Unknown, Present),
+        ("UIFID_TEMP=a;msToken=b\0", Unknown, Present),
+        ("UIFID_TEMP=a;msToken=b\u{85}", Unknown, Present),
+        ("UIFID_TEMP=a;msToken =b", Unknown, Present),
         ("cookie: UIFID_TEMP=a;msToken=b", Present, Unknown),
         ("douyin.com;UIFID_TEMP=a;msToken=b", Present, Present),
         ("UIFID_TEMP=a;broken;msToken=b", Present, Present),
@@ -167,22 +167,17 @@ fn partial_inspection_preserves_confirmed_fields_and_strict_rejection() {
             Present,
             Duplicated,
         ),
-        (
-            "bare_token_candidate",
-            "msToken;UIFID=u",
-            MalformedCandidate,
-            Present,
-        ),
+        ("bare_token_candidate", "msToken;UIFID=u", Unknown, Present),
         (
             "token_space_candidate",
             "msToken =t;UIFID=u",
-            MalformedCandidate,
+            Unknown,
             Present,
         ),
         (
             "token_invalid_name_candidate",
             "msToken[]=t;UIFID=u",
-            MalformedCandidate,
+            Unknown,
             Present,
         ),
         (
@@ -194,7 +189,7 @@ fn partial_inspection_preserves_confirmed_fields_and_strict_rejection() {
         (
             "candidate_and_confirmed",
             "msToken=t;msToken;UIFID=u",
-            MalformedCandidate,
+            Unknown,
             Present,
         ),
         (
@@ -228,12 +223,7 @@ fn partial_inspection_preserves_confirmed_fields_and_strict_rejection() {
             Present,
             Present,
         ),
-        (
-            "required_control",
-            "msToken=t\0;UIFID=u",
-            MalformedCandidate,
-            Present,
-        ),
+        ("required_control", "msToken=t\0;UIFID=u", Unknown, Present),
         (
             "newline_not_split",
             "other=x\nmsToken=t;UIFID=u",
@@ -243,7 +233,7 @@ fn partial_inspection_preserves_confirmed_fields_and_strict_rejection() {
         (
             "required_newline",
             "msToken=t\nother=x;UIFID=u",
-            MalformedCandidate,
+            Unknown,
             Present,
         ),
         (
@@ -274,6 +264,7 @@ fn partial_inspection_preserves_confirmed_fields_and_strict_rejection() {
         assert_eq!(d.inspection_label(), "PARTIAL");
         assert_eq!(d.strict_label(), "REJECT");
         assert!(credentials::resolve(raw, TOKEN_NAMES).is_err());
+        assert!(credentials::resolve_ms_token(raw).is_err());
         assert!(credentials::resolve(raw, UIFID_NAMES).is_err());
         assert!(Session::new(raw.into(), "fixture-agent".into()).is_err());
         evidence.push(serde_json::json!({"scenario": scenario, "result": d.json()}));
@@ -293,27 +284,28 @@ fn observations_and_candidates_remain_distinct_in_safe_json() {
     let d = credentials::inspect("msToken=t;msToken;UIFID=u");
     assert_eq!(d.observed_fields[0].1, Status::Present);
     let json = d.json();
-    assert_eq!(json["MSTOKEN_FIELD"], "MALFORMED_CANDIDATE");
+    assert_eq!(json["MSTOKEN_FIELD"], "UNKNOWN");
+    assert!(json["MSTOKEN_REQUEST_VALUE"].is_null());
     assert_eq!(
-        json["required_fields"]["msToken"]["parseable_status"],
+        json["credential_fields"]["msToken"]["parseable_status"],
         "PRESENT"
     );
     assert_eq!(
-        json["required_fields"]["msToken"]["malformed_candidate"],
+        json["credential_fields"]["msToken"]["malformed_candidate"],
         true
     );
     assert_eq!(
-        json["required_fields"]["msToken"]["observation"],
+        json["credential_fields"]["msToken"]["observation"],
         "CONFIRMED_IN_PARSEABLE_SEGMENTS"
     );
     let json = credentials::inspect("broken;UIFID=u").json();
     assert_eq!(json["MSTOKEN_FIELD"], "UNKNOWN");
     assert_eq!(
-        json["required_fields"]["msToken"]["parseable_status"],
+        json["credential_fields"]["msToken"]["parseable_status"],
         "NOT_OBSERVED"
     );
     assert_eq!(
-        json["required_fields"]["msToken"]["observation"],
+        json["credential_fields"]["msToken"]["observation"],
         "NOT_OBSERVED_IN_PARSEABLE_SEGMENTS"
     );
     for raw in [
@@ -353,6 +345,53 @@ fn diagnostic_outputs_do_not_depend_on_credential_values_or_sizes() {
 }
 
 #[test]
+fn optional_token_policy_keeps_uifid_and_structure_strict() {
+    use Status::*;
+    for (raw, status, policy, pass) in [
+        (GOOD, Present, Some("ORIGINAL"), true),
+        ("UIFID=u;msToken=", Empty, Some("EMPTY"), true),
+        ("UIFID=u", Missing, Some("EMPTY"), true),
+        (
+            "UIFID=u;mstoken=case_sensitive",
+            Missing,
+            Some("EMPTY"),
+            true,
+        ),
+        ("UIFID=u;msToken=;msToken=", Duplicated, None, false),
+        ("UIFID=u;msToken=t;msToken=", Duplicated, None, false),
+        ("UIFID=u;msToken=t;msToken=v", Duplicated, None, false),
+        ("UIFID=u;broken", Unknown, None, false),
+        ("UIFID=u;msToken", Unknown, None, false),
+        ("UIFID=u;msToken=t\n", Unknown, None, false),
+        ("other=x", Missing, Some("EMPTY"), false),
+        ("UIFID=", Missing, Some("EMPTY"), false),
+        ("UIFID=u;UIFID=", Missing, Some("EMPTY"), false),
+        ("uifid=u;UIFID=x;UIFID=y", Missing, Some("EMPTY"), false),
+        ("uifid=;UIFID=u", Missing, Some("EMPTY"), true),
+    ] {
+        let d = credentials::inspect(raw);
+        assert_eq!(d.fields[0].1, status);
+        assert_eq!(d.ms_token_request_value, policy);
+        assert_eq!(d.passed(), pass);
+        assert_eq!(d.json()["MSTOKEN_REQUEST_VALUE"], serde_json::json!(policy));
+        assert_eq!(credentials::resolve_ms_token(raw).is_ok(), policy.is_some());
+        if let Ok(session) = Session::new(raw.into(), "fixture-agent".into()) {
+            assert_eq!(session.ms_token_request_value().is_ok(), policy.is_some());
+            assert_eq!(
+                session.ms_token_request_value().is_ok()
+                    && session.cookie_value(UIFID_NAMES).is_ok(),
+                pass
+            );
+        }
+    }
+    let raw = "UIFID=u;msToken= leading=a+b/==";
+    assert_eq!(
+        credentials::resolve_ms_token(raw).unwrap(),
+        " leading=a+b/=="
+    );
+}
+
+#[test]
 fn json_cli_schema_is_sanitized_and_never_enters_active_operations() {
     let dir = tempfile::tempdir().unwrap();
     let path = dir.path().join("synthetic.txt");
@@ -362,6 +401,7 @@ fn json_cli_schema_is_sanitized_and_never_enters_active_operations() {
         format!("{GOOD};msToken"),
         "PRIVATE_UNRELATED_MARKER;UIFID_TEMP=SYNTHETIC_UIFID_MARKER".into(),
         "UIFID_TEMP=SYNTHETIC_UIFID_MARKER".into(),
+        "UIFID_TEMP=SYNTHETIC_UIFID_MARKER;msToken=".into(),
         format!("{GOOD};{GOOD}"),
     ] {
         std::fs::write(&path, &raw).unwrap();
@@ -391,8 +431,9 @@ fn json_cli_schema_is_sanitized_and_never_enters_active_operations() {
             "COOKIE_STRUCTURE",
             "STRUCTURE_REASON",
             "MSTOKEN_FIELD",
+            "MSTOKEN_REQUEST_VALUE",
             "UIFID_FIELD",
-            "required_fields",
+            "credential_fields",
             "FIELD_INSPECTION",
             "LOCAL_CREDENTIAL_STRUCTURE",
             "STRICT_SIGNING_VALIDATION",
@@ -406,7 +447,7 @@ fn json_cli_schema_is_sanitized_and_never_enters_active_operations() {
         allowed.sort_unstable();
         assert_eq!(keys, allowed);
         for group in ["msToken", "UIFID"] {
-            let field = &json["required_fields"][group];
+            let field = &json["credential_fields"][group];
             assert_eq!(field.as_object().unwrap().len(), 5);
             let name = field["name"].as_str().unwrap();
             assert!(TOKEN_NAMES.contains(&name) || UIFID_NAMES.contains(&name));
@@ -430,6 +471,10 @@ fn json_cli_schema_is_sanitized_and_never_enters_active_operations() {
         }
         assert_eq!(json["SIGNING_ALLOWED"], "NO");
         assert_eq!(json["SIGNING"], "NOT_RUN");
+        assert!(
+            json["MSTOKEN_REQUEST_VALUE"].is_null()
+                || ["ORIGINAL", "EMPTY"].contains(&json["MSTOKEN_REQUEST_VALUE"].as_str().unwrap())
+        );
         assert!(!String::from_utf8_lossy(&output.stderr).contains("BOUNDARY_VIOLATION"));
         assert_eq!(std::fs::read_to_string(&path).unwrap(), raw);
         assert_eq!(std::fs::read_dir(dir.path()).unwrap().count(), 1);
@@ -462,7 +507,7 @@ fn production_and_fixture_cli_file_input_redacts_and_does_not_write() {
         (GOOD.to_owned(), true, "LOCAL_CREDENTIAL_STRUCTURE = PASS"),
         (
             "UIFID_TEMP=SYNTHETIC_UIFID_MARKER".into(),
-            false,
+            true,
             "msToken: MISSING",
         ),
         (format!("{GOOD};{GOOD}"), false, "msToken: DUPLICATED"),

@@ -239,15 +239,23 @@ async fn first_page_only_cli_ignores_pagination_and_download_answers() {
 
 #[tokio::test]
 async fn first_page_only_external_cookie_file_uses_shared_validation() {
-    for valid in [true, false] {
+    for (cookie, expected_token) in [
+        (
+            "UIFID_TEMP=SENSITIVE_COOKIE_MARKER;msToken=SENSITIVE_TOKEN_MARKER",
+            Some("SENSITIVE_TOKEN_MARKER"),
+        ),
+        ("UIFID_TEMP=SENSITIVE_COOKIE_MARKER;msToken=", Some("")),
+        ("UIFID_TEMP=SENSITIVE_COOKIE_MARKER", Some("")),
+        ("UIFID_TEMP=SENSITIVE_COOKIE_MARKER;msToken=;msToken=", None),
+        ("msToken=SENSITIVE_TOKEN_MARKER", None),
+        ("UIFID_TEMP=;msToken=", None),
+        ("UIFID_TEMP=u;UIFID_TEMP=u", None),
+        ("UIFID_TEMP=SENSITIVE_COOKIE_MARKER;broken", None),
+    ] {
+        let valid = expected_token.is_some();
         let server = Server::new().await;
         let dir = tempfile::tempdir().unwrap();
         let cookie_file = dir.path().join("synthetic-input.txt");
-        let cookie = if valid {
-            "UIFID_TEMP=SENSITIVE_COOKIE_MARKER;msToken=SENSITIVE_TOKEN_MARKER"
-        } else {
-            "UIFID_TEMP=SENSITIVE_COOKIE_MARKER"
-        };
         std::fs::write(&cookie_file, cookie).unwrap();
         let mut child = tokio::process::Command::new(env!("CARGO_BIN_EXE_doustudio"))
             .args([
@@ -279,6 +287,17 @@ async fn first_page_only_external_cookie_file_uses_shared_validation() {
         assert_eq!(report["media_download_attempts"], 0);
         assert_eq!(report["pagination_confirmation"], false);
         assert_eq!(server.counts(), (usize::from(valid), 0));
+        if let Some(token) = expected_token {
+            let requests = server.requests.lock().unwrap();
+            let path = requests[0].split_whitespace().nth(1).unwrap();
+            let url = url::Url::parse(&format!("http://localhost{path}")).unwrap();
+            let tokens: Vec<_> = url
+                .query_pairs()
+                .filter(|(key, _)| key == "msToken")
+                .collect();
+            assert_eq!(tokens.len(), 1);
+            assert_eq!(tokens[0].1, token);
+        }
         assert_eq!(std::fs::read_to_string(cookie_file).unwrap(), cookie);
         assert_redacted(&String::from_utf8_lossy(&output.stdout));
         assert_redacted(&String::from_utf8_lossy(&output.stderr));

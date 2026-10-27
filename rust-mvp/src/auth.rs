@@ -11,6 +11,9 @@ impl Session {
     pub fn cookie_value(&self, names: &'static [&'static str]) -> Result<Zeroizing<String>> {
         crate::credentials::resolve(&self.cookie, names).map(|v| Zeroizing::new(v.to_owned()))
     }
+    pub fn ms_token_request_value(&self) -> Result<Zeroizing<String>> {
+        crate::credentials::resolve_ms_token(&self.cookie).map(|v| Zeroizing::new(v.to_owned()))
+    }
     pub fn new(cookie: String, user_agent: String) -> Result<Self> {
         Self::from_secret(Zeroizing::new(cookie), user_agent)
     }

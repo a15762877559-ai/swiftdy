@@ -1,0 +1,15 @@
+Windows Rust authorized worklist and bounded MP4 download
+
+Usage: doustudio.exe <COMMAND>
+
+Commands:
+  credential-check  Entirely local Cookie structure diagnostic. No signing, DNS, or HTTP
+  acceptance        Interactive, separately authorized acceptance with a single in-memory selection
+  list
+  download
+  verify
+  help              Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version

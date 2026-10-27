@@ -225,10 +225,25 @@ pub fn websign(pairs: &[(String, String)], uifid: &str, timestamp: u64) -> Strin
 }
 
 pub fn list_url(session: &Session, user: &str, cursor: u64) -> Result<Zeroizing<String>> {
+    let now = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map_err(|_| Error::Scope)?
+        .as_millis() as u64;
+    list_url_at(session, user, cursor, now, rand::random::<f64>)
+}
+
+// Production and deterministic regression tests share this exact construction path.
+fn list_url_at(
+    session: &Session,
+    user: &str,
+    cursor: u64,
+    now: u64,
+    random: impl FnMut() -> f64,
+) -> Result<Zeroizing<String>> {
     #[cfg(feature = "offline-test")]
     crate::assert_active_operations_allowed();
     let uifid = session.cookie_value(crate::credentials::UIFID_NAMES)?;
-    let token = session.cookie_value(crate::credentials::TOKEN_NAMES)?;
+    let token = session.ms_token_request_value()?;
     let mut p: Vec<(String, String)> = [
         ("device_platform", "webapp"),
         ("aid", "6383"),
@@ -275,22 +290,94 @@ pub fn list_url(session: &Session, user: &str, cursor: u64) -> Result<Zeroizing<
     .into_iter()
     .map(|(k, v)| (k.into(), v.into()))
     .collect();
-    let now = std::time::SystemTime::now()
-        .duration_since(std::time::UNIX_EPOCH)
-        .map_err(|_| Error::Scope)?
-        .as_millis() as u64;
     let q = Zeroizing::new(encode(&p));
-    let bogus = abogus(
-        &q,
-        "",
-        &session.user_agent,
-        BROWSER_INFO,
-        now,
-        rand::random::<f64>,
-    )?;
+    let bogus = abogus(&q, "", &session.user_agent, BROWSER_INFO, now, random)?;
     p.push(("a_bogus".into(), bogus));
     let signed = websign(&p, &uifid, now / 1000);
     Ok(Zeroizing::new(format!(
         "https://www.douyin.com/aweme/v1/web/aweme/post/?{signed}"
     )))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn list_pipeline_matches_independent_python_with_empty_and_original_token() {
+        let fixtures: serde_json::Value =
+            serde_json::from_str(include_str!("../fixtures/signing-vectors.json")).unwrap();
+        for v in fixtures["list_vectors"].as_array().unwrap() {
+            let token = v["ms_token"].as_str().unwrap();
+            let mut cookies = vec![format!("UIFID=synthetic;msToken={token}")];
+            if token.is_empty() {
+                cookies.push("UIFID=synthetic".into());
+            }
+            for cookie in cookies {
+                let session = Session::new(cookie, USER_AGENT.into()).unwrap();
+                let mut state = v["seed"].as_u64().unwrap() as u32;
+                let signed = list_url_at(
+                    &session,
+                    v["user"].as_str().unwrap(),
+                    v["cursor"].as_str().unwrap().parse().unwrap(),
+                    v["now"].as_u64().unwrap(),
+                    || {
+                        state = state.wrapping_mul(1664525).wrapping_add(1013904223);
+                        state as f64 / 4294967296.0
+                    },
+                )
+                .unwrap();
+                let url = url::Url::parse(&signed).unwrap();
+                assert_eq!(url.query().unwrap(), v["signed_query"].as_str().unwrap());
+                let q = url.query().unwrap();
+                let (unsigned, _) = q.split_once("&a_bogus=").unwrap();
+                assert_eq!(unsigned, v["unsigned_query"].as_str().unwrap());
+                let pairs: Vec<_> = url.query_pairs().collect();
+                let tokens: Vec<_> = pairs.iter().filter(|(k, _)| k == "msToken").collect();
+                assert_eq!(tokens.len(), 1);
+                assert_eq!(tokens[0].1, token);
+                assert_eq!(
+                    pairs.iter().find(|(k, _)| k == "a_bogus").unwrap().1,
+                    v["a_bogus"].as_str().unwrap()
+                );
+                assert_eq!(
+                    pairs
+                        .iter()
+                        .find(|(k, _)| k == "x-secsdk-web-signature")
+                        .unwrap()
+                        .1,
+                    v["web_signature"].as_str().unwrap()
+                );
+                if token.is_empty() {
+                    assert!(q.contains("&uifid=synthetic&msToken=&sec_user_id=fixture&"));
+                } else {
+                    assert!(q.contains("&msToken=synthetic%3Dtoken%2B%2F%3D%3D&"));
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn credential_failures_precede_algorithm_randomness() {
+        for cookie in [
+            "UIFID=u;msToken=;msToken=",
+            "UIFID=u;msToken=t;msToken=",
+            "UIFID=u;msToken=t;msToken=v",
+            "other=x",
+            "UIFID=",
+            "UIFID=u;UIFID=u",
+            "UIFID=u;broken",
+            "UIFID=u;msToken=t\n",
+        ] {
+            let mut random_called = false;
+            let result = Session::new(cookie.into(), USER_AGENT.into()).and_then(|s| {
+                list_url_at(&s, "fixture", 0, 1793000000123, || {
+                    random_called = true;
+                    0.5
+                })
+            });
+            assert_eq!(result.unwrap_err(), Error::Credential);
+            assert!(!random_called);
+        }
+    }
 }

@@ -103,5 +103,29 @@
       "web_query": "first=%E4%B8%AD%E6%96%87%20%2B%2F~*&uifid=synthetic&a_bogus=DjUjXeywm2mbad%2Ft8crP7bxUKUgMrB8yatiOWCnT7PFly7lbBRNn0PSpjoof4x9WNRpiiq17XDFAYdVcpUUspqnpKmkfuDUWw4V9V6mL8qwmTMJQgHjTeLXFqw0r05sql557iAUI%2FUJ96ndAkqQu%2FBA9SKLe5cWBF3ORk%2FubY9B6ZzyAL3c3PdGkEwNxUGCJ&timestamp=1793000000&x-secsdk-web-signature=d1ebebc6cdf16470ce38e9938743246c",
       "web_signature": "d1ebebc6cdf16470ce38e9938743246c"
     }
+  ],
+  "list_vectors": [
+    {
+      "ms_token": "",
+      "now": 1793000000123,
+      "seed": 12345,
+      "user": "fixture",
+      "cursor": "1234567890123456789",
+      "unsigned_query": "device_platform=webapp&aid=6383&channel=channel_pc_web&update_version_code=170400&pc_client_type=1&pc_libra_divert=Windows&support_h265=1&support_dash=1&version_code=290100&version_name=29.1.0&cookie_enabled=true&screen_width=1920&screen_height=1080&browser_language=zh-CN&browser_platform=Win32&browser_name=Chrome&browser_version=146.0.0.0&browser_online=true&engine_name=Blink&engine_version=146.0.0.0&os_name=Windows&os_version=10&cpu_core_num=8&device_memory=8&platform=PC&downlink=10&effective_type=4g&round_trip_time=200&uifid=synthetic&msToken=&sec_user_id=fixture&max_cursor=1234567890123456789&locate_query=false&show_live_replay_strategy=1&need_time_list=1&time_list_query=0&whale_cut_token=&cut_version=1&count=18&publish_video_strategy_type=2&from_user_page=1",
+      "a_bogus": "xysjkw6Jm2mcOd/tYCGDHbxUz06MrTSy/ti/RqxPSOz2LHeTB8N90Ntpcoow4D6WZRBwiKVHZx0/YEncq0XipKHpzmpvuxvRk05VVX8o0qwRT0vQgrjseLfzww0NUbTq-/V7ilW60Uro6nVAhrQD/d-yeKoe5RuBFZO6k2TbY9BgZz6AL1n1PBbpPwiz0X56",
+      "web_signature": "425566821ff5709384bfb49cb3ac0a23",
+      "signed_query": "device_platform=webapp&aid=6383&channel=channel_pc_web&update_version_code=170400&pc_client_type=1&pc_libra_divert=Windows&support_h265=1&support_dash=1&version_code=290100&version_name=29.1.0&cookie_enabled=true&screen_width=1920&screen_height=1080&browser_language=zh-CN&browser_platform=Win32&browser_name=Chrome&browser_version=146.0.0.0&browser_online=true&engine_name=Blink&engine_version=146.0.0.0&os_name=Windows&os_version=10&cpu_core_num=8&device_memory=8&platform=PC&downlink=10&effective_type=4g&round_trip_time=200&uifid=synthetic&msToken=&sec_user_id=fixture&max_cursor=1234567890123456789&locate_query=false&show_live_replay_strategy=1&need_time_list=1&time_list_query=0&whale_cut_token=&cut_version=1&count=18&publish_video_strategy_type=2&from_user_page=1&a_bogus=xysjkw6Jm2mcOd%2FtYCGDHbxUz06MrTSy%2Fti%2FRqxPSOz2LHeTB8N90Ntpcoow4D6WZRBwiKVHZx0%2FYEncq0XipKHpzmpvuxvRk05VVX8o0qwRT0vQgrjseLfzww0NUbTq-%2FV7ilW60Uro6nVAhrQD%2Fd-yeKoe5RuBFZO6k2TbY9BgZz6AL1n1PBbpPwiz0X56&timestamp=1793000000&x-secsdk-web-signature=425566821ff5709384bfb49cb3ac0a23"
+    },
+    {
+      "ms_token": "synthetic=token+/==",
+      "now": 1793000000123,
+      "seed": 12345,
+      "user": "fixture",
+      "cursor": "1234567890123456789",
+      "unsigned_query": "device_platform=webapp&aid=6383&channel=channel_pc_web&update_version_code=170400&pc_client_type=1&pc_libra_divert=Windows&support_h265=1&support_dash=1&version_code=290100&version_name=29.1.0&cookie_enabled=true&screen_width=1920&screen_height=1080&browser_language=zh-CN&browser_platform=Win32&browser_name=Chrome&browser_version=146.0.0.0&browser_online=true&engine_name=Blink&engine_version=146.0.0.0&os_name=Windows&os_version=10&cpu_core_num=8&device_memory=8&platform=PC&downlink=10&effective_type=4g&round_trip_time=200&uifid=synthetic&msToken=synthetic%3Dtoken%2B%2F%3D%3D&sec_user_id=fixture&max_cursor=1234567890123456789&locate_query=false&show_live_replay_strategy=1&need_time_list=1&time_list_query=0&whale_cut_token=&cut_version=1&count=18&publish_video_strategy_type=2&from_user_page=1",
+      "a_bogus": "xysjkw6Jm2mcOd/tYCGDHbxUz06MrTSyIti/WwQPSPu8LHtYB8N90Ntpcoow4D6WZRBwiKVHZx0/YEncq0XipKHpzmpvuxvRk05VVX8o0qwRT0vQgrjseLfzww0NUbTq-/V7ilW60Uro6nVAhrQD/d-yeKoe5RuBFZO6k2TbY9BgZz6AL1n1PBbpPwiz0UA6",
+      "web_signature": "338750743c86c81371ba4729c406dff6",
+      "signed_query": "device_platform=webapp&aid=6383&channel=channel_pc_web&update_version_code=170400&pc_client_type=1&pc_libra_divert=Windows&support_h265=1&support_dash=1&version_code=290100&version_name=29.1.0&cookie_enabled=true&screen_width=1920&screen_height=1080&browser_language=zh-CN&browser_platform=Win32&browser_name=Chrome&browser_version=146.0.0.0&browser_online=true&engine_name=Blink&engine_version=146.0.0.0&os_name=Windows&os_version=10&cpu_core_num=8&device_memory=8&platform=PC&downlink=10&effective_type=4g&round_trip_time=200&uifid=synthetic&msToken=synthetic%3Dtoken%2B%2F%3D%3D&sec_user_id=fixture&max_cursor=1234567890123456789&locate_query=false&show_live_replay_strategy=1&need_time_list=1&time_list_query=0&whale_cut_token=&cut_version=1&count=18&publish_video_strategy_type=2&from_user_page=1&a_bogus=xysjkw6Jm2mcOd%2FtYCGDHbxUz06MrTSyIti%2FWwQPSPu8LHtYB8N90Ntpcoow4D6WZRBwiKVHZx0%2FYEncq0XipKHpzmpvuxvRk05VVX8o0qwRT0vQgrjseLfzww0NUbTq-%2FV7ilW60Uro6nVAhrQD%2Fd-yeKoe5RuBFZO6k2TbY9BgZz6AL1n1PBbpPwiz0UA6&timestamp=1793000000&x-secsdk-web-signature=338750743c86c81371ba4729c406dff6"
+    }
   ]
 }

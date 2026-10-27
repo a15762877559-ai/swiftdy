@@ -65,15 +65,30 @@ fn signed_url_cursor_and_identity() {
 fn no_fabricated_tokens() {
     for cookie in [
         "x=1",
-        "UIFID_TEMP=synthetic",
         "msToken=synthetic",
+        "UIFID_TEMP=;msToken=synthetic",
         "uifid=a;uifid=b;msToken=c",
+        "UIFID_TEMP=synthetic;msToken=;msToken=",
+        "UIFID_TEMP=synthetic;msToken=a;msToken=",
     ] {
         let s = Session::new(cookie.into(), signing::USER_AGENT.into()).unwrap();
         assert_eq!(
             signing::list_url(&s, "fixture", 0).unwrap_err(),
             Error::Credential
         );
+    }
+    for cookie in ["UIFID_TEMP=synthetic", "UIFID_TEMP=synthetic;msToken="] {
+        let s = Session::new(cookie.into(), signing::USER_AGENT.into()).unwrap();
+        let raw = signing::list_url(&s, "fixture", 0).unwrap();
+        let url = url::Url::parse(&raw).unwrap();
+        let tokens: Vec<_> = url
+            .query_pairs()
+            .filter(|(key, _)| key == "msToken")
+            .collect();
+        assert_eq!(tokens.len(), 1);
+        assert!(tokens[0].1.is_empty());
+        assert!(raw.contains("&msToken=&sec_user_id=fixture&"));
+        assert!(auth::signed_request(&raw, "fixture", 0).is_ok());
     }
 }
 #[test]

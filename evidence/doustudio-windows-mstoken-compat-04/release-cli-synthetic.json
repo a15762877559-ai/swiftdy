@@ -1,0 +1,314 @@
+[
+  {
+    "scenario": "present",
+    "result": "PASS",
+    "diagnostic_exit_code": 0,
+    "diagnostic": {
+      "COOKIE_STRUCTURE": "PASS",
+      "DNS_REQUESTS": 0,
+      "FIELD_INSPECTION": "COMPLETE",
+      "LOCAL_CREDENTIAL_STRUCTURE": "PASS",
+      "MSTOKEN_FIELD": "PRESENT",
+      "MSTOKEN_REQUEST_VALUE": "ORIGINAL",
+      "NETWORK_REQUESTS": 0,
+      "REAL_HTTP_REQUESTS": 0,
+      "REAL_MEDIA_REQUESTS": 0,
+      "SIGNING": "NOT_RUN",
+      "SIGNING_ALLOWED": "NO",
+      "STRICT_SIGNING_VALIDATION": "PASS",
+      "STRUCTURE_REASON": "NONE",
+      "UIFID_FIELD": "PRESENT",
+      "credential_fields": {
+        "UIFID": {
+          "malformed_candidate": false,
+          "name": "UIFID",
+          "observation": "CONFIRMED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "PRESENT",
+          "status": "PRESENT"
+        },
+        "msToken": {
+          "malformed_candidate": false,
+          "name": "msToken",
+          "observation": "CONFIRMED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "PRESENT",
+          "status": "PRESENT"
+        }
+      },
+      "mode": "DiagnosticInspection",
+      "task": "DOUSTUDIOKIT_WINDOWS_MSTOKEN_COMPAT_04"
+    }
+  },
+  {
+    "scenario": "empty",
+    "result": "PASS",
+    "diagnostic_exit_code": 0,
+    "diagnostic": {
+      "COOKIE_STRUCTURE": "PASS",
+      "DNS_REQUESTS": 0,
+      "FIELD_INSPECTION": "COMPLETE",
+      "LOCAL_CREDENTIAL_STRUCTURE": "PASS",
+      "MSTOKEN_FIELD": "EMPTY",
+      "MSTOKEN_REQUEST_VALUE": "EMPTY",
+      "NETWORK_REQUESTS": 0,
+      "REAL_HTTP_REQUESTS": 0,
+      "REAL_MEDIA_REQUESTS": 0,
+      "SIGNING": "NOT_RUN",
+      "SIGNING_ALLOWED": "NO",
+      "STRICT_SIGNING_VALIDATION": "PASS",
+      "STRUCTURE_REASON": "NONE",
+      "UIFID_FIELD": "PRESENT",
+      "credential_fields": {
+        "UIFID": {
+          "malformed_candidate": false,
+          "name": "UIFID",
+          "observation": "CONFIRMED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "PRESENT",
+          "status": "PRESENT"
+        },
+        "msToken": {
+          "malformed_candidate": false,
+          "name": "msToken",
+          "observation": "CONFIRMED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "EMPTY",
+          "status": "EMPTY"
+        }
+      },
+      "mode": "DiagnosticInspection",
+      "task": "DOUSTUDIOKIT_WINDOWS_MSTOKEN_COMPAT_04"
+    }
+  },
+  {
+    "scenario": "missing",
+    "result": "PASS",
+    "diagnostic_exit_code": 0,
+    "diagnostic": {
+      "COOKIE_STRUCTURE": "PASS",
+      "DNS_REQUESTS": 0,
+      "FIELD_INSPECTION": "COMPLETE",
+      "LOCAL_CREDENTIAL_STRUCTURE": "PASS",
+      "MSTOKEN_FIELD": "MISSING",
+      "MSTOKEN_REQUEST_VALUE": "EMPTY",
+      "NETWORK_REQUESTS": 0,
+      "REAL_HTTP_REQUESTS": 0,
+      "REAL_MEDIA_REQUESTS": 0,
+      "SIGNING": "NOT_RUN",
+      "SIGNING_ALLOWED": "NO",
+      "STRICT_SIGNING_VALIDATION": "PASS",
+      "STRUCTURE_REASON": "NONE",
+      "UIFID_FIELD": "PRESENT",
+      "credential_fields": {
+        "UIFID": {
+          "malformed_candidate": false,
+          "name": "UIFID",
+          "observation": "CONFIRMED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "PRESENT",
+          "status": "PRESENT"
+        },
+        "msToken": {
+          "malformed_candidate": false,
+          "name": "msToken",
+          "observation": "NOT_OBSERVED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "NOT_OBSERVED",
+          "status": "MISSING"
+        }
+      },
+      "mode": "DiagnosticInspection",
+      "task": "DOUSTUDIOKIT_WINDOWS_MSTOKEN_COMPAT_04"
+    }
+  },
+  {
+    "scenario": "duplicate",
+    "result": "PASS",
+    "diagnostic_exit_code": 1,
+    "diagnostic": {
+      "COOKIE_STRUCTURE": "PASS",
+      "DNS_REQUESTS": 0,
+      "FIELD_INSPECTION": "COMPLETE",
+      "LOCAL_CREDENTIAL_STRUCTURE": "FAIL",
+      "MSTOKEN_FIELD": "DUPLICATED",
+      "MSTOKEN_REQUEST_VALUE": null,
+      "NETWORK_REQUESTS": 0,
+      "REAL_HTTP_REQUESTS": 0,
+      "REAL_MEDIA_REQUESTS": 0,
+      "SIGNING": "NOT_RUN",
+      "SIGNING_ALLOWED": "NO",
+      "STRICT_SIGNING_VALIDATION": "REJECT",
+      "STRUCTURE_REASON": "NONE",
+      "UIFID_FIELD": "PRESENT",
+      "credential_fields": {
+        "UIFID": {
+          "malformed_candidate": false,
+          "name": "UIFID",
+          "observation": "CONFIRMED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "PRESENT",
+          "status": "PRESENT"
+        },
+        "msToken": {
+          "malformed_candidate": false,
+          "name": "msToken",
+          "observation": "CONFIRMED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "DUPLICATED",
+          "status": "DUPLICATED"
+        }
+      },
+      "mode": "DiagnosticInspection",
+      "task": "DOUSTUDIOKIT_WINDOWS_MSTOKEN_COMPAT_04"
+    }
+  },
+  {
+    "scenario": "uifid_missing",
+    "result": "PASS",
+    "diagnostic_exit_code": 1,
+    "diagnostic": {
+      "COOKIE_STRUCTURE": "PASS",
+      "DNS_REQUESTS": 0,
+      "FIELD_INSPECTION": "COMPLETE",
+      "LOCAL_CREDENTIAL_STRUCTURE": "FAIL",
+      "MSTOKEN_FIELD": "MISSING",
+      "MSTOKEN_REQUEST_VALUE": "EMPTY",
+      "NETWORK_REQUESTS": 0,
+      "REAL_HTTP_REQUESTS": 0,
+      "REAL_MEDIA_REQUESTS": 0,
+      "SIGNING": "NOT_RUN",
+      "SIGNING_ALLOWED": "NO",
+      "STRICT_SIGNING_VALIDATION": "REJECT",
+      "STRUCTURE_REASON": "NONE",
+      "UIFID_FIELD": "MISSING",
+      "credential_fields": {
+        "UIFID": {
+          "malformed_candidate": false,
+          "name": "uifid",
+          "observation": "NOT_OBSERVED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "NOT_OBSERVED",
+          "status": "MISSING"
+        },
+        "msToken": {
+          "malformed_candidate": false,
+          "name": "msToken",
+          "observation": "NOT_OBSERVED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "NOT_OBSERVED",
+          "status": "MISSING"
+        }
+      },
+      "mode": "DiagnosticInspection",
+      "task": "DOUSTUDIOKIT_WINDOWS_MSTOKEN_COMPAT_04"
+    }
+  },
+  {
+    "scenario": "uifid_empty",
+    "result": "PASS",
+    "diagnostic_exit_code": 1,
+    "diagnostic": {
+      "COOKIE_STRUCTURE": "PASS",
+      "DNS_REQUESTS": 0,
+      "FIELD_INSPECTION": "COMPLETE",
+      "LOCAL_CREDENTIAL_STRUCTURE": "FAIL",
+      "MSTOKEN_FIELD": "MISSING",
+      "MSTOKEN_REQUEST_VALUE": "EMPTY",
+      "NETWORK_REQUESTS": 0,
+      "REAL_HTTP_REQUESTS": 0,
+      "REAL_MEDIA_REQUESTS": 0,
+      "SIGNING": "NOT_RUN",
+      "SIGNING_ALLOWED": "NO",
+      "STRICT_SIGNING_VALIDATION": "REJECT",
+      "STRUCTURE_REASON": "NONE",
+      "UIFID_FIELD": "EMPTY",
+      "credential_fields": {
+        "UIFID": {
+          "malformed_candidate": false,
+          "name": "UIFID",
+          "observation": "CONFIRMED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "EMPTY",
+          "status": "EMPTY"
+        },
+        "msToken": {
+          "malformed_candidate": false,
+          "name": "msToken",
+          "observation": "NOT_OBSERVED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "NOT_OBSERVED",
+          "status": "MISSING"
+        }
+      },
+      "mode": "DiagnosticInspection",
+      "task": "DOUSTUDIOKIT_WINDOWS_MSTOKEN_COMPAT_04"
+    }
+  },
+  {
+    "scenario": "uifid_duplicate",
+    "result": "PASS",
+    "diagnostic_exit_code": 1,
+    "diagnostic": {
+      "COOKIE_STRUCTURE": "PASS",
+      "DNS_REQUESTS": 0,
+      "FIELD_INSPECTION": "COMPLETE",
+      "LOCAL_CREDENTIAL_STRUCTURE": "FAIL",
+      "MSTOKEN_FIELD": "MISSING",
+      "MSTOKEN_REQUEST_VALUE": "EMPTY",
+      "NETWORK_REQUESTS": 0,
+      "REAL_HTTP_REQUESTS": 0,
+      "REAL_MEDIA_REQUESTS": 0,
+      "SIGNING": "NOT_RUN",
+      "SIGNING_ALLOWED": "NO",
+      "STRICT_SIGNING_VALIDATION": "REJECT",
+      "STRUCTURE_REASON": "NONE",
+      "UIFID_FIELD": "DUPLICATED",
+      "credential_fields": {
+        "UIFID": {
+          "malformed_candidate": false,
+          "name": "UIFID",
+          "observation": "CONFIRMED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "DUPLICATED",
+          "status": "DUPLICATED"
+        },
+        "msToken": {
+          "malformed_candidate": false,
+          "name": "msToken",
+          "observation": "NOT_OBSERVED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "NOT_OBSERVED",
+          "status": "MISSING"
+        }
+      },
+      "mode": "DiagnosticInspection",
+      "task": "DOUSTUDIOKIT_WINDOWS_MSTOKEN_COMPAT_04"
+    }
+  },
+  {
+    "scenario": "structure_invalid",
+    "result": "PASS",
+    "diagnostic_exit_code": 1,
+    "diagnostic": {
+      "COOKIE_STRUCTURE": "FAIL",
+      "DNS_REQUESTS": 0,
+      "FIELD_INSPECTION": "PARTIAL",
+      "LOCAL_CREDENTIAL_STRUCTURE": "FAIL",
+      "MSTOKEN_FIELD": "UNKNOWN",
+      "MSTOKEN_REQUEST_VALUE": null,
+      "NETWORK_REQUESTS": 0,
+      "REAL_HTTP_REQUESTS": 0,
+      "REAL_MEDIA_REQUESTS": 0,
+      "SIGNING": "NOT_RUN",
+      "SIGNING_ALLOWED": "NO",
+      "STRICT_SIGNING_VALIDATION": "REJECT",
+      "STRUCTURE_REASON": "COOKIE_SEGMENT_MISSING_EQUALS",
+      "UIFID_FIELD": "PRESENT",
+      "credential_fields": {
+        "UIFID": {
+          "malformed_candidate": false,
+          "name": "UIFID",
+          "observation": "CONFIRMED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "PRESENT",
+          "status": "PRESENT"
+        },
+        "msToken": {
+          "malformed_candidate": false,
+          "name": "msToken",
+          "observation": "NOT_OBSERVED_IN_PARSEABLE_SEGMENTS",
+          "parseable_status": "NOT_OBSERVED",
+          "status": "UNKNOWN"
+        }
+      },
+      "mode": "DiagnosticInspection",
+      "task": "DOUSTUDIOKIT_WINDOWS_MSTOKEN_COMPAT_04"
+    }
+  }
+]

@@ -33,14 +33,17 @@ TXT 只保存完整 Cookie 字符串（UTF-8，可有 BOM 和一个结尾换行�
 
 诊断在异步运行时创建前结束，不调用签名、DNS 或 HTTP 客户端。输出只包含静态字段名、状态和固定原因；结束前清零程序持有的输入缓冲与副本。原 TXT 由用户保管，程序不删除它。正常进程内清零不等同于保证操作系统分页、崩溃转储或强制终止时的内存行为。
 
-必需字段共享于正式签名器和诊断器：大小写敏感的 `msToken`，以及优先级依次为 `uifid`、`uifid_temp`、`uifidtemp`、`UIFID`、`UIFID_TEMP`、`UIFIDTEMP` 的一个非空字段。不要求额外字段，不自动获取或生成凭证。输出选中的实际 UIFID 字段名；全部缺失时用 `uifid: MISSING` 并列出接受的别名，不表示必须使用小写 `uifid`。
+正式签名器和诊断器共享字段规则。UIFID 仍必需：优先级依次为 `uifid`、`uifid_temp`、`uifidtemp`、`UIFID`、`UIFID_TEMP`、`UIFIDTEMP`，至少一个非空值，任一同名别名重复则拒绝。输出选中的实际 UIFID 字段名；全部缺失时用 `uifid: MISSING`，不表示必须使用小写 `uifid`。
+
+`msToken` 大小写敏感但不再必需：非空时使用原始解析值；缺失或为空时使用空字符串，作品请求始终保留查询参数 `msToken=`。同名重复（包括两个空值）仍拒绝；不省略参数、不生成 token，也不自动获取凭据。这是默认契约，没有兼容模式开关。空参数先进入 A-Bogus 的原查询，再随同 a_bogus 一起进入 WebSign；参数顺序与编码规则保持不变。
 
 - `PRESENT` / `MISSING` / `EMPTY` / `DUPLICATED` 分别表示在可可靠解析的片段中确认存在、完整扫描确认缺失、空值、同名重复。`PRESENT` 只说明本地字段结构，不证明凭证有效。
 - 用分号分字段，忽略空段、多余分号和字段段首尾空白；只在第一个等号处分割，值内等号保留。字段名与等号之间不能插入空白，等号后非空值的前导空格按原逻辑保留，不擅自修复。
-- 不同 UIFID 别名不是同名重复，仍按原优先级选择第一个非空值；同名必需字段的所有出现均计数，包括空值。任何接受的 UIFID 别名重复都会失败，无关字段重复不影响必需字段。
+- 不同 UIFID 别名不是同名重复，仍按原优先级选择第一个非空值；UIFID 和 msToken 同名字段的所有出现均计数，包括空值。无关字段重复不影响这两组字段校验。
 - 正式 Session/签名使用 `StrictValidation`：空值重复、未选中 UIFID 别名重复，以及任何既有结构错误仍会拒绝。离线诊断使用同一分段、字段名、大小写、等号及别名规则的 `DiagnosticInspection`，跳过无法可靠解析的整段，继续检查其他片段。不按换行重新拆分，也不修复输入。
-- `COOKIE_STRUCTURE` / `STRUCTURE_REASON` 单独描述整体格式；`FIELD_INSPECTION = PARTIAL` 表示部分扫描，此时未观察到的必需字段显示 `UNKNOWN`，不能解释为绝对不存在。疑似必需字段但无法可靠解析的片段标为 `MALFORMED_CANDIDATE`。已经确认的同名重复仍为 `DUPLICATED`。
-- `required_fields` 的 JSON 包含静态字段名、最终状态、观察状态、`parseable_status` 和疑似片段布尔标记。即使同时有正常字段与疑似片段，也能区分已经确认的 `PRESENT` 和尚不能可靠判断的整体字段状态。输出不含片段位置、内容、数量、长度或摘要。
+- `COOKIE_STRUCTURE` / `STRUCTURE_REASON` 单独描述整体格式；`FIELD_INSPECTION = PARTIAL` 时未观察到的字段显示 `UNKNOWN`，不能解释为绝对不存在。msToken 的疑似无法解析片段也显示 `UNKNOWN`，附带 `malformed_candidate=true`；UIFID 保留 `MALFORMED_CANDIDATE`。已确认的同名重复仍为 `DUPLICATED`，所有非法整体结构继续拒绝。
+- JSON 的 `MSTOKEN_FIELD` 为 `PRESENT` / `EMPTY` / `MISSING` / `UNKNOWN` / `DUPLICATED`。`MSTOKEN_REQUEST_VALUE` 仅报告 `ORIGINAL` 或 `EMPTY`，不包含值；结构非法或 msToken 重复时为 `null`，表示无法安全构造，不表示将使用空值。缺失/空值本身不再使严格校验失败。
+- JSON 分组从 `required_fields` 改名为 `credential_fields`，以免误称 msToken 必需；task 标识更新为 `DOUSTUDIOKIT_WINDOWS_MSTOKEN_COMPAT_04`。分组仍包含静态字段名、最终状态、观察状态、`parseable_status` 和疑似片段布尔标记，区分已确认状态和不完整扫描。输出不含片段位置、内容、数量、长度或摘要。
 - UTF-8/本地文件读取失败返回 `COOKIE_FILE_REJECTED_OR_UNREADABLE`。空输入可完整确认字段缺失，同时整体结构失败。`LOCAL_CREDENTIAL_STRUCTURE = PASS` 需要严格结构和必需字段校验都通过；失败退出码为 1，成功为 0。`STRICT_SIGNING_VALIDATION` 只是严格凭证校验结果，命令始终输出 `SIGNING_ALLOWED = NO`，不会调用签名器。
 
 格式错误现输出固定的具体原因：`COOKIE_EMBEDDED_LINE_BREAK`（内部换行）、`COOKIE_CONTROL_CHARACTER`（其他控制字符）、`COOKIE_HEADER_LABEL_PRESENT`（带 Cookie 请求头标签）、`COOKIE_SEGMENT_MISSING_EQUALS`（非空段没有等号）、`COOKIE_FIELD_NAME_EMPTY`、`COOKIE_FIELD_NAME_WHITESPACE`、`COOKIE_FIELD_NAME_INVALID`、`COOKIE_INPUT_EMPTY`、`COOKIE_NO_FIELDS` 或 `COOKIE_INPUT_LIMIT_EXCEEDED`。这些是同一格式检查的细分结果，不输出问题段、字符、位置、数量或实际长度，也不会自动修复输入。浏览器显示为一行可能只是显示效果；诊断只依据文件实际内容，不能凭通用 `INVALID_FORMAT` 推断用户复制错误。
@@ -89,7 +92,7 @@ TXT 只保存完整 Cookie 字符串（UTF-8，可有 BOM 和一个结尾换行�
 .\target\release\doustudio.exe list --profile '<已授权主页>' --pages 3 --authorized-session
 ```
 
-Cookie 在控制台隐藏输入，只在内存使用。完整授权会话必须含实际 `UIFID_TEMP`（也接受明确的等价名称）和 `msToken`；缺失就报错，不自动生成、获取或修复 token。MVP 使用 Windows Chrome 146 / 1920×1080 的固定签名身份，真实请求是否被平台接受尚待验证。登录失效、验证码、风控、非 JSON、403、429 均停止，不自动重试或绕过。
+Cookie 在控制台隐藏输入，只在内存使用。UIFID 仍需实际非空值（接受上述别名）；msToken 缺失或为空时使用空查询参数，重复仍报错。不自动生成、获取或修复 token。MVP 使用 Windows Chrome 146 / 1920×1080 的固定签名身份，真实请求是否被平台接受尚待验证；离线空值对照通过不能证明线上接受。登录失效、验证码、风控、非 JSON、403、429 均停止，不自动重试或绕过。
 
 列表按 1 开始编号，显示真实 ID 字符串、描述、时间戳、时长、尺寸、码率和可下载状态，不输出签名媒体 URL。空账号显示空列表；去重计数和分页停止原因单独展示。
 

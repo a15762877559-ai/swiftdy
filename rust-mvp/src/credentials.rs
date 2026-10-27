@@ -177,6 +177,19 @@ pub fn resolve<'a>(raw: &'a str, names: &'static [&'static str]) -> Result<&'a s
         .ok_or(Error::Credential)
 }
 
+/// Request parameter policy for msToken only. Structural errors and duplicates
+/// remain errors; an absent or empty field supplies the literal empty value.
+pub fn resolve_ms_token(raw: &str) -> Result<&str> {
+    if !valid_structure(raw) {
+        return Err(Error::Credential);
+    }
+    match field(raw, TOKEN_NAMES, ScanMode::StrictValidation) {
+        (_, Status::Present, Some(value)) => Ok(value),
+        (_, Status::Missing | Status::Empty, _) => Ok(""),
+        _ => Err(Error::Credential),
+    }
+}
+
 #[derive(Debug)]
 pub struct Diagnostic {
     pub fields: [(&'static str, Status); 2],
@@ -186,6 +199,8 @@ pub struct Diagnostic {
     pub observed_fields: [(&'static str, Status); 2],
     pub inspection_complete: bool,
     pub malformed_candidates: [bool; 2],
+    /// None means the parameter could not be resolved safely, not an empty value.
+    pub ms_token_request_value: Option<&'static str>,
     strict_validation_passed: bool,
 }
 impl Diagnostic {
@@ -231,13 +246,14 @@ impl Diagnostic {
             })
         });
         serde_json::json!({
-            "task": "DOUSTUDIOKIT_WINDOWS_COOKIE_DIAGNOSTIC_02",
+            "task": "DOUSTUDIOKIT_WINDOWS_MSTOKEN_COMPAT_04",
             "mode": "DiagnosticInspection",
             "COOKIE_STRUCTURE": if self.structure_valid { "PASS" } else { "FAIL" },
             "STRUCTURE_REASON": self.structure_error.unwrap_or("NONE"),
             "MSTOKEN_FIELD": self.fields[0].1.label(),
+            "MSTOKEN_REQUEST_VALUE": self.ms_token_request_value,
             "UIFID_FIELD": self.fields[1].1.label(),
-            "required_fields": { "msToken": fields[0], "UIFID": fields[1] },
+            "credential_fields": { "msToken": fields[0], "UIFID": fields[1] },
             "FIELD_INSPECTION": self.inspection_label(),
             "LOCAL_CREDENTIAL_STRUCTURE": if self.passed() { "PASS" } else { "FAIL" },
             "STRICT_SIGNING_VALIDATION": self.strict_label(),
@@ -250,7 +266,7 @@ impl Diagnostic {
         })
     }
     pub fn render(&self) -> String {
-        let mut out = String::from("DouStudioKit Offline Credential Check\n\nNetwork access: DISABLED\nSigning: NOT_RUN\nHTTP requests: 0\n\nRequired fields:\n");
+        let mut out = String::from("DouStudioKit Offline Credential Check\n\nNetwork access: DISABLED\nSigning: NOT_RUN\nHTTP requests: 0\n\nCredential fields (UIFID required; msToken optional, duplicates rejected):\n");
         for (index, (name, status)) in self.fields.iter().enumerate() {
             out.push_str(&format!(
                 "  {name}: {} [{}; parseable_status={}]\n",
@@ -261,13 +277,21 @@ impl Diagnostic {
         }
         out.push_str("UIFID aliases (one required, case-sensitive, priority order):\n  ");
         out.push_str(&UIFID_NAMES.join(" | "));
+        out.push_str(&format!("\nMSTOKEN_FIELD = {}\n", self.fields[0].1.label()));
+        if let Some(value) = self.ms_token_request_value {
+            out.push_str(&format!("MSTOKEN_REQUEST_VALUE = {value}\n"));
+        } else {
+            out.push_str(
+                "MSTOKEN_REQUEST_VALUE unavailable: structure invalid or msToken duplicated.\n",
+            );
+        }
         let reason = if self.passed() {
             "NONE"
         } else if let Some(error) = self.structure_error {
             error
         } else if self.fields.iter().any(|(_, s)| *s == Status::Duplicated) {
-            "REQUIRED_FIELD_DUPLICATED"
-        } else if self.fields.iter().any(|(_, s)| *s == Status::Empty) {
+            "CREDENTIAL_FIELD_DUPLICATED"
+        } else if self.fields[1].1 == Status::Empty {
             "REQUIRED_FIELD_EMPTY"
         } else {
             "REQUIRED_FIELD_MISSING"
@@ -299,6 +323,8 @@ pub fn inspect(raw: &str) -> Diagnostic {
         let (name, observed) = observed_fields[i];
         let status = if observed == Status::Duplicated {
             observed
+        } else if malformed_candidates[i] && i == 0 {
+            Status::Unknown
         } else if malformed_candidates[i] {
             Status::MalformedCandidate
         } else if observed == Status::Missing && !inspection_complete {
@@ -309,8 +335,15 @@ pub fn inspect(raw: &str) -> Diagnostic {
         (name, status)
     });
     // Calls strict credential resolution only, never a signer or client.
-    let strict_validation_passed =
-        resolve(raw, TOKEN_NAMES).is_ok() && resolve(raw, UIFID_NAMES).is_ok();
+    let token = resolve_ms_token(raw);
+    let ms_token_request_value = token.as_ref().ok().map(|value| {
+        if value.is_empty() {
+            "EMPTY"
+        } else {
+            "ORIGINAL"
+        }
+    });
+    let strict_validation_passed = token.is_ok() && resolve(raw, UIFID_NAMES).is_ok();
     Diagnostic {
         fields,
         structure_valid,
@@ -318,6 +351,7 @@ pub fn inspect(raw: &str) -> Diagnostic {
         observed_fields,
         inspection_complete,
         malformed_candidates,
+        ms_token_request_value,
         strict_validation_passed,
     }
 }

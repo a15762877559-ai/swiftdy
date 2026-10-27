@@ -1,0 +1,15 @@
+{
+  "task": "DOUSTUDIOKIT_WINDOWS_MSTOKEN_COMPAT_04",
+  "baseline_git_head": "ad74c5e8bb6b28ea01234a13a42c65af6e86af30",
+  "source_state": "baseline plus mstoken-compat-04 changes",
+  "exe": "rust-mvp/target/release/doustudio.exe",
+  "version": "doustudio 0.1.0",
+  "exe_sha256": "b338fc4ca5e5b4831d0a9e5d2dcbb2d83509c539471deb6b7e1b0908fc806fdc",
+  "profile": "release",
+  "features": "default production",
+  "build_command": "cargo build --release --locked --offline",
+  "user_cookie_files_read": 0,
+  "production_allowlist": "EMPTY",
+  "real_worklist": "NOT_RUN",
+  "real_video_download": "NOT_RUN"
+}
