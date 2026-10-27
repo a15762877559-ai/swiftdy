@@ -1,14 +1,18 @@
 {
-  "build-release.log": "38f50771714a614fa9f9b811ffd8ff4b6a81b3ff9d24ec89e86802c0d1cd299b",
-  "cli-help.log": "9b098c0efdc3f377f876d471cbf0537b68b96269726f5f95d3b8adaaf3b9eca5",
-  "cli-verify.log": "5ffff5fd43ab38b40e9456b0a51aef4d7b541587ddaffa9f6d743b9643c3e5a5",
-  "clippy-offline.log": "f9f5987eff67e547a3bd43ad924dedc44f29ab32e235bcfca274c789032f3b06",
-  "clippy-production.log": "d5a436a566c49f74e12e5cf055db5960219bee1e8c800c8238163234fa934eb6",
-  "ffmpeg-version.log": "548d07da79082ab0db5b6ab14edc7d2e4221996319ee19b2031ee3226416727b",
-  "rust-version.log": "c4374b9ddf5b373bf9ff56a168a332515324c6d188b26df8cc0d6829d91b55f0",
-  "source-protection.json": "b8fb73ddfc9cc9fc1664002617798e107c4122a7d6806c8464cf4aa375b7049e",
-  "summary.json": "9141ec1f7ead3b224e2c610f91f45f1d4c78f4304a6b48aaad6c13510ed631e9",
-  "test-offline.log": "b6e666791324d667ec79ee0c114018d3d30ca98a1e22ddd07a17a21eb2d76253",
-  "test-production.log": "6b5ce4d8163f2ec63c720bca2ac70dfc792cbd6c0435e739bec9c28008882fc6",
-  "workflow-static.json": "fdb782ea053630b0e615c7fe1844c0243b24ed51f6839e6cdab7a9d417bbe19a"
+  "algorithm": "SHA-256",
+  "normalization": "UTF-8 text bytes with CRLF normalized to LF; no other content changes",
+  "files": {
+    "build-release.log": "3d64b6dd69e887db8261c4433fce111220c01cc0d34ff52f048ab969c8cffcea",
+    "cli-help.log": "a3781306c76fff9d21e53e7400130676cd24a4fadbeffa9dbf920bf1ef92b3cc",
+    "cli-verify.log": "54a158923c8aae437ba0c9b7f09dfa178deb8cc198d788a1c443de3b114ff2da",
+    "clippy-offline.log": "9e7be6bd6c9ca8be5ad1785c2b911e439bc9cc63820ae6cddce73606f40d2e49",
+    "clippy-production.log": "2f702df2bb33410ccb4f20e5a0d107ef9ab2e217537533e7fdeb224e9bc66deb",
+    "ffmpeg-version.log": "11f69c35f9a6f32176c2314231537c274a83868562d82782b0da191804a7beee",
+    "rust-version.log": "736a4c4049364cae4ef7f3c8e05a857d9df678007246c942d2132d6e5a8c7388",
+    "source-protection.json": "99b3c0711914f185203f40bf88f8cf30a1ef77c97e6dcc107975d32777dd4173",
+    "summary.json": "665ba303807bb282d2435e9af4dd2f38195be5b86e569024300d70c86e945d26",
+    "test-offline.log": "55f9fd1b60b218e746c6466e588f15a6526c4a325b289bd68619cff233e879da",
+    "test-production.log": "5f3ff00d555b3831703de933f2105c4d451987aee686cc9b0751dda32c967046",
+    "workflow-static.json": "7f42013eeb22a52ddc06e3579de790e7d9ebe1be761a46a26c8c5e70097b0c5c"
+  }
 }
