@@ -18,6 +18,31 @@ cargo fetch --locked
 
 GitHub 工作流 **DouStudioKit Windows Rust MVP Offline Acceptance** 只有 `workflow_dispatch`，无 Secret 和平台请求步骤。运行该工作流只授权离线测试，不授权任何真实账号访问。
 
+## 本地 Cookie 结构诊断（不联网）
+
+```powershell
+# 默认通过 rpassword 隐藏输入，粘贴一次后按 Enter，无回显是正常现象
+.\target\release\doustudio.exe credential-check
+# 用户主动选择 TXT 输入；文件必须在 Git 仓库之外
+.\target\release\doustudio.exe credential-check --cookie-file 'D:\Secrets\douyin-cookie.txt'
+```
+
+TXT 只保存完整 Cookie 字符串（UTF-8，可有 BOM 和一个结尾换行），不放主页、`Cookie:` 标签、域名行或 JSON。程序直接读取文件，不在命令行传 Cookie，不打印路径、内容、值长度或摘要，不改写原文件。读取权限由 Windows 实际只读打开检查；失败只返回固定错误。拒绝仓库内文件、UNC/映射网络盘、设备路径、ADS、相对路径、符号链接、目录 junction/其他重解析点和多硬链接文件；读取期间锁定文件及祖先目录，防止路径被替换。不要将真实 TXT 放入仓库、日志或 Artifact。
+
+诊断在异步运行时创建前结束，不调用签名、DNS 或 HTTP 客户端。输出只包含静态字段名、状态和固定原因；结束前清零程序持有的输入缓冲与副本。原 TXT 由用户保管，程序不删除它。正常进程内清零不等同于保证操作系统分页、崩溃转储或强制终止时的内存行为。
+
+必需字段共享于正式签名器和诊断器：大小写敏感的 `msToken`，以及优先级依次为 `uifid`、`uifid_temp`、`uifidtemp`、`UIFID`、`UIFID_TEMP`、`UIFIDTEMP` 的一个非空字段。不要求额外字段，不自动获取或生成凭证。输出选中的实际 UIFID 字段名；全部缺失时用 `uifid: MISSING` 并列出接受的别名，不表示必须使用小写 `uifid`。
+
+- `PRESENT` / `MISSING` / `EMPTY` / `DUPLICATED` / `INVALID_FORMAT` 分别表示本地可用、缺失、空值、同名重复、格式无效。
+- 用分号分字段，忽略空段、多余分号和字段段首尾空白；只在第一个等号处分割，值内等号保留。字段名与等号之间不能插入空白，等号后非空值的前导空格按原逻辑保留，不擅自修复。
+- 不同 UIFID 别名不是同名重复，仍按原优先级选择第一个非空值；同名必需字段的所有出现均计数，包括空值。任何接受的 UIFID 别名重复都会失败，无关字段重复不影响必需字段。
+- 相比原实现，空值重复不再被忽略，未选中 UIFID 别名的重复也会被拒绝；无等号、空字段名、非法字段名及控制字符会拒绝。正式 Session 与诊断共用这些规则，避免诊断通过而正式解析失败。
+- UTF-8/本地文件读取失败返回 `COOKIE_FILE_REJECTED_OR_UNREADABLE`。整体结构无效时必需字段报告 `INVALID_FORMAT`；空输入报告缺失且结构失败。失败退出码为 1；成功为 0。
+
+全部通过也仅表示 `LOCAL_CREDENTIAL_STRUCTURE = PASS`，不证明登录有效、Cookie 未过期或平台会接受签名。`REAL_LOGIN`、真实列表、分页及视频下载均不在该命令的验收范围。
+
+`offline-test` 构建独有的 `credential-check --synthetic-stdin` 仅用于合成 fixture 测试，生产构建不提供该参数。离线测试在运行时入口、原生签名入口、DNS/客户端统一入口布置失败断言，并验证断言确实能阻止调用；正常诊断不得触发任何一个入口。这不是系统级抓包证明。
+
 ## 后续另行授权后的本地使用
 
 ### 交互式验收入口（真实访问仍须另行授权）
@@ -26,10 +51,11 @@ GitHub 工作流 **DouStudioKit Windows Rust MVP Offline Acceptance** 只有 `wo
 
 ```powershell
 .\target\release\doustudio.exe acceptance --help
+.\target\release\doustudio.exe acceptance --first-page-only --cookie-file 'D:\Secrets\douyin-cookie.txt' --output '<已存在的本地目录>' --evidence '<新的脱敏诊断文件.json>'
 .\target\release\doustudio.exe acceptance --output '<用户指定且已存在的视频目录>' --evidence '<新的脱敏诊断文件.json>' --test-scope '<本次已审查的 scope.local.json>'
 ```
 
-1. 在本机输入 `AUTHORIZE LIST`，确认拥有或获准访问该主页，再输入主页与隐藏 Cookie。生产构建拒绝管道代替控制台确认；设置了 `DOUSTUDIO_OFFLINE_ONLY` 时直接拒绝真实入口。
+1. 在本机输入 `AUTHORIZE LIST`，确认拥有或获准访问该主页，再输入主页与隐藏 Cookie；主动传入 `--cookie-file` 时，从经过同样路径检查的 TXT 读取 Cookie。此参数不代替真实访问授权；`--first-page-only` 在第一页结果后直接停止，不提示分页或下载。生产构建拒绝管道代替控制台确认；设置了 `DOUSTUDIO_OFFLINE_ONLY` 时直接拒绝真实入口。
 2. 第一页显示 HTTP 状态、返回/同页唯一/新增/累计唯一数量、字段布尔统计及游标推进状态。输入 `CONTINUE PAGES` 才继续，最多三页总计；服务器提前耗尽则正常结束分页。401、403、429 分别分类，任何错误停止，不重试。
 3. 显示本次运行的序号、发布时间、时长、尺寸、码率和可选状态，不显示标题、ID、封面或媒体 URL。输入 `0` 或空值取消。缺失/未知类型、图集、直播或非法播放地址不可选择；明确支持普通视频类型 0、4，其余保守拒绝。
 4. 输入序号后立即锁定当前作品副本及原规则选出的地址；输入 `DOWNLOAD <该序号>` 单独授予授权 B。未确认 B 不发送媒体请求，不复用历史授权。

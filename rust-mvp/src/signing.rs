@@ -100,6 +100,8 @@ pub fn abogus(
     now: u64,
     mut random: impl FnMut() -> f64,
 ) -> Result<String> {
+    #[cfg(feature = "offline-test")]
+    crate::assert_active_operations_allowed();
     if now < 1_721_836_800_000
         || (now - 1_721_836_800_000) / 1_209_600_000 > 255
         || geometry.len() > 1024
@@ -208,6 +210,8 @@ pub fn abogus(
     Ok(b64(&sealed, S4))
 }
 pub fn websign(pairs: &[(String, String)], uifid: &str, timestamp: u64) -> String {
+    #[cfg(feature = "offline-test")]
+    crate::assert_active_operations_allowed();
     let mut p = pairs.to_vec();
     if !p.iter().any(|(k, _)| k == "uifid") {
         p.push(("uifid".into(), uifid.into()));
@@ -221,15 +225,10 @@ pub fn websign(pairs: &[(String, String)], uifid: &str, timestamp: u64) -> Strin
 }
 
 pub fn list_url(session: &Session, user: &str, cursor: u64) -> Result<Zeroizing<String>> {
-    let uifid = session.cookie_value(&[
-        "uifid",
-        "uifid_temp",
-        "uifidtemp",
-        "UIFID",
-        "UIFID_TEMP",
-        "UIFIDTEMP",
-    ])?;
-    let token = session.cookie_value(&["msToken"])?;
+    #[cfg(feature = "offline-test")]
+    crate::assert_active_operations_allowed();
+    let uifid = session.cookie_value(crate::credentials::UIFID_NAMES)?;
+    let token = session.cookie_value(crate::credentials::TOKEN_NAMES)?;
     let mut p: Vec<(String, String)> = [
         ("device_platform", "webapp"),
         ("aid", "6383"),

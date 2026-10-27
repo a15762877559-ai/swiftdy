@@ -124,6 +124,8 @@ impl Server {
     }
     fn options(&self, path: &str, output: &Path) -> Options {
         Options {
+            first_page_only: false,
+            cookie_file: None,
             output: output.into(),
             evidence: None,
             test_scope: None,
@@ -159,7 +161,7 @@ impl Interaction for Ui {
     fn answer(&mut self, _: &str) -> Result<String> {
         self.answers.pop_front().ok_or(Error::Authorization)
     }
-    fn session(&mut self) -> Result<Session> {
+    fn session(&mut self, _cookie_file: Option<&std::path::Path>) -> Result<Session> {
         self.sessions += 1;
         Session::new(
             "UIFID_TEMP=SENSITIVE_COOKIE_MARKER; msToken=SENSITIVE_TOKEN_MARKER".into(),
@@ -190,6 +192,96 @@ fn assert_redacted(text: &str) {
         "https://",
     ] {
         assert!(!text.contains(secret), "leak: {secret}");
+    }
+}
+
+#[tokio::test]
+async fn first_page_only_cli_ignores_pagination_and_download_answers() {
+    for path in ["/list", "/list-single"] {
+        let server = Server::new().await;
+        let dir = tempfile::tempdir().unwrap();
+        let mut child = tokio::process::Command::new(env!("CARGO_BIN_EXE_doustudio"))
+            .args([
+                "acceptance",
+                "--first-page-only",
+                "--fixture-url",
+                &server.url(path),
+                "--output",
+            ])
+            .arg(dir.path())
+            .stdin(Stdio::piped())
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()
+            .unwrap();
+        child
+            .stdin
+            .take()
+            .unwrap()
+            .write_all(b"AUTHORIZE LIST\nCONTINUE PAGES\n1\nDOWNLOAD 1\n")
+            .await
+            .unwrap();
+        let output = child.wait_with_output().await.unwrap();
+        assert!(output.status.success());
+        let report: Value = serde_json::from_slice(&output.stdout).unwrap();
+        assert_eq!(report["stop_reason"], "FIRST_PAGE_ONLY_COMPLETE");
+        assert_eq!(report["list_requests_started"], 1);
+        assert_eq!(report["media_download_attempts"], 0);
+        assert_eq!(report["pagination_confirmation"], false);
+        assert_eq!(report["authorization_b"], false);
+        assert!(report["choices"].as_array().unwrap().is_empty());
+        assert_eq!(server.counts(), (1, 0));
+        assert_eq!(std::fs::read_dir(dir.path()).unwrap().count(), 0);
+        assert_redacted(&String::from_utf8_lossy(&output.stdout));
+        assert_redacted(&String::from_utf8_lossy(&output.stderr));
+    }
+}
+
+#[tokio::test]
+async fn first_page_only_external_cookie_file_uses_shared_validation() {
+    for valid in [true, false] {
+        let server = Server::new().await;
+        let dir = tempfile::tempdir().unwrap();
+        let cookie_file = dir.path().join("synthetic-input.txt");
+        let cookie = if valid {
+            "UIFID_TEMP=SENSITIVE_COOKIE_MARKER;msToken=SENSITIVE_TOKEN_MARKER"
+        } else {
+            "UIFID_TEMP=SENSITIVE_COOKIE_MARKER"
+        };
+        std::fs::write(&cookie_file, cookie).unwrap();
+        let mut child = tokio::process::Command::new(env!("CARGO_BIN_EXE_doustudio"))
+            .args([
+                "acceptance",
+                "--first-page-only",
+                "--fixture-url",
+                &server.url("/list"),
+                "--cookie-file",
+            ])
+            .arg(&cookie_file)
+            .arg("--output")
+            .arg(dir.path())
+            .stdin(Stdio::piped())
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()
+            .unwrap();
+        child
+            .stdin
+            .take()
+            .unwrap()
+            .write_all(b"AUTHORIZE LIST\n")
+            .await
+            .unwrap();
+        let output = child.wait_with_output().await.unwrap();
+        assert_eq!(output.status.success(), valid);
+        let report: Value = serde_json::from_slice(&output.stdout).unwrap();
+        assert_eq!(report["list_requests_started"], usize::from(valid));
+        assert_eq!(report["media_download_attempts"], 0);
+        assert_eq!(report["pagination_confirmation"], false);
+        assert_eq!(server.counts(), (usize::from(valid), 0));
+        assert_eq!(std::fs::read_to_string(cookie_file).unwrap(), cookie);
+        assert_redacted(&String::from_utf8_lossy(&output.stdout));
+        assert_redacted(&String::from_utf8_lossy(&output.stderr));
     }
 }
 

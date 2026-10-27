@@ -1,0 +1,74 @@
+   Compiling doustudio-rust v0.1.0 (D:\Projects\swiftdy\rust-mvp)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.51s
+     Running unittests src\lib.rs (target\debug\deps\doustudio_rust-ced1bd131d7708c7.exe)
+
+running 2 tests
+test credentials::tests::accepted_text_is_always_accepted_by_existing_header_validator ... ok
+test credentials::tests::borrowed_parser_retains_value_bytes_and_alias_priority ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\main.rs (target\debug\deps\doustudio-9bbbd40abdbcfe19.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\acceptance_contracts.rs (target\debug\deps\acceptance_contracts-6fdc456d85c7030a.exe)
+
+running 2 tests
+test cover_type_and_playback_validation_without_fetching_covers ... ok
+test production_acceptance_offline_guard_precedes_all_prompts ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests\acceptance_http.rs (target\debug\deps\acceptance_http-4d6ad6a5daf0177a.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\contracts.rs (target\debug\deps\contracts-3120009c1086d60f.exe)
+
+running 14 tests
+test apache_signing_differential_vectors ... ok
+test bitrate_tuple_then_last_url ... ok
+test challenge_and_schema_errors ... ok
+test credentials_and_profile_fail_closed ... ok
+test empty_account_is_real_empty_state ... ok
+test exact_host_https_and_public_network_policy ... ok
+test fallback_empty_rates_and_unsupported_images ... ok
+test no_fabricated_tokens ... ok
+test real_cursor_chain_dedup_and_page_limit ... ok
+test response_ids_stay_strings_and_urls_are_not_serialized ... ok
+test scoped_consent_does_not_approve_production ... ok
+test signed_url_cursor_and_identity ... ok
+test staging_cleanup_and_no_overwrite ... ok
+test stalled_cyclic_empty_and_duplicate_only_pages_fail ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests\credential_diagnostic.rs (target\debug\deps\credential_diagnostic-e71ec59cf702e48c.exe)
+
+running 7 tests
+test alias_priority_case_rules_and_equals_are_preserved ... ok
+test files_reject_invalid_paths_formats_and_repository_locations ... ok
+test output_is_only_static_names_and_states_even_for_hostile_input ... ok
+test production_and_fixture_cli_file_input_redacts_and_does_not_write ... ok
+test production_has_no_stdin_fixture_switch_and_acceptance_stays_guarded ... ok
+test required_field_matrix_shared_with_signing_session ... ok
+test windows_reparse_points_network_paths_and_read_denial_are_rejected ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.25s
+
+     Running tests\offline_http.rs (target\debug\deps\offline_http-007944497893fbe5.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests doustudio_rust
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

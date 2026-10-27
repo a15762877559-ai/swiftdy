@@ -2,6 +2,8 @@ pub mod acceptance;
 pub mod auth;
 pub mod cli;
 pub mod client;
+pub mod credential_file;
+pub mod credentials;
 pub mod extractor;
 pub mod media;
 pub mod pagination;
@@ -14,6 +16,16 @@ pub const MAX_MEDIA_BYTES: u64 = 104_857_600;
 pub const BUFFER_BYTES: usize = 64 * 1024;
 pub type Result<T> = std::result::Result<T, Error>;
 
+// Fixture builds can assert that the diagnostic command never enters active operations.
+// A violation stops before signing, DNS resolution, or client construction.
+#[cfg(feature = "offline-test")]
+pub fn assert_active_operations_allowed() {
+    assert!(
+        std::env::var_os("DOUSTUDIO_TEST_FORBID_ACTIVE_OPERATIONS").is_none(),
+        "OFFLINE_DIAGNOSTIC_BOUNDARY_VIOLATION"
+    );
+}
+
 // Deliberately fixed messages: never attach a URL, HTTP body, credential or child stderr.
 #[derive(Debug, thiserror::Error, PartialEq, Eq)]
 pub enum Error {
@@ -23,6 +35,8 @@ pub enum Error {
     Authorization,
     #[error("CREDENTIAL_INVALID_OR_MISSING")]
     Credential,
+    #[error("COOKIE_FILE_REJECTED_OR_UNREADABLE")]
+    CredentialFile,
     #[error("PROFILE_OR_SIGNED_REQUEST_SCOPE_INVALID")]
     Scope,
     #[error("PRODUCTION_MEDIA_ALLOWLIST_EMPTY")]

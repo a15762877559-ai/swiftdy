@@ -54,6 +54,8 @@ pub fn public_ip(ip: IpAddr) -> bool {
 }
 
 pub async fn pinned_client(u: &Url, loopback: bool) -> Result<reqwest::Client> {
+    #[cfg(feature = "offline-test")]
+    crate::assert_active_operations_allowed();
     let host = u.host_str().ok_or(Error::NetworkTarget)?;
     let port = u.port_or_known_default().ok_or(Error::NetworkTarget)?;
     let addresses: Vec<SocketAddr> = if loopback {

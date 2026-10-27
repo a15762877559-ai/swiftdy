@@ -1,6 +1,5 @@
-#[tokio::main]
-async fn main() {
-    if let Err(error) = doustudio_rust::cli::run().await {
+fn main() {
+    if let Err(error) = doustudio_rust::cli::run() {
         eprintln!(
             "state={} reason={error}",
             if error == doustudio_rust::Error::Cancelled {

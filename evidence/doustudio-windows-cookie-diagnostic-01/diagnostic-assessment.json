@@ -1,0 +1,20 @@
+{
+  "task": "DOUSTUDIOKIT_WINDOWS_COOKIE_DIAGNOSTIC_01",
+  "RUST_BUILD": "PASS",
+  "OFFLINE_TESTS": "PASS",
+  "CREDENTIAL_PARSER_REUSED": "YES",
+  "REQUIRED_FIELD_DIAGNOSTIC": "PASS",
+  "SENSITIVE_DATA_PROTECTION": "PASS",
+  "NETWORK_REQUESTS": 0,
+  "SIGNING_REQUESTS": 0,
+  "request_count_scope": "credential-check only; legacy tests use synthetic signing and loopback HTTP",
+  "REAL_WORKLIST": "NOT_RUN",
+  "REAL_PAGINATION": "NOT_RUN",
+  "REAL_VIDEO_DOWNLOAD": "NOT_RUN",
+  "PRODUCTION_ALLOWLIST": "EMPTY",
+  "NO_WATERMARK": "NOT_VERIFIED",
+  "production_test_executions": 25,
+  "offline_test_executions": 55,
+  "system_packet_capture": "NOT_RUN",
+  "local_user_file_check": "PENDING_AFTER_CODE_DELIVERY"
+}

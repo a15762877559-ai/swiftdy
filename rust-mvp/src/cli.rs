@@ -23,6 +23,8 @@ pub struct Cli {
 }
 #[derive(Subcommand)]
 enum Commands {
+    /// Entirely local Cookie structure diagnostic. No signing, DNS, or HTTP.
+    CredentialCheck(crate::credentials::Options),
     /// Interactive, separately authorized acceptance with a single in-memory selection.
     Acceptance(crate::acceptance::Options),
     List(ListArgs),
@@ -96,8 +98,18 @@ async fn collect(args: &ListArgs, cancel: &CancellationToken) -> Result<Paginati
     }
 }
 
-pub async fn run() -> Result<()> {
+pub fn run() -> Result<()> {
     let cli = Cli::parse();
+    if let Commands::CredentialCheck(options) = cli.command {
+        return crate::credentials::run(options);
+    }
+    tokio::runtime::Runtime::new()
+        .map_err(|_| Error::Io)?
+        .block_on(run_async(cli))
+}
+async fn run_async(cli: Cli) -> Result<()> {
+    #[cfg(feature = "offline-test")]
+    crate::assert_active_operations_allowed();
     let cancel = CancellationToken::new();
     let signal = cancel.clone();
     tokio::spawn(async move {
@@ -106,6 +118,9 @@ pub async fn run() -> Result<()> {
         }
     });
     match cli.command {
+        Commands::CredentialCheck(_) => {
+            unreachable!("offline command exits before runtime construction")
+        }
         Commands::Acceptance(options) => crate::acceptance::cli(options, &cancel).await?,
         Commands::List(args) => {
             let p = collect(&args, &cancel).await?;

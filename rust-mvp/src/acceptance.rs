@@ -22,6 +22,12 @@ use {crate::media::TestScope, std::io::IsTerminal};
 
 #[derive(clap::Args)]
 pub struct Options {
+    /// Explicit local UTF-8 Cookie TXT outside the repository; otherwise hidden input.
+    #[arg(long)]
+    pub cookie_file: Option<PathBuf>,
+    /// Stop after the first page diagnostic, before pagination or media selection.
+    #[arg(long)]
+    pub first_page_only: bool,
     /// Existing local directory for the single approved video. No video is put in evidence.
     #[arg(long)]
     pub output: PathBuf,
@@ -38,7 +44,7 @@ pub struct Options {
 
 pub trait Interaction {
     fn answer(&mut self, prompt: &str) -> Result<String>;
-    fn session(&mut self) -> Result<Session>;
+    fn session(&mut self, cookie_file: Option<&Path>) -> Result<Session>;
     fn show(&mut self, event: serde_json::Value);
 }
 pub struct Console;
@@ -57,7 +63,10 @@ impl Interaction for Console {
             .read_line_bounded(&mut line)?;
         Ok(line.trim().to_owned())
     }
-    fn session(&mut self) -> Result<Session> {
+    fn session(&mut self, cookie_file: Option<&Path>) -> Result<Session> {
+        if cookie_file.is_some() {
+            return Session::input(signing::USER_AGENT.into(), cookie_file);
+        }
         #[cfg(feature = "offline-test")]
         {
             Session::new(
@@ -363,7 +372,7 @@ async fn run_inner(
     let user = auth::profile_id(&io.answer("Authorized HTTPS profile (local input only)")?)?;
     #[cfg(feature = "offline-test")]
     let user = "synthetic-profile".to_owned();
-    let session = io.session()?;
+    let session = io.session(options.cookie_file.as_deref())?;
     let mut pager = Pagination::new(3)?;
     loop {
         let mut d = PageDiagnostic::new(pager.pages + 1);
@@ -426,7 +435,12 @@ async fn run_inner(
         }
         io.show(serde_json::to_value(&d).map_err(|_| Error::Schema)?);
         r.pages.push(d);
-        if !advance? {
+        let more = advance?;
+        if options.first_page_only {
+            r.stop_reason = "FIRST_PAGE_ONLY_COMPLETE".into();
+            return Ok(());
+        }
+        if !more {
             break;
         }
         if pager.pages == 1 {

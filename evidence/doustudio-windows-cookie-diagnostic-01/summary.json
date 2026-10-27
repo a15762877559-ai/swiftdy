@@ -1,0 +1,77 @@
+{
+  "task": "DOUSTUDIOKIT_WINDOWS_COOKIE_DIAGNOSTIC_01",
+  "os": "Microsoft Windows NT 10.0.19045.0",
+  "real_worklist": "NOT_RUN",
+  "real_media": "NOT_RUN",
+  "production_allowlist": "EMPTY",
+  "no_watermark": "NOT_VERIFIED",
+  "fixture_cleanup": "PASS",
+  "checks": [
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "rust-version"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "ffmpeg-version"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "synthetic-fixture"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "format"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "build-release"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "clippy-production"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "clippy-offline"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "test-production"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "test-offline"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "windows-ctrl-c"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "cli-help"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "cli-acceptance-help"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "cli-verify"
+    }
+  ],
+  "result": "PASS"
+}

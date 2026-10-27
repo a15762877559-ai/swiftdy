@@ -8,36 +8,20 @@ pub struct Session {
     pub user_agent: String,
 }
 impl Session {
-    pub fn cookie_value(&self, names: &[&str]) -> Result<Zeroizing<String>> {
-        for name in names {
-            let values: Vec<_> = self
-                .cookie
-                .split(';')
-                .filter_map(|s| s.trim().split_once('='))
-                .filter(|(k, v)| k == name && !v.is_empty())
-                .map(|(_, v)| v)
-                .collect();
-            if values.len() > 1 {
-                return Err(Error::Credential);
-            }
-            if let Some(v) = values.first() {
-                return Ok(Zeroizing::new((*v).into()));
-            }
-        }
-        Err(Error::Credential)
+    pub fn cookie_value(&self, names: &'static [&'static str]) -> Result<Zeroizing<String>> {
+        crate::credentials::resolve(&self.cookie, names).map(|v| Zeroizing::new(v.to_owned()))
     }
     pub fn new(cookie: String, user_agent: String) -> Result<Self> {
-        let cookie = Zeroizing::new(cookie);
-        if cookie.trim().is_empty()
-            || cookie.len() > 32768
-            || cookie.chars().any(char::is_control)
+        Self::from_secret(Zeroizing::new(cookie), user_agent)
+    }
+    fn from_secret(cookie: Zeroizing<String>, user_agent: String) -> Result<Self> {
+        if !crate::credentials::valid_structure(&cookie)
             || user_agent.is_empty()
             || user_agent.len() > 1024
             || user_agent.chars().any(char::is_control)
         {
             return Err(Error::Credential);
         }
-        HeaderValue::from_str(&cookie).map_err(|_| Error::Credential)?;
         HeaderValue::from_str(&user_agent).map_err(|_| Error::Credential)?;
         Ok(Self { cookie, user_agent })
     }
@@ -47,10 +31,10 @@ impl Session {
         Ok(value)
     }
     pub fn prompt(user_agent: String) -> Result<Self> {
-        // Console-only hidden entry; no command-line or on-disk credentials.
-        let cookie = rpassword::prompt_password("Authorized session Cookie (hidden): ")
-            .map_err(|_| Error::Credential)?;
-        Self::new(cookie, user_agent)
+        Self::input(user_agent, None)
+    }
+    pub fn input(user_agent: String, file: Option<&std::path::Path>) -> Result<Self> {
+        Self::from_secret(crate::credential_file::input(file)?, user_agent)
     }
 }
 
