@@ -62,7 +62,22 @@ cargo fmt --all -- --check
 
 ## 用户本地 TXT 诊断
 
-按交付顺序，先完成测试、提交并推送代码，再使用用户明确指定的仓库外 TXT 运行一次生产 Release `credential-check`。此处将在运行后只记录字段状态，不保存或上传用户 TXT 内容。当前状态：PENDING_LOCAL_DIAGNOSTIC。
+代码、报告和合成证据已提交并推送：`f223afb565c3769a6a6b2ecbcaf9979a6e13f118`。随后使用用户明确指定的仓库外 TXT，由生产 Release EXE 直接执行了一次 `credential-check --cookie-file`；未通过 Shell/工具读取文件内容，未计算文件长度或摘要，未改写原文件。检查时同时设置 `DOUSTUDIO_OFFLINE_ONLY=1`。
+
+本次诊断结果：
+
+| 项目 | 状态 |
+| --- | --- |
+| msToken | INVALID_FORMAT |
+| uifid（UIFID 类凭证显示名） | INVALID_FORMAT |
+| LOCAL_CREDENTIAL_STRUCTURE | FAIL |
+| 固定失败原因 | COOKIE_INVALID_FORMAT |
+| 进程退出码 | 1 |
+| HTTP / DNS / 签名调用 | 0 / 0 / 0 |
+
+整体结构检查失败时，诊断有意不将后续字段解析结果当作可靠事实，两个必需项统一标记 `INVALID_FORMAT`；这不证明当前文件里每个字段的值本身无效，也不能单独确定 `msToken` 是否缺失。用户此前提到旧 Cookie 缺少 `msToken`，不能用该信息替代本次实际输出。本次没有读取原文来进一步猜测具体的格式错误，没有自动修复、获取 token 或再次运行诊断。
+
+本机检查只保存静态字段状态与固定原因，见 `local-file-diagnostic.json`。输入内容、片段、长度、摘要及认证材料没有写入任何报告、日志或 Git。未启动真实 `acceptance`、列表、分页或媒体下载。
 
 ## 验收状态
 

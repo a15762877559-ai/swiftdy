@@ -16,5 +16,5 @@
   "production_test_executions": 25,
   "offline_test_executions": 55,
   "system_packet_capture": "NOT_RUN",
-  "local_user_file_check": "PENDING_AFTER_CODE_DELIVERY"
+  "local_user_file_check": "FAIL_INVALID_FORMAT"
 }
