@@ -20,6 +20,36 @@ GitHub 工作流 **DouStudioKit Windows Rust MVP Offline Acceptance** 只有 `wo
 
 ## 后续另行授权后的本地使用
 
+### 交互式验收入口（真实访问仍须另行授权）
+
+优先使用 `acceptance`：同一个进程保留当前列表并锁定作品，旧 `list`、`download`、`verify` 保持兼容。以下仅是未来授权后的命令模板，本轮不运行真实请求：
+
+```powershell
+.\target\release\doustudio.exe acceptance --help
+.\target\release\doustudio.exe acceptance --output '<用户指定且已存在的视频目录>' --evidence '<新的脱敏诊断文件.json>' --test-scope '<本次已审查的 scope.local.json>'
+```
+
+1. 在本机输入 `AUTHORIZE LIST`，确认拥有或获准访问该主页，再输入主页与隐藏 Cookie。生产构建拒绝管道代替控制台确认；设置了 `DOUSTUDIO_OFFLINE_ONLY` 时直接拒绝真实入口。
+2. 第一页显示 HTTP 状态、返回/同页唯一/新增/累计唯一数量、字段布尔统计及游标推进状态。输入 `CONTINUE PAGES` 才继续，最多三页总计；服务器提前耗尽则正常结束分页。401、403、429 分别分类，任何错误停止，不重试。
+3. 显示本次运行的序号、发布时间、时长、尺寸、码率和可选状态，不显示标题、ID、封面或媒体 URL。输入 `0` 或空值取消。缺失/未知类型、图集、直播或非法播放地址不可选择；明确支持普通视频类型 0、4，其余保守拒绝。
+4. 输入序号后立即锁定当前作品副本及原规则选出的地址；输入 `DOWNLOAD <该序号>` 单独授予授权 B。未确认 B 不发送媒体请求，不复用历史授权。
+5. 验证已审查的临时精确主机作用域，复用原下载器。下载不重新取列表、不替换作品/地址/CDN。URL 失效或主机不符即停止，作用域不会自动创建或扩展。
+6. 仅保存 `accepted-video.mp4`，拒绝覆盖；失败或正常 Ctrl+C 取消清理本次 `.part`。证据 JSON 只保存白名单字段，使用 `create_new` 拒绝覆盖；Cookie、真实 ID、标题、原始游标和 URL 不写入诊断。
+
+`signing_completed` 仅表示本页原生签名构造完成，不能单独证明平台接受；需结合 HTTP 200 和有效业务响应。`media_download_attempts` 是下载器调用次数，不是包含入口 302 在内的 HTTP GET 精确次数。作用域格式见下方原有说明，生产白名单始终为空。
+
+媒体诊断使用同一次全片 FFmpeg 解码，逐帧流式读取 `showinfo` 时间戳，只保留统计结果：首帧为解码序号 0，中间区间为时长中点 ± max(两帧时长, 2.5% 时长)，结尾为达到 max(总时长减两帧, 95% 总时长)。必须完整解码正常结束、帧数满足原验证规则且首中尾覆盖，才能通过；不是抽样解码。原始 stderr 不保存，单行限 8 KiB、进度输出限 64 KiB。两次 SHA-256 必须一致；音频未解码，`NO_WATERMARK=NOT_VERIFIED`。
+
+### 仅合成数据的入口复核
+
+```powershell
+./scripts/offline-acceptance.ps1 -TaskId DOUSTUDIOKIT_WINDOWS_RUST_ACCEPTANCE_ENTRY_02 -EvidenceDir ../evidence/doustudio-windows-rust-acceptance-entry-02
+```
+
+`offline-test` 构建独有的 `acceptance --fixture-url http://127.0.0.1:<测试端口>/list ...` 仅接受本地回环服务。测试通过 stdin 输入合成确认词，Cookie 固定为合成值；真实构建没有该参数。测试实际启动 EXE，完成三页、锁定、授权 B、合成 MP4 下载与完整解码，并导出 `synthetic-cli-acceptance.json` 和脱敏控制台日志。Windows Ctrl+C 测试使用 Python 标准库向独立隐藏控制台发送真实 `CTRL_C_EVENT`；Python 仅为测试辅助，不是 Rust CLI 的运行依赖。
+
+### 原有命令
+
 以下命令是未来验收入口，本轮没有执行。先运行并通过离线验收，再单独授权。主页必须是 `https://www.douyin.com/user/<sec_user_id>`，不接受短链接、分享文案或重定向。
 
 ```powershell

@@ -1,3 +1,4 @@
+pub mod acceptance;
 pub mod auth;
 pub mod cli;
 pub mod client;
@@ -16,6 +17,8 @@ pub type Result<T> = std::result::Result<T, Error>;
 // Deliberately fixed messages: never attach a URL, HTTP body, credential or child stderr.
 #[derive(Debug, thiserror::Error, PartialEq, Eq)]
 pub enum Error {
+    #[error("ACCEPTANCE_STOPPED_SEE_SANITIZED_DIAGNOSTICS")]
+    Acceptance,
     #[error("AUTHORIZATION_REQUIRED")]
     Authorization,
     #[error("CREDENTIAL_INVALID_OR_MISSING")]

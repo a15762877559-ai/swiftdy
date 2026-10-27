@@ -51,6 +51,11 @@ jobs:
             rust-mvp/acceptance/test-production.log
             rust-mvp/acceptance/test-offline.log
             rust-mvp/acceptance/cli-help.log
+            rust-mvp/acceptance/cli-acceptance-help.log
+            rust-mvp/acceptance/synthetic-cli-acceptance.json
+            rust-mvp/acceptance/synthetic-cli-console.log
+            rust-mvp/acceptance/windows-ctrl-c.json
+            rust-mvp/acceptance/windows-ctrl-c.log
             rust-mvp/acceptance/cli-verify.log
             rust-mvp/acceptance/rust-version.log
             rust-mvp/acceptance/ffmpeg-version.log

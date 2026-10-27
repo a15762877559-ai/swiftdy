@@ -25,6 +25,99 @@ pub struct Verification {
     pub full_video_decode: bool,
     pub audio_decode: &'static str,
     pub no_watermark: &'static str,
+    pub sha256_match: bool,
+    pub frame_rate: f64,
+    pub first_frame_covered: bool,
+    pub middle_interval_covered: bool,
+    pub end_interval_covered: bool,
+    pub full_decode_ended: bool,
+    pub decode_errors_observed: bool,
+}
+
+#[derive(Default)]
+struct Coverage {
+    frames: u64,
+    first: Option<f64>,
+    middle: bool,
+    end: bool,
+}
+impl Coverage {
+    fn line(&mut self, line: &[u8], duration: f64, fps: f64) -> Result<()> {
+        let text = std::str::from_utf8(line).map_err(|_| Error::Decode)?;
+        if !text.contains("Parsed_showinfo_")
+            || !text.contains(" n:")
+            || !text.contains(" pts_time:")
+        {
+            return Ok(());
+        }
+        let n = text
+            .split_once(" n:")
+            .and_then(|(_, s)| s.split_whitespace().next())
+            .and_then(|s| s.parse::<u64>().ok())
+            .ok_or(Error::Decode)?;
+        let pts = text
+            .split_once(" pts_time:")
+            .and_then(|(_, s)| s.split_whitespace().next())
+            .and_then(|s| s.parse::<f64>().ok())
+            .filter(|n| n.is_finite())
+            .ok_or(Error::Decode)?;
+        if n != self.frames || self.frames >= 250000 {
+            return Err(Error::Decode);
+        }
+        let first = *self.first.get_or_insert(pts);
+        let t = pts - first;
+        self.frames += 1;
+        let tolerance = (2.0 / fps).max(duration * 0.025);
+        self.middle |= (t - duration / 2.0).abs() <= tolerance;
+        self.end |= t >= (duration - 2.0 / fps).max(duration * 0.95);
+        Ok(())
+    }
+}
+async fn coverage_output(
+    mut command: Command,
+    cancel: &CancellationToken,
+    duration: f64,
+    fps: f64,
+) -> Result<(Vec<u8>, Coverage)> {
+    command.env_clear();
+    for key in ["SystemRoot", "WINDIR", "PATH", "TEMP", "TMP"] {
+        if let Some(v) = std::env::var_os(key) {
+            command.env(key, v);
+        }
+    }
+    command
+        .stdin(Stdio::null())
+        .stdout(Stdio::piped())
+        .stderr(Stdio::piped())
+        .kill_on_drop(true);
+    #[cfg(windows)]
+    command.creation_flags(0x08000000);
+    let mut child = command.spawn().map_err(|_| Error::VerifierMissing)?;
+    let mut stdout = child.stdout.take().ok_or(Error::Decode)?.take(65537);
+    let mut stderr = child.stderr.take().ok_or(Error::Decode)?;
+    let result = tokio::select! {
+        biased;
+        _=cancel.cancelled()=>Err(Error::Cancelled),
+        _=tokio::time::sleep(Duration::from_secs(180))=>Err(Error::Timeout),
+        r=async {
+            let output=async {let mut bytes=Vec::new();stdout.read_to_end(&mut bytes).await.map_err(|_|Error::Decode)?;if bytes.len()>65536{return Err(Error::Decode);}Ok(bytes)};
+            let observe=async {
+                let mut coverage=Coverage::default();let mut chunk=vec![0u8;8192];let mut line=Vec::new();
+                loop {let n=stderr.read(&mut chunk).await.map_err(|_|Error::Decode)?;if n==0{break;}
+                    for b in &chunk[..n] {if *b==b'\n' {coverage.line(&line,duration,fps)?;line.clear();}else{if line.len()>=8192{return Err(Error::Decode);}line.push(*b);}}
+                }
+                if !line.is_empty(){coverage.line(&line,duration,fps)?;}Ok(coverage)
+            };
+            let (output,coverage)=tokio::try_join!(output,observe)?;
+            if !child.wait().await.map_err(|_|Error::Decode)?.success(){return Err(Error::Decode);}
+            Ok((output,coverage))
+        }=>r
+    };
+    if result.is_err() {
+        let _ = child.kill().await;
+        let _ = child.wait().await;
+    }
+    result
 }
 
 pub fn hash_and_boxes(path: &Path, expected: Option<u64>) -> Result<(u64, String)> {
@@ -182,7 +275,7 @@ pub async fn verify(
     decode
         .args([
             "-v",
-            "error",
+            "info",
             "-nostdin",
             "-xerror",
             "-err_detect",
@@ -201,6 +294,8 @@ pub async fn verify(
         .args([
             "-map",
             "0:v:0",
+            "-vf",
+            "showinfo",
             "-an",
             "-sn",
             "-dn",
@@ -215,7 +310,9 @@ pub async fn verify(
             "null",
             "-",
         ]);
-    let decoded = child_output(decode, cancel).await?;
+    // One full decode. Consume frame timestamps as bounded streaming diagnostics;
+    // never retain stderr (which can include local paths/metadata).
+    let (decoded, coverage) = coverage_output(decode, cancel, duration, fps).await?;
     let text = std::str::from_utf8(&decoded).map_err(|_| Error::Decode)?;
     let field = |key: &str| text.lines().filter_map(|l| l.strip_prefix(key)).next_back();
     let frames = field("frame=")
@@ -228,6 +325,10 @@ pub async fn verify(
     if field("progress=") != Some("end")
         || frames == 0
         || frames > 250000
+        || coverage.frames != frames
+        || coverage.first.is_none()
+        || !coverage.middle
+        || !coverage.end
         || end < (duration - 2.0 / fps).max(duration * 0.95)
         || s["nb_frames"]
             .as_str()
@@ -252,5 +353,12 @@ pub async fn verify(
         full_video_decode: true,
         audio_decode: "NOT_RUN",
         no_watermark: "NOT_VERIFIED",
+        sha256_match: true,
+        frame_rate: fps,
+        first_frame_covered: coverage.first.is_some(),
+        middle_interval_covered: coverage.middle,
+        end_interval_covered: coverage.end,
+        full_decode_ended: true,
+        decode_errors_observed: false,
     })
 }

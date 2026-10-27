@@ -9,12 +9,46 @@ use tokio::io::AsyncReadExt;
 use tokio_util::io::StreamReader;
 use url::Url;
 
+#[derive(Default, serde::Serialize)]
+pub struct RequestDiagnostic {
+    pub http_status: Option<u16>,
+    pub signing_completed: bool,
+    pub request_started: bool,
+}
+impl RequestDiagnostic {
+    pub fn error_category(&self, error: &Error) -> String {
+        match self.http_status {
+            Some(401) => "HTTP_401_UNAUTHORIZED".into(),
+            Some(403) => "HTTP_403_FORBIDDEN".into(),
+            Some(429) => "HTTP_429_RATE_LIMITED".into(),
+            _ => error.to_string(),
+        }
+    }
+}
+
 pub async fn fetch_page(session: &Session, user: &str, cursor: u64) -> Result<Page> {
+    fetch_page_observed(session, user, cursor, &mut RequestDiagnostic::default()).await
+}
+pub async fn fetch_page_observed(
+    session: &Session,
+    user: &str,
+    cursor: u64,
+    diagnostic: &mut RequestDiagnostic,
+) -> Result<Page> {
     let signed = crate::signing::list_url(session, user, cursor)?;
+    diagnostic.signing_completed = true;
     let url = auth::signed_request(&signed, user, cursor)?;
-    request_page(url, session, false).await
+    request_page_observed(url, session, false, diagnostic).await
 }
 pub async fn request_page(url: Url, session: &Session, loopback: bool) -> Result<Page> {
+    request_page_observed(url, session, loopback, &mut RequestDiagnostic::default()).await
+}
+pub async fn request_page_observed(
+    url: Url,
+    session: &Session,
+    loopback: bool,
+    diagnostic: &mut RequestDiagnostic,
+) -> Result<Page> {
     #[cfg(not(feature = "offline-test"))]
     if loopback {
         return Err(Error::Scope);
@@ -25,6 +59,7 @@ pub async fn request_page(url: Url, session: &Session, loopback: bool) -> Result
         return Err(Error::Scope);
     }
     let client = pinned_client(&url, loopback).await?;
+    diagnostic.request_started = true;
     let response = client
         .get(url)
         .header("Cookie", session.cookie_header()?)
@@ -35,6 +70,7 @@ pub async fn request_page(url: Url, session: &Session, loopback: bool) -> Result
         .send()
         .await
         .map_err(|_| Error::Network)?;
+    diagnostic.http_status = Some(response.status().as_u16());
     match response.status().as_u16() {
         200 => (),
         401 | 403 => return Err(Error::Access),

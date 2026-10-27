@@ -23,6 +23,8 @@ pub struct Cli {
 }
 #[derive(Subcommand)]
 enum Commands {
+    /// Interactive, separately authorized acceptance with a single in-memory selection.
+    Acceptance(crate::acceptance::Options),
     List(ListArgs),
     Download {
         #[command(flatten)]
@@ -104,6 +106,7 @@ pub async fn run() -> Result<()> {
         }
     });
     match cli.command {
+        Commands::Acceptance(options) => crate::acceptance::cli(options, &cancel).await?,
         Commands::List(args) => {
             let p = collect(&args, &cancel).await?;
             for (i, w) in p.works.iter().enumerate() {
