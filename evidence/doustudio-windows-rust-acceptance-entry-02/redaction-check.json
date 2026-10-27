@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "files": [
+    "build-release.log",
+    "cli-acceptance-help.log",
+    "cli-help.log",
+    "cli-verify.log",
+    "clippy-offline.log",
+    "clippy-production.log",
+    "ffmpeg-version.log",
+    "rust-version.log",
+    "source-boundary.json",
+    "summary.json",
+    "synthetic-cli-acceptance.json",
+    "synthetic-cli-console.log",
+    "test-offline.log",
+    "test-production.log",
+    "windows-ctrl-c.json",
+    "windows-ctrl-c.log",
+    "workflow-static.json"
+  ],
+  "synthetic_identity_and_credential_markers_absent": true,
+  "raw_signed_urls_and_cursor_values_absent": true,
+  "video_or_credentials_archived": false,
+  "real_credentials_used": false
+}

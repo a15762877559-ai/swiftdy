@@ -1,0 +1,38 @@
+{
+  "task": "DOUSTUDIOKIT_WINDOWS_RUST_ACCEPTANCE_ENTRY_02",
+  "tested_source_commit": "0219bdfdc9b4d5c5f0f431327dbb44ecedf6ae0d",
+  "baseline": "a34dae0f091499dfcade979ed9cbf712011a1a9d",
+  "release_exe_sha256": "6ffe2afd1e4ef977bd40946d6b1f2f5d250e78749b1b2b694a832bf74d644454",
+  "release_version": "doustudio 0.1.0",
+  "unchanged_protected_files": {
+    "rust-mvp/src/signing.rs": true,
+    "rust-mvp/src/media.rs": true,
+    "rust-mvp/src/transport.rs": true,
+    "rust-mvp/src/storage.rs": true,
+    "rust-mvp/src/auth.rs": true,
+    "rust-mvp/tests/contracts.rs": true,
+    "rust-mvp/tests/offline_http.rs": true
+  },
+  "changed_file_git_blobs": {
+    ".github/workflows/doustudio-windows-rust-mvp-offline.yml": "87e20888330e82d0b219bae74e8064f26e06fa78",
+    "rust-mvp/README.md": "0bc8079c3f4ca2cc4e3e995278a7a0597a794ebb",
+    "rust-mvp/scripts/offline-acceptance.ps1": "bd63585d6d98a48680c1831404b49cc3f7516e47",
+    "rust-mvp/scripts/test-windows-ctrl-c.py": "6d6c6e48eb53696649423e1d4882a52ec51ba9c4",
+    "rust-mvp/src/acceptance.rs": "07733c5f2379bcbf3865b1c4f8f5ffda29d33be7",
+    "rust-mvp/src/cli.rs": "539b1ae3849a1e90f3653a879b4779ea8f8e9cec",
+    "rust-mvp/src/client.rs": "5ef38bedf10149be4e186926200b1c04591e894b",
+    "rust-mvp/src/extractor.rs": "0fa11412aa206eab2710e57f9324876c1acf87f3",
+    "rust-mvp/src/lib.rs": "04b101dc8ed5de80ecca132f913c7764bdcafbb5",
+    "rust-mvp/src/verify.rs": "6cce2a3c1011921140845cfa1ccc3b3eecfb57e7",
+    "rust-mvp/tests/acceptance_contracts.rs": "f2fd8edb688aaf384729fd846f0700432e00055c",
+    "rust-mvp/tests/acceptance_http.rs": "8ad0e22c28b50c5fc471cb5466171019e73ac983"
+  },
+  "old_swift_reports_and_evidence_unchanged": true,
+  "rust_unique_tests": 43,
+  "original_tests_preserved": 31,
+  "new_rust_tests": 12,
+  "windows_native_ctrl_c_tests": 1,
+  "actions_dispatched": false,
+  "real_worklist_requests": 0,
+  "real_media_requests": 0
+}

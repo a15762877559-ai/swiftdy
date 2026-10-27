@@ -1,0 +1,9 @@
+Interactive, separately authorized acceptance with a single in-memory selection
+
+Usage: doustudio.exe acceptance [OPTIONS] --output <OUTPUT>
+
+Options:
+      --output <OUTPUT>          Existing local directory for the single approved video. No video is put in evidence
+      --evidence <EVIDENCE>      New JSON file containing only sanitized diagnostics (never overwrites)
+      --test-scope <TEST_SCOPE>  Previously reviewed exact-host scope; read only after authorization B
+  -h, --help                     Print help

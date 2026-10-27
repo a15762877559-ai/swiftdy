@@ -1,0 +1,7 @@
+{
+  "result": "PASS",
+  "trigger": "workflow_dispatch only",
+  "permissions": "contents:read",
+  "new_artifact_entries": "explicit sanitized fixture diagnostics only",
+  "dispatched": false
+}

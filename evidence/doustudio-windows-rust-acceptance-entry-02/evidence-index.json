@@ -1,0 +1,24 @@
+{
+  "algorithm": "SHA-256",
+  "normalization": "UTF-8 text with CRLF normalized to LF",
+  "files": {
+    "build-release.log": "00326f3c08d36dbeedef30d6ed207fd1c8798f71ddf4f33612445ceaa043fbb7",
+    "cli-acceptance-help.log": "b4f64adec310f012996079cd46a2f314dd306d6d608ed8795ae18677432f7130",
+    "cli-help.log": "9726164d2ca37ccd0e4823f73c19cd879ca53f551657e0b9537c9e8386adcf83",
+    "cli-verify.log": "983d66b8b1cd544c70de4298f2a28661949bb60557610704c03043700cc0de2f",
+    "clippy-offline.log": "a1a1bd81af101aeab9cb40fec4545d5679661d067e83e094b7f56624e9cbe62c",
+    "clippy-production.log": "658024ff19859dd41021c3ad1a73de6b496366f5b2f490879fd3a143c6bdc1bf",
+    "ffmpeg-version.log": "11f69c35f9a6f32176c2314231537c274a83868562d82782b0da191804a7beee",
+    "redaction-check.json": "a42297e3a1f66356e924fd94245544c16dbd6012791ef1d123223265d9c5392c",
+    "rust-version.log": "736a4c4049364cae4ef7f3c8e05a857d9df678007246c942d2132d6e5a8c7388",
+    "source-boundary.json": "cc49af2f3f9639f0b0e605a3352b199a17c859eea85d86e6094f6d68ef06f8cf",
+    "summary.json": "0fe2bc5291282d8269d0d78207157b98f6ded4eef0944e80d5d6c2a140463766",
+    "synthetic-cli-acceptance.json": "54dcd5ee66bc1e143409af1e12d041ac6fb809f12b79cdfe7bcfeb8420ebc813",
+    "synthetic-cli-console.log": "c956d635cca8a162c176217322a0698152d39a2c8bc172b29e1867eae9506c0e",
+    "test-offline.log": "6428c4b2e50421164ddd8102a8168f3ab7f590ff007e351ece1835dc6e03e624",
+    "test-production.log": "f1f40058c29ec1b9ec2c4964cadc19688fe834b349a7d1412d763b27f8986703",
+    "windows-ctrl-c.json": "95cadbd4fff4ebad1fd33a9ffe5822139f2bc31bf5112cdf20e22be780e6c7b1",
+    "windows-ctrl-c.log": "946c5d0f2ad95c7ccc0836f288fdcec633110b6480d6f00a9571f7a812e3fa02",
+    "workflow-static.json": "f157955d6b247dfef566b386f844dc5180926f50f54ca2af68560d016f7a9f72"
+  }
+}
