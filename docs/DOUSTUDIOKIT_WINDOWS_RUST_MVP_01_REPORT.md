@@ -121,3 +121,12 @@ cargo fetch --locked
 真实 Rust 签名被平台接受、真实作品列表、真实多页、真实媒体下载均 **NOT_RUN**。固定 Windows Chrome 146/1920×1080 身份与实际会话的兼容性需真实验收；不声称所有浏览器会话适用。签名对照一致不能代替平台验收。
 
 生产媒体主机 **EMPTY**；音频轨道解码 **NOT_RUN**；无水印 **NOT_VERIFIED**；底层网络接收严格硬上限 **NOT_PROVEN**。不支持图集、实况、直播、短链展开、自动登录/挑战处理、原画 URL 构造、批量下载、断点续传、后台下载服务或 Vue 桌面 UI。
+
+## Git 交付状态
+
+- 实现提交：`124a7b896048bba81daba4af9a6b5fe7386e59c2`。
+- 跨 Windows 检出换行规范化的证据哈希提交：`1b2f3ec5d610b62da48ce1f9d001ee893957afac`。
+- 792 个原有跟踪文件的 Git blob 与基线全部相同；仅增加本轮文件。构建目录和 EXE 保留本地并被忽略，不进入 Git。
+- **PUSH = BLOCKED_AUTHORIZATION**。实际 `git push origin main` 返回 403：本机已保存 Git 账号 `achusonwork-bit` 无目标仓库写权限。GitHub 插件账号 `changyaodong122-cell` 的仓库权限为 pull=true、push=false，未尝试越权写入或修改登录配置。
+- 远端仍在 `2037c8f0e420d5cf728d332e2084d7fa6e32e408`，新增工作流尚未发布，不能声称远端已经可运行。等待用户切换有权限账号或授予当前账号写权限后，再普通推送。无需在聊天中提供任何密码、Cookie 或令牌。
+- 本节属于本轮交付状态补充；没有覆盖旧报告，也没有再次执行真实验收。
