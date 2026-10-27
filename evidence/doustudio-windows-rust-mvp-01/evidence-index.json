@@ -1,0 +1,14 @@
+{
+  "build-release.log": "38f50771714a614fa9f9b811ffd8ff4b6a81b3ff9d24ec89e86802c0d1cd299b",
+  "cli-help.log": "9b098c0efdc3f377f876d471cbf0537b68b96269726f5f95d3b8adaaf3b9eca5",
+  "cli-verify.log": "5ffff5fd43ab38b40e9456b0a51aef4d7b541587ddaffa9f6d743b9643c3e5a5",
+  "clippy-offline.log": "f9f5987eff67e547a3bd43ad924dedc44f29ab32e235bcfca274c789032f3b06",
+  "clippy-production.log": "d5a436a566c49f74e12e5cf055db5960219bee1e8c800c8238163234fa934eb6",
+  "ffmpeg-version.log": "548d07da79082ab0db5b6ab14edc7d2e4221996319ee19b2031ee3226416727b",
+  "rust-version.log": "c4374b9ddf5b373bf9ff56a168a332515324c6d188b26df8cc0d6829d91b55f0",
+  "source-protection.json": "b8fb73ddfc9cc9fc1664002617798e107c4122a7d6806c8464cf4aa375b7049e",
+  "summary.json": "9141ec1f7ead3b224e2c610f91f45f1d4c78f4304a6b48aaad6c13510ed631e9",
+  "test-offline.log": "b6e666791324d667ec79ee0c114018d3d30ca98a1e22ddd07a17a21eb2d76253",
+  "test-production.log": "6b5ce4d8163f2ec63c720bca2ac70dfc792cbd6c0435e739bec9c28008882fc6",
+  "workflow-static.json": "fdb782ea053630b0e615c7fe1844c0243b24ed51f6839e6cdab7a9d417bbe19a"
+}

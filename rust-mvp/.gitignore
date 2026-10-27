@@ -1,0 +1,9 @@
+/target/
+/out/
+/acceptance/
+*.part
+*.mp4
+*secret*
+*session*
+*cookie*
+scope.local.json

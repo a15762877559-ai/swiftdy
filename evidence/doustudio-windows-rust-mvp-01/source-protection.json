@@ -1,0 +1,118 @@
+{
+  "task": "DOUSTUDIOKIT_WINDOWS_RUST_MVP_01",
+  "baseline_commit": "2037c8f0e420d5cf728d332e2084d7fa6e32e408",
+  "protected_baseline_files": 792,
+  "protected_baseline_unchanged": true,
+  "upstream_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "apache_signing_commit": "3d540dbf3783449e638403b65d81c882c4a99575",
+  "release_exe_sha256": "24948adcced7bfb0e42cea93c7b0dd9d75fb66f13633be994b87adc00a147f32",
+  "source_files": {
+    ".github/workflows/doustudio-windows-rust-mvp-offline.yml": {
+      "working_sha256": "3362e3e4b691a2258d685558ffb754197d03e430e6581658bb251a9fa8f04fa8",
+      "git_blob": "687c5dc090c6473c2289d1fe752563eb5e57a143"
+    },
+    "rust-mvp/.gitignore": {
+      "working_sha256": "5996d90bb23b5b43dd35388d9985b5483e35a76a5d94e895452b7369910154d7",
+      "git_blob": "4c11021b86a444174718b61b5189a8cef858e4aa"
+    },
+    "rust-mvp/Cargo.lock": {
+      "working_sha256": "4ccc3c4660d324746c29f1c343182172f7009c944f5186b40ff623974942e8fc",
+      "git_blob": "ffa7bd23dc88f5366c8f076e94f5cb6c0869bda7"
+    },
+    "rust-mvp/Cargo.toml": {
+      "working_sha256": "fa082331608da6c571e30e95a21cff69eec6436250312e2c960986367a1c7f5f",
+      "git_blob": "add603ffa4bf751a500480c4a45ba790893343a3"
+    },
+    "rust-mvp/README.md": {
+      "working_sha256": "934e32d7a7114a11f061bc31052825473cf52125c319cb9ba46b725e1a046967",
+      "git_blob": "4ba5bc77ab3afadbcce7711363a977f36bcc20af"
+    },
+    "rust-mvp/THIRD_PARTY_NOTICES.md": {
+      "working_sha256": "cbd12169aa3f6085130c7fa1cdbe13901f679311303663e1195cb21d5286ca77",
+      "git_blob": "73d1a5941672b96a8b71c27601a8facddd0ad2c7"
+    },
+    "rust-mvp/fixtures/signing-vectors.json": {
+      "working_sha256": "e523d820efc4e08d83c3650e4ef0d00f6357e41a04565f077c4556192cf9b94c",
+      "git_blob": "863729ce56add9339a6e448641755de848ca4822"
+    },
+    "rust-mvp/rust-toolchain.toml": {
+      "working_sha256": "3e9da041cf8d454d57c4fb0bbe0d5f72c424739f9d213abcc6a0db4087ce7f13",
+      "git_blob": "3bf9477a0ab9a911fadaa7e27e1d546d8832dfc3"
+    },
+    "rust-mvp/scripts/generate-signing-vectors.py": {
+      "working_sha256": "5d0c59d2bfaf754cd723a953b954394aee1cbd920cc337019f6dfacb6764252c",
+      "git_blob": "1aec2189a592c5e3b027124e9f2b78829f2803fe"
+    },
+    "rust-mvp/scripts/offline-acceptance.ps1": {
+      "working_sha256": "ac59e57274376290eb1d02cebf2aa2cda2841697ccc7a3f23def058db80b67f2",
+      "git_blob": "f733759024bbb9a86a92a42c97786c477179f94f"
+    },
+    "rust-mvp/src/auth.rs": {
+      "working_sha256": "50b7dfd43767d9fcfbf1b9ce0ddc481f31a8c7bf98ed21cdb8d51620a0ec9a36",
+      "git_blob": "cef3f5b148689b02f9156bd6a605e136f6b37241"
+    },
+    "rust-mvp/src/cli.rs": {
+      "working_sha256": "2e59e26dc3106beb2445a81cba4c6eb4a10fccaf4d37f58c66ec5ba1940bc1ed",
+      "git_blob": "0d8fb0b963e468432a1bc797c418ceb7bb92b2a4"
+    },
+    "rust-mvp/src/client.rs": {
+      "working_sha256": "f45f1971147d8bef2e92298037d1786a5cf29a17f052e7d43cfa57e0b5152f1a",
+      "git_blob": "f9a911876352d004ae4c567c286f5a5f1c3de5c9"
+    },
+    "rust-mvp/src/extractor.rs": {
+      "working_sha256": "7dd6a632e912babf2882dd463974db1149c1dd71c37cb97a4bffef99d674dfde",
+      "git_blob": "e8dd83b101afabee0d4b1b0a5564da856302b585"
+    },
+    "rust-mvp/src/lib.rs": {
+      "working_sha256": "af65585106a3df3521b6790ab521053d5c62c51015b59fed7b5e12abaa2ca5d8",
+      "git_blob": "ad67f91570e21f68372b2f72588b8b9aa6cf143c"
+    },
+    "rust-mvp/src/main.rs": {
+      "working_sha256": "7fc830313493380d2f9edc5779c64b73c23f0b1e2f3a9b0f2331da37726cec53",
+      "git_blob": "ab87e0672bd1ce08ea4efbbae72dcee43296ed1d"
+    },
+    "rust-mvp/src/media.rs": {
+      "working_sha256": "384676a3186927a82ed09e64c3d10aa2f79264b24ce517c53af3f3525af03012",
+      "git_blob": "d5cd8e8b9cf534ef2460d94e2463e53491ebfda3"
+    },
+    "rust-mvp/src/pagination.rs": {
+      "working_sha256": "371bf8ac1074382641ab75d1a62426f9d5d136f848f4a139d529194ed3fc0c0e",
+      "git_blob": "399e60adfb92048b4485ae45ebd183c895fa197d"
+    },
+    "rust-mvp/src/signing.rs": {
+      "working_sha256": "41518b1ec90475ebc669f1eccd952f4c5405be4210fabb6f9dd0344525750ed9",
+      "git_blob": "b169316f42ee2a37d0f65a34fae70c6342b16822"
+    },
+    "rust-mvp/src/storage.rs": {
+      "working_sha256": "5d12942a357c9a09fa8d9e40d0e7dc284475c85959b156efb89ae86c11518ed1",
+      "git_blob": "1aeee883dbb5e754ad63c81a7cd301ae2a378571"
+    },
+    "rust-mvp/src/transport.rs": {
+      "working_sha256": "569ad4ce953b95115f0717995e47efbd7aabb2d39097933f798bed06eeedb95e",
+      "git_blob": "71d2eb00f1d9a28ee4566fca540a5bf2ed673451"
+    },
+    "rust-mvp/src/verify.rs": {
+      "working_sha256": "e656358eaece9828a49b4d795f57774e8377a8294ef1e120ddd2cdf5f00444f4",
+      "git_blob": "b073311293be763b45dd094d789edfd86c1d64e2"
+    },
+    "rust-mvp/tests/contracts.rs": {
+      "working_sha256": "184893655510cdf8e06cd63f7c0c90f015a4f39339ca5983f0cb6824c225e91f",
+      "git_blob": "571b4a5ce394820cfb013b0308cc070acab2c276"
+    },
+    "rust-mvp/tests/offline_http.rs": {
+      "working_sha256": "bc82cfb7b8d91be54597440cf0e90d859e9b2d18312a4b90cf3e01ccfdf2693d",
+      "git_blob": "51a3fab7f2cf343fa899d70a93caeb7e4696930f"
+    },
+    "rust-mvp/third-party/LICENSE-APACHE-2.0": {
+      "working_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "git_blob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64"
+    },
+    "rust-mvp/third-party/NOTICE-signing.txt": {
+      "working_sha256": "9e921ad560e79091156551f033d336e8e9580f39ea883d9e51678284a76cf6ba",
+      "git_blob": "f91b975efc50aa224d984226bebdb1290c8b858a"
+    }
+  },
+  "log_normalization": "UTF-8 LF; trailing whitespace and terminal blank lines removed; message contents unchanged",
+  "real_platform_requests": "NOT_RUN",
+  "actions_dispatched": false
+}

@@ -1,0 +1,8 @@
+{
+  "yaml_parse": "PASS",
+  "manual_only": "PASS",
+  "no_secrets": "PASS",
+  "permissions": "contents:read",
+  "actions_pinned": "PASS",
+  "workflow_dispatched": false
+}

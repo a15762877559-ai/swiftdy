@@ -1,0 +1,107 @@
+{
+  "source_commit": "3d540dbf3783449e638403b65d81c882c4a99575",
+  "synthetic_only": true,
+  "source_sha256": {
+    "sm3": "6ad3947e11670a2bdb1fd33980f1d3da007b76421b79c95a1586455c02069669",
+    "abogus": "59e0cd823175cd77dd83b8edc3d7deed985276c7056acd80fe9666cfa0f3a488",
+    "websign": "b31e1809de52e43f8098cbc903746d342b2128d56907542ca118af56d9c6010b"
+  },
+  "vectors": [
+    {
+      "query": "aid=6383&sec_user_id=fixture&max_cursor=0&count=18",
+      "user_agent": "Chrome/146.0.0.0",
+      "geometry": "1920|947|1920|1032|1920|1032|1920|1080|Win32",
+      "now": 1793000000123,
+      "seed": 12345,
+      "a_bogus": "xysjkw6Jm2mcOd/tYCapybxUz06MrTSy1Ui/RHOPSOugLHtTB8N90Ntpcooi4D68ZRBwiKVHZfU/YEncq0XipKHpzmpvuxvRk05VVX8o0qwRT0vQgrjseLfzww0NUbTq-/V7ilW60Uro6nVAhrQD/d-yeKoe5RuBFZO6k2TbY9BgZz6AL1n1PBbpPwiz06IW",
+      "web_pairs": [
+        [
+          "first",
+          "中文 +/~*"
+        ],
+        [
+          "uifid",
+          "synthetic"
+        ],
+        [
+          "a_bogus",
+          "xysjkw6Jm2mcOd/tYCapybxUz06MrTSy1Ui/RHOPSOugLHtTB8N90Ntpcooi4D68ZRBwiKVHZfU/YEncq0XipKHpzmpvuxvRk05VVX8o0qwRT0vQgrjseLfzww0NUbTq-/V7ilW60Uro6nVAhrQD/d-yeKoe5RuBFZO6k2TbY9BgZz6AL1n1PBbpPwiz06IW"
+        ]
+      ],
+      "web_query": "first=%E4%B8%AD%E6%96%87%20%2B%2F~*&uifid=synthetic&a_bogus=xysjkw6Jm2mcOd%2FtYCapybxUz06MrTSy1Ui%2FRHOPSOugLHtTB8N90Ntpcooi4D68ZRBwiKVHZfU%2FYEncq0XipKHpzmpvuxvRk05VVX8o0qwRT0vQgrjseLfzww0NUbTq-%2FV7ilW60Uro6nVAhrQD%2Fd-yeKoe5RuBFZO6k2TbY9BgZz6AL1n1PBbpPwiz06IW&timestamp=1793000000&x-secsdk-web-signature=9ec371583859fa7b56f01213bf7e5626",
+      "web_signature": "9ec371583859fa7b56f01213bf7e5626"
+    },
+    {
+      "query": "q=%E4%B8%AD%E6%96%87%20%2B%2F%3D&uifid=synthetic",
+      "user_agent": "Firefox/128",
+      "geometry": "1|2|3|4|5|6|7|8|中文😀",
+      "now": 1793000000124,
+      "seed": 12346,
+      "a_bogus": "mJ0chHtjm2mjKd/tuOcr9JNULtglrP8y2TTQRepTCxuhy1UGBRPA0xSpcooM4d28pWpwioIHsxUlbxncNsUwpqnkompfSxwRh5Q9VWsLZqoWGsJZHpukFbGoyJaSAcLE-AH7xfzBB8UkSxUdcfcLCQ1jn/1i",
+      "web_pairs": [
+        [
+          "first",
+          "中文 +/~*"
+        ],
+        [
+          "uifid",
+          "synthetic"
+        ],
+        [
+          "a_bogus",
+          "mJ0chHtjm2mjKd/tuOcr9JNULtglrP8y2TTQRepTCxuhy1UGBRPA0xSpcooM4d28pWpwioIHsxUlbxncNsUwpqnkompfSxwRh5Q9VWsLZqoWGsJZHpukFbGoyJaSAcLE-AH7xfzBB8UkSxUdcfcLCQ1jn/1i"
+        ]
+      ],
+      "web_query": "first=%E4%B8%AD%E6%96%87%20%2B%2F~*&uifid=synthetic&a_bogus=mJ0chHtjm2mjKd%2FtuOcr9JNULtglrP8y2TTQRepTCxuhy1UGBRPA0xSpcooM4d28pWpwioIHsxUlbxncNsUwpqnkompfSxwRh5Q9VWsLZqoWGsJZHpukFbGoyJaSAcLE-AH7xfzBB8UkSxUdcfcLCQ1jn%2F1i&timestamp=1793000000&x-secsdk-web-signature=0e9d0c61598ae1bdac59a3c09a69144f",
+      "web_signature": "0e9d0c61598ae1bdac59a3c09a69144f"
+    },
+    {
+      "query": "q=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "user_agent": "Edg/146 Chrome/146",
+      "geometry": "1920|947|1920|1032|1920|1032|1920|1080|Win32",
+      "now": 1793000000125,
+      "seed": 12347,
+      "a_bogus": "xvlVkwUim2mVPdMtmCnBCGNUFzgArPSyK0idbb5PtNFcL1FGMmP90OtpbooO4xg8ZWBiiFV7PDU/bdncpUXwpK9komkkudsWi0VVV6so/qwmGMvQDNj0ez6zLwMN0Rsq-/5UiIW6/Urq6VVAiqQD/p-97KoCQb8BB3xWkZucY9sh1FgADpc3PpbpEwixU6Oy",
+      "web_pairs": [
+        [
+          "first",
+          "中文 +/~*"
+        ],
+        [
+          "uifid",
+          "synthetic"
+        ],
+        [
+          "a_bogus",
+          "xvlVkwUim2mVPdMtmCnBCGNUFzgArPSyK0idbb5PtNFcL1FGMmP90OtpbooO4xg8ZWBiiFV7PDU/bdncpUXwpK9komkkudsWi0VVV6so/qwmGMvQDNj0ez6zLwMN0Rsq-/5UiIW6/Urq6VVAiqQD/p-97KoCQb8BB3xWkZucY9sh1FgADpc3PpbpEwixU6Oy"
+        ]
+      ],
+      "web_query": "first=%E4%B8%AD%E6%96%87%20%2B%2F~*&uifid=synthetic&a_bogus=xvlVkwUim2mVPdMtmCnBCGNUFzgArPSyK0idbb5PtNFcL1FGMmP90OtpbooO4xg8ZWBiiFV7PDU%2FbdncpUXwpK9komkkudsWi0VVV6so%2FqwmGMvQDNj0ez6zLwMN0Rsq-%2F5UiIW6%2FUrq6VVAiqQD%2Fp-97KoCQb8BB3xWkZucY9sh1FgADpc3PpbpEwixU6Oy&timestamp=1793000000&x-secsdk-web-signature=f308114c7e1929c58322562874ecd429",
+      "web_signature": "f308114c7e1929c58322562874ecd429"
+    },
+    {
+      "query": "a=~%2A%20%2B&b=",
+      "user_agent": "Safari/18",
+      "geometry": "1920|947|1920|1032|1920|1032|1920|1080|Win32",
+      "now": 1793000000126,
+      "seed": 12348,
+      "a_bogus": "DjUjXeywm2mbad/t8crP7bxUKUgMrB8yatiOWCnT7PFly7lbBRNn0PSpjoof4x9WNRpiiq17XDFAYdVcpUUspqnpKmkfuDUWw4V9V6mL8qwmTMJQgHjTeLXFqw0r05sql557iAUI/UJ96ndAkqQu/BA9SKLe5cWBF3ORk/ubY9B6ZzyAL3c3PdGkEwNxUGCJ",
+      "web_pairs": [
+        [
+          "first",
+          "中文 +/~*"
+        ],
+        [
+          "uifid",
+          "synthetic"
+        ],
+        [
+          "a_bogus",
+          "DjUjXeywm2mbad/t8crP7bxUKUgMrB8yatiOWCnT7PFly7lbBRNn0PSpjoof4x9WNRpiiq17XDFAYdVcpUUspqnpKmkfuDUWw4V9V6mL8qwmTMJQgHjTeLXFqw0r05sql557iAUI/UJ96ndAkqQu/BA9SKLe5cWBF3ORk/ubY9B6ZzyAL3c3PdGkEwNxUGCJ"
+        ]
+      ],
+      "web_query": "first=%E4%B8%AD%E6%96%87%20%2B%2F~*&uifid=synthetic&a_bogus=DjUjXeywm2mbad%2Ft8crP7bxUKUgMrB8yatiOWCnT7PFly7lbBRNn0PSpjoof4x9WNRpiiq17XDFAYdVcpUUspqnpKmkfuDUWw4V9V6mL8qwmTMJQgHjTeLXFqw0r05sql557iAUI%2FUJ96ndAkqQu%2FBA9SKLe5cWBF3ORk%2FubY9B6ZzyAL3c3PdGkEwNxUGCJ&timestamp=1793000000&x-secsdk-web-signature=d1ebebc6cdf16470ce38e9938743246c",
+      "web_signature": "d1ebebc6cdf16470ce38e9938743246c"
+    }
+  ]
+}
