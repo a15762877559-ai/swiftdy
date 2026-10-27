@@ -38,20 +38,55 @@ fn segments(raw: &str) -> impl Iterator<Item = &str> {
     raw.split(';').map(str::trim).filter(|s| !s.is_empty())
 }
 pub fn valid_structure(raw: &str) -> bool {
-    !raw.trim().is_empty()
-        && raw.len() <= COOKIE_LIMIT
-        && !raw.chars().any(char::is_control)
-        // HeaderValue accepts visible bytes and obs-text; controls are rejected above.
-        && raw.bytes().all(|b| b >= 32 && b != 127)
-        && segments(raw).all(|s| {
-            s.split_once('=').is_some_and(|(name, _)| {
-                !name.is_empty()
-                    && name.bytes().all(|b| {
-                        b.is_ascii_alphanumeric() || b"!#$%&'*+-.^_`|~".contains(&b)
-                    })
-            })
-        })
-        && segments(raw).next().is_some()
+    structure_error(raw).is_none()
+}
+
+// Fixed categories only: never retain the rejected field name/value, offset, or size.
+// These are the existing checks, now explained rather than collapsed to a bool.
+fn structure_error(raw: &str) -> Option<&'static str> {
+    if raw.trim().is_empty() {
+        return Some("COOKIE_INPUT_EMPTY");
+    }
+    if raw.len() > COOKIE_LIMIT {
+        return Some("COOKIE_INPUT_LIMIT_EXCEEDED");
+    }
+    if raw.contains(['\r', '\n']) {
+        return Some("COOKIE_EMBEDDED_LINE_BREAK");
+    }
+    if raw.chars().any(char::is_control) {
+        return Some("COOKIE_CONTROL_CHARACTER");
+    }
+    if !raw.bytes().all(|b| b >= 32 && b != 127) {
+        return Some("COOKIE_HEADER_BYTES_INVALID");
+    }
+    if raw
+        .trim_start()
+        .get(..7)
+        .is_some_and(|prefix| prefix.eq_ignore_ascii_case("cookie:"))
+    {
+        return Some("COOKIE_HEADER_LABEL_PRESENT");
+    }
+    for segment in segments(raw) {
+        let Some((name, _)) = segment.split_once('=') else {
+            return Some("COOKIE_SEGMENT_MISSING_EQUALS");
+        };
+        if name.is_empty() {
+            return Some("COOKIE_FIELD_NAME_EMPTY");
+        }
+        if name.chars().any(char::is_whitespace) {
+            return Some("COOKIE_FIELD_NAME_WHITESPACE");
+        }
+        if !name
+            .bytes()
+            .all(|b| b.is_ascii_alphanumeric() || b"!#$%&'*+-.^_`|~".contains(&b))
+        {
+            return Some("COOKIE_FIELD_NAME_INVALID");
+        }
+    }
+    if segments(raw).next().is_none() {
+        return Some("COOKIE_NO_FIELDS");
+    }
+    None
 }
 
 // No owned credential copies, Debug, or serialization. Different aliases are not duplicates.
@@ -98,6 +133,7 @@ pub fn resolve<'a>(raw: &'a str, names: &'static [&'static str]) -> Result<&'a s
 pub struct Diagnostic {
     pub fields: [(&'static str, Status); 2],
     pub structure_valid: bool,
+    pub structure_error: Option<&'static str>,
 }
 impl Diagnostic {
     pub fn passed(&self) -> bool {
@@ -112,8 +148,8 @@ impl Diagnostic {
         out.push_str(&UIFID_NAMES.join(" | "));
         let reason = if self.passed() {
             "NONE"
-        } else if !self.structure_valid {
-            "COOKIE_INVALID_FORMAT"
+        } else if let Some(error) = self.structure_error {
+            error
         } else if self.fields.iter().any(|(_, s)| *s == Status::Duplicated) {
             "REQUIRED_FIELD_DUPLICATED"
         } else if self.fields.iter().any(|(_, s)| *s == Status::Empty) {
@@ -126,7 +162,8 @@ impl Diagnostic {
     }
 }
 pub fn inspect(raw: &str) -> Diagnostic {
-    let structure_valid = valid_structure(raw);
+    let structure_error = structure_error(raw);
+    let structure_valid = structure_error.is_none();
     let fields = [TOKEN_NAMES, UIFID_NAMES].map(|names| {
         if !structure_valid && !raw.trim().is_empty() {
             (names[0], Status::InvalidFormat)
@@ -138,6 +175,7 @@ pub fn inspect(raw: &str) -> Diagnostic {
     Diagnostic {
         fields,
         structure_valid,
+        structure_error,
     }
 }
 

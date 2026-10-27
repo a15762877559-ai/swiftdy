@@ -10,6 +10,45 @@ use std::process::{Command, Stdio};
 const GOOD: &str = "UIFID_TEMP=SYNTHETIC_UIFID_MARKER; msToken=SYNTHETIC_TOKEN_MARKER";
 
 #[test]
+fn precise_format_reasons_do_not_disclose_rejected_input() {
+    for (raw, expected) in [
+        ("", "COOKIE_INPUT_EMPTY"),
+        (";;;", "COOKIE_NO_FIELDS"),
+        ("PRIVATE_UNRELATED_MARKER", "COOKIE_SEGMENT_MISSING_EQUALS"),
+        (
+            "Cookie: msToken=PRIVATE_UNRELATED_MARKER",
+            "COOKIE_HEADER_LABEL_PRESENT",
+        ),
+        ("=PRIVATE_UNRELATED_MARKER", "COOKIE_FIELD_NAME_EMPTY"),
+        (
+            "msToken =PRIVATE_UNRELATED_MARKER",
+            "COOKIE_FIELD_NAME_WHITESPACE",
+        ),
+        ("PRIVATE_UNRELATED_MARKER[]=x", "COOKIE_FIELD_NAME_INVALID"),
+        (
+            "msToken=PRIVATE_UNRELATED_MARKER\r\n",
+            "COOKIE_EMBEDDED_LINE_BREAK",
+        ),
+        (
+            "msToken=PRIVATE_UNRELATED_MARKER\t",
+            "COOKIE_CONTROL_CHARACTER",
+        ),
+    ] {
+        let diagnostic = credentials::inspect(raw);
+        assert_eq!(diagnostic.structure_error, Some(expected));
+        assert!(!diagnostic.passed());
+        assert!(Session::new(raw.into(), "fixture-agent".into()).is_err());
+        let output = diagnostic.render();
+        assert!(output.contains(expected));
+        assert!(!output.contains("PRIVATE_UNRELATED_MARKER"));
+    }
+    assert_eq!(
+        credentials::inspect(&"x".repeat(credentials::COOKIE_LIMIT + 1)).structure_error,
+        Some("COOKIE_INPUT_LIMIT_EXCEEDED")
+    );
+}
+
+#[test]
 fn required_field_matrix_shared_with_signing_session() {
     use Status::*;
     let cases = [
@@ -139,6 +178,17 @@ fn production_and_fixture_cli_file_input_redacts_and_does_not_write() {
             format!("\u{feff}{GOOD}\r\n"),
             true,
             "LOCAL_CREDENTIAL_STRUCTURE = PASS",
+        ),
+        (format!("{GOOD}\n\n"), false, "COOKIE_EMBEDDED_LINE_BREAK"),
+        (
+            format!("Cookie: {GOOD}"),
+            false,
+            "COOKIE_HEADER_LABEL_PRESENT",
+        ),
+        (
+            format!("{GOOD};PRIVATE_UNRELATED_MARKER"),
+            false,
+            "COOKIE_SEGMENT_MISSING_EQUALS",
         ),
     ] {
         std::fs::write(&path, &raw).unwrap();

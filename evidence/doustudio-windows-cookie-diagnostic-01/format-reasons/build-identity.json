@@ -1,0 +1,22 @@
+{
+  "task": "DOUSTUDIOKIT_WINDOWS_COOKIE_DIAGNOSTIC_01",
+  "base_commit": "049ba22e3aeb74b45db5a2378650c8e7d5c5348c",
+  "release_version": "doustudio 0.1.0",
+  "release_exe_sha256": "0decb9e53432f504748d7bb4d56c90f014d6f082d640bd15292813019cfec702",
+  "rust_toolchain": "1.91.1-x86_64-pc-windows-msvc",
+  "features": "production defaults; offline-test disabled",
+  "build": "cargo build --release --locked --offline",
+  "source_git_blobs": {
+    "rust-mvp/src/credentials.rs": "9fc74014be51728172a02647213fef7857d2eeae",
+    "rust-mvp/src/credential_file.rs": "cf07d0aa48827c734326b722b6b3f08b9d4e0e31",
+    "rust-mvp/src/auth.rs": "a4b4487d4b5a8edf302a787ed824833f64264149",
+    "rust-mvp/src/signing.rs": "8e16a7cf015ebc935ec9e3a4a4e6f4d7701f446e",
+    "rust-mvp/src/acceptance.rs": "95e19ddd13ebf0548ca8db05cf42c8ddc40ba4f6",
+    "rust-mvp/src/cli.rs": "75c64daeab8aff80481aa043978f72696496d7c8",
+    "rust-mvp/src/main.rs": "a31b38687307279d522e25257b56e2effb0b24d3",
+    "rust-mvp/src/lib.rs": "ba19a20e08750b7cd6a95c9a575431789d25fd8e",
+    "rust-mvp/src/media.rs": "ebb7e4b0e9a63956e6c7f301ff2ce7c75dbef2ad",
+    "rust-mvp/tests/credential_diagnostic.rs": "428aa3dd14ee322947db73a5da8038b3918f6261",
+    "rust-mvp/tests/acceptance_http.rs": "4a5fbd854ac4c5d13107cdcdc758b38c9da83e54"
+  }
+}

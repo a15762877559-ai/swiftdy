@@ -81,6 +81,12 @@ cargo fmt --all -- --check
 
 ## 验收状态
 
+### 格式原因细分修复
+
+用户说明输入来自原始 HTTP Cookie 后，进一步修复诊断信息过粗的问题：共享结构检查现在返回固定原因类别，分别说明输入为空/超限、内部换行、其他控制字符、Cookie 头标签、字段段缺等号、字段名为空/含空白/字符非法、只有空段等情况。未放宽或改变格式校验的接受规则，未修改用户文件，也不输出问题字符、字段段、偏移、数量或真实长度。
+
+本轮 Release、fmt、生产及离线配置 Clippy、全部测试与 Windows Ctrl+C 检查通过；生产配置 26 项、offline-test 配置 56 项。证据保存在原目录的 `format-reasons/` 子目录，之前证据保留。新版仅细分失败原因，整体格式无效时仍不把字段存在性标为已确认。新版真实文件诊断结果待本地执行后补充。
+
 ```ini
 TASK = DOUSTUDIOKIT_WINDOWS_COOKIE_DIAGNOSTIC_01
 RUST_BUILD = PASS

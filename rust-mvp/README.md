@@ -39,6 +39,8 @@ TXT 只保存完整 Cookie 字符串（UTF-8，可有 BOM 和一个结尾换行�
 - 相比原实现，空值重复不再被忽略，未选中 UIFID 别名的重复也会被拒绝；无等号、空字段名、非法字段名及控制字符会拒绝。正式 Session 与诊断共用这些规则，避免诊断通过而正式解析失败。
 - UTF-8/本地文件读取失败返回 `COOKIE_FILE_REJECTED_OR_UNREADABLE`。整体结构无效时必需字段报告 `INVALID_FORMAT`；空输入报告缺失且结构失败。失败退出码为 1；成功为 0。
 
+格式错误现输出固定的具体原因：`COOKIE_EMBEDDED_LINE_BREAK`（内部换行）、`COOKIE_CONTROL_CHARACTER`（其他控制字符）、`COOKIE_HEADER_LABEL_PRESENT`（带 Cookie 请求头标签）、`COOKIE_SEGMENT_MISSING_EQUALS`（非空段没有等号）、`COOKIE_FIELD_NAME_EMPTY`、`COOKIE_FIELD_NAME_WHITESPACE`、`COOKIE_FIELD_NAME_INVALID`、`COOKIE_INPUT_EMPTY`、`COOKIE_NO_FIELDS` 或 `COOKIE_INPUT_LIMIT_EXCEEDED`。这些是同一格式检查的细分结果，不输出问题段、字符、位置、数量或实际长度，也不会自动修复输入。浏览器显示为一行可能只是显示效果；诊断只依据文件实际内容，不能凭通用 `INVALID_FORMAT` 推断用户复制错误。
+
 全部通过也仅表示 `LOCAL_CREDENTIAL_STRUCTURE = PASS`，不证明登录有效、Cookie 未过期或平台会接受签名。`REAL_LOGIN`、真实列表、分页及视频下载均不在该命令的验收范围。
 
 `offline-test` 构建独有的 `credential-check --synthetic-stdin` 仅用于合成 fixture 测试，生产构建不提供该参数。离线测试在运行时入口、原生签名入口、DNS/客户端统一入口布置失败断言，并验证断言确实能阻止调用；正常诊断不得触发任何一个入口。这不是系统级抓包证明。
