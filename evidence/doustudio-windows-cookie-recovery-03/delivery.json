@@ -1,0 +1,10 @@
+{
+  "task": "DOUSTUDIOKIT_WINDOWS_COOKIE_RECOVERY_03",
+  "report_and_evidence_commit": "7239cae1103e70ea7857ce5e89d26e3a91bfbf3d",
+  "audited_production_source_commit": "e99687e2e5d65f561fdf14dbed3d90378854b457",
+  "branch": "main",
+  "report_and_evidence_push": "PASS",
+  "remote_main_at_verification": "7239cae1103e70ea7857ce5e89d26e3a91bfbf3d",
+  "production_source_changed": false,
+  "delivery_record": "This record is committed separately after verifying report and evidence publication."
+}
