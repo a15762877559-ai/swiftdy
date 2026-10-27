@@ -1,0 +1,36 @@
+{
+  "task": "DOUSTUDIOKIT_WINDOWS_COOKIE_RECOVERY_03",
+  "audited_source_commit": "e99687e2e5d65f561fdf14dbed3d90378854b457",
+  "initial_remote_main": "e99687e2e5d65f561fdf14dbed3d90378854b457",
+  "production_source_changed": false,
+  "release_build": "PASS",
+  "release_version": "doustudio 0.1.0",
+  "release_exe_sha256": "cd457bec740588f2ef35ab4621ba1f7917e0dc9ec6a538450d91102c9b8594fd",
+  "apache_commit": "3d540dbf3783449e638403b65d81c882c4a99575",
+  "swift_commit": "362dad3d082e9f63c8efd360acc653ba169d40a2",
+  "apache_sources": [
+    {
+      "module": "sm3",
+      "source_sha256": "6ad3947e11670a2bdb1fd33980f1d3da007b76421b79c95a1586455c02069669",
+      "matches_pinned_fixture": true
+    },
+    {
+      "module": "abogus",
+      "source_sha256": "59e0cd823175cd77dd83b8edc3d7deed985276c7056acd80fe9666cfa0f3a488",
+      "matches_pinned_fixture": true
+    },
+    {
+      "module": "websign",
+      "source_sha256": "b31e1809de52e43f8098cbc903746d342b2128d56907542ca118af56d9c6010b",
+      "matches_pinned_fixture": true
+    }
+  ],
+  "source_hashes_are_not_credential_hashes": true,
+  "credential_tests_passed": 14,
+  "temporary_inspector_tests_passed": 3,
+  "full_suite_rerun": false,
+  "preexisting_untracked_preserved": [
+    "docs/DOUSTUDIOKIT_WINDOWS_RUST_REAL_ACCEPTANCE_01_REPORT.md",
+    "evidence/doustudio-windows-rust-real-acceptance-01/"
+  ]
+}

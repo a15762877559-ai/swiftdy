@@ -1,0 +1,87 @@
+// Temporary offline inspection extension, appended to an unchanged copy of credentials.rs.
+// Uses that module's private scanner and name validator. Never repairs input.
+pub fn recovery_categories(raw: &str) -> serde_json::Value {
+    let mut cookie_label = false;
+    let mut set_cookie_label = false;
+    let mut url_candidate = false;
+    let mut missing_equals = false;
+    let mut invalid_name = false;
+    let mut empty_name = false;
+    let mut attribute_candidate = false;
+    let mut bare_attribute = false;
+    let mut bare_additional = false;
+    let mut bare_unknown = false;
+    for segment in raw_segments(raw) {
+        let s = segment.trim();
+        let prefix = |value: &str| s.get(..value.len()).is_some_and(|p| p.eq_ignore_ascii_case(value));
+        let cookie = prefix("Cookie:");
+        let response = prefix("Set-Cookie:");
+        let url = prefix("https://") || prefix("http://");
+        cookie_label |= cookie;
+        set_cookie_label |= response;
+        url_candidate |= url;
+        if let Some((name, _)) = s.split_once('=') {
+            empty_name |= name.is_empty();
+            invalid_name |= !valid_name(name);
+            attribute_candidate |= ["Path", "Domain", "Expires", "Max-Age", "SameSite", "Priority"]
+                .iter().any(|n| name.eq_ignore_ascii_case(n));
+        } else {
+            missing_equals = true;
+            let attribute = ["Secure", "HttpOnly", "Partitioned"]
+                .iter().any(|n| s.eq_ignore_ascii_case(n));
+            attribute_candidate |= attribute;
+            bare_attribute |= attribute;
+            bare_additional |= cookie || response || url;
+            bare_unknown |= !attribute && !cookie && !response && !url;
+        }
+    }
+    // Compare borrowed segments in memory; emit only a candidate flag, never counts or content.
+    let parts: Vec<_> = segments(raw).collect();
+    let repeated_sequence = (1..=parts.len()/2).any(|period| {
+        parts.len().is_multiple_of(period)
+            && parts.iter().enumerate().all(|(i, s)| *s == parts[i % period])
+    });
+    serde_json::json!({
+        "COOKIE_HEADER_LABEL_PRESENT": cookie_label,
+        "SET_COOKIE_HEADER_LABEL_PRESENT": set_cookie_label,
+        "URL_ADDITIONAL_TEXT_CANDIDATE": url_candidate,
+        "NONEMPTY_SEGMENT_MISSING_EQUALS": missing_equals,
+        "INVALID_FIELD_NAME": invalid_name,
+        "EMPTY_FIELD_NAME": empty_name,
+        "SET_COOKIE_ATTRIBUTE_CANDIDATE": attribute_candidate,
+        "EMBEDDED_LINE_BREAK": raw.contains(['\r', '\n']),
+        "CONTROL_CHARACTER": raw.chars().any(char::is_control),
+        "REPEATED_COMPLETE_SEQUENCE_CANDIDATE": repeated_sequence,
+        "MISSING_EQUALS_ATTRIBUTE_CANDIDATE": bare_attribute,
+        "MISSING_EQUALS_ADDITIONAL_TEXT_CANDIDATE": bare_additional,
+        "MISSING_EQUALS_UNCLASSIFIED": bare_unknown
+    })
+}
+
+#[cfg(test)]
+mod recovery_tests {
+    use super::*;
+    #[test]
+    fn categories_and_redaction_use_existing_scanner() {
+        for (suffix, category) in [
+            (";HttpOnly", "MISSING_EQUALS_ATTRIBUTE_CANDIDATE"),
+            (";https://example.invalid/", "MISSING_EQUALS_ADDITIONAL_TEXT_CANDIDATE"),
+            (";unclassified", "MISSING_EQUALS_UNCLASSIFIED"),
+            (";bad[]=x", "INVALID_FIELD_NAME"),
+            (";=x", "EMPTY_FIELD_NAME"),
+            (";other=x\n", "EMBEDDED_LINE_BREAK"),
+            (";other=x\0", "CONTROL_CHARACTER"),
+            (";Path=/", "SET_COOKIE_ATTRIBUTE_CANDIDATE"),
+        ] {
+            let a = format!("msToken=a;UIFID=b{suffix}");
+            let b = format!("msToken=SYNTHETIC_TOKEN_MARKER;UIFID=SYNTHETIC_UIFID_MARKER{suffix}");
+            assert_eq!(recovery_categories(&a)[category], true);
+            assert_eq!(recovery_categories(&a), recovery_categories(&b));
+            assert_eq!(inspect(&a).json(), inspect(&b).json());
+        }
+        assert_eq!(recovery_categories("Cookie: msToken=a;UIFID=b")["COOKIE_HEADER_LABEL_PRESENT"], true);
+        assert_eq!(recovery_categories("Set-Cookie: x=y;Secure")["SET_COOKIE_HEADER_LABEL_PRESENT"], true);
+        assert_eq!(recovery_categories("msToken=a;UIFID=b;msToken=a;UIFID=b")["REPEATED_COMPLETE_SEQUENCE_CANDIDATE"], true);
+        assert_eq!(recovery_categories("msToken=a==;UIFID=b")["NONEMPTY_SEGMENT_MISSING_EQUALS"], false);
+    }
+}

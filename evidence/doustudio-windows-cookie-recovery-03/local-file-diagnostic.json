@@ -1,0 +1,33 @@
+{
+  "COOKIE_STRUCTURE": "FAIL",
+  "DNS_REQUESTS": 0,
+  "FIELD_INSPECTION": "PARTIAL",
+  "LOCAL_CREDENTIAL_STRUCTURE": "FAIL",
+  "MSTOKEN_FIELD": "UNKNOWN",
+  "NETWORK_REQUESTS": 0,
+  "REAL_HTTP_REQUESTS": 0,
+  "REAL_MEDIA_REQUESTS": 0,
+  "SIGNING": "NOT_RUN",
+  "SIGNING_ALLOWED": "NO",
+  "STRICT_SIGNING_VALIDATION": "REJECT",
+  "STRUCTURE_REASON": "COOKIE_SEGMENT_MISSING_EQUALS",
+  "UIFID_FIELD": "PRESENT",
+  "mode": "DiagnosticInspection",
+  "required_fields": {
+    "UIFID": {
+      "malformed_candidate": false,
+      "name": "UIFID",
+      "observation": "CONFIRMED_IN_PARSEABLE_SEGMENTS",
+      "parseable_status": "PRESENT",
+      "status": "PRESENT"
+    },
+    "msToken": {
+      "malformed_candidate": false,
+      "name": "msToken",
+      "observation": "NOT_OBSERVED_IN_PARSEABLE_SEGMENTS",
+      "parseable_status": "NOT_OBSERVED",
+      "status": "UNKNOWN"
+    }
+  },
+  "task": "DOUSTUDIOKIT_WINDOWS_COOKIE_DIAGNOSTIC_02"
+}

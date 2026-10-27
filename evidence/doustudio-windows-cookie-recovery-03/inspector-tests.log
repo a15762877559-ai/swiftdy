@@ -1,0 +1,12 @@
+     Locking 180 packages to latest compatible versions
+   Compiling doustudio-rust v0.1.0 (D:\Projects\swiftdy\rust-mvp)
+   Compiling cookie-recovery-local-inspector v0.0.0 (F:\REA\tmp\doustudio-cookie-recovery-03)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 21.35s
+     Running unittests src\main.rs (rust-mvp\target\debug\deps\cookie_recovery_local_inspector-4a0d44e38fca45fe.exe)
+
+running 3 tests
+test credentials::tests::borrowed_parser_retains_value_bytes_and_alias_priority ... ok
+test credentials::tests::accepted_text_is_always_accepted_by_existing_header_validator ... ok
+test credentials::recovery_tests::categories_and_redaction_use_existing_scanner ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

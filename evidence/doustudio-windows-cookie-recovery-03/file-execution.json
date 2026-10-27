@@ -1,0 +1,15 @@
+{
+  "task": "DOUSTUDIOKIT_WINDOWS_COOKIE_RECOVERY_03",
+  "executed_at_utc": "2026-10-27T05:39:09.128072+00:00",
+  "temporary_classifier_runs": 1,
+  "production_full_diagnostic_runs": 1,
+  "file_version_metadata_unchanged": true,
+  "file_contents_read_by_wrapper": false,
+  "original_file_modified": false,
+  "normalized_copy_created": false,
+  "json_allowlist_validation": "PASS",
+  "diagnostic_exit_code": 1,
+  "real_http_requests": 0,
+  "real_media_requests": 0,
+  "real_signing": "NOT_RUN"
+}
