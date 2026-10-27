@@ -85,7 +85,11 @@ cargo fmt --all -- --check
 
 用户说明输入来自原始 HTTP Cookie 后，进一步修复诊断信息过粗的问题：共享结构检查现在返回固定原因类别，分别说明输入为空/超限、内部换行、其他控制字符、Cookie 头标签、字段段缺等号、字段名为空/含空白/字符非法、只有空段等情况。未放宽或改变格式校验的接受规则，未修改用户文件，也不输出问题字符、字段段、偏移、数量或真实长度。
 
-本轮 Release、fmt、生产及离线配置 Clippy、全部测试与 Windows Ctrl+C 检查通过；生产配置 26 项、offline-test 配置 56 项。证据保存在原目录的 `format-reasons/` 子目录，之前证据保留。新版仅细分失败原因，整体格式无效时仍不把字段存在性标为已确认。新版真实文件诊断结果待本地执行后补充。
+本轮 Release、fmt、生产及离线配置 Clippy、全部测试与 Windows Ctrl+C 检查通过；生产配置 26 项、offline-test 配置 56 项。证据保存在原目录的 `format-reasons/` 子目录，之前证据保留。新版仅细分失败原因，整体格式无效时仍不把字段存在性标为已确认。
+
+修复代码提交并推送后，使用新版 Release 对用户指定 TXT 做了一次本地诊断：`msToken=INVALID_FORMAT`、`uifid=INVALID_FORMAT`、`LOCAL_CREDENTIAL_STRUCTURE=FAIL`，固定原因是 `COOKIE_SEGMENT_MISSING_EQUALS`。这表示按分号拆分后有不含等号的非空段；未输出/记录该段或其位置，不能猜测它是哪个字段或属性，也不能以此否定文件来自真实 HTTP。该结果是应用共享解析器的规则判断，并非完整 HTTP 协议合法性鉴定。
+
+本轮该次诊断 HTTP、DNS、签名调用均为 0，未修改输入文件。早期笼统格式结果保留为历史记录；最新结果见 `format-reasons/local-file-diagnostic.json`。没有恢复阶段 A、删除字段或自动生成凭证。
 
 ```ini
 TASK = DOUSTUDIOKIT_WINDOWS_COOKIE_DIAGNOSTIC_01
